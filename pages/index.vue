@@ -1,6 +1,10 @@
 <template>
-  <div class="container">
-    <h1 class="text-3xl">CTFever</h1>
+  <div>
+    <TopBar/>
+    <div class="container mt-16 mx-auto p-4">
+      <h1>contents</h1>
+      <Nuxt/>
+    </div>
   </div>
 </template>
 
