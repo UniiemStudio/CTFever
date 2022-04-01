@@ -2,7 +2,7 @@ export const state = () => ({
   toolkits: [
     {
       title: 'toolkit.EaD.title',
-      description: 'toolkit.EaD.description',
+      description: 'toolkit.EaD.desc',
       tools: [
         {
           title: 'tool.ascii.title',
@@ -10,30 +10,30 @@ export const state = () => ({
           route: '/tools/ascii',
         },
         {
-          title: 'URL Encoding',
-          description: 'A tool for encoding and decoding URL data',
+          title: 'tool.urlEncoding.title',
+          description: 'tool.urlEncoding.desc',
           route: '/tools/url-encoding',
         },
         {
-          title: 'BaseN Series',
-          description: 'A tool for encoding and decoding Base-N data',
+          title: 'tool.baseSeries.title',
+          description: 'tool.baseSeries.desc',
           route: '/tools/base-series',
         },
         {
-          title: "ROT-N Series",
-          description: 'A tool for encoding and decoding ROT-N data',
+          title: "tool.rotSeries.title",
+          description: 'tool.rotSeries.desc',
           route: '/tools/rot-series',
         },
         {
-          title: 'Morse Code',
-          description: 'A tool for encoding and decoding Morse Code data',
+          title: 'tool.morseCode.title',
+          description: 'tool.morseCode.desc',
           route: '/tools/morse-code',
         }
       ]
     },
     {
-      title: 'Cryptography',
-      description: 'A toolkit for cryptography',
+      title: 'toolkit.cryptography.title',
+      description: 'toolkit.cryptography.desc',
       tools: [
         {
           title: 'MD5',
