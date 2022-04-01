@@ -6,12 +6,16 @@
         <h1 class="text-lg font-bold">CTFever</h1>
       </div>
       <div>
-        <button class="border border-gray-300 rounded px-2 py-px hover:shadow transition-shadow">SIGN IN</button>
-        <button
-          class="border border-blue-500 rounded px-2 py-px hover:shadow transition-shadow ml-1 bg-blue-500 text-white">
-          SIGN
-          UP
-        </button>
+        <nuxt-link to="/sign-in"
+                   class="border border-gray-300 rounded px-2 py-px hover:shadow transition-shadow hover:text-inherit
+                   text-sm font-bold text-center">
+          <span>LOGIN</span>
+        </nuxt-link>
+        <nuxt-link to="/signup"
+                   class="border border-blue-500 rounded px-2 py-px hover:shadow transition-shadow hover:text-white
+                   text-sm font-bold text-center ml-1 bg-blue-500 text-white">
+          <span>SIGN UP</span>
+        </nuxt-link>
       </div>
     </div>
   </div>
