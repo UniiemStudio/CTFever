@@ -1,7 +1,7 @@
 <template>
   <div>
     <TopBar/>
-    <div class="container mt-16 mx-auto p-4">
+    <div class="container mx-auto p-4 pt-20">
       <Nuxt/>
     </div>
   </div>

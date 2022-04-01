@@ -4,7 +4,7 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'CTFever by uniiem',
+    title: 'CTFever Toolkit by uniiem',
     meta: [
       {charset: 'utf-8'},
       {name: 'viewport', content: 'width=device-width, initial-scale=1'},
@@ -41,6 +41,8 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
+    // https://go.nuxtjs.dev/i18n
+    '@nuxtjs/i18n',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -54,6 +56,51 @@ export default {
     manifest: {
       lang: 'en'
     }
+  },
+
+  i18n: {
+    // https://go.nuxtjs.dev/i18n-module
+    locales: [
+      {
+        code: 'en',
+        iso: 'en-US',
+        file: 'en-US.js',
+        name: 'English',
+        label: 'English'
+      },
+      {
+        code: 'zh',
+        iso: 'zh-CN',
+        file: 'zh-CN.js',
+        name: '中文',
+        label: '中文'
+      },
+      {
+        code: 'ja',
+        iso: 'ja-JP',
+        file: 'ja-JP.js',
+        name: '日本語',
+        label: '日本語'
+      }
+    ],
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'i18n_redirected',
+      // redirectOn: 'root',
+      alwaysRedirect: true,
+    },
+    defaultLocale: 'zh',
+    lazy: true,
+    langDir: 'lang/',
+    vueI18n: {
+      fallbackLocale: 'en',
+      messages: {
+        en: require('./lang/en-US.js'),
+        zh: require('./lang/zh-CN.js'),
+        ja: require('./lang/ja-JP'),
+      }
+    },
+    vueI18nLoader: true,
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
