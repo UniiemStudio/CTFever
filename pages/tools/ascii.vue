@@ -1,6 +1,7 @@
 <template>
   <div>
-    <h1>ASCII Tool</h1>
+    <h1>{{ $t('tool.ascii.title') }}</h1>
+    <p>{{ $t('tool.ascii.desc') }}</p>
   </div>
 </template>
 
