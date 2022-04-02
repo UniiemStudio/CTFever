@@ -16,11 +16,11 @@
           </a>
           <a-menu slot="overlay">
             <a-menu-item v-for="(locale, k) in availableLocales" :key="k">
-              <nuxt-linkっk
+              <nuxt-link
                 class="px-2 py-px"
                 :key="locale.code"
                 :to="switchLocalePath(locale.code)">{{ locale.name }}
-              </nuxt-linkっk>
+              </nuxt-link>
             </a-menu-item>
           </a-menu>
         </a-dropdown>
