@@ -1,7 +1,11 @@
 export default {
   app: {
     name: 'CTFever',
-    title: 'CTFever Toolkit by uniiem'
+    title: 'CTFever Toolkit by uniiem',
+    edition: {
+      snap: '快照版',
+      dev: '开发版',
+    }
   },
   topbar: {
     login: '登陆',

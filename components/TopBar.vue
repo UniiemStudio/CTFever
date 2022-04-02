@@ -6,7 +6,10 @@
     >
       <div class="w-full h-16 px-4 container flex justify-between items-center">
         <div>
-          <nuxt-link :to="localePath('/')" class="text-lg font-bold">CTFever</nuxt-link>
+          <nuxt-link :to="localePath('/')" class="text-lg font-bold">
+            CTFever
+            <span class="font-thin">{{ $t('app.edition.snap') }}</span>
+          </nuxt-link>
         </div>
         <div>
           <a-dropdown :trigger="['click']">
