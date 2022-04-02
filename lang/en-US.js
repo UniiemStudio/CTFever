@@ -1,4 +1,8 @@
 export default {
+  app: {
+    name: 'CTFever',
+    title: 'CTFever Toolkit by uniiem'
+  },
   topbar: {
     login: 'LOGIN',
     signup: 'SIGN UP',

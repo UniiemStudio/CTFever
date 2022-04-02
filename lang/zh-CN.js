@@ -1,4 +1,8 @@
 export default {
+  app: {
+    name: 'CTFever',
+    title: 'CTFever Toolkit by uniiem'
+  },
   topbar: {
     login: '登陆',
     signup: '创建账号',

@@ -6,7 +6,12 @@
 
 <script>
 export default {
-  name: "ascii"
+  name: "ascii",
+  head() {
+    return {
+      title: this.$t("tool.ascii.title") + " - " + this.$t("app.name")
+    };
+  }
 }
 </script>
 
