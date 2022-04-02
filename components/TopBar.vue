@@ -1,7 +1,11 @@
 <template>
+  <!--  <div class="fixed top-0 h-16 w-full bg-white backdrop-blur-sm shadow hover:shadow-md transition-shadow flex flex-col items-center">-->
+  <!--    <div class="w-full h-full px-4 container flex justify-between items-center">-->
   <div
-    class="fixed top-0 h-16 w-full bg-white backdrop-blur-sm shadow hover:shadow-md transition-shadow flex justify-center">
-    <div class="w-full h-full px-4 container flex justify-between items-center">
+    class="fixed top-0 w-full bg-white backdrop-blur-sm shadow hover:shadow-md transition-shadow flex flex-col items-center"
+    :class="{'h-24': isToolPage(), 'h-16': !isToolPage()}"
+  >
+    <div class="w-full h-16 px-4 container flex justify-between items-center">
       <div>
         <nuxt-link :to="localePath('/')" class="text-lg font-bold">CTFever</nuxt-link>
       </div>
@@ -12,17 +16,22 @@
           </a>
           <a-menu slot="overlay">
             <a-menu-item v-for="(locale, k) in availableLocales" :key="k">
-              <nuxt-link
+              <nuxt-linkっk
                 class="px-2 py-px"
                 :key="locale.code"
                 :to="switchLocalePath(locale.code)">{{ locale.name }}
-              </nuxt-link>
+              </nuxt-linkっk>
             </a-menu-item>
           </a-menu>
         </a-dropdown>
         <TinyButtonLink class="ml-1" :to="localePath('/login')">{{ $t('topbar.login') }}</TinyButtonLink>
         <TinyButtonLink class="ml-1" :to="localePath('/signup')" accent>{{ $t('topbar.signup') }}</TinyButtonLink>
       </div>
+    </div>
+    <div
+      v-if="isToolPage()"
+      class="w-full h-8 px-4 container flex justify-between items-center">
+      asdasdasd
     </div>
   </div>
 </template>
@@ -36,8 +45,15 @@ export default {
   computed: {
     availableLocales() {
       return this.$i18n.locales.filter(i => i.code !== this.$i18n.locale)
+    },
+  },
+  data() {
+    return {
+      isToolPage() {
+        return this.$route.path.startsWith("/tool")
+      },
     }
-  }
+  },
 }
 </script>
 
