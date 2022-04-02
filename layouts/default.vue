@@ -1,7 +1,8 @@
 <template>
   <div class="antialiased">
     <TopBar/>
-    <div class="container mx-auto p-4 pt-20">
+    <div class="container mx-auto p-4 pt-20"
+         :class="{'pt-28': isToolPage(), 'pt-20': !isToolPage()}">
       <Nuxt/>
     </div>
   </div>
@@ -9,7 +10,14 @@
 
 <script>
 export default {
-  name: "index"
+  name: "index",
+  data() {
+    return {
+      isToolPage() {
+        return this.$route.path.startsWith("/tool")
+      },
+    }
+  },
 }
 </script>
 

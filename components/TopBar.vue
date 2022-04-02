@@ -30,8 +30,13 @@
     </div>
     <div
       v-if="isToolPage()"
-      class="w-full h-8 px-4 container flex justify-between items-center">
-      asdasdasd
+      class="w-full h-8 px-4 container flex justify-between items-center border-t border-t-gray-200">
+      <div>
+        <nuxt-link :to="localePath('/')">← 返回</nuxt-link>
+      </div>
+      <div>
+        <button>⭐</button>
+      </div>
     </div>
   </div>
 </template>
