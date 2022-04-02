@@ -4,6 +4,13 @@ export default {
     signup: 'SIGN UP',
     langTip: 'Language',
   },
+  page: {
+    notFound: {
+      title: 'Page Not Found',
+      message: 'The spirit of exploration is valuable, but unfortunately there is nothing here :(',
+      btn: 'Back to home',
+    },
+  },
   toolkit: {
     EaD: {
       title: 'Encoding and Decoding',

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="fixed top-0 h-16 w-full bg-white backdrop-blur-sm shadow hover:shadow-lg transition-shadow flex justify-center">
+    class="fixed top-0 h-16 w-full bg-white backdrop-blur-sm shadow hover:shadow-md transition-shadow flex justify-center">
     <div class="w-full h-full px-4 container flex justify-between items-center">
       <div>
         <nuxt-link :to="localePath('/')" class="text-lg font-bold">CTFever</nuxt-link>
@@ -20,14 +20,8 @@
             </a-menu-item>
           </a-menu>
         </a-dropdown>
-        <!--        <nuxt-link-->
-        <!--          class="px-2 py-px"-->
-        <!--          v-for="locale in availableLocales"-->
-        <!--          :key="locale.code"-->
-        <!--          :to="switchLocalePath(locale.code)">{{ locale.name }}-->
-        <!--        </nuxt-link>-->
-        <TinyButtonLink :to="localePath('/login')">{{ $t('topbar.login') }}</TinyButtonLink>
-        <TinyButtonLink to="/signup" accent>{{ $t('topbar.signup') }}</TinyButtonLink>
+        <TinyButtonLink class="ml-1" :to="localePath('/login')">{{ $t('topbar.login') }}</TinyButtonLink>
+        <TinyButtonLink class="ml-1" :to="localePath('/signup')" accent>{{ $t('topbar.signup') }}</TinyButtonLink>
       </div>
     </div>
   </div>
