@@ -11,7 +11,7 @@
             <span class="font-thin">{{ $t('app.edition.snap') }}</span>
           </nuxt-link>
         </div>
-        <div>
+        <div class="space-x-1">
           <a-dropdown :trigger="['click']">
             <a class="ant-dropdown-link" @click="e => e.preventDefault()">
               {{ $t('topbar.langTip') }}
@@ -26,8 +26,8 @@
               </a-menu-item>
             </a-menu>
           </a-dropdown>
-          <TinyButtonLink class="ml-1" :to="localePath('/login')">{{ $t('topbar.login') }}</TinyButtonLink>
-          <TinyButtonLink class="ml-1" :to="localePath('/signup')" accent>{{ $t('topbar.signup') }}</TinyButtonLink>
+          <TinyButtonLink :to="localePath('/login')">{{ $t('topbar.login') }}</TinyButtonLink>
+          <TinyButtonLink :to="localePath('/signup')" accent>{{ $t('topbar.signup') }}</TinyButtonLink>
         </div>
       </div>
     </div>
