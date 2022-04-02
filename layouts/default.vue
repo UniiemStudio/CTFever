@@ -21,6 +21,29 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 0.3s;
+}
 
+.page-enter,
+.page-leave-to {
+  opacity: 0;
+}
+
+.slide-bottom-enter-active,
+.slide-bottom-leave-active {
+  transition: opacity 0.15s ease-in-out, transform 0.15s ease-in-out;
+}
+
+.slide-bottom-enter {
+  opacity: 0;
+  transform: translate3d(10px, 0, 0);
+}
+
+.slide-bottom-leave-to {
+  opacity: 0;
+  transform: translate3d(-10px, 0, 0);
+}
 </style>
