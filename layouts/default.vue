@@ -24,25 +24,26 @@ export default {
 <style>
 .page-enter-active,
 .page-leave-active {
-  transition: opacity 0.3s;
+  transition: opacity 0.3s, transform 0.3s;
 }
 
 .page-enter,
 .page-leave-to {
   opacity: 0;
+  transform: scale(0.99);
 }
 
-.slide-bottom-enter-active,
-.slide-bottom-leave-active {
+.slide-left-enter-active,
+.slide-left-leave-active {
   transition: opacity 0.15s ease-in-out, transform 0.15s ease-in-out;
 }
 
-.slide-bottom-enter {
+.slide-left-enter {
   opacity: 0;
   transform: translate3d(10px, 0, 0);
 }
 
-.slide-bottom-leave-to {
+.slide-left-leave-to {
   opacity: 0;
   transform: translate3d(-10px, 0, 0);
 }

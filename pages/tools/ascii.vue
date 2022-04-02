@@ -66,7 +66,6 @@
 <script>
 export default {
   name: "ascii",
-  transition: 'slide-bottom',
   head() {
     return {
       title: this.$t("tool.ascii.title") + " - " + this.$t("app.name")

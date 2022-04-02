@@ -29,7 +29,7 @@
       </div>
     </div>
     <div
-      class="fixed z-0 top-16 w-full h-8 bg-white backdrop-blur-sm -translate-y-8 transition duration-500 flex flex-col items-center h-16"
+      class="fixed z-0 top-16 w-full h-8 bg-white backdrop-blur-sm opacity-0 -translate-y-8 transition duration-500 flex flex-col items-center h-16"
       :class="{'shadow hover:shadow-md opacity-100 translate-y-0': isToolPage()}"
     >
       <div
