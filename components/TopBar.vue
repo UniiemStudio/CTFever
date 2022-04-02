@@ -62,9 +62,8 @@ export default {
   },
   data() {
     return {
-      isToolPage() {
-        return this.$route.path.startsWith("/tool")
-      },
+      toolPageReg: /^.*\/tools\/.*/,
+      isToolPage: () => this.toolPageReg.test(this.$route.path),
     }
   },
 }
