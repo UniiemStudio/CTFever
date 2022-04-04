@@ -35,7 +35,7 @@ export const state = () => ({
     {
       title: 'toolkit.cryptography.title',
       description: 'toolkit.cryptography.desc',
-      icon: 'albums-outline',
+      icon: 'calculator-outline',
       tools: [
         {
           title: 'MD5',

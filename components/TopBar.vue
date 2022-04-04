@@ -14,8 +14,7 @@
         <div class="space-x-1">
           <a-dropdown :trigger="['click']">
             <a class="ant-dropdown-link" @click="e => e.preventDefault()">
-              <!--              {{ $t('topbar.langTip') }}-->
-              <ion-icon name="language-outline"></ion-icon>
+              <ion-icon class="align-middle text-lg -mt-1" name="language-outline"></ion-icon>
             </a>
             <a-menu slot="overlay">
               <a-menu-item v-for="(locale, k) in availableLocales" :key="k">
