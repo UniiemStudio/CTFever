@@ -39,14 +39,14 @@
       class="fixed z-0 top-16 w-full h-8 bg-white backdrop-blur-sm opacity-0 -translate-y-8 transition duration-500 flex flex-col items-center h-16"
       :class="{'shadow hover:shadow-md opacity-100 translate-y-0': isToolPage()}"
     >
-      <div
-        class="w-full h-full px-4 container flex justify-between items-center border-t border-t-gray-150"
-      >
+      <div class="w-full h-full px-4 container flex justify-between items-center border-t border-t-gray-150">
         <div>
           <nuxt-link :to="localePath('/')">← 返回</nuxt-link>
         </div>
         <div>
-          <button>⭐</button>
+          <button>
+            <ion-icon class="align-middle text-lg -mt-1" name="bookmark-outline"></ion-icon>
+          </button>
         </div>
       </div>
     </div>
