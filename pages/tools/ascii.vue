@@ -103,14 +103,16 @@ export default {
       }
       return result;
     },
+    // TODO: Required to be improved. The radix should be used to differentiate between the different bases
     infiniteAscii2String(longASCII, radix = 10) {
       let result = "";
+      console.log(longASCII);
       let chars = longASCII.split("");
-      let char_temp = "";
+      let char_temp = 0;
       chars.forEach((char) => {
         if (char_temp + char > 31 && char_temp + char < 127) {
           result += String.fromCharCode(char_temp + char);
-          char_temp = "";
+          char_temp = 0;
         } else {
           char_temp += char;
         }

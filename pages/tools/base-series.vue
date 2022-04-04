@@ -6,7 +6,12 @@
 
 <script>
 export default {
-  name: "base-series"
+  name: "base-series",
+  head() {
+    return {
+      title: this.$t("tool.baseSeries.title") + " - " + this.$t("app.name")
+    };
+  }
 }
 </script>
 
