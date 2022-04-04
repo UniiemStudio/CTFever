@@ -46,11 +46,9 @@
       <div class="mb-4" v-if="result !== ''">
         <h1 class="text-gray-700 text-sm font-bold mb-2">结果</h1>
         <pre class="bg-gray-200 rounded-lg p-4 mb-2 text-gray-700">{{ result }}</pre>
-        <button
-          class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-          type="button" @click="input_ascii = ''; input_string = ''; result = '';">
-          清空
-        </button>
+        <PrimaryButton type="button" @click="input_ascii = ''; input_string = ''; result = '';" danger>
+          重置
+        </PrimaryButton>
       </div>
     </form>
   </ToolContainer>
@@ -58,10 +56,11 @@
 
 <script>
 import ToolContainer from "~/components/ToolContainer";
+import PrimaryButton from "~/components/PrimaryButton";
 
 export default {
   name: "ascii",
-  components: {ToolContainer},
+  components: {PrimaryButton, ToolContainer},
   head() {
     return {
       title: this.$t("tool.ascii.title") + " - " + this.$t("app.name")
