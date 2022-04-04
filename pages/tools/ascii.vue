@@ -105,9 +105,16 @@ export default {
     },
     infiniteAscii2String(longASCII, radix = 10) {
       let string = "";
-      for (let i = 0; i < longASCII.length; i += 2) {
-        string += String.fromCharCode(parseInt(longASCII.substr(i, 2), radix));
-      }
+      let arr = longASCII.split("");
+      let tmp_str = "";
+      arr.forEach((item) => {
+        if(tmp_str+item > 31 && tmp_str+item < 127) {
+          string += String.fromCharCode(tmp_str+item);
+          tmp_str = "";
+        }else{
+          tmp_str += item;
+        }
+      });
       return string;
     },
     string2Ascii(string, radix = 10, separator = null) {
