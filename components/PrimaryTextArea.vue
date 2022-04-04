@@ -3,19 +3,19 @@
     <label v-if="label" class="block text-gray-700 text-sm font-bold mb-2" :for="id">
       {{ label }}
     </label>
-    <input
+    <textarea
       class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-      :id="id" :type="type" :placeholder="placeholder" v-model="value" @input="onInput" :disabled="disable"/>
+      :rows="rows" :id="id" :placeholder="placeholder" v-model="value" @input="onInput" :disabled="disable"/>
   </div>
 </template>
 
 <script>
 export default {
-  name: "PrimaryInput",
+  name: "PrimaryArea",
   props: {
     id: {
       type: String,
-      default: "primary-input",
+      default: "primary-area",
       required: true
     },
     label: {
@@ -26,9 +26,9 @@ export default {
       type: String,
       default: null
     },
-    type: {
-      type: String,
-      default: "text"
+    rows: {
+      type: Number,
+      default: 5
     },
     disable: {
       type: Boolean,
