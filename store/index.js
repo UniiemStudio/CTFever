@@ -3,6 +3,7 @@ export const state = () => ({
     {
       title: 'toolkit.EaD.title',
       description: 'toolkit.EaD.desc',
+      icon: 'code-outline',
       tools: [
         {
           title: 'tool.ascii.title',
@@ -34,6 +35,7 @@ export const state = () => ({
     {
       title: 'toolkit.cryptography.title',
       description: 'toolkit.cryptography.desc',
+      icon: 'albums-outline',
       tools: [
         {
           title: 'MD5',
