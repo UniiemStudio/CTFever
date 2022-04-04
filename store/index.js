@@ -89,7 +89,7 @@ export const state = () => ({
       ]
     },
     {
-      title: 'Misc',
+      title: 'toolkit.misc.title',
       description: 'toolkit.misc.desc',
       icon: 'construct-outline',
       tools: [
