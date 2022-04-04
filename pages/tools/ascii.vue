@@ -47,9 +47,9 @@
 </template>
 
 <script>
-import ToolContainer from "~/components/ToolContainer";
-import PrimaryButton from "~/components/PrimaryButton";
-import PrimaryInput from "~/components/PrimaryInput";
+import ToolContainer from "~/components/tool/ToolContainer";
+import PrimaryButton from "~/components/form/PrimaryButton";
+import PrimaryInput from "~/components/form/PrimaryInput";
 
 export default {
   name: "ascii",

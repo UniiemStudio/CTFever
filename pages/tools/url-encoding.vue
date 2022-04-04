@@ -20,9 +20,9 @@
 </template>
 
 <script>
-import ToolContainer from "~/components/ToolContainer";
-import PrimaryButton from "~/components/PrimaryButton";
-import PrimaryArea from "~/components/PrimaryTextArea";
+import ToolContainer from "~/components/tool/ToolContainer";
+import PrimaryButton from "~/components/form/PrimaryButton";
+import PrimaryArea from "~/components/form/PrimaryTextArea";
 
 export default {
   name: "url-encoding",
