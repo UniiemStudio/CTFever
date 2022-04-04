@@ -44,6 +44,7 @@
           <nuxt-link :to="localePath('/')">← 返回</nuxt-link>
         </div>
         <div>
+          <!--TODO: 评分-->
           <button>
             <ion-icon class="align-middle text-lg -mt-1" name="bookmark-outline"></ion-icon>
           </button>

@@ -22,7 +22,7 @@
           <select
             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="mode" v-model="input_mode">
-            <option value="continuity">连续</option>
+            <option value="continuity">连续(自动识别可打印字符)</option>
             <option value="split">逗号分隔</option>
           </select>
         </div>
