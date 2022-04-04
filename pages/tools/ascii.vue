@@ -28,20 +28,12 @@
         </div>
       </div>
       <div class="mb-4">
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="ascii">
-          ASCII
-        </label>
-        <input
-          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          id="ascii" type="text" placeholder="ASCII" v-model="input_ascii" :disabled="input_string !== ''">
+        <PrimaryInput
+          id="ascii" placeholder="ASCII" label="ASCII" v-model="input_ascii" :disable="input_string !== ''"/>
       </div>
       <div class="mb-4">
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="string">
-          字符串
-        </label>
-        <input
-          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          id="string" type="text" placeholder="字符串" v-model="input_string" :disabled="input_ascii !== ''">
+        <PrimaryInput
+          id="string" placeholder="字符串" label="字符串" v-model="input_string" :disable="input_ascii !== ''"/>
       </div>
       <div class="mb-4" v-if="result !== ''">
         <h1 class="text-gray-700 text-sm font-bold mb-2">结果</h1>
@@ -57,10 +49,11 @@
 <script>
 import ToolContainer from "~/components/ToolContainer";
 import PrimaryButton from "~/components/PrimaryButton";
+import PrimaryInput from "~/components/PrimaryInput";
 
 export default {
   name: "ascii",
-  components: {PrimaryButton, ToolContainer},
+  components: {PrimaryInput, PrimaryButton, ToolContainer},
   head() {
     return {
       title: this.$t("tool.ascii.title") + " - " + this.$t("app.name")
