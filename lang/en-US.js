@@ -28,6 +28,18 @@ export default {
       title: 'Cryptography',
       desc: 'A toolkit for cryptography'
     },
+    dataConversion: {
+      title: 'Data Conversion',
+      desc: 'A toolkit for data conversion'
+    },
+    codeObfuscation: {
+      title: 'Code Obfuscation',
+      desc: 'A toolkit for code obfuscation'
+    },
+    misc: {
+      title: 'Misc',
+      desc: 'A toolkit for miscellaneous'
+    },
   },
   tool: {
     // EaD
@@ -67,6 +79,25 @@ export default {
     railFenceCipher: {
       title: 'Rail Fence Cipher',
       desc: 'Convert text to Rail Fence Cipher'
+    },
+    // Data Conversion
+    radixConversion: {
+      title: 'Radix Conversion',
+      desc: 'Convert a number to a different radix'
+    },
+    // Code Obfuscation
+    jsFuck: {
+      title: 'JSFuck',
+      desc: 'JSFuck is a JavaScript implementation of the esoteric programming language Fuck'
+    },
+    brainFuck: {
+      title: 'BrainFuck',
+      desc: 'BrainFuck is a programming language that is a variant of the esoteric programming language Fuck'
+    },
+    // Misc
+    crc: {
+      title: 'CRC',
+      desc: 'CRC is a checksum algorithm used to detect errors in data transmissions'
     },
   }
 }

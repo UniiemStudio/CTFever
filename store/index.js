@@ -58,6 +58,47 @@ export const state = () => ({
           route: '/tools/rail-fence-cipher',
         },
       ]
+    },
+    {
+      title: 'toolkit.dataConversion.title',
+      description: 'toolkit.dataConversion.desc',
+      icon: 'hardware-chip-outline',
+      tools: [
+        {
+          title: 'tool.radixConversion.title',
+          description: 'tool.radixConversion.desc',
+          route: '/tools/radix-conversion',
+        },
+      ]
+    },
+    {
+      title: 'toolkit.codeObfuscation.title',
+      description: 'toolkit.codeObfuscation.desc',
+      icon: 'bug-outline',
+      tools: [
+        {
+          title: 'tool.jsFuck.title',
+          description: 'tool.jsFuck.desc',
+          route: '/tools/jsfuck',
+        },
+        {
+          title: 'tool.brainFuck.title',
+          description: 'tool.brainFuck.desc',
+          route: '/tools/brain-fuck',
+        }
+      ]
+    },
+    {
+      title: 'Misc',
+      description: 'toolkit.misc.desc',
+      icon: 'construct-outline',
+      tools: [
+        {
+          title: 'tool.crc.title',
+          description: 'tool.crc.desc',
+          route: '/tools/crc',
+        }
+      ]
     }
   ],
 })
