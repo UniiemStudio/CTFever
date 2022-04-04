@@ -12,6 +12,10 @@
           </nuxt-link>
         </div>
         <div class="space-x-1">
+          <!--          TODO: Dark mode toggle-->
+          <!--          <button>-->
+          <!--            <ion-icon class="align-middle text-base -mt-1" name="sunny-outline"></ion-icon>-->
+          <!--          </button>-->
           <a-dropdown :trigger="['hover']" placement="bottomRight">
             <a class="ant-dropdown-link" @click="e => e.preventDefault()">
               <ion-icon class="align-middle text-lg -mt-1" name="language-outline"></ion-icon>

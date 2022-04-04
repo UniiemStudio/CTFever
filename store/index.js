@@ -38,30 +38,25 @@ export const state = () => ({
       icon: 'calculator-outline',
       tools: [
         {
-          title: 'MD5',
-          description: 'A tool for hashing data using MD5',
+          title: 'tool.md5.title',
+          description: 'tool.md5.desc',
           route: '/tools/md5',
         },
         {
-          title: 'SHA-1',
-          description: 'A tool for hashing data using SHA-1',
+          title: 'tool.sha1.title',
+          description: 'tool.sha1.desc',
           route: '/tools/sha-1',
         },
         {
-          title: 'Caesar Cipher',
-          description: 'A tool for encrypting and decrypting data using Caesar Cipher',
+          title: 'tool.caesarCipher.title',
+          description: 'tool.caesarCipher.desc',
           route: '/tools/caesar-cipher',
         },
         {
-          title: 'Rail Fence Cipher',
-          description: 'A tool for encrypting and decrypting data using Rail Fence Cipher',
+          title: 'tool.railFenceCipher.title',
+          description: 'tool.railFenceCipher.desc',
           route: '/tools/rail-fence-cipher',
         },
-        {
-          title: 'Curve Fence Cipher',
-          description: 'A tool for encrypting and decrypting data using Curve Fence Cipher',
-          route: '/tools/curve-fence-cipher',
-        }
       ]
     }
   ],

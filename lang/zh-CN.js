@@ -30,6 +30,7 @@ export default {
     },
   },
   tool: {
+    // EaD
     ascii: {
       title: 'ASCII',
       desc: '在 ASCII 和 字符串之间转换'
@@ -49,6 +50,23 @@ export default {
     morseCode: {
       title: '摩尔斯码',
       desc: '将字母和数字转换为摩尔斯码'
+    },
+    // Cryptography
+    md5: {
+      title: 'MD5',
+      desc: '计算内容的 md5 校验值'
+    },
+    sha1: {
+      title: 'SHA1',
+      desc: '计算内容的 sha1 校验值'
+    },
+    caesarCipher: {
+      title: '凯撒密码',
+      desc: '一种利用偏移字母表替换加密的技术'
+    },
+    railFenceCipher: {
+      title: '栅栏密码',
+      desc: '明文分组排列成栅栏，然后每组依次排列'
     },
   }
 }

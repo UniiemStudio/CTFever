@@ -30,6 +30,7 @@ export default {
     },
   },
   tool: {
+    // EaD
     ascii: {
       title: 'ASCII',
       desc: 'Convert text to ASCII code'
@@ -49,6 +50,23 @@ export default {
     morseCode: {
       title: 'Morse Code',
       desc: 'Convert words to Morse Code'
+    },
+    // Cryptography
+    md5: {
+      title: 'MD5',
+      desc: 'Convert text to MD5'
+    },
+    sha1: {
+      title: 'SHA1',
+      desc: 'Convert text to SHA1'
+    },
+    caesarCipher: {
+      title: 'Caesar Cipher',
+      desc: 'Convert text to Caesar Cipher'
+    },
+    railFenceCipher: {
+      title: 'Rail Fence Cipher',
+      desc: 'Convert text to Rail Fence Cipher'
     },
   }
 }

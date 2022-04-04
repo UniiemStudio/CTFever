@@ -5,6 +5,9 @@
         <h1 class="text-lg font-bold flex flex-col md:flex-row justify-center md:justify-start items-center space-x-1">
           <ion-icon class="text-4xl md:text-xl mb-2 md:mb-0" :name="toolkit.icon || 'albums-outline'"></ion-icon>
           <span class="text-lg">{{ $t(toolkit.title) || toolkit.title }}</span>
+          <!--          <span class="bg-gray-300 rounded-full w-4 h-4 text-xs text-center align-middle">-->
+          <!--            {{ toolkit.tools.length }}-->
+          <!--          </span>-->
         </h1>
         <p class="text-sm font-thin">{{ $t(toolkit.description) || toolkit.description }}</p>
       </div>
