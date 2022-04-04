@@ -48,7 +48,7 @@
         <pre class="bg-gray-200 rounded-lg p-4 mb-2 text-gray-700">{{ result }}</pre>
         <button
           class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-          type="button" @click="input_ascii = ''; input_string = ''">
+          type="button" @click="input_ascii = ''; input_string = ''; result = '';">
           清空
         </button>
       </div>
@@ -104,18 +104,18 @@ export default {
       return result;
     },
     infiniteAscii2String(longASCII, radix = 10) {
-      let string = "";
-      let arr = longASCII.split("");
-      let tmp_str = "";
-      arr.forEach((item) => {
-        if(tmp_str+item > 31 && tmp_str+item < 127) {
-          string += String.fromCharCode(tmp_str+item);
-          tmp_str = "";
-        }else{
-          tmp_str += item;
+      let result = "";
+      let chars = longASCII.split("");
+      let char_temp = "";
+      chars.forEach((char) => {
+        if (char_temp + char > 31 && char_temp + char < 127) {
+          result += String.fromCharCode(char_temp + char);
+          char_temp = "";
+        } else {
+          char_temp += char;
         }
       });
-      return string;
+      return result;
     },
     string2Ascii(string, radix = 10, separator = null) {
       let resultString = "";
