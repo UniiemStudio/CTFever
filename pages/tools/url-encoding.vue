@@ -2,7 +2,7 @@
   <ToolContainer>
     <form class="bg-white rounded lg:px-8 lg:pt-6">
       <div class="mb-4">
-        <PrimaryArea id="url" v-model="url" label="内容" placeholder="待编码内容" rows="10"></PrimaryArea>
+        <PrimaryArea id="url" v-model="url" label="内容" placeholder="待编码内容" :rows="10"></PrimaryArea>
       </div>
       <div class="mb-4 flex items-center justify-between">
         <div class="space-x-1">
@@ -13,7 +13,7 @@
         <PrimaryButton type="button" danger @click="url = ''; output = '';">清空</PrimaryButton>
       </div>
       <div class="mb-4">
-        <PrimaryArea id="result" v-model="output" label="结果" placeholder="编码结果" rows="10"></PrimaryArea>
+        <PrimaryArea id="result" v-model="output" label="结果" placeholder="编码结果" :rows="10"></PrimaryArea>
       </div>
     </form>
   </ToolContainer>

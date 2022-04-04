@@ -98,7 +98,6 @@ export default {
     // TODO: Required to be improved. The radix should be used to differentiate between the different bases
     infiniteAscii2String(longASCII, radix = 10) {
       let result = "";
-      console.log(longASCII);
       let chars = longASCII.split("");
       let char_temp = 0;
       chars.forEach((char) => {
