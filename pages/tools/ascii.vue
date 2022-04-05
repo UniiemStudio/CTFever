@@ -3,28 +3,26 @@
     <form class="bg-white rounded lg:px-8 lg:pt-6" @submit.prevent="submit">
       <div class="flex flex-wrap -mx-3 mb-4">
         <div class="w-full md:w-1/2 px-3 mb-4 md:mb-0">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="base">
-            进制
-          </label>
-          <select
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="base" v-model="input_base">
-            <option value="2">二进制</option>
-            <option value="8">八进制</option>
-            <option value="10">十进制</option>
-            <option value="16">十六进制</option>
-          </select>
+          <PrimarySelector
+            label="进制"
+            id="base" v-model="input_base"
+            :options="[
+              { value: 2, label: '二进制' },
+              { value: 8, label: '八进制' },
+              { value: 10, label: '十进制' },
+              { value: 16, label: '十六进制' }
+            ]"
+          />
         </div>
         <div class="w-full md:w-1/2 px-3">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="mode">
-            模式
-          </label>
-          <select
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="mode" v-model="input_mode">
-            <option value="continuity">连续(自动识别可打印字符)</option>
-            <option value="split">逗号分隔</option>
-          </select>
+          <PrimarySelector
+            label="模式"
+            id="mode" v-model="input_mode"
+            :options="[
+              { value: 'continuity', label: '连续(自动识别可打印字符)' },
+              { value: 'split', label: '逗号分隔' }
+            ]"
+          />
         </div>
       </div>
       <div class="mb-4">
@@ -50,10 +48,11 @@
 import ToolContainer from "~/components/tool/ToolContainer";
 import PrimaryButton from "~/components/form/PrimaryButton";
 import PrimaryInput from "~/components/form/PrimaryInput";
+import PrimarySelector from "~/components/form/PrimarySelector";
 
 export default {
   name: "ascii",
-  components: {PrimaryInput, PrimaryButton, ToolContainer},
+  components: {PrimarySelector, PrimaryInput, PrimaryButton, ToolContainer},
   head() {
     return {
       title: this.$t("tool.ascii.title") + " - " + this.$t("app.name")
