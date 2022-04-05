@@ -5,7 +5,8 @@
     </label>
     <input
       class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-      :id="id" :type="type" :placeholder="placeholder" :value="value" @input="onInput" :disabled="disable"/>
+      :id="id" :type="type" :placeholder="placeholder" :value="value" @input="onInput" :disabled="disable"
+      :autocomplete="autocomplete"/>
   </div>
 </template>
 
@@ -33,6 +34,10 @@ export default {
     disable: {
       type: Boolean,
       default: false
+    },
+    autocomplete: {
+      type: String,
+      default: "off"
     },
     value: {
       type: String,
