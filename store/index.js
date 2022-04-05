@@ -9,27 +9,31 @@ export const state = () => ({
           title: 'tool.ascii.title',
           description: 'tool.ascii.desc',
           route: '/tools/ascii',
-          tags: ['字符编码', 'TEST']
+          tags: ['字符编码'],
         },
         {
           title: 'tool.urlEncoding.title',
           description: 'tool.urlEncoding.desc',
           route: '/tools/url-encoding',
+          tags: ['字符编码'],
         },
         {
           title: 'tool.baseSeries.title',
           description: 'tool.baseSeries.desc',
           route: '/tools/base-series',
+          tags: ['字符编码'],
         },
         {
           title: "tool.rotSeries.title",
           description: 'tool.rotSeries.desc',
           route: '/tools/rot-series',
+          tags: ['字符编码'],
         },
         {
           title: 'tool.morseCode.title',
           description: 'tool.morseCode.desc',
           route: '/tools/morse-code',
+          tags: ['字符编码'],
         }
       ]
     },
@@ -42,21 +46,25 @@ export const state = () => ({
           title: 'tool.md5.title',
           description: 'tool.md5.desc',
           route: '/tools/md5',
+          tags: ['校验'],
         },
         {
           title: 'tool.sha1.title',
           description: 'tool.sha1.desc',
           route: '/tools/sha-1',
+          tags: ['校验'],
         },
         {
           title: 'tool.caesarCipher.title',
           description: 'tool.caesarCipher.desc',
           route: '/tools/caesar-cipher',
+          tags: ['加密'],
         },
         {
           title: 'tool.railFenceCipher.title',
           description: 'tool.railFenceCipher.desc',
           route: '/tools/rail-fence-cipher',
+          tags: ['加密'],
         },
       ]
     },
@@ -69,6 +77,7 @@ export const state = () => ({
           title: 'tool.radixConversion.title',
           description: 'tool.radixConversion.desc',
           route: '/tools/radix-conversion',
+          tags: ['数据'],
         },
       ]
     },
@@ -98,6 +107,7 @@ export const state = () => ({
           title: 'tool.crc.title',
           description: 'tool.crc.desc',
           route: '/tools/crc',
+          tags: ['校验'],
         }
       ]
     }

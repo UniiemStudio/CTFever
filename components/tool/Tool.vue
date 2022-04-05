@@ -6,11 +6,11 @@
       <h1 class="text-lg">{{ $t(tool.title) || tool.title }}</h1>
       <p>{{ $t(tool.description) || tool.description }}</p>
     </div>
+    <!--    TODO: Tags 页面-->
     <div v-if="tool.tags" class="mt-2 text-xs" @click.stop>
       <ion-icon class="align-middle -mt-1" name="pricetag-outline"></ion-icon>
-      <!--      <nuxt-link v-for="(tag, k) in tool.tags" :key="k" :to="`/tag/${tag}`">{{ tag }}</nuxt-link>-->
       <div class="inline-block" v-for="(tag, k) in tool.tags">
-        <nuxt-link :key="k" :to="`/tag/${tag}`">{{ tag }}</nuxt-link>
+        <nuxt-link class="hover:underline" :key="k" :to="`/tag/${tag}`">{{ tag }}</nuxt-link>
         <span v-if="k < tool.tags.length - 1">,</span>
       </div>
     </div>
