@@ -1,9 +1,15 @@
 <template>
-  <div @click="$router.push(localePath(tool.route))"
-       class="rounded-lg border border-gray-200 shadow hover:shadow-md transition-all p-4 cursor-pointer"
-  >
-    <h1 class="text-lg">{{ $t(tool.title) || tool.title }}</h1>
-    <p>{{ $t(tool.description) || tool.description }}</p>
+  <div
+    @click="$router.push(localePath(tool.route))"
+    class="rounded-lg border border-gray-200 shadow hover:shadow-md transition-all p-4 cursor-pointer flex flex-col justify-between">
+    <div>
+      <h1 class="text-lg">{{ $t(tool.title) || tool.title }}</h1>
+      <p>{{ $t(tool.description) || tool.description }}</p>
+    </div>
+    <div v-if="tool.tags" class="mt-2 text-xs" @click.stop>
+      <ion-icon class="align-middle -mt-1" name="pricetag-outline"></ion-icon>
+      <nuxt-link v-for="(tag, k) in tool.tags" :key="k" :to="`/tag/${tag}`">{{ tag }}</nuxt-link>
+    </div>
   </div>
 </template>
 

@@ -5,7 +5,7 @@
 <script>
 export default {
   asyncData(ctx) {
-    return ctx.redirect('/not-found');
+    return ctx.redirect(404, '/not-found', {'missing': ctx.route.path})
   }
 }
 </script>
