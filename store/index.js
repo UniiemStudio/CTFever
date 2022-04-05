@@ -22,18 +22,21 @@ export const state = () => ({
           description: 'tool.baseSeries.desc',
           route: '/tools/base-series',
           tags: ['字符编码'],
+          disabled: true,
         },
         {
           title: "tool.rotSeries.title",
           description: 'tool.rotSeries.desc',
           route: '/tools/rot-series',
           tags: ['字符编码'],
+          disabled: true,
         },
         {
           title: 'tool.morseCode.title',
           description: 'tool.morseCode.desc',
           route: '/tools/morse-code',
           tags: ['字符编码'],
+          disabled: true,
         }
       ]
     },
@@ -47,24 +50,28 @@ export const state = () => ({
           description: 'tool.md5.desc',
           route: '/tools/md5',
           tags: ['校验'],
+          disabled: true,
         },
         {
           title: 'tool.sha1.title',
           description: 'tool.sha1.desc',
           route: '/tools/sha-1',
           tags: ['校验'],
+          disabled: true,
         },
         {
           title: 'tool.caesarCipher.title',
           description: 'tool.caesarCipher.desc',
           route: '/tools/caesar-cipher',
           tags: ['加密'],
+          disabled: true,
         },
         {
           title: 'tool.railFenceCipher.title',
           description: 'tool.railFenceCipher.desc',
           route: '/tools/rail-fence-cipher',
           tags: ['加密'],
+          disabled: true,
         },
       ]
     },
@@ -78,6 +85,7 @@ export const state = () => ({
           description: 'tool.radixConversion.desc',
           route: '/tools/radix-conversion',
           tags: ['数据'],
+          disabled: true,
         },
       ]
     },
@@ -90,13 +98,15 @@ export const state = () => ({
           title: 'tool.jsFuck.title',
           description: 'tool.jsFuck.desc',
           route: '/tools/jsfuck',
-          tags: []
+          tags: [],
+          disabled: true,
         },
         {
           title: 'tool.brainFuck.title',
           description: 'tool.brainFuck.desc',
           route: '/tools/brain-fuck',
-          tags: []
+          tags: [],
+          disabled: true,
         }
       ]
     },
@@ -110,6 +120,7 @@ export const state = () => ({
           description: 'tool.crc.desc',
           route: '/tools/crc',
           tags: ['校验'],
+          disabled: true,
         }
       ]
     }
