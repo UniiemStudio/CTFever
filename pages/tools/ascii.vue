@@ -1,5 +1,5 @@
 <template>
-  <ToolContainer>
+  <PrimaryContainer>
     <form class="primary-form" @submit.prevent="submit">
       <InteractiveDoubleColumns>
         <template v-slot:left>
@@ -41,11 +41,11 @@
         </PrimaryButton>
       </InteractiveBlock>
     </form>
-  </ToolContainer>
+  </PrimaryContainer>
 </template>
 
 <script>
-import ToolContainer from "~/components/tool/ToolContainer";
+import PrimaryContainer from "~/components/tool/PrimaryContainer";
 import PrimaryButton from "~/components/form/PrimaryButton";
 import PrimaryInput from "~/components/form/PrimaryInput";
 import PrimarySelector from "~/components/form/PrimarySelector";
@@ -54,7 +54,14 @@ import InteractiveDoubleColumns from "~/components/tool/InteractiveDoubleColumns
 
 export default {
   name: "ascii",
-  components: {InteractiveDoubleColumns, InteractiveBlock, PrimarySelector, PrimaryInput, PrimaryButton, ToolContainer},
+  components: {
+    InteractiveDoubleColumns,
+    InteractiveBlock,
+    PrimarySelector,
+    PrimaryInput,
+    PrimaryButton,
+    PrimaryContainer
+  },
   head() {
     return {
       title: this.$t("tool.ascii.title") + " - " + this.$t("app.name")

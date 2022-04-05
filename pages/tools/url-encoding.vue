@@ -1,5 +1,5 @@
 <template>
-  <ToolContainer>
+  <PrimaryContainer>
     <form class="primary-form">
       <InteractiveBlock>
         <PrimaryArea id="url" v-model="input" label="内容" placeholder="待编码内容" :rows="10"></PrimaryArea>
@@ -16,18 +16,18 @@
         <PrimaryArea id="result" v-model="output" label="结果" placeholder="编码结果" :rows="10"></PrimaryArea>
       </InteractiveBlock>
     </form>
-  </ToolContainer>
+  </PrimaryContainer>
 </template>
 
 <script>
-import ToolContainer from "~/components/tool/ToolContainer";
+import PrimaryContainer from "~/components/tool/PrimaryContainer";
 import PrimaryButton from "~/components/form/PrimaryButton";
 import PrimaryArea from "~/components/form/PrimaryTextArea";
 import InteractiveBlock from "~/components/tool/InteractiveBlock";
 
 export default {
   name: "url-encoding",
-  components: {InteractiveBlock, PrimaryArea, PrimaryButton, ToolContainer},
+  components: {InteractiveBlock, PrimaryArea, PrimaryButton, PrimaryContainer},
   data() {
     return {
       input: '',

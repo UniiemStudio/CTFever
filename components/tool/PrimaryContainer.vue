@@ -8,7 +8,7 @@
 
 <script>
 export default {
-  name: "ToolContainer"
+  name: "PrimaryContainer"
 }
 </script>
 

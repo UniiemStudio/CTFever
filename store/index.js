@@ -40,7 +40,7 @@ export const state = () => ({
     {
       title: 'toolkit.cryptography.title',
       description: 'toolkit.cryptography.desc',
-      icon: 'calculator-outline',
+      icon: 'key-outline',
       tools: [
         {
           title: 'tool.md5.title',
@@ -90,11 +90,13 @@ export const state = () => ({
           title: 'tool.jsFuck.title',
           description: 'tool.jsFuck.desc',
           route: '/tools/jsfuck',
+          tags: []
         },
         {
           title: 'tool.brainFuck.title',
           description: 'tool.brainFuck.desc',
           route: '/tools/brain-fuck',
+          tags: []
         }
       ]
     },
