@@ -41,14 +41,16 @@
     >
       <div class="w-full h-full px-4 container flex justify-between items-center border-t border-t-gray-150">
         <div>
-          <nuxt-link :to="localePath('/')">
-            <ion-icon class="align-middle -mt-1" name="arrow-back"></ion-icon>
+          <nuxt-link class="group" :to="localePath('/')">
+            <ion-icon
+              class="align-middle -mt-1 transition-transform group-hover:-translate-x-1"
+              name="arrow-back"/>
             返回
           </nuxt-link>
         </div>
         <div>
           <!--TODO: 评分-->
-          <button @click="isMarked = !isMarked">
+          <button class="transition-transform active:scale-90" @click="isMarked = !isMarked">
             <ion-icon class="align-middle text-lg -mt-1" :name="isMarked ? 'bookmark' : 'bookmark-outline'"></ion-icon>
           </button>
         </div>

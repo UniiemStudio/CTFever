@@ -11,7 +11,7 @@
       <ion-icon class="align-middle -mt-0.5" name="pricetag-outline"></ion-icon>
       <div class="inline-block" v-for="(tag, k) in tool.tags">
         <nuxt-link class="hover:underline" :key="k" :to="`/tag/${tag}`">{{ tag }}</nuxt-link>
-        <span v-if="k < tool.tags.length - 1">,</span>
+        <span v-if="k < tool.tags.length - 1">, </span>
       </div>
     </div>
   </div>
