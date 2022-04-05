@@ -22,7 +22,6 @@ export const state = () => ({
           description: 'tool.baseSeries.desc',
           route: '/tools/base-series',
           tags: ['字符编码'],
-          disabled: true,
         },
         {
           title: "tool.rotSeries.title",

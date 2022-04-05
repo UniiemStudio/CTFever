@@ -5252,6 +5252,16 @@ hex-color-regex@^1.1.0:
   resolved "https://registry.npmjs.org/hex-color-regex/-/hex-color-regex-1.1.0.tgz"
   integrity sha512-l9sfDFsuqtOqKDsQdqrMRk0U85RZc0RtOR9yPI7mRVOa4FsR/BVnZ0shmQRM96Ji99kYZP/7hn1cedc1+ApsTQ==
 
+hi-base32@^0.5.1:
+  version "0.5.1"
+  resolved "https://registry.npmmirror.com/hi-base32/-/hi-base32-0.5.1.tgz#1279f2ddae2673219ea5870c2121d2a33132857e"
+  integrity sha512-EmBBpvdYh/4XxsnUybsPag6VikPYnN30td+vQk+GI3qpahVEG9+gTkG0aXVxTjBqQ5T6ijbWIu77O+C5WFWsnA==
+
+hi-base64@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.npmmirror.com/hi-base64/-/hi-base64-0.2.1.tgz#29efa016e6896199e609d1984f4ceb426a5b6650"
+  integrity sha512-qNNwcztb8B9krbWBtYVH8motgSCBLhbCXE6xOSjFFxeP5Z4gd9RLYs6bv1qd4Y17z3v7+h1fn8RQmAi60AMvQQ==
+
 hmac-drbg@^1.0.1:
   version "1.0.1"
   resolved "https://registry.npmjs.org/hmac-drbg/-/hmac-drbg-1.0.1.tgz"
