@@ -36,7 +36,6 @@ export const state = () => ({
           description: 'tool.morseCode.desc',
           route: '/tools/morse-code',
           tags: ['字符编码'],
-          disabled: true,
         }
       ]
     },
