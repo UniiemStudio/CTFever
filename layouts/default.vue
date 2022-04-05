@@ -21,6 +21,11 @@ export default {
 </script>
 
 <style>
+.primary-form {
+  @apply bg-white rounded lg:px-8 lg:pt-6;
+}
+
+/* transitions */
 .page-enter-active,
 .page-leave-active {
   transition: opacity 0.3s, transform 0.3s;

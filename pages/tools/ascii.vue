@@ -1,8 +1,8 @@
 <template>
   <ToolContainer>
-    <form class="bg-white rounded lg:px-8 lg:pt-6" @submit.prevent="submit">
-      <div class="flex flex-wrap -mx-3 mb-4">
-        <div class="w-full md:w-1/2 px-3 mb-4 md:mb-0">
+    <form class="primary-form" @submit.prevent="submit">
+      <InteractiveDoubleColumns>
+        <template v-slot:left>
           <PrimarySelector
             label="进制"
             id="base" v-model="input_base"
@@ -13,8 +13,8 @@
               { value: 16, label: '十六进制' }
             ]"
           />
-        </div>
-        <div class="w-full md:w-1/2 px-3">
+        </template>
+        <template v-slot:right>
           <PrimarySelector
             label="模式"
             id="mode" v-model="input_mode"
@@ -23,23 +23,23 @@
               { value: 'split', label: '逗号分隔' }
             ]"
           />
-        </div>
-      </div>
-      <div class="mb-4">
+        </template>
+      </InteractiveDoubleColumns>
+      <InteractiveBlock>
         <PrimaryInput
           id="ascii" placeholder="ASCII" label="ASCII" v-model="input_ascii" :disable="input_string !== ''"/>
-      </div>
-      <div class="mb-4">
+      </InteractiveBlock>
+      <InteractiveBlock>
         <PrimaryInput
           id="string" placeholder="字符串" label="字符串" v-model="input_string" :disable="input_ascii !== ''"/>
-      </div>
-      <div class="mb-4" v-if="result !== ''">
+      </InteractiveBlock>
+      <InteractiveBlock v-if="result !== ''">
         <h1 class="text-gray-700 text-sm font-bold mb-2">结果</h1>
         <pre class="bg-gray-200 rounded-lg p-4 mb-2 text-gray-700">{{ result }}</pre>
         <PrimaryButton type="button" @click="input_ascii = ''; input_string = ''; result = '';" danger>
           重置
         </PrimaryButton>
-      </div>
+      </InteractiveBlock>
     </form>
   </ToolContainer>
 </template>
@@ -49,10 +49,12 @@ import ToolContainer from "~/components/tool/ToolContainer";
 import PrimaryButton from "~/components/form/PrimaryButton";
 import PrimaryInput from "~/components/form/PrimaryInput";
 import PrimarySelector from "~/components/form/PrimarySelector";
+import InteractiveBlock from "~/components/tool/InteractiveBlock";
+import InteractiveDoubleColumns from "~/components/tool/InteractiveDoubleColumns";
 
 export default {
   name: "ascii",
-  components: {PrimarySelector, PrimaryInput, PrimaryButton, ToolContainer},
+  components: {InteractiveDoubleColumns, InteractiveBlock, PrimarySelector, PrimaryInput, PrimaryButton, ToolContainer},
   head() {
     return {
       title: this.$t("tool.ascii.title") + " - " + this.$t("app.name")
