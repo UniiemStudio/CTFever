@@ -41,12 +41,15 @@
     >
       <div class="w-full h-full px-4 container flex justify-between items-center border-t border-t-gray-150">
         <div>
-          <nuxt-link :to="localePath('/')">← 返回</nuxt-link>
+          <nuxt-link :to="localePath('/')">
+            <ion-icon class="align-middle -mt-1" name="arrow-back"></ion-icon>
+            返回
+          </nuxt-link>
         </div>
         <div>
           <!--TODO: 评分-->
-          <button>
-            <ion-icon class="align-middle text-lg -mt-1" name="bookmark-outline"></ion-icon>
+          <button @click="isMarked = !isMarked">
+            <ion-icon class="align-middle text-lg -mt-1" :name="isMarked ? 'bookmark' : 'bookmark-outline'"></ion-icon>
           </button>
         </div>
       </div>
@@ -69,6 +72,7 @@ export default {
     return {
       toolPageReg: /^.*\/tools\/.*/,
       isToolPage: () => this.toolPageReg.test(this.$route.path),
+      isMarked: false,
     }
   },
 }
