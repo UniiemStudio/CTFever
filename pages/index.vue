@@ -3,7 +3,7 @@
     <div class="p-4 bg-white rounded-lg border border-gray-200">
       <p class="font-bold mb-2">Welcome to CTFever!</p>
       <p class="mb-2">这是为 CTF 发烧者准备的的工具套件，助你过关斩将、攻克难关。这个项目仍在第一个版本的开发中，快照版将实时反映开发进度。</p>
-      <a class="group" href="https://github.com/UniiemStudio/CTFever">
+      <a class="group text-blue-500" href="https://github.com/UniiemStudio/CTFever">
         GitHub Repository
         <ion-icon class="align-middle -mt-0.5 transition-transform group-hover:translate-x-1"
                   name="arrow-forward-outline"/>
