@@ -49,7 +49,6 @@ export const state = () => ({
           description: 'tool.md5.desc',
           route: '/tools/md5',
           tags: ['校验'],
-          disabled: true,
         },
         {
           title: 'tool.sha1.title',
