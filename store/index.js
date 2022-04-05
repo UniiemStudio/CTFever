@@ -9,6 +9,7 @@ export const state = () => ({
           title: 'tool.ascii.title',
           description: 'tool.ascii.desc',
           route: '/tools/ascii',
+          tags: ['字符编码', 'TEST']
         },
         {
           title: 'tool.urlEncoding.title',

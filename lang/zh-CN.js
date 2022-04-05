@@ -17,6 +17,7 @@ export default {
       title: '未找到页面',
       message: '探索的精神可贵，但很遗憾这里什么都没有 :(',
       btn: '回到首页',
+      btnPrevious: '返回',
     },
   },
   toolkit: {

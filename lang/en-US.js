@@ -16,7 +16,8 @@ export default {
     notFound: {
       title: 'Page Not Found',
       message: 'The spirit of exploration is valuable, but unfortunately there is nothing here :(',
-      btn: 'Back to home',
+      btn: 'Back home',
+      btnPrevious: 'Previous page',
     },
   },
   toolkit: {
