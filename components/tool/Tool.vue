@@ -7,7 +7,7 @@
       <p>{{ $t(tool.description) || tool.description }}</p>
     </div>
     <!--    TODO: Tags 页面-->
-    <div v-if="tool.tags" class="mt-2 text-xs" @click.stop>
+    <div v-if="tool.tags" class="mt-2 text-xs text-gray-400" @click.stop>
       <ion-icon class="align-middle -mt-1" name="pricetag-outline"></ion-icon>
       <div class="inline-block" v-for="(tag, k) in tool.tags">
         <nuxt-link class="hover:underline" :key="k" :to="`/tag/${tag}`">{{ tag }}</nuxt-link>
