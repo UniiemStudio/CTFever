@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-full flex flex-col justify-center items-center md:justify-start md:items-start">
+  <div class="w-full h-full flex flex-col justify-center items-center md:justify-start md:items-start mt-8 md:mt-4">
     <div class="flex flex-col md:flex-row justify-items-center text-center md:text-left">
       <ion-icon class="text-6xl mx-auto" name="alert-circle-outline"></ion-icon>
       <div class="flex flex-col justify-center ml-0 md:ml-2">
