@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1 v-if="label" class="text-gray-700 text-sm font-bold mb-2">{{ label }}</h1>
-    <pre class="bg-gray-200 rounded-lg p-4 text-gray-700"><slot/></pre>
+    <pre class="bg-gray-200 rounded-lg p-4 text-gray-700 whitespace-normal break-all"><slot/></pre>
   </div>
 </template>
 

@@ -45,30 +45,23 @@ export const state = () => ({
       icon: 'key-outline',
       tools: [
         {
-          title: 'tool.md5.title',
-          description: 'tool.md5.desc',
-          route: '/tools/md5',
-          tags: ['校验'],
-        },
-        {
-          title: 'tool.sha1.title',
-          description: 'tool.sha1.desc',
-          route: '/tools/sha-1',
-          tags: ['校验'],
-          disabled: true,
+          title: 'tool.messageDigest.title',
+          description: 'tool.messageDigest.desc',
+          route: '/tools/message-digest',
+          tags: ['信息摘要'],
         },
         {
           title: 'tool.caesarCipher.title',
           description: 'tool.caesarCipher.desc',
           route: '/tools/caesar-cipher',
-          tags: ['加密'],
+          tags: ['加密算法'],
           disabled: true,
         },
         {
           title: 'tool.railFenceCipher.title',
           description: 'tool.railFenceCipher.desc',
           route: '/tools/rail-fence-cipher',
-          tags: ['加密'],
+          tags: ['加密算法'],
           disabled: true,
         },
       ]
@@ -82,7 +75,7 @@ export const state = () => ({
           title: 'tool.radixConversion.title',
           description: 'tool.radixConversion.desc',
           route: '/tools/radix-conversion',
-          tags: ['数据'],
+          tags: ['数字处理'],
           disabled: true,
         },
       ]
@@ -117,7 +110,7 @@ export const state = () => ({
           title: 'tool.crc.title',
           description: 'tool.crc.desc',
           route: '/tools/crc',
-          tags: ['校验'],
+          tags: ['信息摘要', '校验'],
           disabled: true,
         }
       ]

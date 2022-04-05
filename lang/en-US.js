@@ -65,13 +65,9 @@ export default {
       desc: 'Convert words to Morse Code'
     },
     // Cryptography
-    md5: {
-      title: 'MD5',
-      desc: 'Convert text to MD5'
-    },
-    sha1: {
-      title: 'SHA1',
-      desc: 'Convert text to SHA1'
+    messageDigest: {
+      title: 'Message Digest',
+      desc: 'Generate message digest'
     },
     caesarCipher: {
       title: 'Caesar Cipher',

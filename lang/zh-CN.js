@@ -65,13 +65,9 @@ export default {
       desc: '将字母和数字转换为摩尔斯码'
     },
     // Cryptography
-    md5: {
-      title: 'MD5',
-      desc: '计算内容的 md5 校验值'
-    },
-    sha1: {
-      title: 'SHA1',
-      desc: '计算内容的 sha1 校验值'
+    messageDigest: {
+      title: '消息摘要计算',
+      desc: '计算内容的消息摘要，如 MD5、SHA1、SHA256 等'
     },
     caesarCipher: {
       title: '凯撒密码',
