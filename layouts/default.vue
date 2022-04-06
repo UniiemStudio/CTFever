@@ -51,4 +51,12 @@ export default {
   opacity: 0;
   transform: translate3d(-10px, 0, 0);
 }
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+
+.fade-enter, .fade-leave-active {
+  opacity: 0;
+}
 </style>

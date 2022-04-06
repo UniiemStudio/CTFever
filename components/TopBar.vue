@@ -72,8 +72,7 @@ export default {
   },
   data() {
     return {
-      toolPageReg: /^.*\/tools\/.*/,
-      isToolPage: () => this.toolPageReg.test(this.$route.path),
+      isToolPage: () => /^.*\/tools\/.*/.test(this.$route.path),
       isMarked: false,
     }
   },
