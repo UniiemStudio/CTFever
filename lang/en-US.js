@@ -3,7 +3,7 @@ export default {
     name: 'CTFever',
     title: 'CTFever Toolkit by uniiem',
     edition: {
-      snap: 'Snapshot',
+      snap: 'Toolkit',
       dev: 'DEV',
     }
   },
