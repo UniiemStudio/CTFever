@@ -8,7 +8,7 @@
         <div>
           <nuxt-link :to="localePath('/')" class="text-lg font-bold">
             CTFever
-            <span class="font-thin">{{ $t('app.edition.snap') }}</span>
+            <span class="font-thin">{{ $t('app.subtitle') }}</span>
           </nuxt-link>
         </div>
         <div class="space-x-1">
