@@ -2,8 +2,9 @@ export default {
   app: {
     name: 'CTFever',
     title: 'CTFever Toolkit by uniiem',
+    subtitle: '工具套件',
     edition: {
-      snap: '工具套件',
+      snap: '快照版',
       dev: '开发版',
     }
   },
