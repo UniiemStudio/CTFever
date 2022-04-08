@@ -5,7 +5,6 @@ export default {
     subtitle: '工具套件',
     edition: {
       snap: '快照版',
-      dev: '开发版',
     }
   },
   topbar: {

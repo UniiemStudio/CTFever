@@ -5,7 +5,6 @@ export default {
     subtitle: 'Toolkit',
     edition: {
       snap: 'Snapshot',
-      dev: 'DEV',
     }
   },
   topbar: {
