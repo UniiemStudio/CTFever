@@ -2,6 +2,8 @@ export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
 
+  // 续命
+
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'CTFever Toolkit by uniiem',
