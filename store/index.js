@@ -89,7 +89,6 @@ export const state = () => ({
           description: 'tool.jsFuck.desc',
           route: '/tools/jsfuck',
           tags: [],
-          disabled: true,
         },
         {
           title: 'tool.brainFuck.title',
