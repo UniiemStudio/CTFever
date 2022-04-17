@@ -30,8 +30,7 @@
               </a-menu-item>
             </a-menu>
           </a-dropdown>
-          <TinyButtonLink :to="localePath('/login')">{{ $t('topbar.login') }}</TinyButtonLink>
-          <TinyButtonLink :to="localePath('/signup')" accent>{{ $t('topbar.signup') }}</TinyButtonLink>
+          <TinyButtonLink :to="localePath('/premium-active')" accent>Premium</TinyButtonLink>
         </div>
       </div>
     </div>
