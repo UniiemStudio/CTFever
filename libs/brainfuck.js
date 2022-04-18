@@ -67,7 +67,7 @@ let parse = (function () {
       let loopCounter = 0;
 
       while (memory[ptr] > 0) {
-        if (loopCounter++ > 20000) {
+        if (loopCounter++ > 10000) {
           throw "Infinite loop detected";
         }
 
@@ -131,8 +131,16 @@ let parse = (function () {
 })();
 
 
+// function runBrainFuck(code, input) {
+//   return parse(code)(input);
+// }
+
 function runBrainFuck(code, input) {
-  return parse(code)(input);
+  return new Promise((resolve, reject) => {
+    let result;
+    result = parse(code)(input);
+    resolve(result);
+  });
 }
 
 module.exports = runBrainFuck;

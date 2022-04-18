@@ -49,6 +49,7 @@ export default {
     '@nuxtjs/pwa',
     // https://go.nuxtjs.dev/i18n
     '@nuxtjs/i18n',
+    '@nuxt/content'
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -108,6 +109,8 @@ export default {
     },
     vueI18nLoader: true,
   },
+
+  content: {},
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
