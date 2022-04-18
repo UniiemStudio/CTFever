@@ -18,6 +18,7 @@
         <!--        <PrimaryPreBlock>{{ output }}</PrimaryPreBlock>-->
       </InteractiveBlock>
     </form>
+    <PrimaryIntroduction title="JSFuck" :references="references" :document="intro"/>
   </PrimaryContainer>
 </template>
 
@@ -29,15 +30,26 @@ import PrimaryButton from "~/components/form/PrimaryButton";
 import PrimaryPreBlock from "~/components/form/PrimaryPreBlock";
 
 import Jsfuck from 'jsfuck';
+import PrimaryIntroduction from "~/components/tool/PrimaryIntroduction";
 
 export default {
   name: "jsfuck",
-  components: {PrimaryPreBlock, PrimaryButton, PrimaryArea, InteractiveBlock, PrimaryContainer},
+  components: {PrimaryIntroduction, PrimaryPreBlock, PrimaryButton, PrimaryArea, InteractiveBlock, PrimaryContainer},
+  async asyncData({$content}) {
+    const intro = await $content('intro/jsfuck').fetch();
+    return {
+      intro
+    }
+  },
   data() {
     return {
       input_code: "",
       output: "",
       wrapWithEval: true,
+      references: [
+        {name: 'Wikipedia: JSFuck', url: 'https://zh.wikipedia.org/wiki/JSFuck'},
+        {name: 'JSFuck - Write any JavaScript with 6 Characters: []()!+', url: 'http://www.jsfuck.com/'}
+      ]
     };
   },
   methods: {

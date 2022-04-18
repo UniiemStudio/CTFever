@@ -16,6 +16,7 @@
         <PrimaryArea id="output" v-model="output" label="摩尔斯码" placeholder="摩尔斯码" :rows="10"></PrimaryArea>
       </InteractiveBlock>
     </form>
+    <PrimaryIntroduction title="摩尔斯电码" :document="intro" :references="references"/>
   </PrimaryContainer>
 </template>
 
@@ -26,14 +27,25 @@ import PrimaryArea from "~/components/form/PrimaryTextArea";
 import PrimaryButton from "~/components/form/PrimaryButton";
 
 import {decode, encode} from 'xmorse';
+import PrimaryIntroduction from "~/components/tool/PrimaryIntroduction";
 
 export default {
   name: "morse-code",
-  components: {PrimaryButton, PrimaryArea, InteractiveBlock, PrimaryContainer},
+  components: {PrimaryIntroduction, PrimaryButton, PrimaryArea, InteractiveBlock, PrimaryContainer},
+  async asyncData({$content}) {
+    const intro = await $content('intro/morse-code').fetch();
+
+    return {
+      intro
+    }
+  },
   data() {
     return {
       input: "",
-      output: ""
+      output: "",
+      references: [
+        {name: '百度百科: 摩尔斯电码', url: 'https://baike.baidu.com/item/%E6%91%A9%E5%B0%94%E6%96%AF%E7%94%B5%E7%A0%81'}
+      ]
     };
   },
   methods: {
