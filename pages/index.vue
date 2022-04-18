@@ -1,13 +1,18 @@
 <template>
   <div>
-    <div class="p-4 bg-white rounded-lg border border-gray-200">
-      <p class="font-bold mb-2">Welcome to CTFever!</p>
-      <p class="mb-2">这是为 CTF 发烧者准备的的工具套件，助你过关斩将、攻克难关。这个项目仍在第一个版本的开发中，快照版将实时反映开发进度。</p>
-      <a class="group text-blue-500" href="https://github.com/UniiemStudio/CTFever">
-        GitHub Repository
-        <ion-icon class="align-middle -mt-0.5 transition-transform group-hover:translate-x-1"
-                  name="arrow-forward-outline"/>
-      </a>
+    <div class="space-y-2">
+      <div v-for="(tip, k) in tips" :key="'tip' + k" class="p-4 bg-white rounded-lg border border-gray-200">
+        <p class="font-bold mb-2">{{ tip.title }}</p>
+        <p class="mb-2">{{ tip.content }}</p>
+        <div class="flex flex-col" v-if="tip.references">
+          <a v-for="(ref, k) in tip.references" :key="'ref' + k" class="group text-blue-500"
+             :href="ref.url" target="_blank">
+            {{ ref.name }}
+            <ion-icon class="align-middle -mt-0.5 transition-transform group-hover:translate-x-1"
+                      name="arrow-forward-outline"/>
+          </a>
+        </div>
+      </div>
     </div>
     <div v-for="(toolkit, k) in $store.state.toolkits" :key="k">
       <div class="py-4 text-center md:text-left">
@@ -26,7 +31,30 @@
 </template>
 
 <script>
+import PrimaryIntroduction from "~/components/tool/PrimaryIntroduction";
+
 export default {
   name: 'IndexPage',
+  components: {PrimaryIntroduction},
+  data() {
+    return {
+      tips: [
+        {
+          title: '欢迎来到 CTFever',
+          content: '这是为 CTF 发烧者准备的的工具套件，助你过关斩将、攻克难关。这个项目仍在第一个版本的开发中，快照版将实时反映开发进度。',
+          references: [
+            {name: 'GitHub Repository', url: 'https://github.com/UniiemStudio/CTFever'}
+          ]
+        },
+        {
+          title: '招募翻译',
+          content: '我们正在招募 i18n 团队，薪资无，问就是学生，没钱。',
+          references: [
+            {name: 'Telegram 群组', url: 'https://t.me/boxmoe'}
+          ]
+        },
+      ]
+    }
+  }
 }
 </script>
