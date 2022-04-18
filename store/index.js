@@ -88,14 +88,13 @@ export const state = () => ({
           title: 'tool.jsFuck.title',
           description: 'tool.jsFuck.desc',
           route: '/tools/jsfuck',
-          tags: [],
+          tags: ['混淆'],
         },
         {
           title: 'tool.brainFuck.title',
           description: 'tool.brainFuck.desc',
           route: '/tools/brain-fuck',
-          tags: [],
-          disabled: true,
+          tags: ['编译器'],
         }
       ]
     },
