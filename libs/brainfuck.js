@@ -3,7 +3,7 @@ let parse = (function () {
   let output;
   let memory;
   let ptr;
-  let debug = true;
+  let debug = false;
 
   let ops = {
     '+': function () {
