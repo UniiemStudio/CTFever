@@ -73,7 +73,6 @@ export const state = () => ({
           description: 'tool.radixConversion.desc',
           route: '/tools/radix-conversion',
           tags: ['数字处理'],
-          disabled: true,
         },
       ]
     },
