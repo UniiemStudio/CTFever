@@ -6,7 +6,7 @@
       <h1 class="text-lg">{{ $t(tool.title) || tool.title }}</h1>
       <p>{{ $t(tool.description) || tool.description }}</p>
     </div>
-    <div v-if="tool.tags && tool.tags.length > 0" class="mt-2 text-xs text-gray-400" @click.stop>
+    <div v-if="tool.tags && tool.tags.length > 0" class="mt-2 text-xs text-gray-400 w-fit" @click.stop>
       <ion-icon class="align-middle -mt-0.5" name="pricetag-outline"></ion-icon>
       <div class="inline-block" v-for="(tag, k) in tool.tags">
         <nuxt-link class="hover:underline" :key="k" :to="`/tag/${tag}`">{{ tag }}</nuxt-link>
