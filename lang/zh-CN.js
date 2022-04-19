@@ -54,11 +54,11 @@ export default {
     },
     baseSeries: {
       title: 'Base 系列编码',
-      desc: '将文字转换为 Base 系列编码'
+      desc: '将字符转换为 Base 系列编码'
     },
     rotSeries: {
-      title: 'ROT-N 系列编码',
-      desc: '将字母或数字转换为 ROT-N 系列编码'
+      title: 'ROT-13 编码',
+      desc: '简易的替换式密码，是凯撒密码的一种变体'
     },
     morseCode: {
       title: '摩尔斯码',
@@ -75,7 +75,7 @@ export default {
     },
     railFenceCipher: {
       title: '栅栏密码',
-      desc: '明文分组排列成栅栏，然后每组依次排列'
+      desc: '明文分组排列成栅栏，然后每组依次排列组成密文'
     },
     // Data Conversion
     radixConversion: {

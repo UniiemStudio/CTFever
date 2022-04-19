@@ -28,7 +28,6 @@ export const state = () => ({
           description: 'tool.rotSeries.desc',
           route: '/tools/rot-series',
           tags: ['字符编码'],
-          disabled: true,
         },
         {
           title: 'tool.morseCode.title',
