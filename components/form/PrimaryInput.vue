@@ -40,7 +40,7 @@ export default {
       default: "off"
     },
     value: {
-      type: String,
+      type: [String, Number],
       default: ""
     }
   },

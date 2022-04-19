@@ -1,3 +1,5 @@
+"use strict";
+
 let parse = (function () {
   let input;
   let output;
@@ -67,7 +69,7 @@ let parse = (function () {
       let loopCounter = 0;
 
       while (memory[ptr] > 0) {
-        if (loopCounter++ > 10000) {
+        if (loopCounter++ > 20000) {
           throw "Infinite loop detected";
         }
 

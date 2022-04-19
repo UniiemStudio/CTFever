@@ -54,7 +54,6 @@ export const state = () => ({
           description: 'tool.caesarCipher.desc',
           route: '/tools/caesar-cipher',
           tags: ['加密算法'],
-          disabled: true,
         },
         {
           title: 'tool.railFenceCipher.title',

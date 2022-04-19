@@ -26,7 +26,7 @@ export default {
     },
     references: {
       type: Array,
-      default: false
+      default: null
     },
     document: {
       type: Object,
