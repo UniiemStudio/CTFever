@@ -10,8 +10,8 @@
       </InteractiveBlock>
       <InteractiveBlock>
         <div class="flex overflow-x-auto snap-x gap-4 py-1 snap-mandatory">
-          <div v-for="(snip, k) in snippets" :key="k" @click="input_code = snip.code; snip.arg ? arg = snip.arg : ''"
-               class="snap-start shrink-0 w-10/12 md:w-8/12 lg:w-6/12 min-h-20 rounded-lg border border-gray-200 shadow
+          <div v-for="(snip, k) in snippets" :key="k" @click="input_code = snip.code; arg = snip.arg ? snip.arg : ''"
+               class="snap-start shrink-0 w-10/12 md:w-8/12 lg:w-4/12 min-h-20 rounded-lg border border-gray-200 shadow
             bg-white p-2 cursor-pointer">
             <h1 class="font-bold mb-1">{{ snip.title }}</h1>
             <p class="break-all leading-none font-mono">
@@ -72,6 +72,15 @@ export default {
           title: '冒泡排序',
           code: `>>,[>>,]<<[[<<]>>>>[<<[>+<<+>-]>>[>+<<<<[->]>[<]>>-]<<<[[-]>>[>+<-]>>[<<<+>>>-]]>>[[<+>-]>>]<]<<[>>+<<-]<<]>>>>[.>>]`,
           arg: '57912'
+        },
+        {
+          title: '插入排序',
+          code: `>>+>,[<[[>>+<<-]>[<<+<[->>+[<]]>>>[>]<<-]<<<]>>[<<+>>-]<[>+<-]>[>>]<,]<<<[<+<]>[>.>]`,
+          arg: '211028'
+        },
+        {
+          title: '0 到 10000 的完全平方数',
+          code: `++++[>+++++<-]>[<+++++>-]+<+[>[>+>+<<-]++>>[<<+>>-]>>>[-]++>[-]+>>>+[[-]++++++>>>]<<<[[<++++++++<++>>-]+<.<[>----<-]<]<<[>>>>>[>>>[-]+++++++++<[>-<-]+++++++++>[-[<->-]+[<<<]]<[>+<-]>]<<-]<<-]`
         },
         {
           title: '输出所有 ASCII 字符',
