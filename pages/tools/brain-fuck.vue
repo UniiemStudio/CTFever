@@ -2,8 +2,23 @@
   <PrimaryContainer>
     <form class="primary-form">
       <InteractiveBlock>
-        <PrimaryArea id="input" v-model="input_code" label="BrainFuck" placeholder="BrainFuck Code..."
+        <PrimaryArea id="input" v-model="input_code" label="BrainFuck"
+                     placeholder="BrainFuck Code..."
                      :rows="10"></PrimaryArea>
+        <PrimaryInput id="inputs" v-model="arg" label="输入"
+                      placeholder="Input..."></PrimaryInput>
+      </InteractiveBlock>
+      <InteractiveBlock>
+        <div class="flex overflow-x-auto snap-x gap-4 py-1 snap-mandatory">
+          <div v-for="(snip, k) in snippets" :key="k" @click="input_code = snip.code; snip.arg ? arg = snip.arg : ''"
+               class="snap-start shrink-0 w-10/12 md:w-8/12 lg:w-6/12 min-h-20 rounded-lg border border-gray-200 shadow
+            bg-white p-2 cursor-pointer">
+            <h1 class="font-bold mb-1">{{ snip.title }}</h1>
+            <p class="break-all leading-none font-mono">
+              {{ snip.code }}
+            </p>
+          </div>
+        </div>
       </InteractiveBlock>
       <InteractiveBlock class="flex items-center justify-between">
         <div class="space-x-1">
@@ -31,18 +46,38 @@ import PrimaryPreBlock from "~/components/form/PrimaryPreBlock";
 
 import runBrainFuck from '~/libs/brainfuck';
 import PrimaryIntroduction from "~/components/tool/PrimaryIntroduction";
+import PrimaryInput from "~/components/form/PrimaryInput";
 
 export default {
   name: "brain-fuck",
-  components: {PrimaryIntroduction, PrimaryPreBlock, PrimaryButton, PrimaryArea, InteractiveBlock, PrimaryContainer},
+  components: {
+    PrimaryInput,
+    PrimaryIntroduction, PrimaryPreBlock, PrimaryButton, PrimaryArea, InteractiveBlock, PrimaryContainer
+  },
   data() {
     return {
       input_code: "",
+      arg: "",
       output: "",
       references: [
         {name: 'Wikipedia: BrainFuck', url: 'https://zh.wikipedia.org/wiki/Brainfuck'},
         {name: '百度百科: BrainFuck', url: 'https://baike.baidu.com/item/Brainfuck'}
       ],
+      snippets: [
+        {
+          title: 'Hello World',
+          code: `++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++.>+.+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.>.`
+        },
+        {
+          title: '冒泡排序',
+          code: `>>,[>>,]<<[[<<]>>>>[<<[>+<<+>-]>>[>+<<<<[->]>[<]>>-]<<<[[-]>>[>+<-]>>[<<<+>>>-]]>>[[<+>-]>>]<]<<[>>+<<-]<<]>>>>[.>>]`,
+          arg: '57912'
+        },
+        {
+          title: '输出所有 ASCII 字符',
+          code: `.+[.+]`
+        },
+      ]
     };
   },
   async asyncData({$content}) {
@@ -53,7 +88,8 @@ export default {
   },
   methods: {
     run() {
-      runBrainFuck(this.input_code)
+      this.output = 'running...';
+      runBrainFuck(this.input_code, this.arg)
         .then(res => {
           this.output = res;
         })

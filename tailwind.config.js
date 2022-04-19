@@ -10,6 +10,7 @@ module.exports = {
   theme: {
     fontFamily: {
       'sans': ["PT Sans", "sans-serif"],
+      'mono': ["PT Mono", "monospace"],
     },
     extend: {},
   },
