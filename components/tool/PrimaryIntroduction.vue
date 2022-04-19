@@ -7,7 +7,7 @@
     <div class="flex flex-col" v-if="references">
       <p class="font-bold text-lg mb-1">References</p>
       <a v-for="reference in references" :href="reference.url"
-         class="group text-blue-500 mr-1 italic" target="_blank">
+         class="group text-blue-500 italic w-fit" target="_blank">
         {{ reference.name }}
         <ion-icon class="align-middle -mt-0.5 transition-transform group-hover:translate-x-1"
                   name="arrow-forward-outline"/>
