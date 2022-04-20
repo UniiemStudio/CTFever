@@ -103,9 +103,8 @@ export const state = () => ({
         {
           title: 'tool.crc.title',
           description: 'tool.crc.desc',
-          route: '/tools/crc',
+          route: '/tools/crc-checksum',
           tags: ['信息摘要', '校验'],
-          disabled: true,
         }
       ]
     }

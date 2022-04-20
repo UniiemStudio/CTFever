@@ -9,8 +9,22 @@
 </template>
 
 <script>
+import crc from '~/libs/crc';
+
 export default {
   name: "index",
+  mounted() {
+    let data = [1, 2, 3];
+    console.log(crc(data).CRC16_CCITT().toString(16));
+    console.log(crc(data).CRC16_CCITT_FALSE().toString(16));
+    console.log(crc(data).CRC16_XMODEM().toString(16));
+    console.log(crc(data).CRC16_X25().toString(16));
+    console.log(crc(data).CRC16_MODBUS().toString(16));
+    console.log(crc(data).CRC16_IBM().toString(16));
+    console.log(crc(data).CRC16_MAXIM().toString(16));
+    console.log(crc(data).CRC16_USB().toString(16));
+    console.log(crc(data).CRC16_DNP().toString(16));
+  },
   data() {
     return {
       toolPageReg: /^.*\/tools\/.*/,
