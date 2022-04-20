@@ -41,14 +41,14 @@ export default {
       tips: [
         {
           title: '欢迎来到 CTFever',
-          content: '这是为 CTF 发烧者准备的的工具套件，助你过关斩将、攻克难关。这个项目仍在第一个版本的开发中，快照版将实时反映开发进度。',
+          content: '这是为 CTF 发烧者准备的的工具套件，助你过关斩将、攻克难关。第一个版本已经基本完毕，我们目前正在着手高级功能的开发，敬请期待',
           references: [
             {name: 'GitHub Repository', url: 'https://github.com/UniiemStudio/CTFever'}
           ]
         },
         {
           title: '招募翻译',
-          content: '我们正在招募 i18n 团队，薪资无，问就是学生，没钱。',
+          content: '我们正在招募 i18n 团队，没有薪资，问就是学生，没钱。',
           references: [
             {name: 'Telegram 群组', url: 'https://t.me/boxmoe'}
           ]
