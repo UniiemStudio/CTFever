@@ -59,7 +59,6 @@ export const state = () => ({
           description: 'tool.railFenceCipher.desc',
           route: '/tools/rail-fence-cipher',
           tags: ['加密算法'],
-          disabled: true,
         },
       ]
     },
