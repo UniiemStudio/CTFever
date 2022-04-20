@@ -32,12 +32,14 @@ import PrimaryIntroduction from "~/components/tool/PrimaryIntroduction";
 export default {
   name: "morse-code",
   components: {PrimaryIntroduction, PrimaryButton, PrimaryArea, InteractiveBlock, PrimaryContainer},
+  head() {
+    return {
+      title: this.$t("tool.morseCode.title") + " - " + this.$t("app.name")
+    };
+  },
   async asyncData({$content}) {
     const intro = await $content('intro/morse-code').fetch();
-
-    return {
-      intro
-    }
+    return {intro};
   },
   data() {
     return {

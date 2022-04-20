@@ -31,6 +31,11 @@ import ceasarCipher from '~/libs/ceasarCipher';
 export default {
   name: "rot-series",
   components: {PrimaryButton, PrimaryArea, InteractiveBlock, PrimaryIntroduction, PrimaryContainer},
+  head() {
+    return {
+      title: this.$t("tool.rotSeries.title") + " - " + this.$t("app.name")
+    };
+  },
   async asyncData({$content}) {
     const intro = await $content(`intro/rot13`).fetch();
     return {

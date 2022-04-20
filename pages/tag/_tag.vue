@@ -17,6 +17,18 @@
 <script>
 export default {
   name: "TagArchive",
+  head() {
+    return {
+      title: "标签: " + this.$route.params.tag + " - " + this.$t("app.name"),
+      meta: [
+        {
+          hid: "description",
+          name: "description",
+          content: this.$route.params.tag + "的归档"
+        }
+      ]
+    }
+  },
   methods: {
     findToolsByTag(tag) {
       let result = [];
@@ -29,7 +41,7 @@ export default {
       });
       return result;
     },
-  },
+  }
 }
 </script>
 

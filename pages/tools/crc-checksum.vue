@@ -44,6 +44,11 @@ export default {
     PrimaryButton,
     InteractiveDoubleColumns, PrimaryInput, InteractiveBlock, PrimaryIntroduction, PrimaryContainer
   },
+  head() {
+    return {
+      title: this.$t("tool.crc.title") + " - " + this.$t("app.name")
+    };
+  },
   async asyncData({$content}) {
     const intro = await $content('intro/crc').fetch();
     return {intro};

@@ -29,6 +29,11 @@ import {sha384, sha512, sha512_224, sha512_256} from 'js-sha512';
 export default {
   name: "message-digest",
   components: {PrimarySelector, PrimaryPreBlock, PrimaryArea, InteractiveBlock, PrimaryContainer},
+  head() {
+    return {
+      title: this.$t("tool.messageDigest.title") + " - " + this.$t("app.name")
+    };
+  },
   watch: {
     input: function (val) {
       this.updateOutput();

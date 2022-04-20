@@ -50,6 +50,11 @@ export default {
     InteractiveBlock,
     PrimaryContainer
   },
+  head() {
+    return {
+      title: this.$t("tool.caesarCipher.title") + " - " + this.$t("app.name")
+    };
+  },
   async asyncData({$content}) {
     const intro = await $content(`intro/ceasar-cipher`).fetch();
     return {

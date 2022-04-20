@@ -23,6 +23,11 @@ import radixc from '~/libs/radixc';
 export default {
   name: "radix-conversion",
   components: {PrimaryInput, InteractiveBlock, PrimaryIntroduction, PrimaryContainer},
+  head() {
+    return {
+      title: this.$t("tool.radixConversion.title") + " - " + this.$t("app.name")
+    };
+  },
   data() {
     return {
       radix2: "",

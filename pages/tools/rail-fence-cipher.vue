@@ -47,6 +47,11 @@ export default {
     PrimaryInput,
     InteractiveDoubleColumns, PrimaryArea, InteractiveBlock, PrimaryIntroduction, PrimaryContainer
   },
+  head() {
+    return {
+      title: this.$t("tool.railFenceCipher.title") + " - " + this.$t("app.name")
+    };
+  },
   async asyncData({$content}) {
     const intro = await $content('intro/rail-fence').fetch();
     return {intro};

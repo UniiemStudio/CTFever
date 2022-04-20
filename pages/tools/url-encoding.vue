@@ -28,6 +28,11 @@ import InteractiveBlock from "~/components/tool/InteractiveBlock";
 export default {
   name: "url-encoding",
   components: {InteractiveBlock, PrimaryArea, PrimaryButton, PrimaryContainer},
+  head() {
+    return {
+      title: this.$t("tool.urlEncoding.title") + " - " + this.$t("app.name")
+    };
+  },
   data() {
     return {
       input: '',
@@ -38,11 +43,6 @@ export default {
     swap() {
       [this.input, this.output] = [this.output, this.input];
     }
-  },
-  head() {
-    return {
-      title: this.$t("tool.urlEncoding.title") + " - " + this.$t("app.name")
-    };
   }
 }
 </script>

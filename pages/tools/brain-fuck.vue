@@ -54,6 +54,11 @@ export default {
     PrimaryInput,
     PrimaryIntroduction, PrimaryPreBlock, PrimaryButton, PrimaryArea, InteractiveBlock, PrimaryContainer
   },
+  head() {
+    return {
+      title: this.$t("tool.brainFuck.title") + " - " + this.$t("app.name")
+    };
+  },
   data() {
     return {
       input_code: "",

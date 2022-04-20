@@ -14,7 +14,12 @@ import InteractiveBlock from "~/components/tool/InteractiveBlock";
 
 export default {
   name: "premium-active",
-  components: {InteractiveBlock, PrimaryContainer}
+  components: {InteractiveBlock, PrimaryContainer},
+  head() {
+    return {
+      title: "激活 Premium" + " - " + this.$t("app.name"),
+    };
+  }
 }
 </script>
 
