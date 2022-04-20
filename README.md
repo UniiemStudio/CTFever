@@ -6,7 +6,13 @@
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/w/UniiemStudio/CTFever)
 ![wakatime](https://wakatime.com/badge/user/589c46ee-6ba6-403c-bc9f-3a7aef5b206c/project/c477b34d-85f2-4fe0-b7c8-f74639d78dda.svg)
 
-## Build Setup
+## 使用
+
+没有其他步骤，[马上开始使用](https://ctfever.uniiem.com/)
+
+## 贡献
+
+### 开发环境和部署
 
 ```bash
 # install dependencies
@@ -22,3 +28,5 @@ $ yarn start
 # generate static project
 $ yarn generate
 ```
+
+### [贡献指南](https://github.com/UniiemStudio/CTFever/blob/main/CONTRIBUTING.md)
