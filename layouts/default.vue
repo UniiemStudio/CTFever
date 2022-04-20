@@ -5,6 +5,7 @@
          :class="{'pt-28': isToolPage(), 'pt-20': !isToolPage()}">
       <Nuxt/>
     </div>
+    <Footer/>
   </div>
 </template>
 
@@ -21,6 +22,10 @@ export default {
 </script>
 
 <style>
+/*
+Global Styles
+*/
+
 .primary-form {
   @apply bg-white rounded lg:px-8 lg:pt-6;
 }
