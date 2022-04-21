@@ -50,7 +50,18 @@ export default {
     '@nuxtjs/pwa',
     // https://go.nuxtjs.dev/i18n
     '@nuxtjs/i18n',
-    '@nuxt/content'
+    '@nuxt/content',
+    [
+      'nuxt-matomo',
+      {
+        matomoUrl: '//analytics.i0x0i.ltd/',
+        trackerUrl: '//analytics.i0x0i.ltd/matomo.php',
+        scriptUrl: '//analytics.i0x0i.ltd/matomo.js',
+        siteId: 5,
+        debug: true,
+        onMetaChange: true
+      }
+    ]
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -95,7 +106,7 @@ export default {
       useCookie: true,
       cookieKey: 'i18n_redirected',
       // redirectOn: 'root',
-      alwaysRedirect: true,
+      alwaysRedirect: true
     },
     defaultLocale: 'zh',
     lazy: true,
@@ -105,10 +116,10 @@ export default {
       messages: {
         en: require('./lang/en-US.js'),
         zh: require('./lang/zh-CN.js'),
-        ja: require('./lang/ja-JP'),
+        ja: require('./lang/ja-JP')
       }
     },
-    vueI18nLoader: true,
+    vueI18nLoader: true
   },
 
   content: {},
