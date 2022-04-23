@@ -93,7 +93,8 @@ export default {
       this.$store.commit('settings/FAVORITE_TOOL', {
         route: this.currentPath,
         mark: this.isMarked
-      })
+      });
+      this.$message.success(this.isMarked ? '已收藏' : '已取消收藏');
     },
     updateMarkStatus(route) {
       this.favoriteTools.filter(f => f.route === route).length > 0 ? this.isMarked = true : this.isMarked = false;
