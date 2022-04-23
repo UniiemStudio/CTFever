@@ -96,5 +96,9 @@ export default {
       title: 'CRC',
       desc: '循环冗余校验码，用于校验文件、网络数据等数据的完整性'
     },
+    temperatureConversion: {
+      title: '温度换算',
+      desc: '将温度转换为多种单位'
+    },
   }
 }

@@ -96,5 +96,9 @@ export default {
       title: 'CRC',
       desc: 'CRC is a checksum algorithm used to detect errors in data transmissions'
     },
+    temperatureConversion: {
+      title: 'Temperature Conversion',
+      desc: 'Convert temperature into multiple units'
+    },
   }
 }

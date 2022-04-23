@@ -71,7 +71,7 @@ export const state = () => ({
           title: 'tool.radixConversion.title',
           description: 'tool.radixConversion.desc',
           route: '/tools/radix-conversion',
-          tags: ['数字处理'],
+          tags: ['数据转换'],
         },
       ]
     },
@@ -104,7 +104,13 @@ export const state = () => ({
           description: 'tool.crc.desc',
           route: '/tools/crc-checksum',
           tags: ['信息摘要', '校验'],
-        }
+        },
+        {
+          title: 'tool.temperatureConversion.title',
+          description: 'tool.temperatureConversion.desc',
+          route: '/tools/temperature-conversion',
+          tags: ['数据转换'],
+        },
       ]
     }
   ],
