@@ -30,7 +30,7 @@
               </a-menu-item>
             </a-menu>
           </a-dropdown>
-          <TinyButtonLink :to="localePath('/premium-active')" accent>Premium</TinyButtonLink>
+<!--          <TinyButtonLink :to="localePath('/premium-active')" accent>Premium</TinyButtonLink>-->
         </div>
       </div>
     </div>
