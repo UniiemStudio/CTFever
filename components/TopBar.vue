@@ -30,7 +30,7 @@
               </a-menu-item>
             </a-menu>
           </a-dropdown>
-<!--          <TinyButtonLink :to="localePath('/premium-active')" accent>Premium</TinyButtonLink>-->
+          <!--          <TinyButtonLink :to="localePath('/premium-active')" accent>Premium</TinyButtonLink>-->
         </div>
       </div>
     </div>
@@ -49,7 +49,7 @@
         </div>
         <div>
           <!--TODO: 评分-->
-          <button class="transition-transform active:scale-90" @click="isMarked = !isMarked">
+          <button class="transition-transform active:scale-90" @click="markTool">
             <ion-icon class="align-middle text-lg -mt-1" :name="isMarked ? 'bookmark' : 'bookmark-outline'"></ion-icon>
           </button>
         </div>
@@ -68,12 +68,30 @@ export default {
     availableLocales() {
       return this.$i18n.locales.filter(i => i.code !== this.$i18n.locale)
     },
+    currentPath() {
+      return this.$route.path
+    },
   },
   data() {
     return {
       isToolPage: () => /^.*\/tools\/.*/.test(this.$route.path),
       isMarked: false,
     }
+  },
+  methods: {
+    markTool() {
+      this.$store.commit('settings/FAVORITE_TOOL', {
+        route: this.currentPath,
+        mark: !this.isMarked
+      })
+      this.isMarked = !this.isMarked;
+    },
+  },
+  watch: {
+    currentPath(val) {
+      this.$store.state.settings.favoriteTools.filter(f => f.route === val).length > 0 ? this.isMarked = true : this.isMarked = false;
+      console.log('is favorite', val, this.isMarked);
+    },
   },
 }
 </script>

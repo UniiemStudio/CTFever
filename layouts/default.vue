@@ -10,8 +10,17 @@
 </template>
 
 <script>
+import localforage from "localforage";
+
 export default {
   name: "index",
+  beforeMount() {
+    localforage.getItem('favorite_tools').then(favorite_tools => {
+      if (favorite_tools) {
+        this.$store.commit('settings/setFavoriteTools', favorite_tools);
+      }
+    });
+  },
   data() {
     return {
       toolPageReg: /^.*\/tools\/.*/,

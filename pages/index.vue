@@ -14,6 +14,18 @@
         </div>
       </div>
     </div>
+
+    <div v-if="favoriteTools.length > 0" class="py-4 text-center md:text-left">
+      <h1 class="text-lg font-bold flex flex-col md:flex-row justify-center md:justify-start items-center space-x-1">
+        <ion-icon class="text-4xl md:text-xl mb-2 md:mb-0" :name="'albums-outline'"></ion-icon>
+        <span class="text-lg">收藏夹</span>
+      </h1>
+      <p class="text-sm font-thin">常用和喜欢的工具集</p>
+    </div>
+    <div class="my-2 grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      <Tool v-for="(tool, k) in favoriteTools" :key="k" :tool="tool"/>
+    </div>
+
     <div v-for="(toolkit, k) in $store.state.toolkits" :key="k">
       <div class="py-4 text-center md:text-left">
         <h1 class="text-lg font-bold flex flex-col md:flex-row justify-center md:justify-start items-center space-x-1">
@@ -36,6 +48,22 @@ import PrimaryIntroduction from "~/components/tool/PrimaryIntroduction";
 export default {
   name: 'IndexPage',
   components: {PrimaryIntroduction},
+  computed: {
+    favoriteTools() {
+      let tools = [];
+      this.$store.state.settings.favoriteTools.forEach(favoriteTool => {
+        tools.push(this.getToolByRoute(favoriteTool.route));
+      })
+      return tools;
+    },
+  },
+  methods: {
+    getToolByRoute(route) {
+      let tools = [];
+      this.$store.state.toolkits.forEach(toolkit => tools.push(toolkit.tools.filter(t => t.route === route)));
+      return tools.filter(t => t.length > 0)[0][0];
+    },
+  },
   data() {
     return {
       tips: [
