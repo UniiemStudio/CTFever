@@ -17,7 +17,7 @@ export const mutations = {
   FAVORITE_TOOL(state, payload) {
     console.log(payload.mark ? 'favorite' : 'unfavorite', payload.route, payload.mark);
     if (payload.mark) {
-      if (state.favoriteTools.filter(f => f.path === payload.route).length === 0) {
+      if (state.favoriteTools.filter(f => f.route === payload.route).length === 0) {
         state.favoriteTools.push(
           {
             route: payload.route,

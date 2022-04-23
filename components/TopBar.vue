@@ -71,6 +71,15 @@ export default {
     currentPath() {
       return this.$route.path
     },
+    favoriteTools() {
+      return this.$store.state.settings.favoriteTools;
+    }
+  },
+  mounted() {
+    this.$nextTick(() => {
+      console.log(this.currentPath);
+      this.updateMarkStatus(this.currentPath);
+    });
   },
   data() {
     return {
@@ -80,16 +89,19 @@ export default {
   },
   methods: {
     markTool() {
+      this.isMarked = !this.isMarked;
       this.$store.commit('settings/FAVORITE_TOOL', {
         route: this.currentPath,
-        mark: !this.isMarked
+        mark: this.isMarked
       })
-      this.isMarked = !this.isMarked;
     },
+    updateMarkStatus(route) {
+      this.favoriteTools.filter(f => f.route === route).length > 0 ? this.isMarked = true : this.isMarked = false;
+    }
   },
   watch: {
     currentPath(val) {
-      this.$store.state.settings.favoriteTools.filter(f => f.route === val).length > 0 ? this.isMarked = true : this.isMarked = false;
+      this.updateMarkStatus(val);
       console.log('is favorite', val, this.isMarked);
     },
   },
