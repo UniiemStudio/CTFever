@@ -63,23 +63,17 @@ export const state = () => ({
       ]
     },
     {
-      title: 'toolkit.dataConversion.title',
-      description: 'toolkit.dataConversion.desc',
-      icon: 'hardware-chip-outline',
-      tools: [
-        {
-          title: 'tool.radixConversion.title',
-          description: 'tool.radixConversion.desc',
-          route: '/tools/radix-conversion',
-          tags: ['数据转换'],
-        },
-      ]
-    },
-    {
-      title: 'toolkit.codeObfuscation.title',
-      description: 'toolkit.codeObfuscation.desc',
+      title: 'toolkit.programRelated.title',
+      description: 'toolkit.programRelated.desc',
       icon: 'bug-outline',
       tools: [
+        {
+          title: 'tool.pycDecompiler.title',
+          description: 'tool.pycDecompiler.desc',
+          route: '/tools/pyc-decompiler',
+          tags: ['反编译'],
+          disabled: true,
+        },
         {
           title: 'tool.jsFuck.title',
           description: 'tool.jsFuck.desc',
@@ -92,6 +86,19 @@ export const state = () => ({
           route: '/tools/brain-fuck',
           tags: ['编译器'],
         }
+      ]
+    },
+    {
+      title: 'toolkit.dataConversion.title',
+      description: 'toolkit.dataConversion.desc',
+      icon: 'hardware-chip-outline',
+      tools: [
+        {
+          title: 'tool.radixConversion.title',
+          description: 'tool.radixConversion.desc',
+          route: '/tools/radix-conversion',
+          tags: ['数据转换'],
+        },
       ]
     },
     {
@@ -110,6 +117,7 @@ export const state = () => ({
           description: 'tool.temperatureConversion.desc',
           route: '/tools/temperature-conversion',
           tags: ['数据转换'],
+          disabled: true,
         },
       ]
     }

@@ -33,13 +33,13 @@ export default {
       title: '数据转换',
       desc: '各种数据转换工具包'
     },
-    codeObfuscation: {
-      title: '代码混淆',
-      desc: '各式代码混淆方式和工具'
+    programRelated: {
+      title: '程序相关',
+      desc: '代码混淆、反编译等工具'
     },
     misc: {
       title: '杂项',
-      desc: '通用性强的工具套件'
+      desc: '通用型的工具套件'
     },
   },
   tool: {
@@ -82,7 +82,11 @@ export default {
       title: '进制转换',
       desc: '将输入数字转换为不同进制的输出'
     },
-    // Code Obfuscation
+    // Program Related
+    pycDecompiler: {
+      title: 'Pyc 反编译',
+      desc: '在线反编译 pyc 并审阅代码'
+    },
     jsFuck: {
       title: 'JSFuck',
       desc: '源于 BrainFuck，用于混淆 JavaScript 代码'

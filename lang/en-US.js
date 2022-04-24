@@ -33,9 +33,9 @@ export default {
       title: 'Data Conversion',
       desc: 'A toolkit for data conversion'
     },
-    codeObfuscation: {
-      title: 'Code Obfuscation',
-      desc: 'A toolkit for code obfuscation'
+    programRelated: {
+      title: 'Program related',
+      desc: 'Code obfuscation, decompilation, etc.'
     },
     misc: {
       title: 'Misc',
@@ -82,7 +82,11 @@ export default {
       title: 'Radix Conversion',
       desc: 'Convert a number to a different radix'
     },
-    // Code Obfuscation
+    // Program Related
+    pycDecompiler: {
+      title: 'Pyc Decompiler',
+      desc: 'Decompile pyc file'
+    },
     jsFuck: {
       title: 'JSFuck',
       desc: 'JSFuck is a JavaScript implementation of the esoteric programming language Fuck'
