@@ -35,4 +35,4 @@ $ yarn generate
 
 这是一条记录和谴责那些违背了本项目使用的 **[GPLv3](https://github.com/UniiemStudio/CTFever/blob/main/LICENSE)** 开源协议的人或站点的时间线。
 
-+ 2022.04.22 **ctftool.che\*\*\*\*\*.cn** 删除版权信息并重新分发
++ 2022.04.22 **ctftool.che\*\*\*\*\*.cn(liyikun\*\*\*\*@gmail.com)** 删除版权信息并重新分发
