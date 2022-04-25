@@ -77,8 +77,10 @@ export default {
   },
   mounted() {
     this.$nextTick(() => {
-      console.log(this.currentPath);
-      this.updateMarkStatus(this.currentPath);
+      // TODO: A better way to do this?
+      setTimeout(() => {
+        this.updateMarkStatus(this.currentPath);
+      }, 50);
     });
   },
   data() {
@@ -103,7 +105,6 @@ export default {
   watch: {
     currentPath(val) {
       this.updateMarkStatus(val);
-      console.log('is favorite', val, this.isMarked);
     },
   },
 }
