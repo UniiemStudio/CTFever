@@ -77,7 +77,7 @@ export default {
   },
   mounted() {
     this.$nextTick(() => {
-      // TODO: A better way to do this?
+      // TODO: A better way to do this
       setTimeout(() => {
         this.updateMarkStatus(this.currentPath);
       }, 50);
