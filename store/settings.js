@@ -1,4 +1,7 @@
-import localforage from "localforage";
+const LF_ENUM = {
+  FAVORITE_TOOLS: "favorite_tools",
+  SETTINGS: "settings",
+}
 
 export const state = () => ({
   cloudSyncData: {
@@ -7,7 +10,10 @@ export const state = () => ({
     favoriteTools: [],
   },
   favoriteTools: [],
-  settings: {},
+  settings: {
+    darkMode: false,
+    autoDarkMode: false,
+  },
 })
 
 export const mutations = {
@@ -28,7 +34,8 @@ export const mutations = {
     } else {
       state.favoriteTools = state.favoriteTools.filter(f => f.route !== payload.route);
     }
-    localforage.setItem("favorite_tools", state.favoriteTools).then(r => {
-    });
+  },
+  setDarkMode(state, darkMode) {
+    state.settings.darkMode = darkMode;
   },
 }

@@ -1,10 +1,11 @@
 <template>
   <div @click="!tool.disabled ? $router.push(localePath(tool.route)) : null"
        :class="{'disabled': tool.disabled}"
-       class="rounded-lg border border-gray-200 shadow hover:shadow-md transition-all p-4 cursor-pointer flex flex-col justify-between">
+       class="rounded-lg border border-gray-200 shadow hover:shadow-md transition-all p-4 cursor-pointer flex flex-col justify-between
+              dark:bg-slate-800 dark:text-white dark:border-slate-500">
     <div>
-      <h1 class="text-lg">{{ $t(tool.title) || tool.title }}</h1>
-      <p>{{ $t(tool.description) || tool.description }}</p>
+      <h1 class="text-lg dark:text-slate-300">{{ $t(tool.title) || tool.title }}</h1>
+      <p class="dark:text-slate-500">{{ $t(tool.description) || tool.description }}</p>
     </div>
     <div v-if="tool.tags && tool.tags.length > 0" class="mt-2 text-xs text-gray-400 w-fit" @click.stop>
       <ion-icon class="align-middle -mt-0.5" name="pricetag-outline"></ion-icon>
@@ -30,6 +31,6 @@ export default {
 
 <style scoped>
 .disabled {
-  @apply bg-gray-100 text-gray-600 shadow-none hover:shadow-none cursor-default;
+  @apply bg-gray-100 dark:bg-transparent text-gray-600 shadow-none hover:shadow-none cursor-default;
 }
 </style>

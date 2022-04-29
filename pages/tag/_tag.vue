@@ -2,7 +2,8 @@
   <div>
     <div>
       <div class="py-4 text-center md:text-left">
-        <h1 class="text-lg font-bold flex flex-col md:flex-row justify-center md:justify-start items-center space-x-1">
+        <h1 class="text-lg font-bold flex flex-col md:flex-row justify-center md:justify-start items-center space-x-1
+                  dark:text-slate-300">
           <ion-icon class="text-4xl md:text-xl mb-2 md:mb-0" name="search-outline"></ion-icon>
           <span class="text-lg">标签：{{ $route.params.tag }} 的归档</span>
         </h1>

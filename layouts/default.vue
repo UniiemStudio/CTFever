@@ -1,5 +1,5 @@
 <template>
-  <div class="antialiased">
+  <div class="antialiased dark:bg-slate-900">
     <TopBar/>
     <div class="container mx-auto p-4 pt-20"
          :class="{'pt-28': isToolPage(), 'pt-20': !isToolPage()}">
@@ -10,21 +10,34 @@
 </template>
 
 <script>
-import localforage from "localforage";
-
 export default {
   name: "index",
-  beforeMount() {
-    localforage.getItem('favorite_tools').then(favorite_tools => {
-      if (favorite_tools) {
-        this.$store.commit('settings/setFavoriteTools', favorite_tools);
+  computed: {
+    currentDarkMode() {
+      return this.$store.state.settings.settings.darkMode;
+    }
+  },
+  mounted() {
+    this.toggleDarkMode(this.currentDarkMode);
+  },
+  watch: {
+    currentDarkMode(newVal) {
+      this.toggleDarkMode(newVal);
+    }
+  },
+  methods: {
+    toggleDarkMode(darkMode) {
+      if (darkMode) {
+        this.$el.ownerDocument.documentElement.classList.add('dark');
+      } else {
+        this.$el.ownerDocument.documentElement.classList.remove('dark');
       }
-    });
+    }
   },
   data() {
     return {
-      toolPageReg: /^.*\/tools\/.*/,
-      isToolPage: () => this.toolPageReg.test(this.$route.path),
+      toolPageJudgeReg: /^.*\/tools\/.*/,
+      isToolPage: () => this.toolPageJudgeReg.test(this.$route.path),
     }
   },
 }
@@ -36,7 +49,7 @@ Global Styles
 */
 
 .primary-form {
-  @apply bg-white rounded lg:px-8 lg:pt-6;
+  @apply bg-transparent rounded lg:px-8 lg:pt-6;
 }
 
 /* transitions */

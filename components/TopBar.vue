@@ -1,21 +1,17 @@
 <template>
   <div>
     <div
-      class="fixed z-10 top-0 w-full bg-white backdrop-blur-sm transition-shadow flex flex-col items-center h-16"
-      :class="{'shadow hover:shadow-md': !isToolPage()}"
+      class="fixed z-10 top-0 w-full bg-white dark:bg-slate-900 backdrop-blur-sm transition-shadow flex flex-col items-center h-16"
+      :class="{'shadow dark:shadow-slate-800/50 hover:shadow-md': !isToolPage()}"
     >
       <div class="w-full h-16 px-4 container flex justify-between items-center">
         <div>
-          <nuxt-link :to="localePath('/')" class="text-lg font-bold">
+          <nuxt-link :to="localePath('/')" class="text-lg font-bold dark:text-slate-100">
             CTFever
-            <span class="font-thin">{{ $t('app.subtitle') }}</span>
+            <span class="font-thin dark:text-slate-200">{{ $t('app.subtitle') }}</span>
           </nuxt-link>
         </div>
-        <div class="space-x-1">
-          <!--          TODO: Dark mode toggle-->
-          <!--          <button>-->
-          <!--            <ion-icon class="align-middle text-base -mt-1" name="sunny-outline"></ion-icon>-->
-          <!--          </button>-->
+        <div class="space-x-2 dark:text-slate-300">
           <a-dropdown :trigger="['hover']" placement="bottomRight">
             <a class="ant-dropdown-link" @click="e => e.preventDefault()">
               <ion-icon class="align-middle text-lg -mt-1" name="language-outline"></ion-icon>
@@ -30,15 +26,20 @@
               </a-menu-item>
             </a-menu>
           </a-dropdown>
+          <a @click="toggleDarkMode">
+            <ion-icon class="align-middle text-base -mt-1"
+                      :name="this.currentDarkMode ? 'moon-outline' : 'sunny-outline'"></ion-icon>
+          </a>
           <!--          <TinyButtonLink :to="localePath('/premium-active')" accent>Premium</TinyButtonLink>-->
         </div>
       </div>
     </div>
     <div
-      class="fixed z-0 top-16 w-full h-8 bg-white backdrop-blur-sm opacity-0 -translate-y-8 transition duration-500 flex flex-col items-center h-16"
-      :class="{'shadow hover:shadow-md opacity-100 translate-y-0': isToolPage()}"
+      class="fixed z-0 top-16 w-full h-8 bg-white dark:bg-slate-900 backdrop-blur-sm opacity-0 -translate-y-8 transition duration-500 flex flex-col items-center h-16"
+      :class="{'shadow dark:shadow-slate-800/50 hover:shadow-md opacity-100 translate-y-0': isToolPage()}"
     >
-      <div class="w-full h-full px-4 container flex justify-between items-center border-t border-t-gray-150">
+      <div class="w-full h-full px-4 container flex justify-between items-center border-t border-t-gray-150
+                  dark:border-t-slate-700 dark:text-slate-300">
         <div>
           <nuxt-link class="group" :to="localePath('/')">
             <ion-icon
@@ -73,14 +74,14 @@ export default {
     },
     favoriteTools() {
       return this.$store.state.settings.favoriteTools;
+    },
+    currentDarkMode() {
+      return this.$store.state.settings.settings.darkMode;
     }
   },
   mounted() {
     this.$nextTick(() => {
-      // TODO: A better way to do this?
-      setTimeout(() => {
-        this.updateMarkStatus(this.currentPath);
-      }, 50);
+      this.updateMarkStatus(this.currentPath);
     });
   },
   data() {
@@ -100,6 +101,9 @@ export default {
     },
     updateMarkStatus(route) {
       this.favoriteTools.filter(f => f.route === route).length > 0 ? this.isMarked = true : this.isMarked = false;
+    },
+    toggleDarkMode() {
+      this.$store.commit('settings/setDarkMode', !this.currentDarkMode);
     }
   },
   watch: {

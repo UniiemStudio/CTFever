@@ -1,3 +1,7 @@
+import createVuexAlong from 'vuex-along';
+
+export const plugins = [createVuexAlong()];
+
 export const state = () => ({
   toolkits: [
     {

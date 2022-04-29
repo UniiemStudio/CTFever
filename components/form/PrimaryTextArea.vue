@@ -1,10 +1,11 @@
 <template>
   <div>
-    <label v-if="label" class="block text-gray-700 text-sm font-bold mb-2" :for="id">
+    <label v-if="label" class="block text-gray-700 dark:text-slate-300 text-sm font-bold mb-2" :for="id">
       {{ label }}
     </label>
     <textarea
-      class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+      class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline
+             dark:bg-slate-800 dark:text-slate-300 dark:border-slate-600"
       :rows="rows" :id="id" :placeholder="placeholder" :value="value" @input="onInput" :disabled="disable"
       :autocomplete="autocomplete"/>
   </div>

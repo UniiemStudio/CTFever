@@ -1,9 +1,10 @@
 <template>
   <div>
     <div class="space-y-2">
-      <div v-for="(tip, k) in tips" :key="'tip' + k" class="p-4 bg-white rounded-lg border border-gray-200">
-        <p class="font-bold mb-2">{{ tip.title }}</p>
-        <p class="mb-2">{{ tip.content }}</p>
+      <div v-for="(tip, k) in tips" :key="'tip' + k"
+           class="p-4 bg-transparent rounded-lg border border-gray-200 dark:border-slate-500">
+        <p class="font-bold mb-2 dark:text-slate-300">{{ tip.title }}</p>
+        <p class="mb-2 dark:text-slate-500">{{ tip.content }}</p>
         <div class="flex flex-col" v-if="tip.references">
           <a v-for="(ref, k) in tip.references" :key="'ref' + k" class="group text-blue-500 w-fit"
              :href="ref.url" target="_blank">
@@ -16,11 +17,12 @@
     </div>
 
     <div v-if="favoriteTools.length > 0" class="py-4 text-center md:text-left">
-      <h1 class="text-lg font-bold flex flex-col md:flex-row justify-center md:justify-start items-center space-x-1">
+      <h1 class="text-lg font-bold flex flex-col md:flex-row justify-center md:justify-start items-center space-x-1
+                dark:text-slate-300">
         <ion-icon class="text-4xl md:text-xl mb-2 md:mb-0" :name="'albums-outline'"></ion-icon>
         <span class="text-lg">收藏夹</span>
       </h1>
-      <p class="text-sm font-thin">常用和喜欢的工具集</p>
+      <p class="text-sm font-thin dark:text-slate-500">常用和喜欢的工具集</p>
     </div>
     <div class="my-2 grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
       <Tool v-for="(tool, k) in favoriteTools" :key="k" :tool="tool"/>
@@ -28,12 +30,13 @@
 
     <div v-for="(toolkit, k) in $store.state.toolkits" :key="k">
       <div class="py-4 text-center md:text-left">
-        <h1 class="text-lg font-bold flex flex-col md:flex-row justify-center md:justify-start items-center space-x-1">
+        <h1 class="text-lg font-bold flex flex-col md:flex-row justify-center md:justify-start items-center space-x-1
+                dark:text-slate-300">
           <ion-icon class="text-4xl md:text-xl mb-2 md:mb-0" :name="toolkit.icon || 'albums-outline'"></ion-icon>
           <span class="text-lg">{{ $t(toolkit.title) || toolkit.title }}</span>
           <!-- TODO: Tools count -->
         </h1>
-        <p class="text-sm font-thin">{{ $t(toolkit.description) || toolkit.description }}</p>
+        <p class="text-sm font-thin dark:text-slate-500">{{ $t(toolkit.description) || toolkit.description }}</p>
       </div>
       <div class="my-2 grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         <Tool v-for="(tool, k) in toolkit.tools" :key="k" :tool="tool"/>

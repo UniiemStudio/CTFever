@@ -12,9 +12,10 @@
         <div class="flex overflow-x-auto snap-x gap-4 py-1 snap-mandatory">
           <div v-for="(snip, k) in snippets" :key="k" @click="input_code = snip.code; arg = snip.arg ? snip.arg : ''"
                class="snap-start shrink-0 w-10/12 md:w-8/12 lg:w-4/12 min-h-20 rounded-lg border border-gray-200 shadow
-            bg-white p-2 cursor-pointer">
-            <h1 class="font-bold mb-1">{{ snip.title }}</h1>
-            <p class="break-all leading-none font-mono">
+                      bg-white p-2 cursor-pointer
+                      dark:bg-slate-800 dark:border-slate-600">
+            <h1 class="font-bold mb-1 dark:text-slate-300">{{ snip.title }}</h1>
+            <p class="break-all leading-none font-mono dark:text-slate-500">
               {{ snip.code }}
             </p>
           </div>
