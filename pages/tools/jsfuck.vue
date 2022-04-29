@@ -8,7 +8,7 @@
       <InteractiveBlock class="flex items-center justify-between">
         <div class="space-x-1">
           <PrimaryButton type="button" @click="encode">编码 ↓</PrimaryButton>
-          <a-checkbox v-model:checked="wrapWithEval">用 eval 函数包裹</a-checkbox>
+          <a-checkbox v-model:checked="wrapWithEval" class="dark:text-slate-300">用 eval 函数包裹</a-checkbox>
           <!--          <PrimaryButton type="button" @click="decode">解码 ↑</PrimaryButton>-->
         </div>
         <PrimaryButton type="button" danger @click="input_code = ''; output = '';">清空</PrimaryButton>

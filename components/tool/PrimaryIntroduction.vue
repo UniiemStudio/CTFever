@@ -5,7 +5,7 @@
     <div class="mb-4" v-if="document">
       <nuxt-content class="prose prose-sm max-w-none reset-code overflow-x-auto
                            dark:prose-p:text-slate-300 dark:prose-headings:text-slate-300
-                           dark:prose-strong:text-slate-300" :document="document"/>
+                           dark:prose-strong:text-slate-300 dark:prose-table:text-slate-300" :document="document"/>
     </div>
     <div class="flex flex-col" v-if="references">
       <p class="font-bold text-lg mb-1 dark:text-slate-300">References</p>
@@ -41,7 +41,7 @@ export default {
 
 <style>
 .reset-code {
-  @apply prose-code:before:content-none prose-code:after:content-none prose-code:rounded prose-code:bg-gray-300 dark:prose-code:bg-slate-500 prose-code:py-0.5 prose-code:px-1 prose-code:mx-0.5;
+  @apply prose-code:before:content-none prose-code:after:content-none prose-code:rounded prose-code:bg-gray-300 dark:prose-code:bg-slate-500 dark:prose-code:text-slate-50 prose-code:py-0.5 prose-code:px-1 prose-code:mx-0.5;
 }
 
 .nuxt-content-container {
