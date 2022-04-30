@@ -75,20 +75,7 @@ export default {
   font-style: normal;
 }
 
-.t-table tbody tr:hover {
-  background-color: transparent;
-}
-
-td:hover {
-  color: #009688;
-  cursor: pointer;
-}
-
 .pig-font {
   font-family: "pigpen-regular", serif;
-}
-
-.pig-font-size {
-  font-size: 60px;
 }
 </style>

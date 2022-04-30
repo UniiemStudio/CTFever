@@ -47,6 +47,9 @@ export default {
 /*
 Global Styles
 */
+.nuxt-progress {
+  @apply bg-gray-800 dark:bg-cyan-500;
+}
 
 .primary-form {
   @apply bg-transparent rounded lg:px-8 lg:pt-6;

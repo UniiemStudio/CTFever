@@ -26,11 +26,27 @@
               </a-menu-item>
             </a-menu>
           </a-dropdown>
+          <!--          <a-dropdown :trigger="['hover']" placement="bottomRight">-->
+          <!--            <a class="ant-dropdown-link" @click="toggleDarkMode">-->
+          <!--              <ion-icon class="align-middle text-base -mt-1"-->
+          <!--                        :name="this.currentDarkMode ? 'moon-outline' : 'sunny-outline'"></ion-icon>-->
+          <!--            </a>-->
+          <!--            <a-menu slot="overlay">-->
+          <!--              <a-menu-item v-for="(locale, k) in availableLocales" :key="k">-->
+          <!--                <nuxt-link-->
+          <!--                  class="px-2 py-px"-->
+          <!--                  :key="locale.code"-->
+          <!--                  :to="switchLocalePath(locale.code)">{{ locale.name }}-->
+          <!--                </nuxt-link>-->
+          <!--              </a-menu-item>-->
+          <!--            </a-menu>-->
+          <!--          </a-dropdown>-->
           <a @click="toggleDarkMode">
             <ion-icon class="align-middle text-base -mt-1"
                       :name="this.currentDarkMode ? 'moon-outline' : 'sunny-outline'"></ion-icon>
           </a>
-          <!--          <TinyButtonLink :to="localePath('/premium-active')" accent>Premium</TinyButtonLink>-->
+          <!-- TODO: CTFever Premium -->
+          <!-- <TinyButtonLink :to="localePath('/premium-active')" accent>Premium</TinyButtonLink>-->
         </div>
       </div>
     </div>
