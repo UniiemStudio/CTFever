@@ -35,12 +35,6 @@ export const state = () => ({
           route: '/tools/morse-code',
           tags: ['字符编码'],
         },
-        {
-          title: 'tool.pigpen.title',
-          description: 'tool.pigpen.desc',
-          route: '/tools/pigpen',
-          tags: ['字符编码'],
-        },
       ]
     },
     {
@@ -64,6 +58,12 @@ export const state = () => ({
           title: 'tool.railFenceCipher.title',
           description: 'tool.railFenceCipher.desc',
           route: '/tools/rail-fence-cipher',
+          tags: ['加密算法'],
+        },
+        {
+          title: 'tool.pigpen.title',
+          description: 'tool.pigpen.desc',
+          route: '/tools/pigpen',
           tags: ['加密算法'],
         },
       ]
