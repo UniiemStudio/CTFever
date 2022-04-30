@@ -19,6 +19,9 @@ export default {
   },
   mounted() {
     this.toggleDarkMode(this.currentDarkMode);
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+      if (this.currentDarkMode === 'auto') this.toggleDarkMode(e.matches);
+    });
   },
   watch: {
     currentDarkMode(newVal) {
@@ -63,6 +66,12 @@ Global Styles
 
 .primary-form {
   @apply bg-transparent rounded lg:px-8 lg:pt-6;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    @apply bg-slate-900;
+  }
 }
 
 /* transitions */
