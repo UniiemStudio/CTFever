@@ -1,7 +1,7 @@
 <template>
   <div class="antialiased dark:bg-slate-900">
     <TopBar/>
-    <div class="container mx-auto p-4 pt-20 min-h-screen"
+    <div class="container mx-auto p-4 pt-20 min-h-screen overscroll-none"
          :class="{'pt-28': isToolPage(), 'pt-20': !isToolPage()}">
       <Nuxt/>
     </div>
