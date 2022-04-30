@@ -16,7 +16,7 @@
             <a class="ant-dropdown-link" @click="e => e.preventDefault()">
               <ion-icon class="align-middle text-lg -mt-1" name="language-outline"></ion-icon>
             </a>
-            <a-menu slot="overlay">
+            <a-menu slot="overlay" class="dark:bg-slate-800">
               <a-menu-item v-for="(locale, k) in availableLocales" :key="k">
                 <nuxt-link
                   class="px-2 py-px"
@@ -27,7 +27,7 @@
             </a-menu>
           </a-dropdown>
           <a-dropdown :trigger="['hover']" placement="bottomRight">
-            <a class="ant-dropdown-link" @click="toggleDarkMode">
+            <a class="ant-dropdown-link" @click="e => e.preventDefault()">
               <ion-icon class="align-middle text-base -mt-1"
                         :name="this.currentDarkMode ? 'moon-outline' : 'sunny-outline'"></ion-icon>
             </a>
