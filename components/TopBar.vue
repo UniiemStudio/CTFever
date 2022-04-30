@@ -26,25 +26,30 @@
               </a-menu-item>
             </a-menu>
           </a-dropdown>
-          <!--          <a-dropdown :trigger="['hover']" placement="bottomRight">-->
-          <!--            <a class="ant-dropdown-link" @click="toggleDarkMode">-->
-          <!--              <ion-icon class="align-middle text-base -mt-1"-->
-          <!--                        :name="this.currentDarkMode ? 'moon-outline' : 'sunny-outline'"></ion-icon>-->
-          <!--            </a>-->
-          <!--            <a-menu slot="overlay">-->
-          <!--              <a-menu-item v-for="(locale, k) in availableLocales" :key="k">-->
-          <!--                <nuxt-link-->
-          <!--                  class="px-2 py-px"-->
-          <!--                  :key="locale.code"-->
-          <!--                  :to="switchLocalePath(locale.code)">{{ locale.name }}-->
-          <!--                </nuxt-link>-->
-          <!--              </a-menu-item>-->
-          <!--            </a-menu>-->
-          <!--          </a-dropdown>-->
-          <a @click="toggleDarkMode">
-            <ion-icon class="align-middle text-base -mt-1"
-                      :name="this.currentDarkMode ? 'moon-outline' : 'sunny-outline'"></ion-icon>
-          </a>
+          <a-dropdown :trigger="['hover']" placement="bottomRight">
+            <a class="ant-dropdown-link" @click="toggleDarkMode">
+              <ion-icon class="align-middle text-base -mt-1"
+                        :name="this.currentDarkMode ? 'moon-outline' : 'sunny-outline'"></ion-icon>
+            </a>
+            <a-menu slot="overlay" class="dark:bg-slate-800">
+              <a-menu-item v-for="(mode, k) in colorModes" :key="k"
+                           class="flex flex-row items-center space-x-0.5 dark:text-slate-300"
+                           :class="{'dropdown-item-active': $store.state.settings.settings.darkMode === mode.code}"
+                           @click="switchDarkMode(mode.code)">
+                <ion-icon class="align-middle text-lg" :name="mode.icon"></ion-icon>
+                <nuxt-link
+                  class="px-2 py-px"
+                  :class="{'dropdown-item-active': $store.state.settings.settings.darkMode === mode.code}"
+                  :key="mode.code"
+                  :to="switchLocalePath(mode.code)">{{ mode.name }}
+                </nuxt-link>
+              </a-menu-item>
+            </a-menu>
+          </a-dropdown>
+          <!--          <a @click="toggleDarkMode">-->
+          <!--            <ion-icon class="align-middle text-base -mt-1"-->
+          <!--                      :name="this.currentDarkMode ? 'moon-outline' : 'sunny-outline'"></ion-icon>-->
+          <!--          </a>-->
           <!-- TODO: CTFever Premium -->
           <!-- <TinyButtonLink :to="localePath('/premium-active')" accent>Premium</TinyButtonLink>-->
         </div>
@@ -102,6 +107,23 @@ export default {
   },
   data() {
     return {
+      colorModes: [
+        {
+          code: 'light',
+          name: '白天',
+          icon: 'sunny-outline'
+        },
+        {
+          code: 'dark',
+          name: '夜晚',
+          icon: 'moon-outline'
+        },
+        {
+          code: 'auto',
+          name: '自动',
+          icon: 'desktop-outline'
+        }
+      ],
       isToolPage: () => /^.*\/tools\/.*/.test(this.$route.path),
       isMarked: false,
     }
@@ -120,6 +142,9 @@ export default {
     },
     toggleDarkMode() {
       this.$store.commit('settings/setDarkMode', !this.currentDarkMode);
+    },
+    switchDarkMode(mode) {
+      this.$store.commit('settings/setDarkMode', mode);
     }
   },
   watch: {
@@ -131,5 +156,17 @@ export default {
 </script>
 
 <style scoped>
+.dropdown-item-active,
+.dropdown-item-active > a {
+  @apply text-cyan-500 dark:text-cyan-500 !important;
+}
 
+.ant-dropdown-menu-item > a,
+.ant-dropdown-menu-submenu-title > a {
+  @apply dark:text-slate-300;
+}
+
+.ant-dropdown-menu-item-active {
+  @apply dark:bg-slate-700;
+}
 </style>

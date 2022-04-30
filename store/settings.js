@@ -11,8 +11,7 @@ export const state = () => ({
   },
   favoriteTools: [],
   settings: {
-    darkMode: false,
-    autoDarkMode: false,
+    darkMode: 'auto',
   },
 })
 
@@ -36,6 +35,10 @@ export const mutations = {
     }
   },
   setDarkMode(state, darkMode) {
-    state.settings.darkMode = darkMode;
+    if (darkMode === 'auto' || darkMode === 'light' || darkMode === 'dark') {
+      state.settings.darkMode = darkMode;
+    } else {
+      state.settings.darkMode = 'auto';
+    }
   },
 }

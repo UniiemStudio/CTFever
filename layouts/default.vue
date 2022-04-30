@@ -27,10 +27,20 @@ export default {
   },
   methods: {
     toggleDarkMode(darkMode) {
-      if (darkMode) {
-        this.$el.ownerDocument.documentElement.classList.add('dark');
-      } else {
-        this.$el.ownerDocument.documentElement.classList.remove('dark');
+      switch (darkMode) {
+        case 'auto':
+          if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            this.$el.ownerDocument.documentElement.classList.add('dark');
+          } else {
+            this.$el.ownerDocument.documentElement.classList.remove('dark');
+          }
+          break;
+        case 'dark':
+          this.$el.ownerDocument.documentElement.classList.add('dark');
+          break;
+        case 'light':
+          this.$el.ownerDocument.documentElement.classList.remove('dark');
+          break;
       }
     }
   },
