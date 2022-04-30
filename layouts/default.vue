@@ -69,7 +69,7 @@ Global Styles
 }
 
 @media (prefers-color-scheme: dark) {
-  body {
+  html[class*="dark"] {
     @apply bg-slate-900;
   }
 }
