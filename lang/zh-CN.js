@@ -77,14 +77,14 @@ export default {
       title: '栅栏密码',
       desc: '明文分组排列成栅栏，然后每组依次排列组成密文'
     },
+    pigpen: {
+      title: '猪圈密码',
+      desc: '又称共济会密码，一种简单的替换式密码'
+    },
     // Data Conversion
     radixConversion: {
       title: '进制转换',
       desc: '将输入数字转换为不同进制的输出'
-    },
-    pigpen: {
-      title: '猪圈密码',
-      desc: '简单图形加密的技术'
     },
     // Program Related
     pycDecompiler: {

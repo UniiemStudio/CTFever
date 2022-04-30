@@ -77,6 +77,10 @@ export default {
       title: 'Rail Fence Cipher',
       desc: 'Convert text to Rail Fence Cipher'
     },
+    pigpen: {
+      title: 'Pigpen Cipher',
+      desc: 'Freemason\'s cipher, Simple replacement password'
+    },
     // Data Conversion
     radixConversion: {
       title: 'Radix Conversion',
