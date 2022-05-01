@@ -1,6 +1,12 @@
 import createVuexAlong from 'vuex-along';
 
-export const plugins = [createVuexAlong()];
+export const plugins = [createVuexAlong({
+  name: "ctfever-preferences",
+  local: {
+    list: ["toolkits"],
+    isFilter: true,
+  },
+})];
 
 export const state = () => ({
   toolkits: [
