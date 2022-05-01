@@ -100,6 +100,10 @@ export default {
       desc: '一种极小化的计算机语言'
     },
     // Misc
+    serialTool: {
+      title: '串口调试器',
+      desc: '一个实验性的串口调试工具'
+    },
     crc: {
       title: 'CRC',
       desc: '循环冗余校验码，用于校验文件、网络数据等数据的完整性'

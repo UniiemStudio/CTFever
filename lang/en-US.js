@@ -100,6 +100,10 @@ export default {
       desc: 'BrainFuck is a programming language that is a variant of the esoteric programming language Fuck'
     },
     // Misc
+    serialTool: {
+      title: 'Serial Port Tool',
+      desc: 'A experimental tool for serial port'
+    },
     crc: {
       title: 'CRC',
       desc: 'CRC is a checksum algorithm used to detect errors in data transmissions'
