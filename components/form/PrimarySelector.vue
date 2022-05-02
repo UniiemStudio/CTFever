@@ -6,7 +6,8 @@
     <select
       class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline
              dark:bg-slate-800 dark:text-slate-300 dark:border-slate-600"
-      :id="id" :value="value" @input="onInput">
+      :class="{'text-gray-300 dark:text-slate-500 bg-gray-50': disable}"
+      :id="id" :value="value" @input="onInput" :disabled="disable">
       <option v-for="(option, k) in options" :k="k" :value="option.value">{{
           option.name || option.label || '选项' + k
         }}
@@ -28,8 +29,12 @@ export default {
       default: null,
     },
     value: {
-      type: String,
+      type: [String, Number],
       default: '',
+    },
+    disable: {
+      type: Boolean,
+      default: false,
     },
     options: {
       type: Array,
