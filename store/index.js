@@ -70,6 +70,12 @@ export const state = () => ({
           route: '/tools/pigpen',
           tags: ['加密算法'],
         },
+        {
+          title: 'tool.vigenereCipher.title',
+          description: 'tool.vigenereCipher.desc',
+          route: '/tools/vigenereCipher',
+          tags: ['加密算法'],
+        },
       ]
     },
     {

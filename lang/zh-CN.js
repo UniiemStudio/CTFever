@@ -81,6 +81,10 @@ export default {
       title: '猪圈密码',
       desc: '又称共济会密码，一种简单的替换式密码'
     },
+    vigenereCipher: {
+      title: '维吉尼亚密码',
+      desc: '在凯撒密码基础上产生的一种加密方法'
+    },
     // Data Conversion
     radixConversion: {
       title: '进制转换',
