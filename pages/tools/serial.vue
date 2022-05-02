@@ -29,6 +29,7 @@
             <PrimaryInput label="状态" id="status" :value="connected ? `已连接[${baud}]` : '已断开'" class="w-full" disable/>
           </template>
           <template v-slot:right>
+            <!--suppress JSValidateTypes -->
             <PrimarySelector label="波特率" v-model="baud" :options="baudRates" :disable="connected"/>
           </template>
         </InteractiveDoubleColumns>
@@ -102,16 +103,16 @@ export default {
       this.rxScrollDown();
     }, event => {
       if (event instanceof Error) {
-        this.log2Rx(`[error] ${event.message}`);
+        this.log2Rx(`⚠️ ${event.message}`);
       } else {
-        self.$message.error('Unknown error.');
+        self.$message.error('❌ Unknown error.');
       }
     }, () => {
       this.connected = true;
-      this.log2Rx(`[connect] Serial is open (${this.baud})`);
+      this.log2Rx(`🔗 Serial is open (${this.baud})`);
     }, () => {
       this.connected = false;
-      this.log2Rx(`[close] Serial is closed`);
+      this.log2Rx(`🖇️ Serial is closed`);
     });
   },
   watch: {
