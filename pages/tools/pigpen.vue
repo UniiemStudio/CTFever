@@ -17,9 +17,10 @@
           <PrimaryInput id="output" label="密文" v-model="result" class="pig-font" disable/>
         </InteractiveBlock>
         <InteractiveBlock>
-          <PrimaryInput id="output" label="明文" v-model="result" disable/>
+          <PrimaryInput id="output" label="明文" v-model="result"/>
         </InteractiveBlock>
         <InteractiveBlock>
+          <PrimaryButton type="button" @click="backspace">退格</PrimaryButton>
           <PrimaryButton type="button" @click="clear">清空</PrimaryButton>
         </InteractiveBlock>
       </template>
@@ -61,6 +62,9 @@ export default {
     },
     clear() {
       this.result = ""
+    },
+    backspace() {
+      this.result = this.result.slice(0, -1);
     }
   }
 }
