@@ -125,7 +125,7 @@ export const state = () => ({
         {
           title: 'tool.serialTool.title',
           description: 'tool.serialTool.desc',
-          route: '/tools/serial-port',
+          route: '/tools/serial',
           tags: ['调试工具'],
         },
         {
