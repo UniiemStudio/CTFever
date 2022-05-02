@@ -28,7 +28,7 @@ const Serial = function (onRecv, onError, onOpen = null, onClose = null) {
       serial._textEncoder = new TextEncoderStream();
       serial._writableStreamClosed = serial._textEncoder.readable.pipeTo(serial._port.writable);
       serial._writer = serial._textEncoder.writable.getWriter();
-      serial._emit('open');
+      serial._emit('open', serial._port);
       while (serial._port.readable) {
         serial._textDecoder = new TextDecoderStream();
         serial._readableStreamClosed = serial._port.readable.pipeTo(serial._textDecoder.writable);

@@ -147,6 +147,9 @@ export default {
       this.rx += val + '\n';
       this.rxScrollDown();
     }
+  },
+  beforeDestroy() {
+    this.serial.close();
   }
 }
 </script>
