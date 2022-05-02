@@ -105,6 +105,20 @@ export const state = () => ({
       ]
     },
     {
+      title: 'toolkit.networkTool.title',
+      description: 'toolkit.networkTool.desc',
+      icon: 'globe-outline',
+      tools: [
+        {
+          title: 'tool.ipAttribution.title',
+          description: 'tool.ipAttribution.desc',
+          route: '/tools/ip-geo',
+          tags: ['IP2Geo'],
+          disabled: true,
+        },
+      ]
+    },
+    {
       title: 'toolkit.dataConversion.title',
       description: 'toolkit.dataConversion.desc',
       icon: 'hardware-chip-outline',
@@ -113,7 +127,14 @@ export const state = () => ({
           title: 'tool.radixConversion.title',
           description: 'tool.radixConversion.desc',
           route: '/tools/radix-conversion',
-          tags: ['数据转换'],
+          tags: ['数据处理'],
+        },
+        {
+          title: 'tool.timeStamp.title',
+          description: 'tool.timeStamp.desc',
+          route: '/tools/timestamp',
+          tags: ['数据处理'],
+          disabled: true,
         },
       ]
     },

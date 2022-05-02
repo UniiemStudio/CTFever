@@ -29,13 +29,17 @@ export default {
       title: '密码学',
       desc: '常见密码学算法工具包'
     },
-    dataConversion: {
-      title: '数据转换',
-      desc: '各种数据转换工具包'
-    },
     programRelated: {
       title: '程序相关',
       desc: '代码混淆、反编译等工具'
+    },
+    networkTool: {
+      title: '网络工具',
+      desc: '常用网络工具套件'
+    },
+    dataConversion: {
+      title: '数据转换',
+      desc: '各种数据转换工具包'
     },
     misc: {
       title: '杂项',
@@ -81,10 +85,19 @@ export default {
       title: '猪圈密码',
       desc: '又称共济会密码，一种简单的替换式密码'
     },
+    // Network Tool
+    ipAttribution: {
+      title: 'IP 地址归属',
+      desc: '查询 IP 地址归属地和 ISP 信息'
+    },
     // Data Conversion
     radixConversion: {
       title: '进制转换',
       desc: '将输入数字转换为不同进制的输出'
+    },
+    timeStamp: {
+      title: '时间戳转换',
+      desc: '将 UNIX 时间戳转换为任何格式'
     },
     // Program Related
     pycDecompiler: {

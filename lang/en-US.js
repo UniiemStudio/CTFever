@@ -29,13 +29,17 @@ export default {
       title: 'Cryptography',
       desc: 'A toolkit for cryptography'
     },
-    dataConversion: {
-      title: 'Data Conversion',
-      desc: 'A toolkit for data conversion'
-    },
     programRelated: {
       title: 'Program related',
       desc: 'Code obfuscation, decompilation, etc.'
+    },
+    networkTool: {
+      title: 'Network tool',
+      desc: 'A toolkit for network'
+    },
+    dataConversion: {
+      title: 'Data Conversion',
+      desc: 'A toolkit for data conversion'
     },
     misc: {
       title: 'Misc',
@@ -81,10 +85,19 @@ export default {
       title: 'Pigpen Cipher',
       desc: 'Freemason\'s cipher, Simple replacement password'
     },
+    // Network Tool
+    ipAttribution: {
+      title: 'IP Geo-location',
+      desc: 'Query IP address attribution and ISP information'
+    },
     // Data Conversion
     radixConversion: {
-      title: 'Radix Conversion',
+      title: 'Radix Converter',
       desc: 'Convert a number to a different radix'
+    },
+    timeStamp: {
+      title: 'Time Stamp Converter',
+      desc: 'Convert a time stamp to any format'
     },
     // Program Related
     pycDecompiler: {
