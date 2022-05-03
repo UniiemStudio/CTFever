@@ -68,6 +68,36 @@ Global Styles
   @apply bg-transparent rounded lg:px-8 lg:pt-6;
 }
 
+::-webkit-scrollbar {
+  /*滚动条整体*/
+  width: 4px;
+  height: 4px;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100 bg-slate-700;
+}
+
+:hover::-webkit-scrollbar-track {
+  /* ignore */
+}
+
+::-webkit-scrollbar-thumb {
+  /*滚动条里面的滑块*/
+  border-radius: 10px;
+  @apply bg-gray-300 bg-slate-500;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-400;
+}
+
+::-webkit-scrollbar-corner {
+  border: none;
+  background: transparent;
+}
+
 @media (prefers-color-scheme: dark) {
   html[class*="dark"] {
     @apply bg-slate-900;
