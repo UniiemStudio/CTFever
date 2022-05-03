@@ -3,14 +3,23 @@ export default {
     name: 'CTFever',
     title: 'CTFever Toolkit by uniiem',
     subtitle: 'Toolkit',
-    edition: {
-      snap: 'Snapshot',
+    tip: {
+      title: 'Welcome to CTFever',
+      content: 'CTFever is a toolkit for CTFers. It is a collection of useful online tools.',
     }
   },
   topbar: {
     login: 'LOGIN',
     signup: 'SIGN UP',
-    langTip: 'Language',
+    appearance: {
+      light: 'Light',
+      dark: 'Dark',
+      auto: 'Auto'
+    },
+  },
+  action: {
+    marked: 'Added to bookmarks',
+    unmarked: 'Removed from bookmarks',
   },
   page: {
     notFound: {

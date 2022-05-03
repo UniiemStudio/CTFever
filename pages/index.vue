@@ -3,8 +3,8 @@
     <div class="space-y-2">
       <div v-for="(tip, k) in tips" :key="'tip' + k"
            class="p-4 bg-transparent rounded-lg border border-gray-200 dark:border-slate-500">
-        <p class="font-bold mb-2 dark:text-slate-300">{{ tip.title }}</p>
-        <p class="mb-2 dark:text-slate-500">{{ tip.content }}</p>
+        <p class="font-bold mb-2 dark:text-slate-300">{{ $t(tip.title) }}</p>
+        <p class="mb-2 dark:text-slate-500">{{ $t(tip.content) }}</p>
         <div class="flex flex-col" v-if="tip.references">
           <a v-for="(ref, k) in tip.references" :key="'ref' + k" class="group text-blue-500 w-fit"
              :href="ref.url" target="_blank">
@@ -71,11 +71,11 @@ export default {
     return {
       tips: [
         {
-          title: '欢迎来到 CTFever',
-          content: '这是为 CTF 发烧者准备的的工具套件，助你过关斩将、攻克难关。第一个版本已经开发完毕，我们目前正在着手高级功能的开发，敬请期待。欢迎给我们的开源仓库 star、pr。同时我们正在招募 i18n 团队，欢迎加入我们！',
+          title: 'app.tip.title',
+          content: 'app.tip.content',
           references: [
             {name: 'GitHub Repository', url: 'https://github.com/UniiemStudio/CTFever'},
-            {name: 'Telegram 群组', url: 'https://t.me/boxmoe'}
+            {name: 'Telegram', url: 'https://t.me/boxmoe'}
           ]
         },
       ]

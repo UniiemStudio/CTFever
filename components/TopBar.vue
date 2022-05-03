@@ -41,7 +41,7 @@
                   class="px-2 py-px"
                   :class="{'dropdown-item-active': $store.state.settings.settings.darkMode === mode.code}"
                   :key="mode.code"
-                  :to="switchLocalePath(mode.code)">{{ mode.name }}
+                  :to="switchLocalePath(mode.code)">{{ $t(mode.name) }}
                 </nuxt-link>
               </a-menu-item>
             </a-menu>
@@ -113,7 +113,7 @@ export default {
           break;
       }
       return icon;
-    }
+    },
   },
   mounted() {
     this.$nextTick(() => {
@@ -125,17 +125,17 @@ export default {
       colorModes: [
         {
           code: 'light',
-          name: '白天',
+          name: 'topbar.appearance.light',
           icon: 'sunny-outline'
         },
         {
           code: 'dark',
-          name: '夜晚',
+          name: 'topbar.appearance.dark',
           icon: 'moon-outline'
         },
         {
           code: 'auto',
-          name: '自动',
+          name: 'topbar.appearance.auto',
           icon: 'desktop-outline'
         }
       ],
@@ -147,7 +147,7 @@ export default {
     markTool() {
       this.isMarked = !this.isMarked;
       this.$store.commit('settings/FAVORITE_TOOL', {
-        route: this.currentPath,
+        route: `/${this.currentPath.split('/').slice(-2).join('/')}`,
         mark: this.isMarked
       });
       this.$message.success(this.isMarked ? '已收藏' : '已取消收藏');

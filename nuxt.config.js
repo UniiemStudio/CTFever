@@ -95,8 +95,8 @@ export default {
         code: 'zh',
         iso: 'zh-CN',
         file: 'zh-CN.js',
-        name: '中文',
-        label: '中文'
+        name: '简体中文',
+        label: '简体中文'
       },
       {
         code: 'ja',

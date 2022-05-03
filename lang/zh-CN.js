@@ -3,14 +3,23 @@ export default {
     name: 'CTFever',
     title: 'CTFever Toolkit by uniiem',
     subtitle: '工具套件',
-    edition: {
-      snap: '快照版',
+    tip: {
+      title: '欢迎来到 CTFever',
+      content: '这是为 CTF 发烧者准备的的工具套件，助你过关斩将、攻克难关。第一个版本已经开发完毕，我们目前正在着手高级功能的开发，敬请期待。欢迎给我们的开源仓库 star、pr。同时我们正在招募 i18n 团队，欢迎加入我们！',
     }
   },
   topbar: {
     login: '登陆',
     signup: '创建账号',
-    langTip: '语言',
+    appearance: {
+      light: '亮色',
+      dark: '暗色',
+      auto: '自动'
+    },
+  },
+  action: {
+    marked: '已收藏',
+    unmarked: '已移出收藏'
   },
   page: {
     notFound: {
