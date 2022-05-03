@@ -29,7 +29,7 @@
           <a-dropdown :trigger="['hover']" placement="bottomRight">
             <a class="ant-dropdown-link" @click="e => e.preventDefault()">
               <ion-icon class="align-middle text-base -mt-1"
-                        :name="this.currentDarkMode ? 'moon-outline' : 'sunny-outline'"></ion-icon>
+                        :name="currentDarkModeIcon"></ion-icon>
             </a>
             <a-menu slot="overlay" class="dark:bg-slate-800">
               <a-menu-item v-for="(mode, k) in colorModes" :key="k"
@@ -98,6 +98,21 @@ export default {
     },
     currentDarkMode() {
       return this.$store.state.settings.settings.darkMode;
+    },
+    currentDarkModeIcon() {
+      let icon = '';
+      switch (this.currentDarkMode) {
+        case 'light':
+          icon = 'sunny-outline';
+          break;
+        case 'dark':
+          icon = 'moon-outline';
+          break;
+        case 'auto':
+          icon = 'contrast-outline';
+          break;
+      }
+      return icon;
     }
   },
   mounted() {
@@ -139,9 +154,6 @@ export default {
     },
     updateMarkStatus(route) {
       this.favoriteTools.filter(f => f.route === route).length > 0 ? this.isMarked = true : this.isMarked = false;
-    },
-    toggleDarkMode() {
-      this.$store.commit('settings/setDarkMode', !this.currentDarkMode);
     },
     switchDarkMode(mode) {
       this.$store.commit('settings/setDarkMode', mode);
