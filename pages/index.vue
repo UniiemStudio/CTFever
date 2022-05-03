@@ -20,9 +20,9 @@
       <h1 class="text-lg font-bold flex flex-col md:flex-row justify-center md:justify-start items-center space-x-1
                 dark:text-slate-300">
         <ion-icon class="text-4xl md:text-xl mb-2 md:mb-0" :name="'albums-outline'"></ion-icon>
-        <span class="text-lg">收藏夹</span>
+        <span class="text-lg">{{ $t('page.home.favoriteKit.title') }}</span>
       </h1>
-      <p class="text-sm font-thin dark:text-slate-500">常用和喜欢的工具集</p>
+      <p class="text-sm font-thin dark:text-slate-500">{{ $t('page.home.favoriteKit.desc') }}</p>
     </div>
     <div class="my-2 grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
       <Tool v-for="(tool, k) in favoriteTools" :key="k" :tool="tool"/>

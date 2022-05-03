@@ -70,7 +70,7 @@
           </nuxt-link>
         </div>
         <div>
-          <!--TODO: 评分-->
+          <!--TODO: Rating-->
           <button class="transition-transform active:scale-90" @click="markTool">
             <ion-icon class="align-middle text-lg -mt-1" :name="isMarked ? 'bookmark' : 'bookmark-outline'"></ion-icon>
           </button>
@@ -144,16 +144,19 @@ export default {
     }
   },
   methods: {
+    wrapI18nPath2MetaPath(pathWithI18n) {
+      return `/${pathWithI18n.split('/').slice(-2).join('/')}`;
+    },
     markTool() {
       this.isMarked = !this.isMarked;
       this.$store.commit('settings/FAVORITE_TOOL', {
-        route: `/${this.currentPath.split('/').slice(-2).join('/')}`,
+        route: this.wrapI18nPath2MetaPath(this.currentPath),
         mark: this.isMarked
       });
-      this.$message.success(this.isMarked ? '已收藏' : '已取消收藏');
+      this.$message.success(this.$t(`action.${this.isMarked ? 'marked' : 'unmarked'}`).toString());
     },
     updateMarkStatus(route) {
-      this.favoriteTools.filter(f => f.route === route).length > 0 ? this.isMarked = true : this.isMarked = false;
+      this.favoriteTools.filter(f => f.route === this.wrapI18nPath2MetaPath(route)).length > 0 ? this.isMarked = true : this.isMarked = false;
     },
     switchDarkMode(mode) {
       this.$store.commit('settings/setDarkMode', mode);

@@ -22,6 +22,12 @@ export default {
     unmarked: 'Removed from bookmarks',
   },
   page: {
+    home: {
+      favoriteKit: {
+        title: 'Favorites',
+        desc: 'Tools that you marked as favorite',
+      },
+    },
     notFound: {
       title: 'Page Not Found',
       message: 'The spirit of exploration is valuable, but unfortunately there is nothing here :(',
