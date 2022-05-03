@@ -3,15 +3,19 @@
     <form class="primary-form">
       <!-- TODO: 自定义长短号 -->
       <InteractiveBlock>
-        <PrimaryArea id="morse" v-model="input" label="原始文本" placeholder="待加密的文本" :rows="10"></PrimaryArea>
+        <PrimaryArea id="morse" v-model="input" label="原始内容" placeholder="待加密的文本" :rows="10"></PrimaryArea>
       </InteractiveBlock>
-      <InteractiveBlock class="flex items-center justify-between">
-        <div class="space-x-1">
-          <PrimaryInput id="key" label="密钥" v-model="key" type="string"/>
-          <PrimaryButton type="button" @click="encodeMorse">加密 ↓</PrimaryButton>
-          <PrimaryButton type="button" @click="decodeMorse">解密 ↑</PrimaryButton>
+      <InteractiveBlock>
+        <PrimaryInput id="key" label="密钥" v-model="key" type="string"/>
+      </InteractiveBlock>
+      <InteractiveBlock>
+        <div class="flex flex-row justify-between items-center">
+          <div class="space-x-1">
+            <PrimaryButton type="button" @click="encode">加密 ↓</PrimaryButton>
+            <PrimaryButton type="button" @click="decode">解密 ↑</PrimaryButton>
+          </div>
+          <PrimaryButton type="button" danger @click="input = ''; output = ''; key = ''">清空</PrimaryButton>
         </div>
-        <PrimaryButton type="button" danger @click="input = ''; output = '';key = ''">清空</PrimaryButton>
       </InteractiveBlock>
       <InteractiveBlock>
         <PrimaryArea id="output" v-model="output" label="维吉尼亚密码" placeholder="维吉尼亚密码" :rows="10"></PrimaryArea>
@@ -27,12 +31,13 @@ import PrimaryArea from "~/components/form/PrimaryTextArea";
 import PrimaryButton from "~/components/form/PrimaryButton";
 import PrimaryInput from "~/components/form/PrimaryInput";
 
-import {encryptVigenere, decryptVigenere} from "~/libs/vigenereCipher";
+import {decryptVigenere, encryptVigenere} from "~/libs/vigenereCipher";
+import InteractiveDoubleColumns from "~/components/tool/InteractiveDoubleColumns";
 
 
 export default {
   name: "vigenereCipher",
-  components: {PrimaryButton, PrimaryArea, InteractiveBlock, PrimaryContainer, PrimaryInput},
+  components: {InteractiveDoubleColumns, PrimaryButton, PrimaryArea, InteractiveBlock, PrimaryContainer, PrimaryInput},
   head() {
     return {
       title: this.$t("tool.vigenereCipher.title") + " - " + this.$t("app.name")
@@ -46,10 +51,10 @@ export default {
     };
   },
   methods: {
-    encodeMorse() {
+    encode() {
       this.output = encryptVigenere(this.input, this.key);
     },
-    decodeMorse() {
+    decode() {
       this.input = decryptVigenere(this.output, this.key);
     },
   }
