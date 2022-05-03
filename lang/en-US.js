@@ -85,6 +85,10 @@ export default {
       title: 'Pigpen Cipher',
       desc: 'Freemason\'s cipher, Simple replacement password'
     },
+    vigenereCipher: {
+      title: 'vigenere Cipher',
+      desc: 'It is an encryption method based on the Caesar cipher'
+    },
     // Network Tool
     ipAttribution: {
       title: 'IP Geo-location',
