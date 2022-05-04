@@ -29,27 +29,23 @@
           <a-dropdown :trigger="['hover']" placement="bottomRight">
             <a class="ant-dropdown-link" @click="e => e.preventDefault()">
               <ion-icon class="align-middle text-base -mt-1"
-                        :name="currentDarkModeIcon"></ion-icon>
+                        :name="currentAppearanceIcon"></ion-icon>
             </a>
             <a-menu slot="overlay" class="dark:bg-slate-800">
               <a-menu-item v-for="(mode, k) in colorModes" :key="k"
                            class="flex flex-row items-center space-x-0.5 dark:text-slate-300"
-                           :class="{'dropdown-item-active': $store.state.settings.settings.darkMode === mode.code}"
+                           :class="{'dropdown-item-active': $store.state.settings.settings.appearance === mode.code}"
                            @click="switchDarkMode(mode.code)">
                 <ion-icon class="align-middle text-lg" :name="mode.icon"></ion-icon>
                 <nuxt-link
                   class="px-2 py-px"
-                  :class="{'dropdown-item-active': $store.state.settings.settings.darkMode === mode.code}"
+                  :class="{'dropdown-item-active': $store.state.settings.settings.appearance === mode.code}"
                   :key="mode.code"
                   :to="switchLocalePath(mode.code)">{{ $t(mode.name) }}
                 </nuxt-link>
               </a-menu-item>
             </a-menu>
           </a-dropdown>
-          <!--          <a @click="toggleDarkMode">-->
-          <!--            <ion-icon class="align-middle text-base -mt-1"-->
-          <!--                      :name="this.currentDarkMode ? 'moon-outline' : 'sunny-outline'"></ion-icon>-->
-          <!--          </a>-->
           <!-- TODO: CTFever Premium -->
           <!-- <TinyButtonLink :to="localePath('/premium-active')" accent>Premium</TinyButtonLink>-->
         </div>
@@ -82,6 +78,7 @@
 
 <script>
 import Btn from "~/components/TinyButtonLink";
+import {wrapI18nPath2MetaRoute} from "~/libs/common";
 
 export default {
   name: "TopBar",
@@ -93,15 +90,15 @@ export default {
     currentPath() {
       return this.$route.path
     },
-    favoriteTools() {
-      return this.$store.state.settings.favoriteTools;
+    markedTools() {
+      return this.$store.state.settings.markedTool;
     },
-    currentDarkMode() {
-      return this.$store.state.settings.settings.darkMode;
+    currentAppearance() {
+      return this.$store.state.settings.settings.appearance;
     },
-    currentDarkModeIcon() {
+    currentAppearanceIcon() {
       let icon = '';
-      switch (this.currentDarkMode) {
+      switch (this.currentAppearance) {
         case 'light':
           icon = 'sunny-outline';
           break;
@@ -144,22 +141,19 @@ export default {
     }
   },
   methods: {
-    wrapI18nPath2MetaPath(pathWithI18n) {
-      return `/${pathWithI18n.split('/').slice(-2).join('/')}`;
-    },
     markTool() {
       this.isMarked = !this.isMarked;
-      this.$store.commit('settings/FAVORITE_TOOL', {
-        route: this.wrapI18nPath2MetaPath(this.currentPath),
+      this.$store.commit('settings/markToolByRoute', {
+        route: this.currentPath,
         mark: this.isMarked
       });
       this.$message.success(this.$t(`action.${this.isMarked ? 'marked' : 'unmarked'}`).toString());
     },
     updateMarkStatus(route) {
-      this.favoriteTools.filter(f => f.route === this.wrapI18nPath2MetaPath(route)).length > 0 ? this.isMarked = true : this.isMarked = false;
+      this.markedTools.filter(f => f.route === wrapI18nPath2MetaRoute(route)).length > 0 ? this.isMarked = true : this.isMarked = false;
     },
     switchDarkMode(mode) {
-      this.$store.commit('settings/setDarkMode', mode);
+      this.$store.commit('settings/setAppearance', mode);
     }
   },
   watch: {

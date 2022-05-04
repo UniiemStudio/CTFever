@@ -54,7 +54,7 @@ export default {
   computed: {
     favoriteTools() {
       let tools = [];
-      this.$store.state.settings.favoriteTools.forEach(favoriteTool => {
+      this.$store.state.settings.markedTool.forEach(favoriteTool => {
         tools.push(this.getToolByRoute(favoriteTool.route));
       })
       return tools;
