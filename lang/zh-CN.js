@@ -21,6 +21,32 @@ export default {
     marked: '已收藏',
     unmarked: '已移出收藏'
   },
+  common: {
+    btn_encode: '编码',
+    btn_decode: '解码',
+    btn_encrypt: '加密',
+    btn_decrypt: '解密',
+    btn_execute: '执行',
+    btn_run: '运行',
+    btn_swap: '交换',
+    btn_backspace: '← 退格',
+    btn_clean: '清空',
+    text_encode: '编码',
+    text_decode: '解码',
+    text_encoded: '已编码内容',
+    text_decoded: '已解码内容',
+    text_plain: '原文',
+    text_cipher: '密文',
+    text_original_content: '原始内容',
+    text_result_content: '结果',
+    text_input: '输入',
+    text_output: '输出',
+    text_secret: '密钥',
+    text_algorithm: '算法',
+    text_offset: '偏移量',
+    text_mode: '模式',
+    text_type: '类型',
+  },
   page: {
     home: {
       favoriteKit: {

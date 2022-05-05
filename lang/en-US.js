@@ -21,6 +21,32 @@ export default {
     marked: 'Added to bookmarks',
     unmarked: 'Removed from bookmarks',
   },
+  common: {
+    btn_encode: 'Encode',
+    btn_decode: 'Decode',
+    text_encoded: 'Encoded',
+    text_decoded: 'Decoded',
+    btn_encrypt: 'Encrypt',
+    btn_decrypt: 'Decrypt',
+    btn_execute: 'Execute',
+    btn_run: 'RUN',
+    btn_swap: 'SWAP',
+    btn_backspace: '← BACKSPACE',
+    btn_clean: 'Clean',
+    text_encode: 'Encode',
+    text_decode: 'Decode',
+    text_plain: 'Plaintext',
+    text_cipher: 'Ciphertext',
+    text_original_content: 'Original content',
+    text_result_content: 'Result',
+    text_input: 'Input',
+    text_output: 'Output',
+    text_secret: 'Secret',
+    text_algorithm: 'Algorithm',
+    text_offset: 'Offset',
+    text_mode: 'Mode',
+    text_type: 'Type',
+  },
   page: {
     home: {
       favoriteKit: {
@@ -101,7 +127,7 @@ export default {
       desc: 'Freemason\'s cipher, Simple replacement password'
     },
     vigenereCipher: {
-      title: 'vigenere Cipher',
+      title: 'Vigenere Cipher',
       desc: 'It is an encryption method based on the Caesar cipher'
     },
     // Network Tool

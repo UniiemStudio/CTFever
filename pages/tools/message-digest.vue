@@ -2,13 +2,14 @@
   <PrimaryContainer>
     <form class="primary-form">
       <InteractiveBlock>
-        <PrimaryArea id="input" label="消息原文" placeholder="消息原文" v-model="input" :rows="10"/>
+        <PrimaryArea id="input" :label="$t('common.text_original_content').toString()" v-model="input" :rows="10"/>
       </InteractiveBlock>
       <InteractiveBlock>
-        <PrimarySelector id="algorithm" label="算法" v-model="algorithm" :options="algorithms"/>
+        <PrimarySelector id="algorithm" :label="$t('common.text_algorithm').toString()" v-model="algorithm"
+                         :options="algorithms"/>
       </InteractiveBlock>
       <InteractiveBlock>
-        <PrimaryPreBlock label="MD5 摘要">{{ output }}</PrimaryPreBlock>
+        <PrimaryPreBlock :label="$t('common.text_result_content').toString()">{{ output }}</PrimaryPreBlock>
       </InteractiveBlock>
     </form>
   </PrimaryContainer>

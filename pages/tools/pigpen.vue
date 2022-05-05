@@ -14,14 +14,15 @@
       </template>
       <template v-slot:right>
         <InteractiveBlock>
-          <PrimaryInput id="output" label="密文" v-model="result" class="pig-font" disable/>
+          <PrimaryInput id="output" :label="$t('common.text_cipher').toString()" v-model="result" class="pig-font"
+                        disable/>
         </InteractiveBlock>
         <InteractiveBlock>
-          <PrimaryInput id="output" label="明文" v-model="result"/>
+          <PrimaryInput id="output" :label="$t('common.text_plain').toString()" v-model="result"/>
         </InteractiveBlock>
         <InteractiveBlock>
-          <PrimaryButton type="button" @click="backspace">退格</PrimaryButton>
-          <PrimaryButton type="button" @click="clear">清空</PrimaryButton>
+          <PrimaryButton type="button" @click="backspace">{{ $t('common.btn_backspace') }}</PrimaryButton>
+          <PrimaryButton type="button" @click="clear">{{ $t('common.btn_clean') }}</PrimaryButton>
         </InteractiveBlock>
       </template>
     </InteractiveDoubleColumns>

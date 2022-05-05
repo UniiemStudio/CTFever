@@ -3,17 +3,22 @@
     <form class="primary-form">
       <!-- TODO: 自定义长短号 -->
       <InteractiveBlock>
-        <PrimaryArea id="morse" v-model="input" label="原始文本" placeholder="待加密的文本" :rows="10"></PrimaryArea>
+        <PrimaryArea id="morse" v-model="input" :label="$t('common.text_original_content').toString()"
+                     :rows="10"></PrimaryArea>
       </InteractiveBlock>
       <InteractiveBlock class="flex items-center justify-between">
         <div class="space-x-1">
-          <PrimaryButton type="button" @click="encodeMorse">加密 ↓</PrimaryButton>
-          <PrimaryButton type="button" @click="decodeMorse">解密 ↑</PrimaryButton>
+          <PrimaryButton type="button" @click="encodeMorse">{{ $t('common.text_encode').toString() }} ↓</PrimaryButton>
+          <PrimaryButton type="button" @click="decodeMorse">{{ $t('common.text_decode').toString() }} ↑</PrimaryButton>
         </div>
-        <PrimaryButton type="button" danger @click="input = ''; output = '';">清空</PrimaryButton>
+        <PrimaryButton type="button" danger @click="input = ''; output = '';">{{
+            $t('common.btn_clean').toString()
+          }}
+        </PrimaryButton>
       </InteractiveBlock>
       <InteractiveBlock>
-        <PrimaryArea id="output" v-model="output" label="摩尔斯码" placeholder="摩尔斯码" :rows="10"></PrimaryArea>
+        <PrimaryArea id="output" v-model="output" :label="$t('common.text_result_content').toString()"
+                     placeholder="Morse code" :rows="10"></PrimaryArea>
       </InteractiveBlock>
     </form>
     <PrimaryIntroduction title="摩尔斯电码" :document="intro" :references="references"/>

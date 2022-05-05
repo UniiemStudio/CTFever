@@ -16,7 +16,7 @@
         </template>
         <template v-slot:right>
           <PrimarySelector
-            label="模式"
+            :label="$t('common.text_mode').toString()"
             id="mode" v-model="input_mode"
             :options="[
               { value: 'continuity', label: '连续(自动识别可打印字符)' },
@@ -34,10 +34,10 @@
           id="string" placeholder="字符串" label="字符串" v-model="input_string" :disable="input_ascii !== ''"/>
       </InteractiveBlock>
       <InteractiveBlock v-if="result !== ''">
-        <h1 class="text-gray-700 text-sm font-bold mb-2">结果</h1>
+        <h1 class="text-gray-700 text-sm font-bold mb-2">{{ $t('common.text_result_content') }}</h1>
         <pre class="bg-gray-200 rounded-lg p-4 mb-2 text-gray-700">{{ result }}</pre>
         <PrimaryButton type="button" @click="input_ascii = ''; input_string = ''; result = '';" danger>
-          重置
+          {{ $t('common.btn_clean') }}
         </PrimaryButton>
       </InteractiveBlock>
     </form>

@@ -3,7 +3,7 @@
     <form class="primary-form">
       <InteractiveBlock>
         <PrimaryInput id="data" :placeholder="input_mode === 'hex' ? '01 03 00 01 ...' : 'Any char...'"
-                      label="输入数据" v-model="input_data"/>
+                      :label="$t('common.text_input').toString()" v-model="input_data"/>
       </InteractiveBlock>
       <InteractiveDoubleColumns>
         <template v-slot:left>

@@ -141,6 +141,9 @@ export default {
     }
   },
   methods: {
+    wrapI18nPath2MetaPath(pathWithI18n) {
+      return `/${pathWithI18n.split('/').slice(-2).join('/')}`;
+    },
     markTool() {
       this.isMarked = !this.isMarked;
       this.$store.commit('settings/markToolByRoute', {

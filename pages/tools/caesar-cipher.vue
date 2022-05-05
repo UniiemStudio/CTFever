@@ -2,24 +2,27 @@
   <PrimaryContainer>
     <form class="primary-form">
       <InteractiveBlock>
-        <PrimaryArea label="输入" v-model="input" id="input"/>
+        <PrimaryArea :label="$t('common.text_input').toString()" v-model="input" id="input"/>
       </InteractiveBlock>
       <InteractiveDoubleColumns>
         <template v-slot:left>
-          <PrimaryInput id="offset" label="偏移量" v-model="offset" type="number" min="1" max="26"/>
+          <PrimaryInput id="offset" :label="$t('common.text_offset').toString()" v-model="offset" type="number" min="1"
+                        max="26"/>
         </template>
         <template v-slot:right>
-          <PrimarySelector id="mode" label="模式" v-model="mode" :options="modeOptions"/>
+          <PrimarySelector id="mode" :label="$t('common.text_mode').toString()" v-model="mode" :options="modeOptions"/>
         </template>
       </InteractiveDoubleColumns>
       <InteractiveBlock class="flex items-center justify-between">
         <div class="space-x-1">
-          <PrimaryButton type="button" @click="exec">执行</PrimaryButton>
+          <PrimaryButton type="button" @click="exec">{{ $t('common.btn_execute').toString() }}</PrimaryButton>
         </div>
-        <PrimaryButton type="button" danger @click="input = ''; output = '';">清空</PrimaryButton>
+        <PrimaryButton type="button" danger @click="input = ''; output = '';">
+          {{ $t('common.btn_clean').toString() }}
+        </PrimaryButton>
       </InteractiveBlock>
       <InteractiveBlock>
-        <PrimaryArea label="输出" v-model="output" id="output"/>
+        <PrimaryArea :label="$t('common.text_output').toString()" v-model="output" id="output"/>
       </InteractiveBlock>
     </form>
     <PrimaryIntroduction title="凯撒密码" :document="intro" :references="references"/>
@@ -69,11 +72,11 @@ export default {
       mode: "encode",
       modeOptions: [
         {
-          label: "加密",
+          label: "common.text_encode",
           value: "encode"
         },
         {
-          label: "解密",
+          label: "common.text_decode",
           value: "decode"
         }
       ],
