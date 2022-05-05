@@ -9,7 +9,7 @@
       :class="{'text-gray-300 dark:text-slate-500 bg-gray-50': disable}"
       :id="id" :value="value" @input="onInput" :disabled="disable">
       <option v-for="(option, k) in options" :k="k" :value="option.value">{{
-          option.name || option.label || '选项' + k
+          (option.label === $t(option.label)) ? option.label : $t(option.label)
         }}
       </option>
     </select>
@@ -41,7 +41,7 @@ export default {
       default: () => [
         {
           value: '',
-          name: '请选择',
+          label: '请选择',
         },
       ],
     },

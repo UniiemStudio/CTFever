@@ -2,20 +2,21 @@
   <PrimaryContainer>
     <form class="primary-form">
       <InteractiveBlock>
-        <PrimaryArea id="input" v-model="input_code" label="JavaScript 代码" placeholder="JavaScript Code..."
+        <PrimaryArea id="input" v-model="input_code" label="JavaScript Code" placeholder="JavaScript code here..."
                      :rows="10"></PrimaryArea>
       </InteractiveBlock>
       <InteractiveBlock class="flex items-center justify-between">
         <div class="space-x-1">
-          <PrimaryButton type="button" @click="encode">编码 ↓</PrimaryButton>
+          <PrimaryButton type="button" @click="encode">{{ $t('common.btn_encode').toString() }} ↓</PrimaryButton>
           <a-checkbox v-model:checked="wrapWithEval" class="dark:text-slate-300">用 eval 函数包裹</a-checkbox>
           <!--          <PrimaryButton type="button" @click="decode">解码 ↑</PrimaryButton>-->
         </div>
-        <PrimaryButton type="button" danger @click="input_code = ''; output = '';">清空</PrimaryButton>
+        <PrimaryButton type="button" danger @click="input_code = ''; output = '';">
+          {{ $t('common.btn_clean').toString() }}
+        </PrimaryButton>
       </InteractiveBlock>
       <InteractiveBlock>
         <PrimaryArea id="output" v-model="output" label="JSFucked" placeholder="" :rows="10"></PrimaryArea>
-        <!--        <PrimaryPreBlock>{{ output }}</PrimaryPreBlock>-->
       </InteractiveBlock>
     </form>
     <PrimaryIntroduction title="JSFuck" :references="references" :document="intro"/>
