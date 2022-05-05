@@ -13,23 +13,23 @@
 export default {
   name: "index",
   computed: {
-    currentDarkMode() {
-      return this.$store.state.settings.settings.darkMode;
+    currentAppearance() {
+      return this.$store.state.settings.settings.appearance;
     }
   },
   mounted() {
-    this.toggleDarkMode(this.currentDarkMode);
+    this.setAppearance(this.currentAppearance);
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-      if (this.currentDarkMode === 'auto') this.toggleDarkMode(e.matches);
+      if (this.currentAppearance === 'auto') this.setAppearance(e.matches ? 'dark' : 'light');
     });
   },
   watch: {
-    currentDarkMode(newVal) {
-      this.toggleDarkMode(newVal);
+    currentAppearance(newVal) {
+      this.setAppearance(newVal);
     }
   },
   methods: {
-    toggleDarkMode(darkMode) {
+    setAppearance(darkMode) {
       switch (darkMode) {
         case 'auto':
           if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
