@@ -4,13 +4,13 @@
       <InteractiveDoubleColumns>
         <template v-slot:left>
           <PrimarySelector
-            label="进制"
+            :label="$t('common.text_radix').toString()"
             id="base" v-model="input_base"
             :options="[
-              { value: 2, label: '二进制' },
-              { value: 8, label: '八进制' },
-              { value: 10, label: '十进制' },
-              { value: 16, label: '十六进制' }
+              { value: 2, label: 'common.radix.bin' },
+              { value: 8, label: 'common.radix.oct' },
+              { value: 10, label: 'common.radix.dec' },
+              { value: 16, label: 'common.radix.hex' }
             ]"
           />
         </template>
@@ -19,24 +19,28 @@
             :label="$t('common.text_mode').toString()"
             id="mode" v-model="input_mode"
             :options="[
-              { value: 'continuity', label: '连续(自动识别可打印字符)' },
-              { value: 'split', label: '逗号分隔' }
+              { value: 'continuity', label: 'tool.ascii.continuity' },
+              { value: 'split', label: 'tool.ascii.split' }
             ]"
           />
         </template>
       </InteractiveDoubleColumns>
       <InteractiveBlock>
         <PrimaryInput
-          id="ascii" placeholder="ASCII" label="ASCII" v-model="input_ascii" :disable="input_string !== ''"/>
+          id="ascii" :placeholder="input_mode === 'split' ? '65,66,67 => ABC' : '656667 => ABC'" label="ASCII"
+          v-model="input_ascii" :disable="input_string !== ''"/>
       </InteractiveBlock>
       <InteractiveBlock>
         <PrimaryInput
-          id="string" placeholder="字符串" label="字符串" v-model="input_string" :disable="input_ascii !== ''"/>
+          id="string"
+          :placeholder="$t('common.text_string').toString()"
+          :label="$t('common.text_string').toString()" v-model="input_string" :disable="input_ascii !== ''"/>
       </InteractiveBlock>
       <InteractiveBlock v-if="result !== ''">
-        <h1 class="text-gray-700 text-sm font-bold mb-2">{{ $t('common.text_result_content') }}</h1>
-        <pre class="bg-gray-200 rounded-lg p-4 mb-2 text-gray-700">{{ result }}</pre>
-        <PrimaryButton type="button" @click="input_ascii = ''; input_string = ''; result = '';" danger>
+        <PrimaryPreBlock :label="$t('common.text_result_content').toString()">
+          {{ result }}
+        </PrimaryPreBlock>
+        <PrimaryButton class="mt-2" type="button" @click="input_ascii = ''; input_string = ''; result = '';" danger>
           {{ $t('common.btn_clean') }}
         </PrimaryButton>
       </InteractiveBlock>
@@ -51,10 +55,12 @@ import PrimaryInput from "~/components/form/PrimaryInput";
 import PrimarySelector from "~/components/form/PrimarySelector";
 import InteractiveBlock from "~/components/tool/InteractiveBlock";
 import InteractiveDoubleColumns from "~/components/tool/InteractiveDoubleColumns";
+import PrimaryPreBlock from "~/components/form/PrimaryPreBlock";
 
 export default {
   name: "ascii",
   components: {
+    PrimaryPreBlock,
     InteractiveDoubleColumns,
     InteractiveBlock,
     PrimarySelector,

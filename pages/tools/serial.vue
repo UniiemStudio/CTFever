@@ -4,7 +4,8 @@
       <template v-slot:left>
         <PrimaryArea id="tx" label="TX" v-model="tx" :rows="15"/>
         <InteractiveBlock>
-          <PrimaryInput id="autoSendDelay" label="自动发送延时(ms)" v-model="autoSendDelay" type="number"/>
+          <PrimaryInput id="autoSendDelay" :label="$t('tool.serialTool.resendDelay') + '(ms)'" v-model="autoSendDelay"
+                        type="number"/>
         </InteractiveBlock>
         <InteractiveBlock>
           <PrimaryButton @click="writeSerial" :disable="!connected" class="w-full">SEND</PrimaryButton>
@@ -12,12 +13,16 @@
         <InteractiveDoubleColumns>
           <template v-slot:left>
             <div class="w-full h-full flex items-center">
-              <a-checkbox v-model:checked="autoSend" class="dark:text-slate-300">定时发送</a-checkbox>
+              <a-checkbox v-model:checked="autoSend" class="dark:text-slate-300">
+                {{ $t('tool.serialTool.resend') }}
+              </a-checkbox>
             </div>
           </template>
           <template v-slot:right>
             <div class="w-full h-full flex items-center">
-              <a-checkbox v-model:checked="sendLineBreak" class="dark:text-slate-300">自动发送换行</a-checkbox>
+              <a-checkbox v-model:checked="sendLineBreak" class="dark:text-slate-300">
+                {{ $t('tool.serialTool.autoEOL') }}
+              </a-checkbox>
             </div>
           </template>
         </InteractiveDoubleColumns>
@@ -26,16 +31,21 @@
         <PrimaryArea id="rx" label="RX" v-model="rx" :rows="15" class="font-mono"/>
         <InteractiveDoubleColumns>
           <template v-slot:left>
-            <PrimaryInput label="状态" id="status" :value="connected ? `已连接[${baud}]` : '已断开'" class="w-full" disable/>
+            <PrimaryInput
+              :label="$t('tool.serialTool.status').toString()" id="status"
+              :value="connected ? `${$t('tool.serialTool.connected')}[${baud}]` : $t('tool.serialTool.disconnected')"
+              class="w-full"
+              disable/>
           </template>
           <template v-slot:right>
             <!--suppress JSValidateTypes -->
-            <PrimarySelector label="波特率" v-model="baud" :options="baudRates" :disable="connected"/>
+            <PrimarySelector :label="$t('tool.serialTool.baud')" v-model="baud" :options="baudRates"
+                             :disable="connected"/>
           </template>
         </InteractiveDoubleColumns>
         <InteractiveBlock>
           <PrimaryButton @click="!connected ? openSerial() : closeSerial()" :danger="connected" class="w-full">
-            {{ !connected ? '打开串口' : '关闭串口' }}
+            {{ !connected ? $t('tool.serialTool.open') : $t('tool.serialTool.close') }}
           </PrimaryButton>
         </InteractiveBlock>
       </template>
@@ -105,14 +115,14 @@ export default {
       if (event instanceof Error) {
         this.log2Rx(`⚠️ ${event.message}`);
       } else {
-        self.$message.error('❌ Unknown error.');
+        self.$message.error(`❌ ${this.$t('tool.serialTool.tip.unknown')}`);
       }
     }, () => {
       this.connected = true;
-      this.log2Rx(`🔗 Serial is open (${this.baud})`);
+      this.log2Rx(`🔗 ${this.$t('tool.serialTool.tip.opened')} (${this.baud})`);
     }, () => {
       this.connected = false;
-      this.log2Rx(`🖇️ Serial is closed`);
+      this.log2Rx(`🖇️ ${this.$t('tool.serialTool.tip.closed')}`);
     });
   },
   watch: {
