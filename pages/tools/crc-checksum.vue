@@ -7,19 +7,19 @@
       </InteractiveBlock>
       <InteractiveDoubleColumns>
         <template v-slot:left>
-          <PrimarySelector label="校验模型" v-model="crc_mode" :options="crc_modes"/>
+          <PrimarySelector :label="$t('tool.crc.crcModel').toString()" v-model="crc_mode" :options="crc_modes"/>
         </template>
         <template v-slot:right>
-          <PrimarySelector label="输入模式" v-model="input_mode" :options="input_modes"/>
+          <PrimarySelector :label="$t('tool.crc.inputMode').toString()" v-model="input_mode" :options="input_modes"/>
         </template>
       </InteractiveDoubleColumns>
       <InteractiveBlock class="flex justify-between">
-        <PrimaryButton type="button" @click="checksum">计算</PrimaryButton>
-        <PrimaryButton type="reset" danger>重置</PrimaryButton>
+        <PrimaryButton type="button" @click="checksum">{{ $t('common.btn_calculate') }}</PrimaryButton>
+        <PrimaryButton type="reset" danger>{{ $t('common.btn_reset') }}</PrimaryButton>
       </InteractiveBlock>
       <InteractiveBlock class="space-y-2">
-        <PrimaryInput id="output" label="校验计算结果(Hex)" v-model="output.hex" disable/>
-        <PrimaryInput id="output" label="校验计算结果(Bin)" v-model="output.bin" disable/>
+        <PrimaryInput id="outputHex" :label="$t('tool.crc.checksum_result') + '(Hex)'" v-model="output.hex" disable/>
+        <PrimaryInput id="outputBin" :label="$t('tool.crc.checksum_result') + '(Bin)'" v-model="output.bin" disable/>
       </InteractiveBlock>
     </form>
     <PrimaryIntroduction title="CRC 循环冗余校验" :document="intro" :references="references"/>

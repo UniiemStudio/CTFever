@@ -22,11 +22,18 @@ export default {
     unmarked: '已移出收藏'
   },
   common: {
+    radix: {
+      bin: '二进制',
+      oct: '八进制',
+      dec: '十进制',
+      hex: '十六进制'
+    },
     btn_encode: '编码',
     btn_decode: '解码',
     btn_encrypt: '加密',
     btn_decrypt: '解密',
     btn_execute: '执行',
+    btn_calculate: '计算',
     btn_run: '运行',
     btn_swap: '交换',
     btn_backspace: '← 退格',
@@ -46,6 +53,8 @@ export default {
     text_offset: '偏移量',
     text_mode: '模式',
     text_type: '类型',
+    text_radix: '进制',
+    text_string: '字符串',
   },
   page: {
     home: {
@@ -91,7 +100,9 @@ export default {
     // EaD
     ascii: {
       title: 'ASCII',
-      desc: '在 ASCII 和 字符串之间转换'
+      desc: '在 ASCII 和 字符串之间转换',
+      continuity: '连续(自动识别可打印字符)',
+      split: '逗号分隔'
     },
     urlEncoding: {
       title: 'URL 编码',
@@ -120,7 +131,8 @@ export default {
     },
     railFenceCipher: {
       title: '栅栏密码',
-      desc: '明文分组排列成栅栏，然后每组依次排列组成密文'
+      desc: '明文分组排列成栅栏，然后每组依次排列组成密文',
+      rows: '栏数'
     },
     pigpen: {
       title: '猪圈密码',
@@ -160,11 +172,28 @@ export default {
     // Misc
     serialTool: {
       title: '串口调试器',
-      desc: '一个实验性的串口调试工具'
+      desc: '一个实验性的串口调试工具',
+      baud: '波特率',
+      status: '状态',
+      resend: '定时发送',
+      resendDelay: '自动发送延时',
+      autoEOL: '自动发送换行',
+      connected: '已连接',
+      disconnected: '已断开',
+      open: '打开串口',
+      close: '关闭串口',
+      tip: {
+        unknown: '未知错误',
+        opened: '串口已打开',
+        closed: '串口已关闭'
+      }
     },
     crc: {
       title: 'CRC',
-      desc: '循环冗余校验码，用于校验文件、网络数据等数据的完整性'
+      desc: '循环冗余校验码，用于校验文件、网络数据等数据的完整性',
+      crcModel: '校验模型',
+      inputMode: '输入模式',
+      checksum_result: '校验计算结果'
     },
     temperatureConversion: {
       title: '温度换算',

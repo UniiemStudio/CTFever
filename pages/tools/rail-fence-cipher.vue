@@ -7,7 +7,8 @@
       </InteractiveBlock>
       <InteractiveDoubleColumns>
         <template v-slot:left>
-          <PrimaryInput id="offset" label="栏数" v-model="rows" type="number" min="1" max="26"/>
+          <PrimaryInput id="offset" :label="$t('tool.railFenceCipher.rows').toString()"
+                        v-model="rows" type="number" min="1" max="26"/>
         </template>
         <template v-slot:right>
           <PrimarySelector id="type" :label="$t('common.text_type').toString()" v-model="type" :options="typeOptions"/>

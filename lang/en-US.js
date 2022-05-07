@@ -22,6 +22,12 @@ export default {
     unmarked: 'Removed from bookmarks',
   },
   common: {
+    radix: {
+      bin: 'Binary',
+      oct: 'Octal',
+      dec: 'Decimal',
+      hex: 'Hexadecimal',
+    },
     btn_encode: 'Encode',
     btn_decode: 'Decode',
     text_encoded: 'Encoded',
@@ -29,6 +35,7 @@ export default {
     btn_encrypt: 'Encrypt',
     btn_decrypt: 'Decrypt',
     btn_execute: 'Execute',
+    btn_calculate: 'Calculate',
     btn_run: 'RUN',
     btn_swap: 'SWAP',
     btn_backspace: '← BACKSPACE',
@@ -46,6 +53,8 @@ export default {
     text_offset: 'Offset',
     text_mode: 'Mode',
     text_type: 'Type',
+    text_radix: 'Radix',
+    text_string: 'String',
   },
   page: {
     home: {
@@ -91,7 +100,9 @@ export default {
     // EaD
     ascii: {
       title: 'ASCII',
-      desc: 'Convert text to ASCII code'
+      desc: 'Convert text to ASCII code',
+      continuity: 'Continuity (Auto recognize printable characters)',
+      split: 'Split by comma'
     },
     urlEncoding: {
       title: 'URL Encoding',
@@ -120,7 +131,8 @@ export default {
     },
     railFenceCipher: {
       title: 'Rail Fence Cipher',
-      desc: 'Convert text to Rail Fence Cipher'
+      desc: 'Convert text to Rail Fence Cipher',
+      rows: 'Rows'
     },
     pigpen: {
       title: 'Pigpen Cipher',
@@ -160,11 +172,28 @@ export default {
     // Misc
     serialTool: {
       title: 'Serial Port Tool',
-      desc: 'A experimental tool for serial port'
+      desc: 'A experimental tool for serial port',
+      baud: 'Baud rate',
+      status: 'Status',
+      resend: 'Timed',
+      resendDelay: 'Delay',
+      autoEOL: 'Auto CR+LF',
+      connected: 'CONNECTED',
+      disconnected: 'DISCONNECTED',
+      open: 'SELECT PORT',
+      close: 'CLOSE PORT',
+      tip: {
+        unknown: 'Unknown error',
+        opened: 'Serial port opened',
+        closed: 'Serial port closed'
+      }
     },
     crc: {
       title: 'CRC',
-      desc: 'CRC is a checksum algorithm used to detect errors in data transmissions'
+      desc: 'CRC is a checksum algorithm used to detect errors in data transmissions',
+      crcModel: 'CRC Model',
+      inputMode: 'Input Mode',
+      checksum_result: 'Checksum Result',
     },
     temperatureConversion: {
       title: 'Temperature Conversion',
