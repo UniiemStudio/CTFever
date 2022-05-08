@@ -61,7 +61,8 @@ export default {
         debug: true,
         onMetaChange: true
       }
-    ]
+    ],
+    '@nuxtjs/sitemap'
   ],
 
   loading: {
@@ -77,7 +78,19 @@ export default {
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
     manifest: {
-      lang: 'en'
+      lang: 'zh'
+    }
+  },
+
+  sitemap: {
+    hostname: 'https://ctfever.uniiem.com',
+    gzip: true,
+    defaults: {
+      lastmod: new Date()
+    },
+    i18n: {
+      locales: ['en', 'zh'],
+      routesNameSeparator: '___'
     }
   },
 
