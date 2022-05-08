@@ -38,6 +38,10 @@ CTFever 的目标是涵盖大部分 CTF 题型所需要的工具。
 
 下一步我们将着手开发如 **pyc 在线反编译** 、**在线执行 binwalk** 、**端口分析工具** 等依赖服务器运行的特色功能，并逐步释出更新，尽情期待！
 
+## Stargazers 趋势
+
+[![Stargazers over time](https://starchart.cc/UniiemStudio/CTFever.svg)](https://starchart.cc/UniiemStudio/CTFever)
+
 ## 贡献
 
 ### 开发环境和部署
