@@ -62,7 +62,7 @@
             <ion-icon
               class="align-middle -mt-1 transition-transform group-hover:-translate-x-1"
               name="arrow-back"/>
-            返回
+            {{ $t('topbar.back') }}
           </nuxt-link>
         </div>
         <div>

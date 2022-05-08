@@ -11,6 +11,7 @@ export default {
   topbar: {
     login: '登陆',
     signup: '创建账号',
+    back: '返回',
     appearance: {
       light: '亮色',
       dark: '暗色',

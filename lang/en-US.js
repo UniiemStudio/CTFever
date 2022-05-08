@@ -11,6 +11,7 @@ export default {
   topbar: {
     login: 'LOGIN',
     signup: 'SIGN UP',
+    back: 'Back',
     appearance: {
       light: 'Light',
       dark: 'Dark',
