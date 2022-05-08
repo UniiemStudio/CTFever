@@ -62,6 +62,7 @@ export default {
         onMetaChange: true
       }
     ],
+    ['@nuxtjs/robots', {}],
     '@nuxtjs/sitemap'
   ],
 

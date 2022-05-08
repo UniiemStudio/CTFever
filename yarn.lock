@@ -1715,6 +1715,11 @@
     serve-static "^1.14.1"
     workbox-cdn "^5.1.4"
 
+"@nuxtjs/robots@^2.5.0":
+  version "2.5.0"
+  resolved "https://registry.npmmirror.com/@nuxtjs/robots/-/robots-2.5.0.tgz#a42b25e3bc58181cb2a8fbd30d6b0fee6c36bc60"
+  integrity sha512-z1F3HXb05NiZga8Cuq6k5bbowfJOScPtbSOakip0nege+1aI9pGoajzap8eR5s1qwLXAk9Ts+NcgetoUn5lwrQ==
+
 "@nuxtjs/sitemap@^2.4.0":
   version "2.4.0"
   resolved "https://registry.npmmirror.com/@nuxtjs/sitemap/-/sitemap-2.4.0.tgz#6a9fa1c35e161f87375d59949d973568cec40614"
