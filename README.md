@@ -72,3 +72,7 @@ $ yarn generate
 [//]: # ()
 
 [//]: # (+ 2022.04.22 **ctftool.che\*\*\*\*\*.cn&#40;liyikun\*\*\*\*@gmail.com&#41;** 删除版权信息并重新分发)
+
+### 捐赠
+
+[![](static/readme/afdian.jpg)](https://afdian.net/@hoshino_suzumi)
