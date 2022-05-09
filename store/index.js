@@ -53,6 +53,13 @@ export const state = () => ({
       icon: 'key-outline',
       tools: [
         {
+          title: 'tool.uuid.title',
+          description: 'tool.uuid.desc',
+          route: '/tools/uuid-generator',
+          tags: ['信息摘要'],
+          disabled: true
+        },
+        {
           title: 'tool.messageDigest.title',
           description: 'tool.messageDigest.desc',
           route: '/tools/message-digest',

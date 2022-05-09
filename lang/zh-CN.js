@@ -122,6 +122,10 @@ export default {
       desc: '将字母和数字转换为摩尔斯码'
     },
     // Cryptography
+    uuid: {
+      title: 'UUID',
+      desc: '验证和生成各种版本的 UUID'
+    },
     messageDigest: {
       title: '消息摘要计算',
       desc: '计算内容的消息摘要，如 MD5、SHA1、SHA256 等'

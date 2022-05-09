@@ -122,6 +122,10 @@ export default {
       desc: 'Convert words to Morse Code'
     },
     // Cryptography
+    uuid: {
+      title: 'UUID',
+      desc: 'Generate UUID'
+    },
     messageDigest: {
       title: 'Message Digest',
       desc: 'Generate message digest'
