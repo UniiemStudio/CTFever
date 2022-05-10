@@ -5,6 +5,7 @@
     </label>
     <input
       class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline
+             focus:ring transition duration-300
              dark:bg-slate-800 dark:text-slate-300 dark:border-slate-600"
       :class="{'text-gray-300 dark:text-slate-500 bg-gray-50': disable}"
       :id="id" :type="type" :placeholder="placeholder" :value="value" @input="onInput" :disabled="disable"
