@@ -9,7 +9,7 @@ export default {
     title: 'CTFever Toolkit by uniiem',
     meta: [
       {charset: 'utf-8'},
-      {title: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=0;'},
+      {title: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no;'},
       {hid: 'description', title: 'description', content: ''},
       {title: 'format-detection', content: 'telephone=no'}
     ],
