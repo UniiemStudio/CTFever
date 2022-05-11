@@ -122,7 +122,7 @@ export default {
 </script>
 
 <style>
-.search-input > input {
+.search-input > * > input {
   @apply py-3 px-3;
 }
 

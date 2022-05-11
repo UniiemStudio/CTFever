@@ -52,7 +52,7 @@
       </div>
     </div>
     <div
-      class="fixed z-0 top-16 w-full h-8 bg-white dark:bg-slate-900 backdrop-blur-sm opacity-0 -translate-y-8 transition duration-500 flex flex-col items-center h-16"
+      class="fixed z-10 top-16 w-full h-8 bg-white dark:bg-slate-900 backdrop-blur-sm opacity-0 -translate-y-8 transition duration-500 flex flex-col items-center h-16"
       :class="{'shadow dark:shadow-slate-800/50 hover:shadow-md opacity-100 translate-y-0': isToolPage()}"
     >
       <div class="w-full h-full px-4 container flex justify-between items-center border-t border-t-gray-150
@@ -141,9 +141,6 @@ export default {
     }
   },
   methods: {
-    wrapI18nPath2MetaPath(pathWithI18n) {
-      return `/${pathWithI18n.split('/').slice(-2).join('/')}`;
-    },
     markTool() {
       this.isMarked = !this.isMarked;
       this.$store.commit('settings/markToolByRoute', {
