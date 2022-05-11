@@ -1,7 +1,7 @@
 <template>
   <div>
     <div
-      class="fixed z-10 top-0 w-full bg-white dark:bg-slate-900 backdrop-blur-sm transition-shadow flex flex-col items-center h-16"
+      class="fixed z-20 top-0 w-full bg-white dark:bg-slate-900 backdrop-blur-sm transition-shadow flex flex-col items-center h-16"
       :class="{'shadow dark:shadow-slate-800/50 hover:shadow-md': !isToolPage()}"
     >
       <div class="w-full h-16 px-4 container flex justify-between items-center">
