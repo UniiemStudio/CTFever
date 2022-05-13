@@ -6,6 +6,10 @@
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/w/UniiemStudio/CTFever)
 ![wakatime](https://wakatime.com/badge/user/589c46ee-6ba6-403c-bc9f-3a7aef5b206c/project/c477b34d-85f2-4fe0-b7c8-f74639d78dda.svg)
 
+---
+> ### **近日训练学习任务繁重，可能更新较迟缓，欢迎大家加入我们的开发，欢迎 Pull Request**
+---
+
 ## 简介
 
 **CTFever** (CTF Fevers) 是为 CTF [(什么是CTF?)](https://baike.baidu.com/item/CTF) 发烧者准备的的常用工具套件，助你过关斩将、攻克难关。
