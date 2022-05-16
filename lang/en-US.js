@@ -41,6 +41,10 @@ export default {
     btn_swap: 'SWAP',
     btn_backspace: '← BACKSPACE',
     btn_clean: 'Clean',
+    btn_validate: 'Validate',
+    btn_parse: 'Parse',
+    btn_version: 'Version',
+    btn_generate: 'Generate',
     text_encode: 'Encode',
     text_decode: 'Decode',
     text_plain: 'Plaintext',
@@ -122,6 +126,10 @@ export default {
       desc: 'Convert words to Morse Code'
     },
     // Cryptography
+    uuid: {
+      title: 'UUID',
+      desc: 'Generate UUID'
+    },
     messageDigest: {
       title: 'Message Digest',
       desc: 'Generate message digest'

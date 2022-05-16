@@ -39,6 +39,10 @@ export default {
     btn_swap: '交换',
     btn_backspace: '← 退格',
     btn_clean: '清空',
+    btn_validate: '校验',
+    btn_parse: '格式化',
+    btn_version: '版本',
+    btn_generate: '生成',
     text_encode: '编码',
     text_decode: '解码',
     text_encoded: '已编码内容',
@@ -122,6 +126,10 @@ export default {
       desc: '将字母和数字转换为摩尔斯码'
     },
     // Cryptography
+    uuid: {
+      title: 'UUID',
+      desc: '验证和生成各种版本的 UUID'
+    },
     messageDigest: {
       title: '消息摘要计算',
       desc: '计算内容的消息摘要，如 MD5、SHA1、SHA256 等'
