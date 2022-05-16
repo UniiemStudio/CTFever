@@ -57,7 +57,6 @@ export const state = () => ({
           description: 'tool.uuid.desc',
           route: '/tools/uuid-generator',
           tags: ['信息摘要'],
-          disabled: true
         },
         {
           title: 'tool.messageDigest.title',
