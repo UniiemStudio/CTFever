@@ -4,7 +4,7 @@
       <template v-slot:left>
         <InteractiveBlock class="space-y-2">
           <PrimarySelector :label="$t('common.text_type').toString()" id="type" :options="uuidTypes" v-model="type"/>
-          <PrimaryButton @click="generate" class="w-full">{{ $t('common.generate').toString() }}</PrimaryButton>
+          <PrimaryButton @click="generate" class="w-full">{{ $t('common.btn_generate').toString() }}</PrimaryButton>
           <PrimaryPreBlock v-if="uuidResult" label="UUID">
             {{ uuidResult }}
           </PrimaryPreBlock>
