@@ -188,6 +188,20 @@ export const state = () => ({
           tags: ['图片处理'],
           disabled: true,
         },
+        {
+          title: '与佛论禅',
+          description: '面对这个纷繁复杂的世界, 真神会如何作答呢',
+          route: '/tools/core-values-cipher',
+          tags: ['加密算法'],
+          disabled: true,
+        },
+        {
+          title: '核心价值观密码',
+          description: '富强民主文明和谐自由平等公正法制爱国敬业诚信友善！',
+          route: '/tools/core-values-cipher',
+          tags: ['加密算法'],
+          disabled: true,
+        },
       ]
     }
   ],
