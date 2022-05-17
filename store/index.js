@@ -128,6 +128,13 @@ export const state = () => ({
           tags: ['IP2Geo'],
           disabled: true,
         },
+        {
+          title: 'HTTP(s) 请求头',
+          description: '查看 HTTP(s) 请求头信息',
+          route: '/tools/http-headers',
+          tags: ['HTTP'],
+          disabled: true,
+        },
       ]
     },
     {
@@ -172,6 +179,13 @@ export const state = () => ({
           description: 'tool.temperatureConversion.desc',
           route: '/tools/temperature-conversion',
           tags: ['数据转换'],
+          disabled: true,
+        },
+        {
+          title: 'Base64 图片转换',
+          description: '图片和 Base64 互相转换',
+          route: '/tools/base-to-image',
+          tags: ['图片处理'],
           disabled: true,
         },
       ]
