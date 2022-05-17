@@ -215,10 +215,10 @@ export default {
     hash: '杂凑',
     encryptionAndDecryption: '加密算法',
     conversion: '数据处理',
-    disassembler: '反编译',
+    decompiler: '反编译',
     obfuscation: '混淆',
     complier: '编译器',
     utility: '调试工具',
-    inspection: '校验'
+    check: '校验'
   }
 }

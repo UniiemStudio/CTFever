@@ -19,11 +19,11 @@ export const tagCategories = Object.freeze({
   hash: 'tags.hash',
   encryptionAndDecryption: 'tags.encryptionAndDecryption',
   conversion: 'tags.conversion',
-  disassembler: 'tags.disassembler',
+  decompiler: 'tags.decompiler',
   obfuscation: 'tags.obfuscation',
   complier: 'tags.complier',
   utility: 'tags.utility',
-  inspection: 'tags.inspection'
+  check: 'tags.check'
 });
 
 export const state = () => ({
@@ -117,7 +117,7 @@ export const state = () => ({
           title: 'tool.pycDecompiler.title',
           description: 'tool.pycDecompiler.desc',
           route: '/tools/pyc-decompiler',
-          tags: [tagCategories.disassembler],
+          tags: [tagCategories.decompiler],
           disabled: true
         },
         {
@@ -190,7 +190,7 @@ export const state = () => ({
           title: 'tool.crc.title',
           description: 'tool.crc.desc',
           route: '/tools/crc-checksum',
-          tags: [tagCategories.inspection]
+          tags: [tagCategories.check]
         },
         {
           title: 'tool.temperatureConversion.title',

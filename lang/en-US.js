@@ -215,10 +215,10 @@ export default {
     hash: 'Hash',
     encryptionAndDecryption: 'Encryption And Decryption',
     conversion: 'Conversion',
-    disassembler: 'Disassembler',
+    decompiler: 'Decompiler',
     obfuscation: 'Obfuscation',
     complier: 'Complier',
     utility: 'Utility',
-    inspection: 'Inspection'
+    check: 'Check'
   }
 }
