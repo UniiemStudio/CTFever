@@ -9,12 +9,23 @@ export default {
     title: 'CTFever Toolkit by uniiem',
     meta: [
       {charset: 'utf-8'},
-      {title: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=0;'},
-      {hid: 'description', title: 'description', content: ''},
+      {
+        title: 'viewport',
+        name: 'viewport',
+        content: 'width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no'
+      },
+      {hid: 'description', title: 'description', content: 'A Toolkit for CTF Fever'},
+      {
+        name: 'keywords',
+        content: 'CTF, CTFever, CTF Toolkit, CTF Toolkit by uniiem, 进制, 在线工具, 古典密码, 凯撒密码, 哈希, 反编译, URL 编码, 栅栏密码, Base64, ROT-13'
+      },
       {title: 'format-detection', content: 'telephone=no'}
     ],
     link: [
-      {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'}
+      {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'},
+      {rel: 'preconnect', href: '//analytics.i0x0i.ltd'},
+      {rel: 'preload', href: '//fonts.font.im'},
+      {rel: 'preload', href: '//unpkg.com'}
     ],
     script: [
       {src: 'https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js', type: 'module'},
@@ -61,7 +72,9 @@ export default {
         debug: true,
         onMetaChange: true
       }
-    ]
+    ],
+    ['@nuxtjs/robots', {}],
+    '@nuxtjs/sitemap'
   ],
 
   loading: {
@@ -77,7 +90,19 @@ export default {
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
     manifest: {
-      lang: 'en'
+      lang: 'zh'
+    }
+  },
+
+  sitemap: {
+    hostname: 'https://ctfever.uniiem.com',
+    gzip: true,
+    defaults: {
+      lastmod: new Date()
+    },
+    i18n: {
+      locales: ['en', 'zh'],
+      routesNameSeparator: '___'
     }
   },
 
@@ -95,8 +120,8 @@ export default {
         code: 'zh',
         iso: 'zh-CN',
         file: 'zh-CN.js',
-        name: '中文',
-        label: '中文'
+        name: '简体中文',
+        label: '简体中文'
       },
       {
         code: 'ja',

@@ -2,18 +2,26 @@
   <PrimaryContainer>
     <form class="primary-form">
       <InteractiveBlock>
-        <PrimaryArea id="url" v-model="input" label="内容" placeholder="待编码内容" :rows="10"></PrimaryArea>
+        <PrimaryArea id="url" v-model="input" :label="$t('common.text_input').toString()"
+                     :rows="10"></PrimaryArea>
       </InteractiveBlock>
       <InteractiveBlock class="flex items-center justify-between">
         <div class="space-x-1">
-          <PrimaryButton type="button" @click="output = encodeURIComponent(input)">编码</PrimaryButton>
-          <PrimaryButton type="button" @click="output = decodeURIComponent(input)">解码</PrimaryButton>
+          <PrimaryButton type="button" @click="output = encodeURIComponent(input)">
+            {{ $t('common.btn_encode') }}
+          </PrimaryButton>
+          <PrimaryButton type="button" @click="output = decodeURIComponent(input)">
+            {{ $t('common.btn_decode') }}
+          </PrimaryButton>
         </div>
-        <PrimaryButton type="button" @click="swap">↑ 交换 ↓</PrimaryButton>
-        <PrimaryButton type="button" danger @click="input = ''; output = '';">清空</PrimaryButton>
+        <PrimaryButton type="button" @click="swap">↑ {{ $t('common.btn_swap') }} ↓</PrimaryButton>
+        <PrimaryButton type="button" danger @click="input = ''; output = '';">
+          {{ $t('common.btn_clean') }}
+        </PrimaryButton>
       </InteractiveBlock>
       <InteractiveBlock>
-        <PrimaryArea id="result" v-model="output" label="结果" placeholder="编码结果" :rows="10"></PrimaryArea>
+        <PrimaryArea id="result" v-model="output" :label="$t('common.text_result_content').toString()"
+                     :rows="10"></PrimaryArea>
       </InteractiveBlock>
     </form>
   </PrimaryContainer>

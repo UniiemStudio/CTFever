@@ -2,20 +2,25 @@
   <PrimaryContainer>
     <form class="primary-form">
       <InteractiveBlock>
-        <PrimarySelector v-model="method" :options="options" label="选择编码方式"></PrimarySelector>
+        <PrimarySelector v-model="method" :options="options"
+                         :label="$t('common.text_type').toString()"></PrimarySelector>
       </InteractiveBlock>
       <InteractiveBlock>
-        <PrimaryArea id="input" v-model="input" label="解码结果" placeholder="待编码的文本" :rows="10"></PrimaryArea>
+        <PrimaryArea id="input" v-model="input" :label="$t('common.text_decoded').toString()" :rows="10"></PrimaryArea>
       </InteractiveBlock>
       <InteractiveBlock class="flex items-center justify-between">
         <div class="space-x-1">
-          <PrimaryButton type="button" @click="encode">编码 ↓</PrimaryButton>
-          <PrimaryButton type="button" @click="decode">解码 ↑</PrimaryButton>
+          <PrimaryButton type="button" @click="encode">{{ $t('common.btn_encode') }} ↓</PrimaryButton>
+          <PrimaryButton type="button" @click="decode">{{ $t('common.btn_decode') }} ↑</PrimaryButton>
         </div>
-        <PrimaryButton type="button" danger @click="input = ''; output = '';">清空</PrimaryButton>
+        <PrimaryButton type="button" danger @click="input = ''; output = '';">{{
+            $t('common.btn_clean')
+          }}
+        </PrimaryButton>
       </InteractiveBlock>
       <InteractiveBlock>
-        <PrimaryArea id="output" v-model="output" label="编码结果" placeholder="已编码的内容" :rows="10"></PrimaryArea>
+        <PrimaryArea id="output" v-model="output" :label="$t('common.text_encoded').toString()"
+                     :rows="10"></PrimaryArea>
       </InteractiveBlock>
     </form>
   </PrimaryContainer>

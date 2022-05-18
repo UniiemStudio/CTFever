@@ -1,7 +1,7 @@
 <template>
   <div>
     <div
-      class="fixed z-10 top-0 w-full bg-white dark:bg-slate-900 backdrop-blur-sm transition-shadow flex flex-col items-center h-16"
+      class="fixed z-20 top-0 w-full bg-white dark:bg-slate-900 backdrop-blur-sm transition-shadow flex flex-col items-center h-16"
       :class="{'shadow dark:shadow-slate-800/50 hover:shadow-md': !isToolPage()}"
     >
       <div class="w-full h-16 px-4 container flex justify-between items-center">
@@ -29,34 +29,30 @@
           <a-dropdown :trigger="['hover']" placement="bottomRight">
             <a class="ant-dropdown-link" @click="e => e.preventDefault()">
               <ion-icon class="align-middle text-base -mt-1"
-                        :name="currentDarkModeIcon"></ion-icon>
+                        :name="currentAppearanceIcon"></ion-icon>
             </a>
             <a-menu slot="overlay" class="dark:bg-slate-800">
               <a-menu-item v-for="(mode, k) in colorModes" :key="k"
                            class="flex flex-row items-center space-x-0.5 dark:text-slate-300"
-                           :class="{'dropdown-item-active': $store.state.settings.settings.darkMode === mode.code}"
+                           :class="{'dropdown-item-active': $store.state.settings.settings.appearance === mode.code}"
                            @click="switchDarkMode(mode.code)">
                 <ion-icon class="align-middle text-lg" :name="mode.icon"></ion-icon>
                 <nuxt-link
                   class="px-2 py-px"
-                  :class="{'dropdown-item-active': $store.state.settings.settings.darkMode === mode.code}"
+                  :class="{'dropdown-item-active': $store.state.settings.settings.appearance === mode.code}"
                   :key="mode.code"
-                  :to="switchLocalePath(mode.code)">{{ mode.name }}
+                  :to="switchLocalePath(mode.code)">{{ $t(mode.name) }}
                 </nuxt-link>
               </a-menu-item>
             </a-menu>
           </a-dropdown>
-          <!--          <a @click="toggleDarkMode">-->
-          <!--            <ion-icon class="align-middle text-base -mt-1"-->
-          <!--                      :name="this.currentDarkMode ? 'moon-outline' : 'sunny-outline'"></ion-icon>-->
-          <!--          </a>-->
           <!-- TODO: CTFever Premium -->
           <!-- <TinyButtonLink :to="localePath('/premium-active')" accent>Premium</TinyButtonLink>-->
         </div>
       </div>
     </div>
     <div
-      class="fixed z-0 top-16 w-full h-8 bg-white dark:bg-slate-900 backdrop-blur-sm opacity-0 -translate-y-8 transition duration-500 flex flex-col items-center h-16"
+      class="fixed z-10 top-16 w-full h-8 bg-white dark:bg-slate-900 backdrop-blur-sm opacity-0 -translate-y-8 transition duration-500 flex flex-col items-center h-16"
       :class="{'shadow dark:shadow-slate-800/50 hover:shadow-md opacity-100 translate-y-0': isToolPage()}"
     >
       <div class="w-full h-full px-4 container flex justify-between items-center border-t border-t-gray-150
@@ -66,11 +62,11 @@
             <ion-icon
               class="align-middle -mt-1 transition-transform group-hover:-translate-x-1"
               name="arrow-back"/>
-            返回
+            {{ $t('topbar.back') }}
           </nuxt-link>
         </div>
         <div>
-          <!--TODO: 评分-->
+          <!--TODO: Rating-->
           <button class="transition-transform active:scale-90" @click="markTool">
             <ion-icon class="align-middle text-lg -mt-1" :name="isMarked ? 'bookmark' : 'bookmark-outline'"></ion-icon>
           </button>
@@ -82,6 +78,7 @@
 
 <script>
 import Btn from "~/components/TinyButtonLink";
+import {wrapI18nPath2MetaRoute} from "~/libs/common";
 
 export default {
   name: "TopBar",
@@ -93,15 +90,15 @@ export default {
     currentPath() {
       return this.$route.path
     },
-    favoriteTools() {
-      return this.$store.state.settings.favoriteTools;
+    markedTools() {
+      return this.$store.state.settings.markedTool;
     },
-    currentDarkMode() {
-      return this.$store.state.settings.settings.darkMode;
+    currentAppearance() {
+      return this.$store.state.settings.settings.appearance;
     },
-    currentDarkModeIcon() {
+    currentAppearanceIcon() {
       let icon = '';
-      switch (this.currentDarkMode) {
+      switch (this.currentAppearance) {
         case 'light':
           icon = 'sunny-outline';
           break;
@@ -113,7 +110,7 @@ export default {
           break;
       }
       return icon;
-    }
+    },
   },
   mounted() {
     this.$nextTick(() => {
@@ -125,17 +122,17 @@ export default {
       colorModes: [
         {
           code: 'light',
-          name: '白天',
+          name: 'topbar.appearance.light',
           icon: 'sunny-outline'
         },
         {
           code: 'dark',
-          name: '夜晚',
+          name: 'topbar.appearance.dark',
           icon: 'moon-outline'
         },
         {
           code: 'auto',
-          name: '自动',
+          name: 'topbar.appearance.auto',
           icon: 'desktop-outline'
         }
       ],
@@ -146,17 +143,17 @@ export default {
   methods: {
     markTool() {
       this.isMarked = !this.isMarked;
-      this.$store.commit('settings/FAVORITE_TOOL', {
+      this.$store.commit('settings/markToolByRoute', {
         route: this.currentPath,
         mark: this.isMarked
       });
-      this.$message.success(this.isMarked ? '已收藏' : '已取消收藏');
+      this.$message.success(this.$t(`action.${this.isMarked ? 'marked' : 'unmarked'}`).toString());
     },
     updateMarkStatus(route) {
-      this.favoriteTools.filter(f => f.route === route).length > 0 ? this.isMarked = true : this.isMarked = false;
+      this.markedTools.filter(f => f.route === wrapI18nPath2MetaRoute(route)).length > 0 ? this.isMarked = true : this.isMarked = false;
     },
     switchDarkMode(mode) {
-      this.$store.commit('settings/setDarkMode', mode);
+      this.$store.commit('settings/setAppearance', mode);
     }
   },
   watch: {

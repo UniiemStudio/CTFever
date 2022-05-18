@@ -2,17 +2,25 @@
   <PrimaryContainer>
     <form class="primary-form">
       <InteractiveBlock>
-        <PrimaryArea id="url" v-model="input" label="输入" placeholder="Input..." :rows="10"></PrimaryArea>
+        <PrimaryArea id="url" v-model="input" :label="$t('common.text_input').toString()" placeholder="Input..."
+                     :rows="10"></PrimaryArea>
       </InteractiveBlock>
       <InteractiveBlock class="flex items-center justify-between">
         <div class="space-x-1">
-          <PrimaryButton type="button" @click="output = ceasarCipher.encode(input, 13)">编码</PrimaryButton>
+          <PrimaryButton type="button" @click="output = ceasarCipher.encode(input, 13)">{{
+              $t('common.btn_encode')
+            }}
+          </PrimaryButton>
         </div>
-        <PrimaryButton type="button" @click="swap">↑ 交换 ↓</PrimaryButton>
-        <PrimaryButton type="button" danger @click="input = ''; output = '';">清空</PrimaryButton>
+        <PrimaryButton type="button" @click="swap">↑ {{ $t('common.btn_swap') }} ↓</PrimaryButton>
+        <PrimaryButton type="button" danger @click="input = ''; output = '';">{{
+            $t('common.btn_clean')
+          }}
+        </PrimaryButton>
       </InteractiveBlock>
       <InteractiveBlock>
-        <PrimaryArea id="result" v-model="output" label="输出" placeholder="Output..." :rows="10"></PrimaryArea>
+        <PrimaryArea id="result" v-model="output" :label="$t('common.text_output').toString()" placeholder="Output..."
+                     :rows="10"></PrimaryArea>
       </InteractiveBlock>
     </form>
     <PrimaryIntroduction title="ROT-13" :document="intro" :references="references"/>

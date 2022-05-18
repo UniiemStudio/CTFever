@@ -2,25 +2,27 @@
   <PrimaryContainer>
     <form class="primary-form">
       <InteractiveBlock>
-        <PrimaryArea label="输入" placeholder="待加密内容" v-model="input" id="input"/>
+        <PrimaryArea :label="$t('common.text_input').toString()" :placeholder="$t('common.text_plain').toString()"
+                     v-model="input" id="input"/>
       </InteractiveBlock>
       <InteractiveDoubleColumns>
         <template v-slot:left>
-          <PrimaryInput id="offset" label="栏数" v-model="rows" type="number" min="1" max="26"/>
+          <PrimaryInput id="offset" :label="$t('tool.railFenceCipher.rows').toString()"
+                        v-model="rows" type="number" min="1" max="26"/>
         </template>
         <template v-slot:right>
-          <PrimarySelector id="type" label="类型" v-model="type" :options="typeOptions"/>
+          <PrimarySelector id="type" :label="$t('common.text_type').toString()" v-model="type" :options="typeOptions"/>
         </template>
       </InteractiveDoubleColumns>
       <InteractiveBlock class="flex items-center justify-between">
         <div class="space-x-1">
-          <PrimaryButton type="button" @click="encode">加密</PrimaryButton>
-          <PrimaryButton type="button" @click="decode">解密</PrimaryButton>
+          <PrimaryButton type="button" @click="encode">{{ $t('common.btn_encode') }}</PrimaryButton>
+          <PrimaryButton type="button" @click="decode">{{ $t('common.btn_decode') }}</PrimaryButton>
         </div>
-        <PrimaryButton type="reset" danger>重置</PrimaryButton>
+        <PrimaryButton type="reset" danger>{{ $t('common.btn_clean') }}</PrimaryButton>
       </InteractiveBlock>
       <InteractiveBlock>
-        <PrimaryArea label="输出" v-model="output" id="output"/>
+        <PrimaryArea :label="$t('common.text_output').toString()" v-model="output" id="output"/>
       </InteractiveBlock>
     </form>
     <!--    <PrimaryIntroduction title="栅栏密码(基础型 / W 型)" :document="intro"/>-->

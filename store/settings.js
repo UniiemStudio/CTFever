@@ -1,29 +1,22 @@
-const LF_ENUM = {
-  FAVORITE_TOOLS: "favorite_tools",
-  SETTINGS: "settings",
-}
+import {wrapI18nPath2MetaRoute} from "~/libs/common";
 
 export const state = () => ({
-  cloudSyncData: {
+  cloudSync: {
     enabled: false,
     lastSync: null,
-    favoriteTools: [],
   },
-  favoriteTools: [],
+  markedTool: [],
   settings: {
-    darkMode: 'auto',
+    appearance: 'auto',
   },
 })
 
 export const mutations = {
-  setFavoriteTools(state, tools) {
-    state.favoriteTools = tools;
-  },
-  FAVORITE_TOOL(state, payload) {
-    console.log(payload.mark ? 'favorite' : 'unfavorite', payload.route, payload.mark);
+  markToolByRoute(state, payload = {route: '', mark: false}) {
+    payload.route = wrapI18nPath2MetaRoute(payload.route);
     if (payload.mark) {
-      if (state.favoriteTools.filter(f => f.route === payload.route).length === 0) {
-        state.favoriteTools.push(
+      if (state.markedTool.filter(f => f.route === payload.route).length === 0) {
+        state.markedTool.push(
           {
             route: payload.route,
             create_time: new Date().getTime()
@@ -31,14 +24,14 @@ export const mutations = {
         )
       }
     } else {
-      state.favoriteTools = state.favoriteTools.filter(f => f.route !== payload.route);
+      state.markedTool = state.markedTool.filter(f => f.route !== payload.route);
     }
   },
-  setDarkMode(state, darkMode) {
-    if (darkMode === 'auto' || darkMode === 'light' || darkMode === 'dark') {
-      state.settings.darkMode = darkMode;
+  setAppearance(state, appearance) {
+    if (appearance === 'auto' || appearance === 'light' || appearance === 'dark') {
+      state.settings.appearance = appearance;
     } else {
-      state.settings.darkMode = 'auto';
+      state.settings.appearance = 'auto';
     }
   },
 }
