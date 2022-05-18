@@ -21,6 +21,11 @@ import ObjectViewer from "~/components/tool/ObjectViewer";
 export default {
   name: "ip-geo",
   components: {ObjectViewer, PrimaryArea, PrimaryButton, PrimaryInput, InteractiveBlock, PrimaryContainer},
+  head() {
+    return {
+      title: this.$t("tool.ipAttribution.title") + " - " + this.$t("app.name")
+    };
+  },
   data() {
     return {
       ip: "",
