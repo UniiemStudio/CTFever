@@ -212,5 +212,17 @@ export default {
       title: 'Temperature Conversion',
       desc: 'Convert temperature into multiple units'
     },
+  },
+  tags: {
+    encodingAndDecoding: 'Encoding And Decoding',
+    generator: 'Generator',
+    hash: 'Hash',
+    encryptionAndDecryption: 'Encryption And Decryption',
+    conversion: 'Conversion',
+    decompiler: 'Decompiler',
+    obfuscation: 'Obfuscation',
+    complier: 'Complier',
+    utility: 'Utility',
+    check: 'Check'
   }
 }

@@ -212,5 +212,17 @@ export default {
       title: '温度换算',
       desc: '将温度转换为多种单位'
     },
+  },
+  tags: {
+    encodingAndDecoding: '字符编码',
+    generator: '产生器',
+    hash: '杂凑',
+    encryptionAndDecryption: '加密算法',
+    conversion: '数据处理',
+    decompiler: '反编译',
+    obfuscation: '混淆',
+    complier: '编译器',
+    utility: '调试工具',
+    check: '校验'
   }
 }
