@@ -221,7 +221,7 @@ export default {
     conversion: 'Conversion',
     decompiler: 'Decompiler',
     obfuscation: 'Obfuscation',
-    complier: 'Complier',
+    compiler: 'Compiler',
     utility: 'Utility',
     check: 'Check'
   }

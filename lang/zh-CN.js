@@ -221,7 +221,7 @@ export default {
     conversion: '数据处理',
     decompiler: '反编译',
     obfuscation: '混淆',
-    complier: '编译器',
+    compiler: '编译器',
     utility: '调试工具',
     check: '校验'
   }

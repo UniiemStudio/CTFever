@@ -21,7 +21,7 @@ export const tagCategories = Object.freeze({
   conversion: 'tags.conversion',
   decompiler: 'tags.decompiler',
   obfuscation: 'tags.obfuscation',
-  complier: 'tags.complier',
+  compiler: 'tags.compiler',
   utility: 'tags.utility',
   check: 'tags.check'
 });
@@ -130,7 +130,7 @@ export const state = () => ({
           title: 'tool.brainFuck.title',
           description: 'tool.brainFuck.desc',
           route: '/tools/brain-fuck',
-          tags: [tagCategories.complier]
+          tags: [tagCategories.compiler]
         }
       ]
     },
