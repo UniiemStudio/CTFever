@@ -216,7 +216,7 @@ export default {
   tags: {
     encodingAndDecoding: '字符编码',
     generator: '产生器',
-    hash: '杂凑',
+    hash: '哈希散列',
     encryptionAndDecryption: '加密算法',
     conversion: '数据处理',
     decompiler: '反编译',
