@@ -126,15 +126,13 @@ export const state = () => ({
           description: 'tool.ipAttribution.desc',
           route: '/tools/ip-geo',
           tags: ['IP2Geo'],
-          disabled: true,
         },
-        {
-          title: 'HTTP(s) 请求头',
-          description: '查看 HTTP(s) 请求头信息',
-          route: '/tools/http-headers',
-          tags: ['HTTP'],
-          disabled: true,
-        },
+        // {
+        //   title: 'HTTP(s) 请求头',
+        //   description: '查看 HTTP(s) 请求头信息',
+        //   route: '/tools/http-headers',
+        //   tags: ['HTTP'],
+        // },
       ]
     },
     {

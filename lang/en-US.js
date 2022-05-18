@@ -156,6 +156,10 @@ export default {
       title: 'IP Geo-location',
       desc: 'Query IP address attribution and ISP information'
     },
+    httpHeaders: {
+      title: 'HTTP(s) Headers',
+      desc: 'Parse HTTP(s) response headers'
+    },
     // Data Conversion
     radixConversion: {
       title: 'Radix Converter',

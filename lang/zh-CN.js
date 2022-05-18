@@ -156,6 +156,10 @@ export default {
       title: 'IP 地址归属',
       desc: '查询 IP 地址归属地和 ISP 信息'
     },
+    httpHeaders: {
+      title: 'HTTP(s) 响应头',
+      desc: '查看 HTTP(s) 请求响应头信息'
+    },
     // Data Conversion
     radixConversion: {
       title: '进制转换',
