@@ -24,8 +24,8 @@ export default {
     link: [
       {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'},
       {rel: 'preconnect', href: '//analytics.i0x0i.ltd'},
-      {rel: 'preload', href: '//fonts.font.im'},
-      {rel: 'preload', href: '//unpkg.com'}
+      {rel: 'preload', href: '//fonts.font.im', as: 'font'},
+      {rel: 'preload', href: '//unpkg.com', as: 'script'}
     ],
     script: [
       {src: 'https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js', type: 'module'},
