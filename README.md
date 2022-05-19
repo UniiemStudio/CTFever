@@ -1,6 +1,6 @@
 # CTFever - A Toolkit for CTF fevers
 
-![CTFever](https://socialify.git.ci/UniiemStudio/CTFever/image?description=1&descriptionEditable=A%20toolkit%20for%20CTF%20fevers&font=KoHo&issues=1&language=1&owner=1&pattern=Diagonal%20Stripes&stargazers=1&theme=Light)
+![CTFever](https://socialify.git.ci/UniiemStudio/CTFever/image?description=1&descriptionEditable=A%20fantastic%20toolkit%20for%20CTFers%20and%20everyone.&font=KoHo&issues=1&logo=https%3A%2F%2Fraw.githubusercontent.com%2FUniiemStudio%2FCTFever%2Fmain%2Fstatic%2Ficon.svg&owner=1&pattern=Floating%20Cogs&pulls=1&stargazers=1&theme=Light)
 
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/UniiemStudio/CTFever/ci)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/w/UniiemStudio/CTFever)
