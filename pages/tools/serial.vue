@@ -143,7 +143,7 @@ export default {
       this.serial.open(this.baud);
     },
     closeSerial() {
-      this.serial.close();
+      if (this.connected) this.serial.close();
     },
     writeSerial() {
       if (this.tx !== '') this.serial.write(this.tx, this.sendLineBreak);
@@ -160,7 +160,7 @@ export default {
     }
   },
   beforeDestroy() {
-    this.serial.close();
+    this.closeSerial();
   }
 }
 </script>
