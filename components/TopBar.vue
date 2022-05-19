@@ -11,7 +11,7 @@
               <img src="/icon.svg" class="w-6 h-6" alt="CTFever Logo">
               <span
                 :class="{'subtitle-show': isToolPage(), 'cursor-default pointer-events-none': !isToolPage()}"
-                class="font-thin cursor-pointer pointer-events-auto -mt-0.5 transition duration-500 translate-x-2 opacity-0">{{
+                class="font-thin cursor-pointer pointer-events-auto transition duration-500 translate-x-2 opacity-0">{{
                   currentToolName
                 }}</span>
             </div>
