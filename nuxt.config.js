@@ -19,13 +19,21 @@ export default {
         name: 'keywords',
         content: 'CTF, CTFever, CTF Toolkit, CTF Toolkit by uniiem, 进制, 在线工具, 古典密码, 凯撒密码, 哈希, 反编译, URL 编码, 栅栏密码, Base64, ROT-13'
       },
-      {title: 'format-detection', content: 'telephone=no'}
+      {title: 'format-detection', content: 'telephone=no'},
+      {name: 'apple-mobile-web-app-capable', content: 'yes'},
+      {name: 'msapplication-TileColor', content: '#2b5797'}
     ],
     link: [
-      {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'},
+      {rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png'},
+      {rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png'},
+      {rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png'},
+      {rel: 'manifest', href: '/site.webmanifest'},
+      {rel: 'mask-icon', href: '/safari-pinned-tab.svg', color: '#5bbad5'},
+      // Preloads
       {rel: 'preconnect', href: '//analytics.i0x0i.ltd'},
-      {rel: 'preload', href: '//fonts.font.im', as: 'font'},
-      {rel: 'preload', href: '//unpkg.com', as: 'script'}
+      {rel: 'preload', href: '//fonts.font.im/css?family=PT+Mono|PT+Sans|Poppins', as: 'font'},
+      {rel: 'preload', href: '//unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js', as: 'script'},
+      {rel: 'preload', href: '//unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js', as: 'script'}
     ],
     script: [
       {src: 'https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js', type: 'module'},
