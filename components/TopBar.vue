@@ -6,9 +6,15 @@
     >
       <div class="w-full h-16 px-4 container flex justify-between items-center">
         <div>
-          <nuxt-link :to="localePath('/')" class="text-lg font-bold dark:text-slate-100">
-            CTFever
-            <span class="font-thin dark:text-slate-200">{{ $t('app.subtitle') }}</span>
+          <nuxt-link :to="localePath('/')" class="text-lg dark:text-slate-200">
+            <div class="w-fit h-full flex flex-row items-center space-x-2.5 ml-1">
+              <img src="/icon.svg" class="w-6 h-6" alt="CTFever Logo">
+              <span
+                :class="{'subtitle-show': isToolPage(), 'cursor-default pointer-events-none': !isToolPage()}"
+                class="font-thin cursor-pointer pointer-events-auto -mt-0.5 transition duration-500 translate-x-2 opacity-0">{{
+                  currentToolName
+                }}</span>
+            </div>
           </nuxt-link>
         </div>
         <div class="space-x-2 dark:text-slate-300">
@@ -78,7 +84,7 @@
 
 <script>
 import Btn from "~/components/TinyButtonLink";
-import {wrapI18nPath2MetaRoute} from "~/libs/common";
+import {getToolByRoute, wrapI18nPath2MetaRoute} from "~/libs/common";
 
 export default {
   name: "TopBar",
@@ -115,6 +121,7 @@ export default {
   mounted() {
     this.$nextTick(() => {
       this.updateMarkStatus(this.currentPath);
+      this.updateTitle(this.currentPath);
     });
   },
   data() {
@@ -138,6 +145,7 @@ export default {
       ],
       isToolPage: () => /^.*\/tools\/.*/.test(this.$route.path),
       isMarked: false,
+      currentToolName: '',
     }
   },
   methods: {
@@ -152,6 +160,11 @@ export default {
     updateMarkStatus(route) {
       this.markedTools.filter(f => f.route === wrapI18nPath2MetaRoute(route)).length > 0 ? this.isMarked = true : this.isMarked = false;
     },
+    updateTitle(route) {
+      if (this.isToolPage()) {
+        this.currentToolName = this.$t(getToolByRoute(route).title);
+      }
+    },
     switchDarkMode(mode) {
       this.$store.commit('settings/setAppearance', mode);
     }
@@ -159,6 +172,7 @@ export default {
   watch: {
     currentPath(val) {
       this.updateMarkStatus(val);
+      this.updateTitle(val);
     },
   },
 }
@@ -177,5 +191,9 @@ export default {
 
 .ant-dropdown-menu-item-active {
   @apply dark:bg-slate-700;
+}
+
+.subtitle-show {
+  @apply translate-x-0 opacity-100;
 }
 </style>

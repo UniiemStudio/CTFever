@@ -65,6 +65,8 @@
 import PrimaryIntroduction from "~/components/tool/PrimaryIntroduction";
 import PrimaryInput from "~/components/form/PrimaryInput";
 
+import {getToolByRoute} from '~/libs/common';
+
 export default {
   name: 'IndexPage',
   components: {PrimaryInput, PrimaryIntroduction},
@@ -72,16 +74,9 @@ export default {
     favoriteTools() {
       let tools = [];
       this.$store.state.settings.markedTool.forEach(favoriteTool => {
-        tools.push(this.getToolByRoute(favoriteTool.route));
+        tools.push(getToolByRoute(favoriteTool.route));
       })
       return tools;
-    },
-  },
-  methods: {
-    getToolByRoute(route) {
-      let tools = [];
-      this.$store.state.toolkits.forEach(toolkit => tools.push(toolkit.tools.filter(t => t.route === route)));
-      return tools.filter(t => t.length > 0)[0][0];
     },
   },
   data() {
