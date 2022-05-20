@@ -1,7 +1,7 @@
 <template>
   <div>
     <div
-      class="fixed z-20 top-0 w-full bg-white/75 dark:bg-slate-900/75 backdrop-blur-xl transition-shadow flex flex-col items-center h-16"
+      class="fixed z-20 top-0 w-full bg-white/80 dark:bg-slate-900/80 backdrop-blur-md transition-shadow flex flex-col items-center h-16"
       :class="{'shadow dark:shadow-slate-800/50 hover:shadow-md': !isToolPage()}"
     >
       <div class="w-full h-16 px-4 container flex justify-between items-center">
@@ -58,7 +58,7 @@
       </div>
     </div>
     <div
-      class="fixed z-10 top-16 w-full h-8 bg-white/75 dark:bg-slate-900/75 backdrop-blur-xl opacity-0 -translate-y-8 transition duration-500 flex flex-col items-center h-16"
+      class="fixed z-10 top-16 w-full h-8 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md opacity-0 -translate-y-8 transition duration-500 flex flex-col items-center h-16"
       :class="{'shadow dark:shadow-slate-800/50 hover:shadow-md opacity-100 translate-y-0': isToolPage()}"
     >
       <div class="w-full h-full px-4 container flex justify-between items-center border-t border-t-gray-150
