@@ -98,6 +98,15 @@ export default {
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
+    meta: {
+      name: 'CTFever',
+      author: 'Uniiem Studio',
+      description: 'A fantastic toolkit for CTFers and everyone.',
+      viewport: 'width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no',
+      mobileApp: true,
+      mobileAppIOS: true,
+      nativeUI: true
+    },
     manifest: {
       lang: 'zh'
     }
