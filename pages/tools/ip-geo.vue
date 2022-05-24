@@ -2,7 +2,9 @@
   <PrimaryContainer>
     <InteractiveBlock class="space-y-4">
       <PrimaryInput label="IP" id="ip" v-model="ip" placeholder="Leave blank for Local"/>
-      <PrimaryButton class="w-full" @click="query">QUERY</PrimaryButton>
+      <PrimaryButton class="w-full" @click="query" :disable="isLoading">
+        {{ isLoading ? 'LOADING...' : 'QUERY' }}
+      </PrimaryButton>
     </InteractiveBlock>
     <InteractiveBlock>
       <ObjectViewer :object="info" :map="map"/>
@@ -30,6 +32,7 @@ export default {
     return {
       ip: "",
       info: null,
+      isLoading: false,
       map: {
         'ip': 'IP',
         'country_code': '国家代码',
@@ -53,9 +56,16 @@ export default {
   methods: {
     query() {
       this.info = null;
-      this.$axios.get("https://api.ip.sb/geoip/" + this.ip).then(response => {
-        this.info = response.data;
-      });
+      this.isLoading = true;
+      this.$nuxt.$loading.start();
+      this.$axios.get("https://api.ip.sb/geoip/" + this.ip)
+        .then(response => {
+          this.info = response.data;
+        })
+        .finally(() => {
+          this.isLoading = false;
+          this.$nuxt.$loading.finish();
+        });
     }
   }
 }
