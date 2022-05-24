@@ -27,7 +27,7 @@ export default {
       {rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png'},
       {rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png'},
       {rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png'},
-      {rel: 'manifest', href: '/site.webmanifest'},
+      // {rel: 'manifest', href: '/site.webmanifest'},
       {rel: 'mask-icon', href: '/safari-pinned-tab.svg', color: '#5bbad5'},
       // Preloads
       {rel: 'preconnect', href: '//analytics.i0x0i.ltd'},
@@ -78,7 +78,7 @@ export default {
         trackerUrl: '//analytics.i0x0i.ltd/matomo.php',
         scriptUrl: '//analytics.i0x0i.ltd/matomo.js',
         siteId: 5,
-        debug: true,
+        debug: false,
         onMetaChange: true
       }
     ],
@@ -108,7 +108,25 @@ export default {
       nativeUI: true
     },
     manifest: {
-      lang: 'zh'
+      lang: 'zh',
+      name: 'CTFever - A fantastic toolkit by uniiem',
+      short_name: 'CTFever',
+      description: 'A fantastic toolkit for CTFers and everyone.',
+      source: '/static/icon.png',
+      fileName: 'icon.png',
+      sizes: [64, 120, 144, 152, 192, 384, 512],
+      icons: [
+        {
+          src: '/android-chrome-192x192.png',
+          sizes: '192x192',
+          type: 'image/png'
+        },
+        {
+          src: '/android-chrome-512x512.png',
+          sizes: '512x512',
+          type: 'image/png'
+        }
+      ]
     }
   },
 
