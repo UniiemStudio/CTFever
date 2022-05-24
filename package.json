@@ -16,6 +16,7 @@
     "@nuxtjs/pwa": "^3.3.5",
     "@nuxtjs/robots": "^2.5.0",
     "@nuxtjs/sitemap": "^2.4.0",
+    "@nuxtjs/workbox": "^3.0.0-beta.16",
     "ant-design-vue": "^1.7.8",
     "bigi": "^1.4.2",
     "core-js": "^3.19.3",
