@@ -107,14 +107,16 @@ export default {
       mobileAppIOS: true,
       nativeUI: true
     },
+    icon: {
+      source: '/static/icon.png',
+      fileName: 'icon.png',
+      sizes: [64, 120, 144, 152, 192, 384, 512]
+    },
     manifest: {
       lang: 'zh',
       name: 'CTFever - A fantastic toolkit by uniiem',
       short_name: 'CTFever',
       description: 'A fantastic toolkit for CTFers and everyone.',
-      source: '/static/icon.png',
-      fileName: 'icon.png',
-      sizes: [64, 120, 144, 152, 192, 384, 512],
       icons: [
         {
           src: '/android-chrome-192x192.png',
