@@ -1,8 +1,7 @@
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
-
-  // 续命
+  target: 'static',
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -110,7 +109,8 @@ export default {
     icon: {
       source: '/static/icon.png',
       fileName: 'icon.png',
-      sizes: [64, 120, 144, 152, 192, 384, 512]
+      sizes: [64, 120, 144, 152, 192, 384, 512],
+      purpose: 'any'
     },
     manifest: {
       lang: 'zh',
