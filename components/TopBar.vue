@@ -182,6 +182,7 @@ export default {
     },
     installPWA() {
       if (this.pwaAvailable) {
+        console.log('Permitted to install PWA');
         this.deferredPrompt.prompt();
         this.deferredPrompt.userChoice.then((choiceResult) => {
           if (choiceResult.outcome === 'accepted') {
