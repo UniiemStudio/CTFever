@@ -22,7 +22,7 @@
         <PrimaryButton type="reset" danger>{{ $t('common.btn_clean') }}</PrimaryButton>
       </InteractiveBlock>
       <InteractiveBlock>
-        <PrimaryArea :label="$t('common.text_output').toString()" v-model="output" id="output"/>
+        <PrimaryArea :label="$t('common.text_output').toString()" v-model="output" id="output" copyable/>
       </InteractiveBlock>
     </form>
     <!--    <PrimaryIntroduction title="栅栏密码(基础型 / W 型)" :document="intro"/>-->

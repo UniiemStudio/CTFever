@@ -16,7 +16,7 @@
         </PrimaryButton>
       </InteractiveBlock>
       <InteractiveBlock>
-        <PrimaryArea id="output" v-model="output" label="JSFucked" placeholder="" :rows="10"></PrimaryArea>
+        <PrimaryArea id="output" v-model="output" label="JSFucked" placeholder="" :rows="10" copyable></PrimaryArea>
       </InteractiveBlock>
     </form>
     <PrimaryIntroduction title="JSFuck" :references="references" :document="intro"/>

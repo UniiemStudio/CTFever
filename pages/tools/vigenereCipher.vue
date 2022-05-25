@@ -3,7 +3,7 @@
     <form class="primary-form">
       <InteractiveBlock>
         <PrimaryArea id="morse" v-model="input" :label="$t('common.text_plain').toString()"
-                     :placeholder="$t('common.text_original_content').toString()" :rows="10"></PrimaryArea>
+                     :placeholder="$t('common.text_original_content').toString()" :rows="10" copyable></PrimaryArea>
       </InteractiveBlock>
       <InteractiveBlock>
         <PrimaryInput id="key" :label="$t('common.text_secret').toString()" v-model="key" type="string"/>
@@ -22,7 +22,7 @@
       </InteractiveBlock>
       <InteractiveBlock>
         <PrimaryArea id="output" v-model="output" label="Vigenere Cipher"
-                     :placeholder="$t('common.text_result_content').toString()" :rows="10"></PrimaryArea>
+                     :placeholder="$t('common.text_result_content').toString()" :rows="10" copyable></PrimaryArea>
       </InteractiveBlock>
     </form>
   </PrimaryContainer>

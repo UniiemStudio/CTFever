@@ -3,7 +3,7 @@
     <form class="primary-form">
       <InteractiveBlock>
         <PrimaryArea id="url" v-model="input" :label="$t('common.text_input').toString()" placeholder="Input..."
-                     :rows="10"></PrimaryArea>
+                     :rows="10" copyable></PrimaryArea>
       </InteractiveBlock>
       <InteractiveBlock class="flex items-center justify-between">
         <div class="space-x-1">
@@ -20,7 +20,7 @@
       </InteractiveBlock>
       <InteractiveBlock>
         <PrimaryArea id="result" v-model="output" :label="$t('common.text_output').toString()" placeholder="Output..."
-                     :rows="10"></PrimaryArea>
+                     :rows="10" copyable></PrimaryArea>
       </InteractiveBlock>
     </form>
     <PrimaryIntroduction title="ROT-13" :document="intro" :references="references"/>

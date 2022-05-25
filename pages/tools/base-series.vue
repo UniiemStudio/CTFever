@@ -6,7 +6,8 @@
                          :label="$t('common.text_type').toString()"></PrimarySelector>
       </InteractiveBlock>
       <InteractiveBlock>
-        <PrimaryArea id="input" v-model="input" :label="$t('common.text_decoded').toString()" :rows="10"></PrimaryArea>
+        <PrimaryArea id="input" v-model="input" :label="$t('common.text_decoded').toString()" :rows="10"
+                     copyable></PrimaryArea>
       </InteractiveBlock>
       <InteractiveBlock class="flex items-center justify-between">
         <div class="space-x-1">
@@ -20,7 +21,7 @@
       </InteractiveBlock>
       <InteractiveBlock>
         <PrimaryArea id="output" v-model="output" :label="$t('common.text_encoded').toString()"
-                     :rows="10"></PrimaryArea>
+                     :rows="10" copyable></PrimaryArea>
       </InteractiveBlock>
     </form>
   </PrimaryContainer>

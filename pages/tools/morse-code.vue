@@ -4,7 +4,7 @@
       <!-- TODO: 自定义长短号 -->
       <InteractiveBlock>
         <PrimaryArea id="morse" v-model="input" :label="$t('common.text_original_content').toString()"
-                     :rows="10"></PrimaryArea>
+                     :rows="10" copyable></PrimaryArea>
       </InteractiveBlock>
       <InteractiveBlock class="flex items-center justify-between">
         <div class="space-x-1">
@@ -18,7 +18,7 @@
       </InteractiveBlock>
       <InteractiveBlock>
         <PrimaryArea id="output" v-model="output" :label="$t('common.text_result_content').toString()"
-                     placeholder="Morse code" :rows="10"></PrimaryArea>
+                     placeholder="Morse code" :rows="10" copyable></PrimaryArea>
       </InteractiveBlock>
     </form>
     <PrimaryIntroduction title="摩尔斯电码" :document="intro" :references="references"/>

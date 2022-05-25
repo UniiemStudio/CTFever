@@ -4,7 +4,7 @@
       <InteractiveBlock>
         <PrimaryArea id="input" v-model="input_code" label="BrainFuck"
                      placeholder="BrainFuck Code..."
-                     :rows="10"></PrimaryArea>
+                     :rows="10" copyable></PrimaryArea>
         <PrimaryInput id="inputs" v-model="arg" :label="$t('common.text_input').toString()"
                       placeholder="Input..."></PrimaryInput>
       </InteractiveBlock>

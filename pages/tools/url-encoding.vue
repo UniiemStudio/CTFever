@@ -21,7 +21,7 @@
       </InteractiveBlock>
       <InteractiveBlock>
         <PrimaryArea id="result" v-model="output" :label="$t('common.text_result_content').toString()"
-                     :rows="10"></PrimaryArea>
+                     :rows="10" copyable></PrimaryArea>
       </InteractiveBlock>
     </form>
   </PrimaryContainer>
