@@ -61,6 +61,7 @@ export default {
     text_radix: 'Radix',
     text_string: 'String',
     text_search: 'Search',
+    text_search_result: 'Search results for \'{}\'',
   },
   page: {
     home: {

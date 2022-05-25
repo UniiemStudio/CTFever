@@ -21,7 +21,9 @@
       <h1 class="text-lg font-bold flex flex-col md:flex-row justify-center md:justify-start items-center space-x-1
                 dark:text-slate-300 font-['Nunito']">
         <ion-icon class="text-4xl md:text-xl mb-2 md:mb-0" :name="'search-outline'"></ion-icon>
-        <span class="text-lg font-thin"><span class="font-bold">"{{ searchText }}"</span> 的搜索结果</span>
+        <span class="text-lg font-thin">{{
+            $t('common.text_search_result').toString().replace('{}', searchText)
+          }}</span>
       </h1>
     </div>
     <div class="grid gap-4 grid-cols-1 -mt-2">
