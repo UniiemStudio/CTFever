@@ -113,9 +113,7 @@ export default {
       purpose: 'any'
     },
     workbox: {
-      importScripts: [
-        '/third_party/workbox/workbox-sw.js'
-      ],
+      workboxURL: '/third_party/workbox/workbox-sw.js',
       config: {
         modulePathPrefix: '/third_party/workbox/'
       }
