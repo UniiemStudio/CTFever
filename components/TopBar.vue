@@ -18,7 +18,7 @@
           </nuxt-link>
         </div>
         <div class="space-x-2 dark:text-slate-300">
-          <TinyButtonLink v-if="pwaAvailable" @click="installPWA()" class="group">
+          <TinyButtonLink v-if="pwaAvailable" :clk="installPWA" class="group">
             <ion-icon class="text-base translate-y-[2px]" name="download-outline"></ion-icon>
             <span>安装 PWA</span>
           </TinyButtonLink>
@@ -87,12 +87,12 @@
 </template>
 
 <script>
-import Btn from "~/components/TinyButtonLink";
+import TinyButtonLink from "~/components/TinyButtonLink";
 import {getToolByRoute, wrapI18nPath2MetaRoute} from "~/libs/common";
 
 export default {
   name: "TopBar",
-  components: {Btn},
+  components: {TinyButtonLink},
   computed: {
     availableLocales() {
       return this.$i18n.locales.filter(i => i.code !== this.$i18n.locale)
