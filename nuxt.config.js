@@ -112,6 +112,15 @@ export default {
       sizes: [64, 120, 144, 152, 192, 384, 512],
       purpose: 'any'
     },
+    workbox: {
+      workboxURL: '/static/third_party/workbox/',
+      importScripts: [
+        '/static/third_party/workbox/workbox-sw.js'
+      ],
+      config: {
+        modulePathPrefix: '/static/third_party/workbox/'
+      }
+    },
     manifest: {
       lang: 'zh',
       name: 'CTFever - A fantastic toolkit by uniiem',

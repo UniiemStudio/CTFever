@@ -11691,7 +11691,7 @@ workbox-cdn@^4.3.1:
 
 workbox-cdn@^5.1.4:
   version "5.1.4"
-  resolved "https://registry.npmjs.org/workbox-cdn/-/workbox-cdn-5.1.4.tgz"
+  resolved "https://registry.npmmirror.com/workbox-cdn/-/workbox-cdn-5.1.4.tgz#dbd8acee70b1978be70106207590bbb76af935cf"
   integrity sha512-04gM3mi8QGutokkSaA9xunVfjURnLbo9TTWyi8+pSDCEW5cD8u5GbJiliLK1vB9CShk/9OY1UDfW+XcmD+d6KQ==
 
 worker-farm@^1.7.0:
