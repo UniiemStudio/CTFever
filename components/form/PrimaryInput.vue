@@ -12,7 +12,7 @@
         :id="id" :type="type" :placeholder="placeholder" :value="value" @input="onInput" :disabled="disable"
         :autocomplete="autocomplete"/>
       <button @mousedown="clean"
-              class="absolute right-2 text-slate-500 opacity-0 pointer-events-none translate-x-4 transition clean-btn">
+              class="absolute right-2 text-slate-500 opacity-0 pointer-events-none translate-x-4 transition copy-btn">
         <ion-icon class="text-xl" name="close-circle"></ion-icon>
       </button>
     </div>
@@ -65,15 +65,15 @@ export default {
 </script>
 
 <style scoped>
-.clean-btn {
+.copy-btn {
   top: calc(50% - 0.625rem);
 }
 
-.input-transition:focus + .clean-btn {
+.input-transition:focus + .copy-btn {
   @apply translate-x-0 opacity-50 pointer-events-auto;
 }
 
-.input-transition:focus + .clean-btn:hover {
+.input-transition:focus + .copy-btn:hover {
   @apply opacity-75;
 }
 </style>

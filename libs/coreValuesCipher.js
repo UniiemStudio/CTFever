@@ -1,7 +1,5 @@
 "use strict";
 
-// import "babel-polyfill";
-
 function assert(...express) {
   const l = express.length;
   const msg = (typeof express[l - 1] === 'string') ? express[l - 1] : 'Assert Error';
@@ -82,6 +80,7 @@ function duo2hex(duo) {
     }
     i++;
   }
+  // noinspection JSCheckFunctionSignatures
   return hex.map(v => v.toString(16).toUpperCase()).join('');
 }
 
