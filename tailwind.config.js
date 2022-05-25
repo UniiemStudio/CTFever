@@ -10,7 +10,7 @@ module.exports = {
   ],
   theme: {
     fontFamily: {
-      'sans': ["PT Sans", "sans-serif"],
+      'sans': ["-apple-system", "PT Sans", "PingFang SC", "sans-serif"],
       'mono': ["PT Mono", "monospace"],
     },
     extend: {},

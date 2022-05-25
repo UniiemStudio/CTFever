@@ -3,7 +3,7 @@
     <div class="space-y-2">
       <div v-for="(tip, k) in tips" :key="'tip' + k"
            class="p-4 bg-transparent rounded-lg border border-gray-200 dark:border-slate-500">
-        <p class="font-bold mb-2 dark:text-slate-300">{{ $t(tip.title) }}</p>
+        <p class="font-extrabold mb-2 dark:text-slate-300 font-['Nunito']">{{ $t(tip.title) }}</p>
         <p class="mb-2 dark:text-slate-500">{{ $t(tip.content) }}</p>
         <div class="flex flex-col" v-if="tip.references">
           <a v-for="(ref, k) in tip.references" :key="'ref' + k" class="group text-blue-500 w-fit"
@@ -19,7 +19,7 @@
     <!--  Search  -->
     <div class="py-4 text-center md:text-left search-tip" :class="{'show': searchText}">
       <h1 class="text-lg font-bold flex flex-col md:flex-row justify-center md:justify-start items-center space-x-1
-                dark:text-slate-300">
+                dark:text-slate-300 font-['Nunito']">
         <ion-icon class="text-4xl md:text-xl mb-2 md:mb-0" :name="'search-outline'"></ion-icon>
         <span class="text-lg font-thin"><span class="font-bold">"{{ searchText }}"</span> 的搜索结果</span>
       </h1>
@@ -32,32 +32,37 @@
     </div>
     <!--  /Search  -->
 
+    <!--  Favorites  -->
     <div v-if="favoriteTools.length > 0 && !searchText" class="py-4 text-center md:text-left">
       <h1 class="text-lg font-bold flex flex-col md:flex-row justify-center md:justify-start items-center space-x-1
-                dark:text-slate-300">
+                dark:text-slate-300 font-['Nunito']">
         <ion-icon class="text-4xl md:text-xl mb-2 md:mb-0" :name="'albums-outline'"></ion-icon>
         <span class="text-lg">{{ $t('page.home.favoriteKit.title') }}</span>
       </h1>
-      <p class="text-sm font-thin dark:text-slate-500">{{ $t('page.home.favoriteKit.desc') }}</p>
+      <p class="text-sm font-thin font-['Nunito'] dark:text-slate-500">{{ $t('page.home.favoriteKit.desc') }}</p>
     </div>
     <div v-if="!searchText" class="my-2 grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
       <Tool v-for="(tool, k) in favoriteTools" :key="k" :tool="tool"/>
     </div>
+    <!--  /Favorites  -->
 
+    <!--  Tool Lists  -->
     <div v-if="!searchText" v-for="(toolkit, k) in $store.state.toolkits" :key="k">
       <div class="py-4 text-center md:text-left">
         <h1 class="text-lg font-bold flex flex-col md:flex-row justify-center md:justify-start items-center space-x-1
-                dark:text-slate-300">
+                dark:text-slate-300 font-['Nunito']">
           <ion-icon class="text-4xl md:text-xl mb-2 md:mb-0" :name="toolkit.icon || 'albums-outline'"></ion-icon>
           <span class="text-lg">{{ $t(toolkit.title) || toolkit.title }}</span>
           <!-- TODO: Tools count -->
         </h1>
-        <p class="text-sm font-thin dark:text-slate-500">{{ $t(toolkit.description) || toolkit.description }}</p>
+        <p class="text-sm font-thin font-['Nunito'] dark:text-slate-500">
+          {{ $t(toolkit.description) || toolkit.description }}</p>
       </div>
       <div class="my-2 grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         <Tool v-for="(tool, k) in toolkit.tools" :key="k" :tool="tool"/>
       </div>
     </div>
+    <!--  Tool Lists  -->
   </div>
 </template>
 
