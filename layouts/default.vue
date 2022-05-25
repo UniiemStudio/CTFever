@@ -27,7 +27,7 @@ export default {
     */
     const workbox = await window.$workbox;
     if (workbox) {
-      workbox.addEventListener('installed', (event) => {
+      workbox.addEventListener('activating', (event) => {
         if (event.isUpdate) {
           console.log('New version available');
         } else {
