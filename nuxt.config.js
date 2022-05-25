@@ -102,6 +102,7 @@ export default {
       author: 'Uniiem Studio',
       description: 'A fantastic toolkit for CTFers and everyone.',
       viewport: 'width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no',
+      theme_color: '#ffffff',
       mobileApp: true,
       mobileAppIOS: true,
       nativeUI: true
