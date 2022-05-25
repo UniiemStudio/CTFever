@@ -182,7 +182,6 @@ export default {
     },
     installPWA() {
       if (this.pwaAvailable) {
-        console.log('Permitted to install PWA');
         this.deferredPrompt.prompt();
         this.deferredPrompt.userChoice.then((choiceResult) => {
           if (choiceResult.outcome === 'accepted') {
@@ -190,7 +189,6 @@ export default {
             this.$message.success('PWA 已安装');
           } else {
             this.pwaAvailable = true;
-            this.$message.error('PWA 安装被拒绝');
           }
           this.deferredPrompt = null;
         });
