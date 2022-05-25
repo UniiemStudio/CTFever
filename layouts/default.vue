@@ -17,11 +17,26 @@ export default {
       return this.$store.state.settings.settings.appearance;
     }
   },
-  mounted() {
+  async mounted() {
     this.setAppearance(this.currentAppearance);
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
       if (this.currentAppearance === 'auto') this.setAppearance(e.matches ? 'dark' : 'light');
     });
+    /*
+    * Check update
+    */
+    const workbox = await window.$workbox;
+    if (workbox) {
+      workbox.addEventListener('installed', (event) => {
+        if (event.isUpdate) {
+          console.log('New version available');
+        } else {
+          console.log('No update available');
+        }
+      });
+    } else {
+      console.log('Workbox not found');
+    }
   },
   watch: {
     currentAppearance(newVal) {

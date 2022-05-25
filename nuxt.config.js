@@ -113,12 +113,12 @@ export default {
       purpose: 'any'
     },
     workbox: {
-      workboxURL: '/static/third_party/workbox/',
+      workboxURL: '/third_party/workbox/',
       importScripts: [
-        '/static/third_party/workbox/workbox-sw.js'
+        '/third_party/workbox/workbox-sw.js'
       ],
       config: {
-        modulePathPrefix: '/static/third_party/workbox/'
+        modulePathPrefix: '/third_party/workbox/'
       }
     },
     manifest: {
