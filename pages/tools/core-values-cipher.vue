@@ -1,7 +1,8 @@
 <template>
   <PrimaryContainer>
     <InteractiveBlock>
-      <PrimaryArea id="input" v-model="input" :label="$t('common.text_plain').toString()" :rows="10"></PrimaryArea>
+      <PrimaryArea id="input" v-model="input" :label="$t('common.text_plain').toString()" :rows="10"
+                   copyable></PrimaryArea>
     </InteractiveBlock>
     <InteractiveBlock class="flex items-center justify-between">
       <div class="space-x-1">
@@ -15,7 +16,7 @@
     </InteractiveBlock>
     <InteractiveBlock>
       <PrimaryArea id="output" v-model="output" :label="$t('common.text_cipher').toString()"
-                   :rows="10"></PrimaryArea>
+                   :rows="10" copyable></PrimaryArea>
     </InteractiveBlock>
   </PrimaryContainer>
 </template>
