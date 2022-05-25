@@ -113,7 +113,6 @@ export default {
       purpose: 'any'
     },
     workbox: {
-      workboxURL: '/third_party/workbox/',
       importScripts: [
         '/third_party/workbox/workbox-sw.js'
       ],
