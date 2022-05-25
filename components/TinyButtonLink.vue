@@ -1,6 +1,6 @@
 <template>
   <button
-    @click="$router.push(localePath(to))"
+    @click="clk ? clk() : $router.push(localePath(to))"
     class="border rounded px-2 py-px hover:shadow transition-shadow text-sm font-bold text-center select-none focus:ring-0 md:focus:ring-2"
     :class="{
       'border-blue-500 shadow-blue-500 bg-blue-500 text-white hover:text-white': accent,
@@ -17,6 +17,10 @@ export default {
   props: {
     to: {
       type: String,
+      required: false
+    },
+    clk: {
+      type: Function,
       required: false
     },
     text: {
