@@ -1,7 +1,7 @@
 <template>
   <!-- mt-4 -->
   <footer class="mx-auto pattern-diagonal-stripes-sm bg-gray-50 text-gray-100 lg:rounded
-                dark:bg-slate-900 dark:text-slate-800">
+                dark:bg-slate-900 dark:text-slate-800 font-['Nunito']">
     <div class="w-full h-full py-4 flex flex-col text-sm justify-center items-center text-gray-500">
       <p class="mt-2 dark:text-gray-300">CTFever for everyone</p>
       <p class="text-xs text-gray-400 mt-1">
