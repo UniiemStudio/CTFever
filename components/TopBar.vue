@@ -18,6 +18,10 @@
           </nuxt-link>
         </div>
         <div class="space-x-2 dark:text-slate-300">
+          <TinyButtonLink v-if="pwaAvailable" class="group">
+            <ion-icon class="text-base translate-y-[2px]" name="download-outline"></ion-icon>
+            <span>安装 PWA</span>
+          </TinyButtonLink>
           <a-dropdown :trigger="['hover']" placement="bottomRight">
             <a class="ant-dropdown-link" @click="e => e.preventDefault()">
               <ion-icon class="align-middle text-lg -mt-1" name="language-outline"></ion-icon>
@@ -118,12 +122,6 @@ export default {
       return icon;
     },
   },
-  mounted() {
-    this.$nextTick(() => {
-      this.updateMarkStatus(this.currentPath);
-      this.updateTitle(this.currentPath);
-    });
-  },
   data() {
     return {
       colorModes: [
@@ -146,7 +144,21 @@ export default {
       isToolPage: () => /^.*\/tools\/.*/.test(this.$route.path),
       isMarked: false,
       currentToolName: '',
+      pwaAvailable: false,
+      deferredPrompt: null,
     }
+  },
+  mounted() {
+    const self = this;
+    this.$nextTick(() => {
+      this.updateMarkStatus(this.currentPath);
+      this.updateTitle(this.currentPath);
+    });
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      self.pwaAvailable = true;
+      this.deferredPrompt = e;
+    });
   },
   methods: {
     markTool() {
@@ -167,7 +179,22 @@ export default {
     },
     switchDarkMode(mode) {
       this.$store.commit('settings/setAppearance', mode);
-    }
+    },
+    installPWA() {
+      if (this.pwaAvailable) {
+        this.deferredPrompt.prompt();
+        this.deferredPrompt.userChoice.then((choiceResult) => {
+          if (choiceResult.outcome === 'accepted') {
+            this.pwaAvailable = false;
+            this.$message.success('PWA 已安装');
+          } else {
+            this.pwaAvailable = true;
+            this.$message.error('PWA 安装被拒绝');
+          }
+          this.deferredPrompt = null;
+        });
+      }
+    },
   },
   watch: {
     currentPath(val) {
