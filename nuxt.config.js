@@ -121,9 +121,9 @@ export default {
     },
     manifest: {
       lang: 'zh',
-      name: 'CTFever - A fantastic toolkit by uniiem',
+      name: 'CTFever',
       short_name: 'CTFever',
-      description: 'A fantastic toolkit for CTFers and everyone.',
+      description: 'A fantastic toolkit for CTFers and everyone by uniiem.',
       icons: [
         {
           src: '/android-chrome-192x192.png',
