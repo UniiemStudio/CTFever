@@ -207,16 +207,15 @@ export const state = () => ({
         {
           title: '与佛论禅',
           description: '面对这个纷繁复杂的世界, 真神会如何作答呢',
-          route: '/tools/core-values-cipher',
+          route: '/tools/undefined',
           tags: [tagCategories.encryptionAndDecryption],
           disabled: true,
         },
         {
-          title: '核心价值观密码',
-          description: '富强民主文明和谐自由平等公正法制爱国敬业诚信友善！',
+          title: 'tool.coreValues.title',
+          description: 'tool.coreValues.desc',
           route: '/tools/core-values-cipher',
           tags: ["tags.encryptionAndDecryption"],
-          disabled: true,
         },
       ]
     }

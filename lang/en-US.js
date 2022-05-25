@@ -60,6 +60,7 @@ export default {
     text_type: 'Type',
     text_radix: 'Radix',
     text_string: 'String',
+    text_search: 'Search',
   },
   page: {
     home: {
@@ -212,6 +213,10 @@ export default {
       title: 'Temperature Conversion',
       desc: 'Convert temperature into multiple units'
     },
+    coreValues: {
+      title: 'Core Values Cipher',
+      desc: 'Prosperity, democracy, civilization, harmony!'
+    }
   },
   tags: {
     encodingAndDecoding: 'Encoding And Decoding',

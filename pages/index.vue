@@ -25,7 +25,8 @@
       </h1>
     </div>
     <div class="grid gap-4 grid-cols-1 -mt-2">
-      <PrimaryInput id="search-input" key="search-input" placeholder="搜索..." class="search-input" v-model="searchText"/>
+      <PrimaryInput id="search-input" key="search-input" :placeholder="`${$t('common.text_search').toString()}...`"
+                    class="search-input" v-model="searchText"/>
     </div>
     <div v-if="searchText" class="mt-6 my-2 grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
       <Tool v-for="(tool, k) in searchResult" :key="k" :tool="tool"/>

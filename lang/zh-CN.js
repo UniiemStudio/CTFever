@@ -60,6 +60,7 @@ export default {
     text_type: '类型',
     text_radix: '进制',
     text_string: '字符串',
+    text_search: '搜索',
   },
   page: {
     home: {
@@ -212,6 +213,10 @@ export default {
       title: '温度换算',
       desc: '将温度转换为多种单位'
     },
+    coreValues: {
+      title: '核心价值观密码',
+      desc: '富强民主文明和谐自由平等公正法制爱国敬业诚信友善！'
+    }
   },
   tags: {
     encodingAndDecoding: '字符编码',
