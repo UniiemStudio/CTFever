@@ -18,7 +18,7 @@
           </nuxt-link>
         </div>
         <div class="space-x-2 dark:text-slate-300">
-          <TinyButtonLink v-if="pwaAvailable" class="group">
+          <TinyButtonLink v-if="pwaAvailable" @click="installPWA()" class="group">
             <ion-icon class="text-base translate-y-[2px]" name="download-outline"></ion-icon>
             <span>安装 PWA</span>
           </TinyButtonLink>
