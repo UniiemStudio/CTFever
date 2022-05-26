@@ -169,7 +169,6 @@ export const state = () => ({
           description: 'tool.timeStamp.desc',
           route: '/tools/timestamp',
           tags: [tagCategories.conversion],
-          disabled: true
         },
       ]
     },

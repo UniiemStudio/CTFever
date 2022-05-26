@@ -1,6 +1,7 @@
 <template>
   <div>
-    <label v-if="label" class="block text-gray-700 dark:text-slate-300 text-sm font-bold mb-2" :for="id">
+    <label v-if="label" class="block text-gray-700 dark:text-slate-300 text-sm font-bold font-['Nunito'] mb-2"
+           :for="id">
       {{ label }}
     </label>
     <div class="relative">

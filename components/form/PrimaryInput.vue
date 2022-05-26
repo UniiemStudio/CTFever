@@ -1,6 +1,7 @@
 <template>
   <div>
-    <label v-if="label" class="block text-gray-700 dark:text-slate-300 text-sm font-bold mb-2" :for="id">
+    <label v-if="label" class="block text-gray-700 dark:text-slate-300 text-sm font-bold font-['Nunito'] mb-2"
+           :for="id">
       {{ label }}
     </label>
     <div class="relative">
@@ -9,8 +10,9 @@
              focus:ring transition duration-300 input-transition
              dark:bg-slate-800 dark:text-slate-300 dark:border-slate-600"
         :class="{'text-gray-300 dark:text-slate-500 bg-gray-50': disable}"
-        :id="id" :type="type" :placeholder="placeholder" :value="value" @input="onInput" :disabled="disable"
-        :autocomplete="autocomplete"/>
+        :id="id" :type="type" :placeholder="placeholder" :value="value" :disabled="disable" :autocomplete="autocomplete"
+        @change="$emit('change', $event.target.value)"
+        @input="$emit('input', $event.target.value)"/>
       <button @mousedown="clean"
               class="absolute right-2 text-slate-500 opacity-0 pointer-events-none translate-x-4 transition copy-btn">
         <ion-icon class="text-xl" name="close-circle"></ion-icon>
@@ -51,12 +53,9 @@ export default {
     value: {
       type: [String, Number],
       default: ""
-    }
+    },
   },
   methods: {
-    onInput(event) {
-      this.$emit('input', event.target.value);
-    },
     clean() {
       this.$emit('input', '');
     }

@@ -1,6 +1,7 @@
 <template>
   <div>
-    <label v-if="label" class="block text-gray-700 dark:text-slate-300 text-sm font-bold mb-2" :for="id">
+    <label v-if="label" class="block text-gray-700 dark:text-slate-300 text-sm font-bold font-['Nunito'] mb-2"
+           :for="id">
       {{ label }}
     </label>
     <select
@@ -8,7 +9,7 @@
              focus:ring transition duration-300
              dark:bg-slate-800 dark:text-slate-300 dark:border-slate-600"
       :class="{'text-gray-300 dark:text-slate-500 bg-gray-50': disable}"
-      :id="id" :value="value" @input="onInput" :disabled="disable">
+      :id="id" :value="value" @input="$emit('input', $event.target.value)" :disabled="disable">
       <option v-for="(option, k) in options" :k="k" :value="option.value">{{
           (option.label === $t(option.label)) ? option.label : $t(option.label)
         }}
@@ -47,11 +48,7 @@ export default {
       ],
     },
   },
-  methods: {
-    onInput(event) {
-      this.$emit("input", event.target.value);
-    }
-  }
+  methods: {}
 }
 </script>
 
