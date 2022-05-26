@@ -170,7 +170,15 @@ export default {
     },
     timeStamp: {
       title: 'Time Stamp Converter',
-      desc: 'Convert a time stamp to any format'
+      desc: 'Convert a time stamp to any format',
+      timestamp: 'Timestamp',
+      humanReadable: 'Human Readable',
+      unit: 'Unit',
+      now: 'NOW',
+      utc: 'UTC',
+      fromNow: 'From Now',
+      dayOfYear: 'Day of Year',
+      weekOfYear: 'Week of Year'
     },
     // Program Related
     pycDecompiler: {

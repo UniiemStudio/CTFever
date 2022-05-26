@@ -2,33 +2,36 @@
   <PrimaryContainer>
     <div class="grid gap-x-4 grid-cols-1 md:grid-cols-2 grid-rows-1">
       <InteractiveBlock>
-        <PrimaryInput id="timestamp" label="Timestamp" @input="changeTimestamp"
+        <PrimaryInput id="timestamp" :label="$t('tool.timeStamp.timestamp').toString()" @input="changeTimestamp"
                       :value="isUnixTime ? date.unix() : date.valueOf()"/>
       </InteractiveBlock>
       <InteractiveBlock>
-        <PrimaryInput id="human-readable" label="Human Readable" @input="changeHumanDate" :value="humanReadable"/>
+        <PrimaryInput id="human-readable" :label="$t('tool.timeStamp.humanReadable').toString()"
+                      @input="changeHumanDate" :value="humanReadable"/>
       </InteractiveBlock>
       <InteractiveBlock>
-        <PrimarySelector id="unit" label="Unit" :options="units" value="sec"
+        <PrimarySelector id="unit" :label="$t('tool.timeStamp.unit').toString()" :options="units" value="sec"
                          @input="(val)=>this.isUnixTime = val === 'sec'"/>
       </InteractiveBlock>
       <InteractiveBlock>
-        <PrimaryButton class="w-full mt-2 md:mt-7" @click="refreshDayjs">NOW</PrimaryButton>
+        <PrimaryButton class="w-full mt-2 md:mt-7" @click="refreshDayjs">
+          {{ $t('tool.timeStamp.now').toString() }}
+        </PrimaryButton>
       </InteractiveBlock>
     </div>
     <hr class="mt-3 mb-4"/>
     <div class="grid gap-x-4 grid-cols-1 md:grid-cols-2 grid-rows-1">
       <InteractiveBlock>
-        <PrimaryInput id="utc" label="UTC" :value="date.utc().format()"/>
+        <PrimaryInput id="utc" :label="$t('tool.timeStamp.utc').toString()" :value="date.utc().format()"/>
       </InteractiveBlock>
       <InteractiveBlock>
-        <PrimaryInput id="from-now" label="From Now" :value="date.fromNow()"/>
+        <PrimaryInput id="from-now" :label="$t('tool.timeStamp.fromNow').toString()" :value="date.fromNow()"/>
       </InteractiveBlock>
       <InteractiveBlock>
-        <PrimaryInput id="day-of-year" label="Day of Year" :value="date.dayOfYear()"/>
+        <PrimaryInput id="day-of-year" :label="$t('tool.timeStamp.dayOfYear').toString()" :value="date.dayOfYear()"/>
       </InteractiveBlock>
       <InteractiveBlock>
-        <PrimaryInput id="week-of-year" label="Week of Year" :value="date.isoWeek()"/>
+        <PrimaryInput id="week-of-year" :label="$t('tool.timeStamp.weekOfYear').toString()" :value="date.isoWeek()"/>
       </InteractiveBlock>
     </div>
   </PrimaryContainer>

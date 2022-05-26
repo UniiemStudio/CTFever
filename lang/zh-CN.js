@@ -170,7 +170,15 @@ export default {
     },
     timeStamp: {
       title: '时间戳转换',
-      desc: '将 UNIX 时间戳转换为任何格式'
+      desc: '将 UNIX 时间戳转换为任何格式',
+      timestamp: '时间戳',
+      humanReadable: '可读形式',
+      unit: '单位',
+      now: '现在',
+      utc: '世界协调时(UTC)',
+      fromNow: '到现在的时间',
+      dayOfYear: '天数',
+      weekOfYear: '周数'
     },
     // Program Related
     pycDecompiler: {
