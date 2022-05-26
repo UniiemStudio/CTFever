@@ -61,7 +61,8 @@ export default {
     text_radix: 'Radix',
     text_string: 'String',
     text_search: 'Search',
-    text_search_result: 'Search results for \'{}\'',
+    text_search_result: `Search results for <span class="font-bold">'{}'</span>`,
+    text_tag_archive: 'Archiving of tag <span class="font-bold">{}</span>',
   },
   page: {
     home: {

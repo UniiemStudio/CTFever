@@ -61,7 +61,8 @@ export default {
     text_radix: '进制',
     text_string: '字符串',
     text_search: '搜索',
-    text_search_result: '"{}" 的搜索结果',
+    text_search_result: '<span class="font-bold">"{}"</span> 的搜索结果',
+    text_tag_archive: '标签 <span class="font-bold">{}</span> 的归档',
   },
   page: {
     home: {
