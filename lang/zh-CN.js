@@ -215,6 +215,10 @@ export default {
       title: '温度换算',
       desc: '将温度转换为多种单位'
     },
+    base2img: {
+      title: 'Base64 图片转换',
+      desc: '图片和 Base64 互相转换'
+    },
     coreValues: {
       title: '核心价值观密码',
       desc: '富强民主文明和谐自由平等公正法制爱国敬业诚信友善！'

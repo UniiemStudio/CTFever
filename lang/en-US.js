@@ -215,6 +215,10 @@ export default {
       title: 'Temperature Conversion',
       desc: 'Convert temperature into multiple units'
     },
+    base2img: {
+      title: 'Base64 to Image',
+      desc: 'Convert base64 string to image'
+    },
     coreValues: {
       title: 'Core Values Cipher',
       desc: 'Prosperity, democracy, civilization, harmony!'

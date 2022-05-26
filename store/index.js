@@ -198,11 +198,11 @@ export const state = () => ({
           disabled: true,
         },
         {
-          title: 'Base64 图片转换',
-          description: '图片和 Base64 互相转换',
-          route: '/tools/base-to-image',
+          title: 'tool.base2img.title',
+          description: 'tool.base2img.desc',
+          route: '/tools/base-img-convertor',
           tags: [tagCategories.conversion],
-          disabled: true,
+          disabled: true
         },
         {
           title: '与佛论禅',
