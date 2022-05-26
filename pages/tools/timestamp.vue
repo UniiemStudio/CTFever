@@ -56,6 +56,11 @@ dayjs.extend(require('dayjs/plugin/customParseFormat'));
 export default {
   name: "timestamp",
   components: {PrimarySelector, PrimaryButton, PrimaryInput, InteractiveBlock, PrimaryContainer},
+  head() {
+    return {
+      title: this.$t("tool.timeStamp.title") + " - " + this.$t("app.name")
+    };
+  },
   data() {
     return {
       isUnixTime: true,
