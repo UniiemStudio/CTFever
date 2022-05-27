@@ -22,16 +22,20 @@
     <hr class="mt-3 mb-4"/>
     <div class="grid gap-x-4 grid-cols-1 md:grid-cols-2 grid-rows-1">
       <InteractiveBlock>
-        <PrimaryInput id="utc" :label="$t('tool.timeStamp.utc').toString()" :value="date.utc().format()"/>
+        <PrimaryInput id="utc" :label="$t('tool.timeStamp.utc').toString()" :value="date.utc().format()" disable
+                      copyable/>
       </InteractiveBlock>
       <InteractiveBlock>
-        <PrimaryInput id="from-now" :label="$t('tool.timeStamp.fromNow').toString()" :value="date.fromNow()"/>
+        <PrimaryInput id="from-now" :label="$t('tool.timeStamp.fromNow').toString()" :value="date.fromNow()" disable
+                      copyable/>
       </InteractiveBlock>
       <InteractiveBlock>
-        <PrimaryInput id="day-of-year" :label="$t('tool.timeStamp.dayOfYear').toString()" :value="date.dayOfYear()"/>
+        <PrimaryInput id="day-of-year" :label="$t('tool.timeStamp.dayOfYear').toString()" :value="date.dayOfYear()"
+                      disable copyable/>
       </InteractiveBlock>
       <InteractiveBlock>
-        <PrimaryInput id="week-of-year" :label="$t('tool.timeStamp.weekOfYear').toString()" :value="date.isoWeek()"/>
+        <PrimaryInput id="week-of-year" :label="$t('tool.timeStamp.weekOfYear').toString()" :value="date.isoWeek()"
+                      disable copyable/>
       </InteractiveBlock>
     </div>
   </PrimaryContainer>
