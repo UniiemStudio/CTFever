@@ -13,9 +13,15 @@
         :id="id" :type="type" :placeholder="placeholder" :value="value" :disabled="disable" :autocomplete="autocomplete"
         @change="$emit('change', $event.target.value)"
         @input="$emit('input', $event.target.value)"/>
-      <button @mousedown="clean"
-              class="absolute right-2 text-slate-500 opacity-0 pointer-events-none translate-x-4 transition copy-btn">
+      <button v-show="!copyable" @mousedown="clean"
+              class="absolute right-2 text-slate-500 opacity-0 pointer-events-none translate-x-4 transition clear-btn">
         <ion-icon class="text-xl" name="close-circle"></ion-icon>
+      </button>
+      <button v-show="copyable && value !== ''"
+              @click="copy" :id="`copy_${id}`" :class="{'text-emerald-500': copiedText === 'copied!'}"
+              class="absolute transition flex flex-row items-center space-x-1 copy-btn">
+        <ion-icon class="text-sm" :name="copiedText === 'copied!' ? 'checkmark-outline' : 'copy-outline'"></ion-icon>
+        <span class="text-xs" :class="{'text-emerald-500': copiedText === 'copied!'}">{{ copiedText }}</span>
       </button>
     </div>
   </div>
@@ -54,25 +60,52 @@ export default {
       type: [String, Number],
       default: ""
     },
+    copyable: {
+      type: Boolean,
+      default: false
+    }
+  },
+  data() {
+    return {
+      copiedText: 'copy',
+    }
   },
   methods: {
     clean() {
       this.$emit('input', '');
-    }
+    },
+    copy() {
+      console.log(`Copied to clipboard: ${this.value}`);
+      navigator.clipboard.writeText(this.value);
+      this.copiedText = 'copied!';
+      setTimeout(() => {
+        this.copiedText = 'copy';
+      }, 1500);
+    },
   },
 }
 </script>
 
 <style scoped>
-.copy-btn {
+.clear-btn {
   top: calc(50% - 0.625rem);
 }
 
-.input-transition:focus + .copy-btn {
+.input-transition:focus + .clear-btn {
   @apply translate-x-0 opacity-50 pointer-events-auto;
 }
 
-.input-transition:focus + .copy-btn:hover {
+.input-transition:focus + .clear-btn:hover {
   @apply opacity-75;
+}
+
+.copy-btn {
+  top: 0.3rem;
+  @apply bg-white/30 dark:bg-slate-300/30 backdrop-blur-lg dark:text-slate-300 px-1.5 py-1 border border-gray-300 dark:border-slate-500 rounded shadow-sm;
+  @apply right-1.5 text-slate-500 translate-x-0 transition opacity-100 pointer-events-auto font-['Nunito'] font-extrabold;
+}
+
+.copy-btn:hover {
+  @apply opacity-100 shadow active:shadow-inner;
 }
 </style>

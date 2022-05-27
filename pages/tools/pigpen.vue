@@ -14,11 +14,11 @@
       </template>
       <template v-slot:right>
         <InteractiveBlock>
-          <PrimaryInput id="output" :label="$t('common.text_cipher').toString()" v-model="result" class="pig-font"
+          <PrimaryInput id="input" :label="$t('common.text_cipher').toString()" v-model="result" class="pig-font"
                         disable/>
         </InteractiveBlock>
         <InteractiveBlock>
-          <PrimaryInput id="output" :label="$t('common.text_plain').toString()" v-model="result"/>
+          <PrimaryInput id="output" :label="$t('common.text_plain').toString()" v-model="result" copyable/>
         </InteractiveBlock>
         <InteractiveBlock>
           <PrimaryButton type="button" @click="backspace">{{ $t('common.btn_backspace') }}</PrimaryButton>

@@ -1,6 +1,6 @@
 <template>
   <PrimaryContainer>
-    <form class="primary-form">
+    <div class="primary-form">
       <InteractiveBlock>
         <PrimaryInput id="data" :placeholder="input_mode === 'hex' ? '01 03 00 01 ...' : 'Any char...'"
                       :label="$t('common.text_input').toString()" v-model="input_data"/>
@@ -18,10 +18,12 @@
         <PrimaryButton type="reset" danger>{{ $t('common.btn_reset') }}</PrimaryButton>
       </InteractiveBlock>
       <InteractiveBlock class="space-y-2">
-        <PrimaryInput id="outputHex" :label="$t('tool.crc.checksum_result') + '(Hex)'" v-model="output.hex" disable/>
-        <PrimaryInput id="outputBin" :label="$t('tool.crc.checksum_result') + '(Bin)'" v-model="output.bin" disable/>
+        <PrimaryInput id="outputHex" :label="$t('tool.crc.checksum_result') + '(Hex)'" v-model="output.hex" disable
+                      copyable/>
+        <PrimaryInput id="outputBin" :label="$t('tool.crc.checksum_result') + '(Bin)'" v-model="output.bin" disable
+                      copyable/>
       </InteractiveBlock>
-    </form>
+    </div>
     <PrimaryIntroduction title="CRC 循环冗余校验" :document="intro" :references="references"/>
   </PrimaryContainer>
 </template>

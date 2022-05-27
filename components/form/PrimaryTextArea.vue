@@ -10,7 +10,8 @@
              focus:ring transition duration-300 input-transition
              dark:bg-slate-800 dark:text-slate-300 dark:border-slate-600"
         :class="{'text-gray-300 dark:text-slate-500 bg-gray-50': disable}"
-        :rows="rows" :id="id" :placeholder="placeholder" :value="value" @input="onInput" :disabled="disable"
+        :rows="rows" :id="id" :placeholder="placeholder" :value="value" @input="$emit('input', $event.target.value)"
+        :disabled="disable"
         :autocomplete="autocomplete"/>
       <button v-show="copyable && value !== ''"
               @click="copy" :id="`copy_${id}`" :class="{'text-emerald-500': copiedText === 'copied!'}"
@@ -66,9 +67,6 @@ export default {
     }
   },
   methods: {
-    onInput(event) {
-      this.$emit('input', event.target.value);
-    },
     copy() {
       console.log(`Copied to clipboard: ${this.value}`);
       navigator.clipboard.writeText(this.value);
@@ -83,11 +81,11 @@ export default {
 
 <style scoped>
 .copy-btn {
-  @apply bg-white/30 dark:bg-slate-300/30 backdrop-blur-lg dark:text-slate-300 px-1.5 py-1 border border-gray-300 dark:border-slate-500 rounded shadow;
+  @apply bg-white/30 dark:bg-slate-300/30 backdrop-blur-lg dark:text-slate-300 px-1.5 py-1 border border-gray-300 dark:border-slate-500 rounded shadow-sm;
   @apply top-2 right-2 text-slate-500 translate-x-0 transition opacity-100 pointer-events-auto font-['Nunito'] font-extrabold;
 }
 
 .copy-btn:hover {
-  @apply opacity-100 border-gray-500 dark:border-slate-300 shadow-lg;
+  @apply opacity-100 shadow active:shadow-inner;
 }
 </style>
