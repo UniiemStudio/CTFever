@@ -167,14 +167,14 @@ export default {
         file: 'zh-CN.js',
         name: '简体中文',
         label: '简体中文'
-      },
-      {
-        code: 'ja',
-        iso: 'ja-JP',
-        file: 'ja-JP.js',
-        name: '日本語',
-        label: '日本語'
       }
+      // {
+      //   code: 'ja',
+      //   iso: 'ja-JP',
+      //   file: 'ja-JP.js',
+      //   name: '日本語',
+      //   label: '日本語'
+      // }
     ],
     detectBrowserLanguage: {
       useCookie: true,
