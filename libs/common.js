@@ -12,7 +12,19 @@ const getToolByRoute = (route) => {
   return tools.filter(t => t.length > 0)[0][0];
 }
 
+const copyTextToClipboard = (text, callback) => {
+  navigator.clipboard.writeText(text)
+    .then(r => {
+      if (callback) callback(r);
+    })
+    .catch(e => {
+      console.error(e);
+      if (callback) callback(false);
+    });
+}
+
 module.exports = {
   wrapI18nPath2MetaRoute,
-  getToolByRoute
+  getToolByRoute,
+  copyTextToClipboard
 }

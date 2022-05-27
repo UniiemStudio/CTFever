@@ -7,7 +7,7 @@
       </PrimaryButton>
     </InteractiveBlock>
     <InteractiveBlock>
-      <ObjectViewer :object="info" :map="map"/>
+      <ObjectViewer :object="info" :map="map" tip="数据来自 ip.sb"/>
     </InteractiveBlock>
   </PrimaryContainer>
 </template>

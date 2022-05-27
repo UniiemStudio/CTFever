@@ -68,7 +68,6 @@ export default {
   },
   methods: {
     copy() {
-      console.log(`Copied to clipboard: ${this.value}`);
       navigator.clipboard.writeText(this.value);
       this.copiedText = 'copied!';
       setTimeout(() => {
