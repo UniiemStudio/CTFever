@@ -1,20 +1,49 @@
 <template>
   <div class="antialiased dark:bg-slate-900">
-    <TopBar/>
+    <TopBar ref="topbar" @switchDrawer="switchDrawer"/>
     <div class="container mx-auto p-4 pt-20 min-h-screen overscroll-none"
          :class="{'pt-28': isToolPage(), 'pt-20': !isToolPage()}">
       <Nuxt/>
+      <div
+        class="fixed md:mt-4 left-0 md:left-auto top-24 right-0 md:right-4 bottom-0 md:bottom-4 md:rounded-lg w-full md:w-64
+               bg-gray-50/75 backdrop-blur-md border border-gray-300/75
+               transition-transform ease-in-out p-2 space-y-2 overflow-y-auto overflow-x-hidden"
+        :class="{'translate-x-0': isDrawerOpen && isToolPage(), 'translate-x-[120%]': !isDrawerOpen || !isToolPage()}">
+        <div v-for="(toolkit, k) in $store.state.toolkits"
+             :key="k" class="space-y-2">
+          <h1 class="text-base font-bold font-['Nunito']">{{ $t(toolkit.title) || toolkit.title }}</h1>
+          <!-- TODO: 此处列表不显示标签 -->
+          <Tool class="border-gray-300"
+                :ref="tool.route === wrapI18nPath2MetaRoute(currentPath) ? 'activeMenuItem' : null"
+                :class="{'shadow-inner border-gray-500': tool.route === wrapI18nPath2MetaRoute(currentPath)}"
+                v-for="(tool, k) in toolkit.tools.filter(t => !t.disabled)" :key="k" :tool="tool"/>
+        </div>
+      </div>
     </div>
     <Footer/>
   </div>
 </template>
 
 <script>
+import Tool from "~/components/tool/Tool";
+import {wrapI18nPath2MetaRoute} from '~/libs/common';
+
 export default {
   name: "index",
+  components: {Tool},
   computed: {
     currentAppearance() {
       return this.$store.state.settings.settings.appearance;
+    },
+    currentPath() {
+      return this.$route.path
+    },
+  },
+  data() {
+    return {
+      toolPageJudgeReg: /^.*\/tools\/.*/,
+      isToolPage: () => this.toolPageJudgeReg.test(this.$route.path),
+      isDrawerOpen: false,
     }
   },
   async mounted() {
@@ -39,8 +68,14 @@ export default {
     }
   },
   watch: {
-    currentAppearance(newVal) {
-      this.setAppearance(newVal);
+    currentAppearance(val) {
+      this.setAppearance(val);
+    },
+    currentPath() {
+      if (this.isToolPage() === false && this.isDrawerOpen === true) {
+        this.switchDrawer(false);
+        this.$refs.topbar.isDrawerOpen = false;
+      }
     }
   },
   methods: {
@@ -60,12 +95,12 @@ export default {
           this.$el.ownerDocument.documentElement.classList.remove('dark');
           break;
       }
-    }
-  },
-  data() {
-    return {
-      toolPageJudgeReg: /^.*\/tools\/.*/,
-      isToolPage: () => this.toolPageJudgeReg.test(this.$route.path),
+    },
+    switchDrawer(e) {
+      this.isDrawerOpen = e;
+    },
+    wrapI18nPath2MetaRoute(path) {
+      return wrapI18nPath2MetaRoute(path);
     }
   },
 }
