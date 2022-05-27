@@ -105,10 +105,12 @@ export default {
       const newTime = dayjs(val, 'YYYY-MM-DD HH:mm:ss');
       if (newTime.isValid()) {
         this.date = newTime;
+        this.humanReadable = this.date.format("YYYY-MM-DD HH:mm:ss");
       }
     },
     refreshDayjs() {
       this.date = dayjs();
+      this.humanReadable = this.date.format("YYYY-MM-DD HH:mm:ss");
     }
   },
 }
