@@ -67,7 +67,7 @@
     >
       <div class="w-full h-full px-4 container flex justify-between items-center border-t border-t-gray-150
                   dark:border-t-slate-700 dark:text-slate-300">
-        <div>
+        <div class="space-x-2">
           <nuxt-link class="group" :to="localePath('/')">
             <ion-icon
               class="align-middle -mt-1 transition-transform group-hover:-translate-x-1"
@@ -75,10 +75,15 @@
             {{ $t('topbar.back') }}
           </nuxt-link>
         </div>
-        <div>
+        <div class="space-x-2 flex flex-row">
           <!--TODO: Rating-->
-          <button class="transition-transform active:scale-90" @click="markTool">
-            <ion-icon class="align-middle text-lg -mt-1" :name="isMarked ? 'bookmark' : 'bookmark-outline'"></ion-icon>
+          <button class="transition-transform active:scale-90 group" @click="markTool">
+            <ion-icon class="align-middle text-lg -mt-1 transition group-hover:text-amber-300"
+                      :name="isMarked ? 'bookmark' : 'bookmark-outline'"></ion-icon>
+          </button>
+          <button class="transition-transform active:scale-90 group" @click="isDrawerOpen = !isDrawerOpen">
+            <ion-icon class="align-middle text-lg -mt-1 transition group-hover:text-blue-300"
+                      name="menu-outline"></ion-icon>
           </button>
         </div>
       </div>
@@ -146,6 +151,7 @@ export default {
       currentToolName: '',
       pwaAvailable: false,
       deferredPrompt: null,
+      isDrawerOpen: false,
     }
   },
   mounted() {
@@ -199,6 +205,9 @@ export default {
     currentPath(val) {
       this.updateMarkStatus(val);
       this.updateTitle(val);
+    },
+    isDrawerOpen(val) {
+      this.$emit('switchDrawer', val);
     },
   },
 }
