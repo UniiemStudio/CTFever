@@ -6,7 +6,7 @@
       <Nuxt/>
       <div
         class="fixed md:mt-4 left-0 md:left-auto top-24 right-0 md:right-4 bottom-0 md:bottom-4 md:rounded-lg w-full md:w-64
-               bg-gray-50/75 backdrop-blur-md border border-gray-300/75
+               bg-gray-50/75 backdrop-blur-md border border-gray-300/75 scroll-smooth z-50
                transition-transform ease-in-out p-2 space-y-2 overflow-y-auto overflow-x-hidden"
         :class="{'translate-x-0': isDrawerOpen && isToolPage(), 'translate-x-[120%]': !isDrawerOpen || !isToolPage()}">
         <div v-for="(toolkit, k) in $store.state.toolkits"
@@ -18,6 +18,10 @@
                 :class="{'shadow-inner border-gray-600': tool.route === wrapI18nPath2MetaRoute(currentPath)}"
                 v-for="(tool, k) in toolkit.tools.filter(t => !t.disabled)" :key="k" :tool="tool"/>
         </div>
+        <!--        <button class="fixed right-4 bottom-4 transition-transform active:scale-90 group z-50" @click="">-->
+        <!--          <ion-icon class="align-middle text-lg -mt-1 transition group-hover:text-blue-300"-->
+        <!--                    name="menu-outline"></ion-icon>-->
+        <!--        </button>-->
       </div>
     </div>
     <Footer/>
@@ -38,6 +42,9 @@ export default {
     currentPath() {
       return this.$route.path
     },
+    isMobile() {
+      return this.$device.isMobile;
+    }
   },
   data() {
     return {
@@ -71,10 +78,15 @@ export default {
     currentAppearance(val) {
       this.setAppearance(val);
     },
-    currentPath() {
+    currentPath: function () {
       if (this.isToolPage() === false && this.isDrawerOpen === true) {
         this.switchDrawer(false);
         this.$refs.topbar.isDrawerOpen = false;
+      } else if (this.isMobile && this.isToolPage() && this.isDrawerOpen) {
+        setTimeout(() => {
+          this.switchDrawer(false);
+          this.$refs.topbar.isDrawerOpen = false;
+        }, 150);
       }
     }
   },
@@ -98,9 +110,19 @@ export default {
     },
     switchDrawer(e) {
       this.isDrawerOpen = e;
+      if (this.isDrawerOpen) this.scrollDrawerToActive(150);
     },
     wrapI18nPath2MetaRoute(path) {
       return wrapI18nPath2MetaRoute(path);
+    },
+    scrollDrawerToActive(delay) {
+      setTimeout(() => {
+        this.$nextTick(() => {
+          this.$refs.activeMenuItem[0].$el.scrollIntoView({
+            block: 'start',
+          });
+        });
+      }, delay ? delay : 0);
     }
   },
 }
