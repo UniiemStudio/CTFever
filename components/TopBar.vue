@@ -81,9 +81,12 @@
             <ion-icon class="align-middle text-lg -mt-1 transition group-hover:text-amber-300"
                       :name="isMarked ? 'bookmark' : 'bookmark-outline'"></ion-icon>
           </button>
-          <button class="transition-transform active:scale-90 group" @click="isDrawerOpen = !isDrawerOpen">
-            <ion-icon class="align-middle text-lg -mt-1 transition group-hover:text-blue-300"
-                      name="menu-outline"></ion-icon>
+          <button :class="{'bg-gray-100': isDrawerOpen}"
+                  class="transition-transform active:scale-90 rounded flex flex-row justify-center space-x-1 px-1 py-0.5"
+                  @click="isDrawerOpen = !isDrawerOpen">
+            <ion-icon class="align-middle text-lg transition"
+                      :name="isDrawerOpen ? 'arrow-forward-circle-outline' : 'menu-outline'"></ion-icon>
+            <span class="text-xs transition" :class="{'hidden': !isDrawerOpen}">收起列表</span>
           </button>
         </div>
       </div>
