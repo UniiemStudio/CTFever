@@ -1,7 +1,6 @@
 <template>
-  <div @click="!tool.disabled ? $router.push(localePath(tool.route)) : null"
-       :class="{'disabled': tool.disabled}"
-       class="rounded-lg border hover:border-blue-500 transition-all duration-500 p-4 cursor-pointer flex flex-col justify-between
+  <nuxt-link :to="!tool.disabled ? localePath(tool.route) : ''" :class="{'disabled pointer-events-none': tool.disabled}"
+             class="rounded-lg border hover:border-blue-500 transition-all duration-500 p-4 cursor-pointer flex flex-col justify-between
               dark:bg-slate-800 dark:text-white dark:border-slate-500 dark:hover:border-blue-500">
     <div>
       <h1 class="text-base dark:text-slate-300 font-['Nunito']">{{ $t(tool.title) || tool.title }}</h1>
@@ -18,7 +17,7 @@
         <span v-if="k < tool.tags.length - 1">, </span>
       </div>
     </div>
-  </div>
+  </nuxt-link>
 </template>
 
 <script>
