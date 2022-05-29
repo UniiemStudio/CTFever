@@ -4,7 +4,7 @@
               dark:bg-slate-800 dark:text-white dark:border-slate-500 dark:hover:border-blue-500">
     <div>
       <h1 class="text-base dark:text-slate-300 font-['Nunito']">{{ $t(tool.title) || tool.title }}</h1>
-      <p class="text-xs dark:text-slate-500">{{ $t(tool.description) || tool.description }}</p>
+      <p class="text-xs text-black/80 dark:text-slate-500">{{ $t(tool.description) || tool.description }}</p>
     </div>
     <div v-if="tool.tags && tool.tags.length > 0" class="mt-2 text-xs text-gray-400 dark:text-slate-500 w-fit"
          @click.stop>
