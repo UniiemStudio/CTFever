@@ -59,7 +59,8 @@ export default {
   buildModules: [
     '@nuxt/postcss8',
     '@nuxtjs/pwa',
-    '@nuxtjs/device'
+    '@nuxtjs/device',
+    '@nuxtjs/google-analytics'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -85,6 +86,10 @@ export default {
     ['@nuxtjs/robots', {}],
     '@nuxtjs/sitemap'
   ],
+
+  googleAnalytics: {
+    id: 'G-R9HBXYPLGE'
+  },
 
   loading: {
     continuous: true

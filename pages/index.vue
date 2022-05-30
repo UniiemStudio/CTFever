@@ -73,6 +73,8 @@
 import PrimaryIntroduction from "~/components/tool/PrimaryIntroduction";
 import PrimaryInput from "~/components/form/PrimaryInput";
 
+import {debounce} from 'lodash';
+
 import {getToolByRoute} from '~/libs/common';
 
 export default {
@@ -118,8 +120,14 @@ export default {
         );
         retArray.filter(t => t.length > 0).forEach(t => results.push(...t));
         this.searchResult = results;
+        this.searchAnalytics();
       }
     }
+  },
+  methods: {
+    searchAnalytics: debounce(function (keyword, count) {
+      console.log('debounce #1');
+    }, 1500)
   }
 }
 </script>
