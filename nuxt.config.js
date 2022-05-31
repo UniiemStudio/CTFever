@@ -88,7 +88,7 @@ export default {
   ],
 
   googleAnalytics: {
-    id: 'G-R9HBXYPLGE'
+    id: 'UA-197955373-1'
   },
 
   loading: {
