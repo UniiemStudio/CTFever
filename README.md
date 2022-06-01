@@ -55,7 +55,7 @@ CTFever 的目标是涵盖大部分 CTF 题型所需要的工具。
 | [JSFuck](https://ctfever.uniiem.com/tools/jsfuck)              |  ✅  | [BrainFuck](https://ctfever.uniiem.com/tools/brain-fuck)  |  ✅  | [IP 归属地](https://ctfever.uniiem.com/tools/ip-geo)            | ✅   |
 | [进制转换](https://ctfever.uniiem.com/tools/radix-conversion)      |  ✅  | [时间戳转换](https://ctfever.uniiem.com/tools/timestamp)       |  ✅  | [串口调试器](https://ctfever.uniiem.com/tools/serial)             | ✅   |
 | [CRC 计算](https://ctfever.uniiem.com/tools/crc-checksum)        |  ✅  | Base64 图片转换                                               |  ⏰  | 与佛伦禅                                                         | ⏰   |
-| [核心价值观密码](https://ctfever.uniiem.com/tools/core-values-cipher) |  ✅  | 端口分析                                                      |  ⏰  | Binwalk 分析                                                   | ⏰   |
+| [核心价值观密码](https://ctfever.uniiem.com/tools/core-values-cipher) |  ✅  | 端口分析                                                      | 🚧  | Binwalk 分析                                                   | ⏰   |
 
 ## Stargazers 趋势
 
