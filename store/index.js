@@ -145,6 +145,13 @@ export const state = () => ({
           route: '/tools/ip-geo',
           tags: [tagCategories.conversion],
         },
+        {
+          title: '端口扫描',
+          description: '端口扫描分析工具',
+          route: '/tools/port-scanner',
+          tags: [tagCategories.utility],
+          disabled: true
+        },
         // {
         //   title: 'HTTP(s) 请求头',
         //   description: '查看 HTTP(s) 请求头信息',
