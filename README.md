@@ -20,13 +20,9 @@
 
 ## 截图
 
-![首页](static/screenshots/Home_Light.png)
+![首页](static/screenshots/screenshot_home.png)
 
-![首页(暗色)](static/screenshots/Home_Dark.png)
-
-![猪圈密码工具](static/screenshots/Tool_Pigpen.png)
-
-![BrainFuck 工具](static/screenshots/Tool_BrainFuck.png)
+![时间戳转换工具](static/screenshots/screenshot_timestamp.png)
 
 ## 特色
 
@@ -41,6 +37,23 @@
 CTFever 的目标是涵盖大部分 CTF 题型所需要的工具。
 
 下一步我们将着手开发如 **pyc 在线反编译** 、**在线执行 binwalk** 、**端口分析工具** 等依赖服务器运行的特色功能，并逐步释出更新，尽情期待！
+
+## 工具清单 & ToDo List
+
+✅ **完成**
+🚧 **进行中**
+⏰ **未开始**
+
+| 工具      | 状态  | 工具          | 状态  | 工具         | 状态  |
+|---------|:---:|-------------|:---:|------------|-----|
+| ASCII   |  ✅  | URL 编码      |  ✅  | Base64     | ✅   |
+| ROT13   |  ✅  | 摩尔斯码        |  ✅  | UUID 生成校验  | ✅   |
+| 摘要哈希计算  |  ✅  | 凯撒密码        |  ✅  | 栅栏密码       | 🚧  |
+| 猪圈密码    |  ✅  | 维吉尼亚密码      |  ✅  | Pyc 反编译    | 🚧  |
+| JSFuck  |  ✅  | BrainFuck   |  ✅  | IP 归属地     | ✅   |
+| 进制转换    |  ✅  | 时间戳转换       |  ✅  | 串口调试器      | ✅   |
+| CRC 计算  |  ✅  | Base64 图片转换 |  ⏰  | 与佛伦禅       | ⏰   |
+| 核心价值观密码 |  ✅  | 端口分析        |  ⏰  | Binwalk 分析 | ⏰   |
 
 ## Stargazers 趋势
 
@@ -81,6 +94,6 @@ $ yarn generate
 
 [![](static/readme/afdian.jpg)](https://afdian.net/@hoshino_suzumi)
 
-
 ## License
+
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FUniiemStudio%2FCTFever.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FUniiemStudio%2FCTFever?ref=badge_large)
