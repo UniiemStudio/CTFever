@@ -46,16 +46,16 @@ CTFever 的目标是涵盖大部分 CTF 题型所需要的工具。
 🚧 **进行中**
 ⏰ **未开始**
 
-| 工具      | 状态  | 工具          | 状态  | 工具         | 状态  |
-|---------|:---:|-------------|:---:|------------|-----|
-| ASCII   |  ✅  | URL 编码      |  ✅  | Base64     | ✅   |
-| ROT13   |  ✅  | 摩尔斯码        |  ✅  | UUID 生成校验  | ✅   |
-| 摘要哈希计算  |  ✅  | 凯撒密码        |  ✅  | 栅栏密码       | ❎   |
-| 猪圈密码    |  ✅  | 维吉尼亚密码      |  ✅  | Pyc 反编译    | 🚧  |
-| JSFuck  |  ✅  | BrainFuck   |  ✅  | IP 归属地     | ✅   |
-| 进制转换    |  ✅  | 时间戳转换       |  ✅  | 串口调试器      | ✅   |
-| CRC 计算  |  ✅  | Base64 图片转换 |  ⏰  | 与佛伦禅       | ⏰   |
-| 核心价值观密码 |  ✅  | 端口分析        |  ⏰  | Binwalk 分析 | ⏰   |
+| 工具                                                             | 状态  | 工具                                                        | 状态  | 工具                                                           | 状态  |
+|----------------------------------------------------------------|:---:|-----------------------------------------------------------|:---:|--------------------------------------------------------------|-----|
+| [ASCII](https://ctfever.uniiem.com/tools/ascii)                |  ✅  | [URL 编码](https://ctfever.uniiem.com/tools/url-encoding)   |  ✅  | [Base64](https://ctfever.uniiem.com/tools/base-series)       | ✅   |
+| [ROT13](https://ctfever.uniiem.com/tools/rot-series)           |  ✅  | [摩尔斯码](https://ctfever.uniiem.com/tools/morse-code)       |  ✅  | [UUID 生成校验](https://ctfever.uniiem.com/tools/uuid-generator) | ✅   |
+| [摘要哈希计算](https://ctfever.uniiem.com/tools/message-digest)      |  ✅  | [凯撒密码](https://ctfever.uniiem.com/tools/caesar-cipher)    |  ✅  | [栅栏密码](https://ctfever.uniiem.com/tools/rail-fence-cipher)   | ❎   |
+| [猪圈密码](https://ctfever.uniiem.com/tools/pigpen)                |  ✅  | [维吉尼亚密码](https://ctfever.uniiem.com/tools/vigenereCipher) |  ✅  | Pyc 反编译                                                      | 🚧  |
+| [JSFuck](https://ctfever.uniiem.com/tools/jsfuck)              |  ✅  | [BrainFuck](https://ctfever.uniiem.com/tools/brain-fuck)  |  ✅  | [IP 归属地](https://ctfever.uniiem.com/tools/ip-geo)            | ✅   |
+| [进制转换](https://ctfever.uniiem.com/tools/radix-conversion)      |  ✅  | [时间戳转换](https://ctfever.uniiem.com/tools/timestamp)       |  ✅  | [串口调试器](https://ctfever.uniiem.com/tools/serial)             | ✅   |
+| [CRC 计算](https://ctfever.uniiem.com/tools/crc-checksum)        |  ✅  | Base64 图片转换                                               |  ⏰  | 与佛伦禅                                                         | ⏰   |
+| [核心价值观密码](https://ctfever.uniiem.com/tools/core-values-cipher) |  ✅  | 端口分析                                                      |  ⏰  | Binwalk 分析                                                   | ⏰   |
 
 ## Stargazers 趋势
 
