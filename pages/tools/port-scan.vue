@@ -50,7 +50,7 @@ export default {
       let formData = new FormData();
       formData.append('host', this.host);
       formData.append('port', this.port);
-      this.$axios.post(`http://47.94.109.77:9580/scan`, formData).then(res => {
+      this.$axios.post(`https://ctfever-service-gen1.i0x0i.ltd/scan`, formData).then(res => {
         this.result = res.data;
       });
     }
