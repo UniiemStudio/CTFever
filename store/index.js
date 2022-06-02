@@ -118,7 +118,6 @@ export const state = () => ({
           description: 'tool.pycDecompiler.desc',
           route: '/tools/pyc-decompiler',
           tags: [tagCategories.decompiler],
-          disabled: true
         },
         {
           title: 'tool.jsFuck.title',

@@ -1,6 +1,6 @@
 <template>
   <PrimaryContainer>
-    <div class="grid gap-x-4 grid-cols-1 md:grid-cols-2 grid-rows-1">
+    <GridWithDoubleColumns>
       <InteractiveBlock>
         <PrimaryInput id="timestamp" :label="$t('tool.timeStamp.timestamp').toString()" @input="changeTimestamp"
                       :value="isUnixTime ? date.unix() : date.valueOf()"/>
@@ -18,9 +18,9 @@
           {{ $t('tool.timeStamp.now').toString() }}
         </PrimaryButton>
       </InteractiveBlock>
-    </div>
+    </GridWithDoubleColumns>
     <hr class="mt-3 mb-4"/>
-    <div class="grid gap-x-4 grid-cols-1 md:grid-cols-2 grid-rows-1">
+    <GridWithDoubleColumns>
       <InteractiveBlock>
         <PrimaryInput id="utc" :label="$t('tool.timeStamp.utc').toString()" :value="date.utc().format()" disable
                       copyable/>
@@ -37,7 +37,7 @@
         <PrimaryInput id="week-of-year" :label="$t('tool.timeStamp.weekOfYear').toString()" :value="date.isoWeek()"
                       disable copyable/>
       </InteractiveBlock>
-    </div>
+    </GridWithDoubleColumns>
   </PrimaryContainer>
 </template>
 
@@ -50,6 +50,7 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/zh-cn';
 import PrimaryButton from "~/components/form/PrimaryButton";
 import PrimarySelector from "~/components/form/PrimarySelector";
+import GridWithDoubleColumns from "~/components/form/GridWithDoubleColumns";
 
 dayjs.extend(require('dayjs/plugin/utc'));
 dayjs.extend(require('dayjs/plugin/relativeTime'));
@@ -59,7 +60,7 @@ dayjs.extend(require('dayjs/plugin/customParseFormat'));
 
 export default {
   name: "timestamp",
-  components: {PrimarySelector, PrimaryButton, PrimaryInput, InteractiveBlock, PrimaryContainer},
+  components: {GridWithDoubleColumns, PrimarySelector, PrimaryButton, PrimaryInput, InteractiveBlock, PrimaryContainer},
   head() {
     return {
       title: this.$t("tool.timeStamp.title") + " - " + this.$t("app.name")

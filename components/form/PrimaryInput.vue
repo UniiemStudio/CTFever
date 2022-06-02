@@ -11,13 +11,13 @@
              dark:bg-slate-800 dark:text-slate-300 dark:border-slate-600"
         :class="{'disabled:text-gray-300 disabled:dark:text-slate-500 disabled:bg-gray-50': disable && !copyable}"
         :id="id" :type="type" :placeholder="placeholder" :value="value" :disabled="disable" :autocomplete="autocomplete"
-        @change="$emit('change', $event.target.value)"
+        @change="$emit('change', type==='file' ? $event : $event.target.value)"
         @input="$emit('input', $event.target.value)"/>
-      <button v-show="!copyable" @mousedown="clean"
+      <button v-show="!copyable && type !== 'file'" @mousedown="clean"
               class="absolute right-2 text-slate-500 opacity-0 pointer-events-none translate-x-4 transition clear-btn">
         <ion-icon class="text-xl" name="close-circle"></ion-icon>
       </button>
-      <button v-show="copyable && value !== ''"
+      <button v-show="copyable && value !== '' && type !== 'file'"
               @click="copy" :id="`copy_${id}`" :class="{'text-emerald-500': copiedText === 'copied!'}"
               class="absolute transition flex flex-row items-center space-x-1 copy-btn">
         <ion-icon class="text-sm" :name="copiedText === 'copied!' ? 'checkmark-outline' : 'copy-outline'"></ion-icon>

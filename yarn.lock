@@ -5670,6 +5670,11 @@ hi-base64@^0.2.1:
   resolved "https://registry.npmmirror.com/hi-base64/-/hi-base64-0.2.1.tgz"
   integrity sha512-qNNwcztb8B9krbWBtYVH8motgSCBLhbCXE6xOSjFFxeP5Z4gd9RLYs6bv1qd4Y17z3v7+h1fn8RQmAi60AMvQQ==
 
+highlight.js@^11.5.1:
+  version "11.5.1"
+  resolved "https://registry.npmmirror.com/highlight.js/-/highlight.js-11.5.1.tgz#027c24e4509e2f4dcd00b4a6dda542ce0a1f7aea"
+  integrity sha512-LKzHqnxr4CrD2YsNoIf/o5nJ09j4yi/GcH5BnYz9UnVpZdS4ucMgvP61TDty5xJcFGRjnH4DpujkS9bHT3hq0Q==
+
 hmac-drbg@^1.0.1:
   version "1.0.1"
   resolved "https://registry.npmjs.org/hmac-drbg/-/hmac-drbg-1.0.1.tgz"
