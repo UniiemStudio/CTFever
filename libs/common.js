@@ -7,9 +7,13 @@ const wrapI18nPath2MetaRoute = (pathWithI18n) => {
 }
 
 const getToolByRoute = (route) => {
+  const fallback = {};
   let tools = [];
   state.toolkits.forEach(toolkit => tools.push(toolkit.tools.filter(t => t.route === wrapI18nPath2MetaRoute(route))));
-  return tools.filter(t => t.length > 0)[0][0];
+  if (tools.filter(t => t.length > 0).length > 0) {
+    return tools.filter(t => t.length > 0)[0][0] || fallback;
+  }
+  return fallback;
 }
 
 const copyTextToClipboard = (text, callback) => {
