@@ -118,6 +118,7 @@ export const state = () => ({
           description: 'tool.pycDecompiler.desc',
           route: '/tools/pyc-decompiler',
           tags: [tagCategories.decompiler],
+          premium: true
         },
         {
           title: 'tool.jsFuck.title',
@@ -149,6 +150,7 @@ export const state = () => ({
           description: '端口扫描分析工具',
           route: '/tools/port-scan',
           tags: [tagCategories.utility],
+          premium: true
         },
         // {
         //   title: 'HTTP(s) 请求头',
