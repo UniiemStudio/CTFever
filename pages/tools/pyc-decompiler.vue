@@ -60,7 +60,7 @@ export default {
       this.result = '';
       let formData = new FormData();
       formData.append('file', this.pycFile);
-      this.$axios.post(`http://47.94.109.77:9580/pyc`, formData)
+      this.$axios.post(`https://ctfever-service-gen1.i0x0i.ltd/pyc`, formData)
         .then(res => {
           this.pycInfo = res.data.originFilename || this.pycFile.name || 'untitled file';
           this.pycInfo += res.data.version ? ` (${res.data.version})` : ' (unknown version)';
