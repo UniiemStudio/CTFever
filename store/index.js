@@ -147,9 +147,8 @@ export const state = () => ({
         {
           title: '端口扫描',
           description: '端口扫描分析工具',
-          route: '/tools/port-scanner',
+          route: '/tools/port-scan',
           tags: [tagCategories.utility],
-          disabled: true
         },
         // {
         //   title: 'HTTP(s) 请求头',
