@@ -13,14 +13,23 @@
           <h1 class="block text-gray-700 dark:text-slate-300 text-sm font-bold font-['Nunito'] mb-2">
             扫描结果
           </h1>
+          <div class="p-4 rounded-lg border">
+
+          </div>
           <div v-for="(ret, k) in result.result" :key="k"
                class="p-4 rounded-lg border flex justify-between items-center font-['Nunito']">
             <div class="flex flex-col items-start">
               <h1 class="text-2xl font-extrabold">{{ ret.port }}</h1>
               <span class="text-base opacity-40">{{ ret.service }}</span>
             </div>
-            <div>
-              {{ ret.state }}
+            <div class="relative">
+              <div class="absolute -top-1.5">
+                <div :class="{'bg-gray-300': ret.state !== 'open', 'bg-green-400': ret.state === 'open'}"
+                     class="absolute w-3 h-3 top-0 right-0 rounded-full"></div>
+                <div v-show="ret.state === 'open'"
+                     :class="{'bg-gray-300': ret.state !== 'open', 'bg-green-400': ret.state === 'open'}"
+                     class="absolute w-3 h-3 top-0 right-0 rounded-full animate-ping"></div>
+              </div>
             </div>
           </div>
         </InteractiveBlock>
@@ -36,10 +45,12 @@ import InteractiveBlock from "~/components/tool/InteractiveBlock";
 import PrimaryInput from "~/components/form/PrimaryInput";
 import PrimaryButton from "~/components/form/PrimaryButton";
 import PrimaryPreBlock from "~/components/form/PrimaryPreBlock";
+import Badge from "~/components/tool/Badge";
 
 export default {
   name: "port-scan",
   components: {
+    Badge,
     PrimaryPreBlock,
     PrimaryButton, PrimaryInput, InteractiveBlock, InteractiveDoubleColumns, PrimaryContainer
   },
