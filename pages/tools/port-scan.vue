@@ -9,10 +9,20 @@
         </InteractiveBlock>
       </template>
       <template v-slot:right>
-        <InteractiveBlock>
-          <PrimaryPreBlock label="扫描结果">
-            {{ result }}
-          </PrimaryPreBlock>
+        <InteractiveBlock v-if="result.result" class="space-y-2">
+          <h1 class="block text-gray-700 dark:text-slate-300 text-sm font-bold font-['Nunito'] mb-2">
+            扫描结果
+          </h1>
+          <div v-for="(ret, k) in result.result" :key="k"
+               class="p-4 rounded-lg border flex justify-between items-center font-['Nunito']">
+            <div class="flex flex-col items-start">
+              <h1 class="text-2xl font-extrabold">{{ ret.port }}</h1>
+              <span class="text-base opacity-40">{{ ret.service }}</span>
+            </div>
+            <div>
+              {{ ret.state }}
+            </div>
+          </div>
         </InteractiveBlock>
       </template>
     </InteractiveDoubleColumns>
@@ -42,17 +52,38 @@ export default {
     return {
       host: '',
       port: '',
-      result: ''
+      result: {
+        result: null
+      }
     };
   },
   methods: {
     scan() {
+      if (this.host === '' || this.port === '') return this.$message.error('请输入主机和端口');
       let formData = new FormData();
-      formData.append('host', this.host);
-      formData.append('port', this.port);
-      this.$axios.post(`https://ctfever-service-gen1.i0x0i.ltd/scan`, formData).then(res => {
-        this.result = res.data;
-      });
+      formData.append('hosts', this.host);
+      formData.append('ports', this.port);
+      this.$axios.post(`https://ctfever-service-gen1.i0x0i.ltd/port-scan`, formData)
+        .then(res => {
+          this.result = res.data;
+        })
+        .catch(err => {
+          if (err.response) {
+            switch (err.response.status) {
+              case 410:
+                this.$message.error(err.response.data.error);
+                break;
+              case 429:
+                this.$message.error('Rate limit exceeded.');
+                break;
+              default:
+                this.$message.error(err.response.data.detail || err.response.data.error || 'Unknown error');
+            }
+          } else {
+            this.$message.error(err.toJSON().message);
+          }
+        })
+        .finally(() => this.loading = false);
     }
   }
 }
