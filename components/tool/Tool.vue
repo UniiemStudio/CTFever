@@ -1,7 +1,7 @@
 <template>
   <nuxt-link :to="!tool.disabled ? localePath(tool.route) : ''" :class="{'disabled pointer-events-none': tool.disabled}"
              class="rounded-lg border hover:border-blue-500 transition-all duration-500 p-4 cursor-pointer flex flex-col justify-between
-              dark:bg-slate-800 dark:text-white dark:border-slate-500 dark:hover:border-blue-500">
+              dark:bg-slate-800 dark:text-white dark:border-slate-500 dark:hover:border-blue-500 relative">
     <div>
       <h1 class="text-base dark:text-slate-300 font-['Nunito']">{{ $t(tool.title) || tool.title }}</h1>
       <p class="text-xs text-black/80 dark:text-slate-500">{{ $t(tool.description) || tool.description }}</p>
@@ -17,12 +17,18 @@
         <span v-if="k < tool.tags.length - 1">, </span>
       </div>
     </div>
+    <!--    <div class="absolute w-2 h-2 rounded-full bg-blue-500 top-2 right-2"></div>-->
+    <!--    <div class="absolute w-2 h-2 rounded-full bg-blue-500 top-2 right-2 animate-ping"></div>-->
+    <Badge ping :premium="tool.premium"/>
   </nuxt-link>
 </template>
 
 <script>
+import Badge from "~/components/tool/Badge";
+
 export default {
   name: "Tool",
+  components: {Badge},
   props: {
     tool: {
       type: Object,

@@ -56,15 +56,24 @@ export default {
       this.pycFile = e.target.files[0];
     },
     decompile() {
+      if (this.pycFile === '') return this.$message.error('请选择文件');
       this.loading = true;
       this.result = '';
       let formData = new FormData();
-      formData.append('file', this.pycFile);
-      this.$axios.post(`http://47.94.109.77:9580/pyc`, formData)
+      formData.append('pyc_file', this.pycFile);
+      // const self = this;
+      this.$axios.post(`https://ctfever-service-gen1.i0x0i.ltd/pyc-dc`, formData)
         .then(res => {
-          this.pycInfo = res.data.originFilename || this.pycFile.name || 'untitled file';
-          this.pycInfo += res.data.version ? ` (${res.data.version})` : ' (unknown version)';
-          this.result = res.data.decompiled || res.data.message;
+          this.pycInfo = res.data.origin_filename || this.pycFile.name || 'untitled file';
+          this.pycInfo += res.data.py_version_string ? ` (${res.data.py_version_string})` : ' (unknown version)';
+          this.result = res.data.output || res.data.decompiled || res.data.message;
+        })
+        .catch(err => {
+          if (err.response) {
+            this.$message.error(err.response.data.detail);
+          } else {
+            this.$message.error(err.toJSON().message);
+          }
         })
         .finally(() => this.loading = false);
     },
