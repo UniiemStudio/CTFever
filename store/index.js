@@ -146,8 +146,8 @@ export const state = () => ({
           tags: [tagCategories.conversion],
         },
         {
-          title: '端口扫描',
-          description: '端口扫描分析工具',
+          title: 'tool.portScan.title',
+          description: 'tool.portScan.desc',
           route: '/tools/port-scan',
           tags: [tagCategories.utility],
           premium: true
