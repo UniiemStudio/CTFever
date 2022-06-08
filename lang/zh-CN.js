@@ -159,6 +159,10 @@ export default {
       title: 'IP 地址归属',
       desc: '查询 IP 地址归属地和 ISP 信息'
     },
+    portScan: {
+      title: '端口扫描',
+      desc: '扫描分析指定主机的端口开放情况'
+    },
     httpHeaders: {
       title: 'HTTP(s) 响应头',
       desc: '查看 HTTP(s) 请求响应头信息'
