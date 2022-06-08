@@ -13,7 +13,7 @@
         :rows="rows" :id="id" :placeholder="placeholder" :value="value" @input="$emit('input', $event.target.value)"
         :disabled="disable"
         :autocomplete="autocomplete"/>
-      <button v-show="copyable && value !== ''"
+      <button v-show="copyable && value !== ''" tabindex="-1"
               @click="copy" :id="`copy_${id}`" :class="{'text-emerald-500': copiedText === 'copied!'}"
               class="absolute transition flex flex-row items-center space-x-1 copy-btn">
         <ion-icon class="text-sm" :name="copiedText === 'copied!' ? 'checkmark-outline' : 'copy-outline'"></ion-icon>
