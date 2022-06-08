@@ -5,7 +5,7 @@
         <InteractiveBlock class="space-y-4">
           <PrimaryInput id="host" label="主机" v-model="host" placeholder="域名或者 IP 地址"/>
           <PrimaryInput id="ports" label="端口范围" v-model="port" placeholder="e.g. 22,25,80-88"/>
-          <PrimaryButton class="w-full" @click="scan">开始扫描</PrimaryButton>
+          <PrimaryButton class="w-full" @click="scan" :disable="loading">开始扫描</PrimaryButton>
         </InteractiveBlock>
       </template>
       <template v-slot:right>
@@ -65,12 +65,14 @@ export default {
       port: '',
       result: {
         result: null
-      }
+      },
+      loading: false,
     };
   },
   methods: {
     scan() {
       if (this.host === '' || this.port === '') return this.$message.error('请输入主机和端口');
+      this.loading = true;
       let formData = new FormData();
       formData.append('hosts', this.host);
       formData.append('ports', this.port);
