@@ -13,9 +13,20 @@
           <h1 class="block text-gray-700 dark:text-slate-300 text-sm font-bold font-['Nunito'] mb-2">
             扫描结果
           </h1>
-          <div class="p-4 rounded-lg border">
-
-          </div>
+          <ObjectViewer
+            no-sort
+            :map="{
+              'host': '主机',
+              'elapsed': '耗时',
+              'total': '扫描数',
+              'open': '打开的端口'
+            }"
+            :object="{
+              'host': result.result[0]['address'],
+              'elapsed': result.elapsed+'s',
+              'total': result.result.length,
+              'open': result.result.filter(i => i.state === 'open').length
+            }"/>
           <div v-for="(ret, k) in result.result" :key="k"
                class="p-4 rounded-lg border flex justify-between items-center font-['Nunito']">
             <div class="flex flex-col items-start">
@@ -46,10 +57,12 @@ import PrimaryInput from "~/components/form/PrimaryInput";
 import PrimaryButton from "~/components/form/PrimaryButton";
 import PrimaryPreBlock from "~/components/form/PrimaryPreBlock";
 import Badge from "~/components/tool/Badge";
+import ObjectViewer from "~/components/tool/ObjectViewer";
 
 export default {
   name: "port-scan",
   components: {
+    ObjectViewer,
     Badge,
     PrimaryPreBlock,
     PrimaryButton, PrimaryInput, InteractiveBlock, InteractiveDoubleColumns, PrimaryContainer
@@ -73,6 +86,9 @@ export default {
     scan() {
       if (this.host === '' || this.port === '') return this.$message.error('请输入主机和端口');
       this.loading = true;
+      this.result = {
+        result: null
+      }
       let formData = new FormData();
       formData.append('hosts', this.host);
       formData.append('ports', this.port);
