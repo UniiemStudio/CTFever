@@ -128,8 +128,8 @@ export const state = () => ({
           route: '/tools/bin-extractor',
           tags: [tagCategories.reverse],
           premium: true,
+          recommended: true,
           beta: true,
-          disabled: true,
         },
         {
           title: 'tool.jsFuck.title',
