@@ -6,7 +6,7 @@
           loading ? 'Extracting...' : 'Extract'
         }}
       </PrimaryButton>
-      <div class="rounded-t-lg overflow-hidden">
+      <div v-show="result" class="rounded-t-lg overflow-hidden">
         <table class="border-collapse table-auto w-full text-sm">
           <thead class="bg-gray-200 dark:bg-slate-700">
           <tr>
@@ -98,7 +98,11 @@ export default {
       // const self = this;
       this.$axios.post(`https://ctfever-service-gen1.i0x0i.ltd/binwalk`, formData)
         .then(res => {
-          this.result = res.data;
+          if (res.data.available) {
+            this.result = res.data;
+          } else {
+            this.$message.warn('没有扫描到任何 signature')
+          }
         })
         .catch(err => {
           if (err.response) {
