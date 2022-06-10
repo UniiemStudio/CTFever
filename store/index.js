@@ -23,7 +23,8 @@ export const tagCategories = Object.freeze({
   obfuscation: 'tags.obfuscation',
   compiler: 'tags.compiler',
   utility: 'tags.utility',
-  check: 'tags.check'
+  check: 'tags.check',
+  reverse: 'tags.reverse',
 });
 
 export const state = () => ({
@@ -119,6 +120,16 @@ export const state = () => ({
           route: '/tools/pyc-decompiler',
           tags: [tagCategories.decompiler],
           premium: true,
+          beta: true,
+        },
+        {
+          title: 'tool.binExtract.title',
+          description: 'tool.binExtract.desc',
+          route: '/tools/bin-extractor',
+          tags: [tagCategories.reverse],
+          premium: true,
+          beta: true,
+          disabled: true,
         },
         {
           title: 'tool.jsFuck.title',
@@ -130,7 +141,8 @@ export const state = () => ({
           title: 'tool.brainFuck.title',
           description: 'tool.brainFuck.desc',
           route: '/tools/brain-fuck',
-          tags: [tagCategories.compiler]
+          tags: [tagCategories.compiler],
+          recommended: true,
         }
       ]
     },
@@ -144,6 +156,7 @@ export const state = () => ({
           description: 'tool.ipAttribution.desc',
           route: '/tools/ip-geo',
           tags: [tagCategories.conversion],
+          recommended: true,
         },
         {
           title: 'tool.portScan.title',
@@ -176,6 +189,7 @@ export const state = () => ({
           description: 'tool.timeStamp.desc',
           route: '/tools/timestamp',
           tags: [tagCategories.conversion],
+          recommended: true,
         },
       ]
     },

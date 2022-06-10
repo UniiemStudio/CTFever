@@ -65,7 +65,29 @@
         <Tool v-for="(tool, k) in toolkit.tools" :key="k" :tool="tool"/>
       </div>
     </div>
-    <!--  Tool Lists  -->
+    <!--  /Tool Lists  -->
+
+    <!-- 图例 -->
+    <div class="px-2 py-4 text-xs flex flex-row space-x-6 justify-around md:justify-start">
+      <div class="flex flex-row items-center space-x-2">
+        <BadgeDot class="-mt-1.5" warn/>
+        <span>高级</span>
+      </div>
+      <div class="flex flex-row items-center space-x-2">
+        <BadgeDot class="-mt-1.5" info/>
+        <span>上新</span>
+      </div>
+      <div class="flex flex-row items-center space-x-2">
+        <BadgeDot class="-mt-1.5" ping success/>
+        <span>精选</span>
+      </div>
+      <div class="flex flex-row items-center space-x-2">
+        <span
+          class="text-xs border border-gray-400 text-gray-400 font-bold shadow-inner rounded px-0.5 py-0 font-['Nunito']">BETA</span>
+        <span>测试</span>
+      </div>
+    </div>
+    <!-- /图例 -->
   </div>
 </template>
 
@@ -76,10 +98,11 @@ import PrimaryInput from "~/components/form/PrimaryInput";
 import {debounce} from 'lodash';
 
 import {getToolByRoute} from '~/libs/common';
+import BadgeDot from "~/components/tool/BadgeDot";
 
 export default {
   name: 'IndexPage',
-  components: {PrimaryInput, PrimaryIntroduction},
+  components: {BadgeDot, PrimaryInput, PrimaryIntroduction},
   computed: {
     favoriteTools() {
       let tools = [];

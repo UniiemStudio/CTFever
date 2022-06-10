@@ -187,7 +187,11 @@ export default {
     // Program Related
     pycDecompiler: {
       title: 'Pyc Decompiler',
-      desc: 'Decompile pyc file'
+      desc: 'Decompile pyc file',
+    },
+    binExtract: {
+      title: 'Bin Extractor',
+      desc: 'Extract from bin file (binwalk)',
     },
     jsFuck: {
       title: 'JSFuck',
@@ -246,6 +250,7 @@ export default {
     obfuscation: 'Obfuscation',
     compiler: 'Compiler',
     utility: 'Utility',
-    check: 'Check'
+    check: 'Check',
+    reverse: 'Re'
   }
 }

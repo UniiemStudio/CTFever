@@ -3,7 +3,11 @@
              class="rounded-lg border hover:border-blue-500 transition-all duration-500 p-4 cursor-pointer flex flex-col justify-between
               dark:bg-slate-800 dark:text-white dark:border-slate-500 dark:hover:border-blue-500 relative">
     <div>
-      <h1 class="text-base dark:text-slate-300 font-['Nunito']">{{ $t(tool.title) || tool.title }}</h1>
+      <h1 class="text-base dark:text-slate-300 font-['Nunito'] flex flex-row items-center space-x-1">
+        <span>{{ $t(tool.title) || tool.title }}</span>
+        <span v-show="tool.beta"
+              class="text-xs border border-gray-400 text-gray-400 font-bold shadow-inner rounded px-0.5 py-0">BETA</span>
+      </h1>
       <p class="text-xs text-black/80 dark:text-slate-500">{{ $t(tool.description) || tool.description }}</p>
     </div>
     <div v-if="tool.tags && tool.tags.length > 0" class="mt-2 text-xs text-gray-400 dark:text-slate-500 w-fit"
@@ -17,18 +21,20 @@
         <span v-if="k < tool.tags.length - 1">, </span>
       </div>
     </div>
-    <!--    <div class="absolute w-2 h-2 rounded-full bg-blue-500 top-2 right-2"></div>-->
-    <!--    <div class="absolute w-2 h-2 rounded-full bg-blue-500 top-2 right-2 animate-ping"></div>-->
-    <Badge ping :premium="tool.premium"/>
+    <div class="absolute top-2 right-2 flex flex-row space-x-4">
+      <BadgeDot :info="tool.newest"/>
+      <BadgeDot ping :success="tool.recommended"/>
+      <BadgeDot :warn="tool.premium"/>
+    </div>
   </nuxt-link>
 </template>
 
 <script>
-import Badge from "~/components/tool/Badge";
+import BadgeDot from "~/components/tool/BadgeDot";
 
 export default {
   name: "Tool",
-  components: {Badge},
+  components: {BadgeDot},
   props: {
     tool: {
       type: Object,

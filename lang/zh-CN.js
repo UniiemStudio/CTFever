@@ -189,6 +189,10 @@ export default {
       title: 'Pyc 反编译',
       desc: '在线反编译 pyc 并审阅代码'
     },
+    binExtract: {
+      title: 'Bin 文件提取',
+      desc: '提取二进制文件中的隐藏文件 (binwalk)'
+    },
     jsFuck: {
       title: 'JSFuck',
       desc: '源于 BrainFuck，用于混淆 JavaScript 代码'
@@ -237,15 +241,16 @@ export default {
     }
   },
   tags: {
-    encodingAndDecoding: '字符编码',
-    generator: '产生器',
+    encodingAndDecoding: '编码',
+    encryptionAndDecryption: '加密',
+    generator: '生成器',
     hash: '哈希散列',
-    encryptionAndDecryption: '加密算法',
-    conversion: '数据处理',
+    conversion: '处理转换',
     decompiler: '反编译',
     obfuscation: '混淆',
     compiler: '编译器',
     utility: '调试工具',
-    check: '校验'
+    check: '校验',
+    reverse: '逆向'
   }
 }

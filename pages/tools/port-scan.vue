@@ -56,14 +56,12 @@ import InteractiveBlock from "~/components/tool/InteractiveBlock";
 import PrimaryInput from "~/components/form/PrimaryInput";
 import PrimaryButton from "~/components/form/PrimaryButton";
 import PrimaryPreBlock from "~/components/form/PrimaryPreBlock";
-import Badge from "~/components/tool/Badge";
 import ObjectViewer from "~/components/tool/ObjectViewer";
 
 export default {
   name: "port-scan",
   components: {
     ObjectViewer,
-    Badge,
     PrimaryPreBlock,
     PrimaryButton, PrimaryInput, InteractiveBlock, InteractiveDoubleColumns, PrimaryContainer
   },
