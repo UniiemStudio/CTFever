@@ -27,6 +27,9 @@ export const mutations = {
       state.markedTool = state.markedTool.filter(f => f.route !== payload.route);
     }
   },
+  setMarkedTools(state, payload) {
+    state.markedTool = payload;
+  },
   setAppearance(state, appearance) {
     if (appearance === 'auto' || appearance === 'light' || appearance === 'dark') {
       state.settings.appearance = appearance;

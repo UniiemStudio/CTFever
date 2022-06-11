@@ -44,9 +44,17 @@
       </h1>
       <p class="text-sm font-thin font-['Nunito'] dark:text-slate-500">{{ $t('page.home.favoriteKit.desc') }}</p>
     </div>
-    <div v-if="!searchText" class="my-2 grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-      <Tool v-for="(tool, k) in favoriteTools" :key="k" :tool="tool"/>
-    </div>
+    <TransitionGroup tag="div" name="fav-drag" v-if="!searchText"
+                     class="my-2 grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      <div v-for="(tool, k) in favoriteTools" :key="k" class="inline-block"
+           @dragenter="dragenter($event, k)"
+           @dragover="dragover($event, k)"
+           @dragstart="dragstart($event, k)"
+           @dragend="dragend($event, k)"
+           draggable="true">
+        <Tool :tool="tool" :draggable="false"/>
+      </div>
+    </TransitionGroup>
     <!--  /Favorites  -->
 
     <!--  Tool Lists  -->
@@ -94,22 +102,28 @@
 <script>
 import PrimaryIntroduction from "~/components/tool/PrimaryIntroduction";
 import PrimaryInput from "~/components/form/PrimaryInput";
+import BadgeDot from "~/components/tool/BadgeDot";
+import Tool from "~/components/tool/Tool";
 
 import {debounce} from 'lodash';
 
 import {getToolByRoute} from '~/libs/common';
-import BadgeDot from "~/components/tool/BadgeDot";
 
 export default {
   name: 'IndexPage',
-  components: {BadgeDot, PrimaryInput, PrimaryIntroduction},
+  components: {Tool, BadgeDot, PrimaryInput, PrimaryIntroduction},
   computed: {
-    favoriteTools() {
-      let tools = [];
-      this.$store.state.settings.markedTool.forEach(favoriteTool => {
-        tools.push(getToolByRoute(favoriteTool.route));
-      })
-      return tools;
+    favoriteTools: {
+      get() {
+        let tools = [];
+        this.$store.state.settings.markedTool.forEach(favoriteTool => {
+          tools.push(getToolByRoute(favoriteTool.route));
+        })
+        return tools;
+      },
+      set(v) {
+        this.$store.commit('settings/setMarkedTools', v);
+      }
     },
   },
   data() {
@@ -126,6 +140,7 @@ export default {
       ],
       searchText: '',
       searchResult: [],
+      dragIndex: null,
     }
   },
   watch: {
@@ -150,7 +165,28 @@ export default {
   methods: {
     searchAnalytics: debounce(function (keyword, count) {
       console.log('debounce #1');
-    }, 1500)
+    }, 1500),
+    dragstart(e, i) {
+      this.dragIndex = i;
+      e.target.firstChild.classList.add('anti-hover');
+    },
+    dragenter(e, i) {
+      e.preventDefault();
+      if (this.dragIndex !== i) {
+        let origin = this.favoriteTools;
+        const source = origin[this.dragIndex];
+        origin.splice(this.dragIndex, 1);
+        origin.splice(i, 0, source);
+        this.$nextTick(() => this.favoriteTools = origin);
+        this.dragIndex = i;
+      }
+    },
+    dragover(e, i) {
+      e.preventDefault();
+    },
+    dragend(e, i) {
+      e.target.firstChild.classList.remove('anti-hover');
+    }
   }
 }
 </script>
@@ -166,5 +202,9 @@ export default {
 
 .search-tip.show {
   @apply h-auto opacity-100 scale-y-100 opacity-100 mb-2;
+}
+
+.fav-drag-move {
+  transition: transform 0.3s ease-in-out;
 }
 </style>
