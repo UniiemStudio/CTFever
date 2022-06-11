@@ -3,7 +3,7 @@ ADD . /build_dir
 RUN cd /build_dir \
   && yarn install \
   && yarn run build \
-  && nuxt generate \
+  && yarn run generate \
   && mv dist /dist
 
 FROM nginx:stable-alpine as production-stage
