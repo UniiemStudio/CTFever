@@ -163,7 +163,8 @@ export const state = () => ({
           description: 'tool.portScan.desc',
           route: '/tools/port-scan',
           tags: [tagCategories.utility],
-          premium: true
+          premium: true,
+          beta: true,
         },
         // {
         //   title: 'HTTP(s) 请求头',
