@@ -78,6 +78,9 @@ $ yarn start
 
 # generate static project
 $ yarn generate
+
+# or build docker image
+$ docker build -t ctfever .
 ```
 
 ### [贡献指南](https://github.com/UniiemStudio/CTFever/blob/main/CONTRIBUTING.md)
