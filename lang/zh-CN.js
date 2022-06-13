@@ -29,6 +29,12 @@ export default {
       dec: '十进制',
       hex: '十六进制'
     },
+    badge: {
+      premium: '高级',
+      newest: '上新',
+      recommended: '精选',
+      beta: '测试'
+    },
     btn_encode: '编码',
     btn_decode: '解码',
     btn_encrypt: '加密',

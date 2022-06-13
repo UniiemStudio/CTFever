@@ -79,20 +79,20 @@
     <div class="px-2 py-4 text-xs flex flex-row space-x-6 justify-around md:justify-start">
       <div class="flex flex-row items-center space-x-2">
         <BadgeDot class="-mt-1.5" warn/>
-        <span class="dark:text-slate-500">高级</span>
+        <span class="dark:text-slate-500">{{ $t('common.badge.premium') }}</span>
       </div>
       <div class="flex flex-row items-center space-x-2">
         <BadgeDot class="-mt-1.5" info/>
-        <span class="dark:text-slate-500">上新</span>
+        <span class="dark:text-slate-500">{{ $t('common.badge.newest') }}</span>
       </div>
       <div class="flex flex-row items-center space-x-2">
         <BadgeDot class="-mt-1.5" ping success/>
-        <span class="dark:text-slate-500">精选</span>
+        <span class="dark:text-slate-500">{{ $t('common.badge.recommended') }}</span>
       </div>
       <div class="flex flex-row items-center space-x-2">
         <span
           class="badge-beta">BETA</span>
-        <span class="dark:text-slate-500">测试</span>
+        <span class="dark:text-slate-500">{{ $t('common.badge.beta') }}</span>
       </div>
     </div>
     <!-- /图例 -->
