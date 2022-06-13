@@ -33,7 +33,7 @@ export default {
       premium: '高级',
       newest: '上新',
       recommended: '精选',
-      beta: '测试'
+      beta: '实验性'
     },
     btn_encode: '编码',
     btn_decode: '解码',

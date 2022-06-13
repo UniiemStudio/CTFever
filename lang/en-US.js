@@ -33,7 +33,7 @@ export default {
       premium: 'Premium',
       newest: 'Newest',
       recommended: 'Recommended',
-      beta: 'Beta'
+      beta: 'Experimental'
     },
     btn_encode: 'Encode',
     btn_decode: 'Decode',
