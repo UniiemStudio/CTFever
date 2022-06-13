@@ -81,7 +81,7 @@
             <ion-icon class="align-middle text-lg -mt-1 transition group-hover:text-amber-300"
                       :name="isMarked ? 'bookmark' : 'bookmark-outline'"></ion-icon>
           </button>
-          <button :class="{'bg-gray-100': isDrawerOpen}"
+          <button :class="{'bg-gray-100 dark:bg-slate-700': isDrawerOpen}"
                   class="transition-transform active:scale-90 rounded flex flex-row justify-center space-x-1 px-1 py-0.5"
                   @click="isDrawerOpen = !isDrawerOpen">
             <ion-icon class="align-middle text-lg transition"

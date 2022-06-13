@@ -7,21 +7,26 @@
       <div
         class="fixed md:mt-4 left-0 md:left-auto top-24 right-0 md:right-4 bottom-0 md:bottom-4 md:rounded-lg w-full md:w-64
                bg-gray-50/75 backdrop-blur-md border border-gray-300/75 scroll-smooth z-50
-               transition-transform ease-in-out p-2 space-y-2 overflow-y-auto overflow-x-hidden"
+               transition-transform ease-in-out p-2 space-y-2 overflow-y-auto overflow-x-hidden
+               dark:bg-slate-800/75 dark:border-slate-600/75"
         :class="{'translate-x-0': isDrawerOpen && isToolPage(), 'translate-x-[120%]': !isDrawerOpen || !isToolPage()}">
         <div v-for="(toolkit, k) in $store.state.toolkits"
              :key="k" class="space-y-2">
-          <h1 class="text-base font-bold font-['Nunito']">{{ $t(toolkit.title) || toolkit.title }}</h1>
+          <div class="flex flex-row items-center justify-between">
+            <div class="flex items-center space-x-1">
+              <ion-icon class="text-base dark:text-slate-300" :name="toolkit.icon || 'albums-outline'"></ion-icon>
+              <h1 class="text-base font-bold font-['Nunito'] dark:text-slate-300">{{
+                  $t(toolkit.title) || toolkit.title
+                }}</h1>
+            </div>
+            <hr class="px-12 dark:border-slate-700"/>
+          </div>
           <!-- TODO: 此处列表不显示标签 -->
           <Tool class="border-gray-300"
                 :ref="tool.route === wrapI18nPath2MetaRoute(currentPath) ? 'activeMenuItem' : null"
                 :class="{'shadow-inner border-gray-600': tool.route === wrapI18nPath2MetaRoute(currentPath)}"
                 v-for="(tool, k) in toolkit.tools.filter(t => !t.disabled)" :key="k" :tool="tool"/>
         </div>
-        <!--        <button class="fixed right-4 bottom-4 transition-transform active:scale-90 group z-50" @click="">-->
-        <!--          <ion-icon class="align-middle text-lg -mt-1 transition group-hover:text-blue-300"-->
-        <!--                    name="menu-outline"></ion-icon>-->
-        <!--        </button>-->
       </div>
     </div>
     <Footer/>
