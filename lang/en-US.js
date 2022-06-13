@@ -29,6 +29,12 @@ export default {
       dec: 'Decimal',
       hex: 'Hexadecimal',
     },
+    badge: {
+      premium: 'Premium',
+      newest: 'Newest',
+      recommended: 'Recommended',
+      beta: 'Experimental'
+    },
     btn_encode: 'Encode',
     btn_decode: 'Decode',
     text_encoded: 'Encoded',

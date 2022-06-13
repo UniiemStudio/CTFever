@@ -79,20 +79,20 @@
     <div class="px-2 py-4 text-xs flex flex-row space-x-6 justify-around md:justify-start">
       <div class="flex flex-row items-center space-x-2">
         <BadgeDot class="-mt-1.5" warn/>
-        <span>高级</span>
+        <span class="dark:text-slate-500 font-['Nunito']">{{ $t('common.badge.premium') }}</span>
       </div>
       <div class="flex flex-row items-center space-x-2">
         <BadgeDot class="-mt-1.5" info/>
-        <span>上新</span>
+        <span class="dark:text-slate-500 font-['Nunito']">{{ $t('common.badge.newest') }}</span>
       </div>
       <div class="flex flex-row items-center space-x-2">
         <BadgeDot class="-mt-1.5" ping success/>
-        <span>精选</span>
+        <span class="dark:text-slate-500 font-['Nunito']">{{ $t('common.badge.recommended') }}</span>
       </div>
       <div class="flex flex-row items-center space-x-2">
         <span
-          class="text-xs border border-gray-400 text-gray-400 font-bold shadow-inner rounded px-0.5 py-0 font-['Nunito']">BETA</span>
-        <span>测试</span>
+          class="badge-beta">BETA</span>
+        <span class="dark:text-slate-500 font-['Nunito']">{{ $t('common.badge.beta') }}</span>
       </div>
     </div>
     <!-- /图例 -->
@@ -202,6 +202,10 @@ export default {
 
 .search-tip.show {
   @apply h-auto opacity-100 scale-y-100 opacity-100 mb-2;
+}
+
+.badge-beta {
+  @apply text-xs border border-gray-400 text-gray-400 dark:border-slate-400 dark:text-slate-400 font-bold shadow-inner rounded px-0.5 py-0 font-['Nunito'];
 }
 
 .fav-drag-move {
