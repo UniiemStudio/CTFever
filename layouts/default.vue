@@ -8,18 +8,18 @@
         class="fixed md:mt-4 left-0 md:left-auto top-24 right-0 md:right-4 bottom-0 md:bottom-4 md:rounded-lg w-full md:w-64
                bg-gray-50/75 backdrop-blur-md border border-gray-300/75 scroll-smooth z-50
                transition-transform ease-in-out p-2 space-y-2 overflow-y-auto overflow-x-hidden
-               dark:bg-slate-800/75 dark:border-slate-600/75"
+               dark:bg-slate-800/75 dark:border-slate-600/75 duration-600"
         :class="{'translate-x-0': isDrawerOpen && isToolPage(), 'translate-x-[120%]': !isDrawerOpen || !isToolPage()}">
         <div v-for="(toolkit, k) in $store.state.toolkits"
              :key="k" class="space-y-2">
           <div class="flex flex-row items-center justify-between">
-            <div class="flex items-center space-x-1">
+            <div class="flex items-center space-x-1 w-max">
               <ion-icon class="text-base dark:text-slate-300" :name="toolkit.icon || 'albums-outline'"></ion-icon>
-              <h1 class="text-base font-bold font-['Nunito'] dark:text-slate-300">{{
+              <h1 class="text-base font-bold font-['Nunito'] dark:text-slate-300 w-fit">{{
                   $t(toolkit.title) || toolkit.title
                 }}</h1>
             </div>
-            <hr class="px-12 dark:border-slate-700"/>
+            <hr class="pl-2 px-8 dark:border-slate-700"/>
           </div>
           <!-- TODO: 此处列表不显示标签 -->
           <Tool class="border-gray-300"
@@ -115,7 +115,7 @@ export default {
     },
     switchDrawer(e) {
       this.isDrawerOpen = e;
-      if (this.isDrawerOpen) this.scrollDrawerToActive(150);
+      if (this.isDrawerOpen) this.scrollDrawerToActive(300);
     },
     wrapI18nPath2MetaRoute(path) {
       return wrapI18nPath2MetaRoute(path);
