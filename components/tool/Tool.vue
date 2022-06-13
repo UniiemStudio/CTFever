@@ -6,8 +6,7 @@
     <div>
       <h1 class="text-base dark:text-slate-300 font-['Nunito'] flex flex-row items-center space-x-1">
         <span>{{ $t(tool.title) || tool.title }}</span>
-        <span v-if="tool.beta"
-              class="text-xs border border-gray-400 text-gray-400 font-bold shadow-inner rounded px-0.5 py-0">BETA</span>
+        <span v-if="tool.beta" class="badge-beta">BETA</span>
       </h1>
       <p class="text-xs text-black/80 dark:text-slate-500 md:truncate"
          :title="$t(tool.description) || tool.description">{{ $t(tool.description) || tool.description }}</p>
