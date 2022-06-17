@@ -64,6 +64,13 @@ export const state = () => ({
           route: '/tools/morse-code',
           tags: [tagCategories.encodingAndDecoding]
         },
+        {
+          title: 'tool.utf8Conversion.title',
+          description: 'tool.utf8Conversion.desc',
+          route: '/tools/utf8-conversion',
+          tags: [tagCategories.encodingAndDecoding, tagCategories.conversion],
+          newest: true
+        }
       ]
     },
     {
