@@ -134,6 +134,10 @@ export default {
       title: 'Morse Code',
       desc: 'Convert words to Morse Code'
     },
+    utf8Conversion: {
+      title: 'UTF8 Conversion',
+      desc: 'Conversion of Chinese and special characters'
+    },
     // Cryptography
     uuid: {
       title: 'UUID',

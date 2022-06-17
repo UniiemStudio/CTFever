@@ -134,6 +134,10 @@ export default {
       title: '摩尔斯码',
       desc: '将字母和数字转换为摩尔斯码'
     },
+    utf8Conversion: {
+      title: 'UTF8 转换',
+      desc: '中文和特殊符号转换 UTF-8 编码'
+    },
     // Cryptography
     uuid: {
       title: 'UUID',
