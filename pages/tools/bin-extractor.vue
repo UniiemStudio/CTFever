@@ -106,7 +106,13 @@ export default {
         })
         .catch(err => {
           if (err.response) {
-            this.$message.error(err.response.data.detail);
+            switch (err.response.status) {
+              case 429:
+                this.$message.error('Rate limit exceeded.');
+                break;
+              default:
+                this.$message.error(err.response.data.detail || err.response.data.error || 'Unknown error');
+            }
           } else {
             this.$message.error(err.toJSON().message);
           }
