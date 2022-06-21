@@ -36,6 +36,7 @@
 | [进制转换](https://ctfever.uniiem.com/tools/radix-conversion)      |  ✅  | [时间戳转换](https://ctfever.uniiem.com/tools/timestamp)       |  ✅  | [串口调试器](https://ctfever.uniiem.com/tools/serial)             | ✅   |
 | [CRC 计算](https://ctfever.uniiem.com/tools/crc-checksum)        |  ✅  | Base64 图片转换                                               |  ⏰  | 与佛伦禅                                                         | ⏰   |
 | [核心价值观密码](https://ctfever.uniiem.com/tools/core-values-cipher) |  ✅  | [端口分析](https://ctfever.uniiem.com/tools/port-scan)        | 🧪  | [Binwalk 分析](https://ctfever.uniiem.com/tools/bin-extractor) | 🧪  |
+| [UTF-8 转换](https://ctfever.uniiem.com/tools/utf8-conversion)   |  ✅  |                                                           |     |                                                              |     |
 
 ## 截图
 
