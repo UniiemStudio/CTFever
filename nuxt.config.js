@@ -195,8 +195,7 @@ export default {
       fallbackLocale: 'en',
       messages: {
         en: require('./lang/en-US.js'),
-        zh: require('./lang/zh-CN.js'),
-        ja: require('./lang/ja-JP')
+        zh: require('./lang/zh-CN.js')
       }
     },
     vueI18nLoader: true
