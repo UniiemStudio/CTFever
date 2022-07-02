@@ -37,6 +37,8 @@
 import Tool from "~/components/tool/Tool";
 import {wrapI18nPath2MetaRoute} from '~/libs/common';
 
+import Mousetrap from 'Mousetrap';
+
 export default {
   name: "index",
   components: {Tool},
@@ -78,6 +80,13 @@ export default {
     } else {
       console.log('Workbox not found');
     }
+
+    Mousetrap.bind('shift shift', function () {
+      console.log('double-shift');
+    });
+    Mousetrap.bind('up up down down left right left right b a enter', function () {
+      console.log('todo 😂');
+    });
   },
   watch: {
     currentAppearance(val) {
