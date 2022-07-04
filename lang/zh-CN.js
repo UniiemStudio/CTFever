@@ -248,7 +248,15 @@ export default {
     coreValues: {
       title: '核心价值观密码',
       desc: '富强民主文明和谐自由平等公正法制爱国敬业诚信友善！'
-    }
+    },
+    blindWatermark: {
+      title: '盲水印提取',
+      desc: '一种肉眼不可见的水印方式'
+    },
+    dictionaryGenerator: {
+      title: '密码字典生成器',
+      desc: '生成指定格式的穷举字典'
+    },
   },
   tags: {
     encodingAndDecoding: '编码',
@@ -261,6 +269,7 @@ export default {
     compiler: '编译器',
     utility: '调试工具',
     check: '校验',
-    reverse: '逆向'
+    reverse: '逆向',
+    steganography: '隐写',
   }
 }

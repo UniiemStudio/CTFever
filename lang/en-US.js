@@ -248,7 +248,15 @@ export default {
     coreValues: {
       title: 'Core Values Cipher',
       desc: 'Prosperity, democracy, civilization, harmony!'
-    }
+    },
+    blindWatermark: {
+      title: 'Blind Watermark Extractor',
+      desc: 'A watermark method invisible to the naked eye'
+    },
+    dictionaryGenerator: {
+      title: 'Dictionary Generator',
+      desc: 'Generate an exhaustive dictionary in the specified format'
+    },
   },
   tags: {
     encodingAndDecoding: 'Encoding And Decoding',
@@ -261,6 +269,7 @@ export default {
     compiler: 'Compiler',
     utility: 'Utility',
     check: 'Check',
-    reverse: 'Re'
+    reverse: 'Re',
+    steganography: 'Steganography',
   }
 }
