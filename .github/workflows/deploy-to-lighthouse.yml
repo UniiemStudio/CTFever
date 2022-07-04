@@ -11,7 +11,7 @@ on:
       - master
 
 jobs:
-  ci:
+  Deploy:
     runs-on: ${{ matrix.os }}
 
     strategy:
@@ -50,7 +50,7 @@ jobs:
 
       - name: Build 🛠️
         run: |
-          yarn build
+          yarn generate
           ls -la
 
       - name: FTP Deploy
