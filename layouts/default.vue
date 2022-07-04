@@ -37,7 +37,7 @@
 import Tool from "~/components/tool/Tool";
 import {wrapI18nPath2MetaRoute} from '~/libs/common';
 
-import Mousetrap from 'Mousetrap';
+import Mousetrap from 'mousetrap';
 
 export default {
   name: "index",
