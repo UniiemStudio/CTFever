@@ -60,7 +60,7 @@ jobs:
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASSWORD }}
           port: ${{ secrets.FTP_PORT }}
-          local-dir: ./dist/
+          local-dir: dist/
 #          # protocol to deploy with - ftp, ftps, or ftps-legacy
 #          protocol: # optional
 #          # Path to upload to on the server. Must end with trailing slash /
