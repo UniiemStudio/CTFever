@@ -49,7 +49,9 @@ jobs:
         run: yarn test
 
       - name: Build 🛠️
-        run: yarn build
+        run: |
+          yarn build
+          ls -la dist/
 
       - name: FTP Deploy
         uses: SamKirkland/FTP-Deploy-Action@4.3.0
