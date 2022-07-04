@@ -1,0 +1,77 @@
+name: Deploy to Lighthouse
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+    branches:
+      - main
+      - master
+
+jobs:
+  ci:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ ubuntu-latest ]
+        node: [ 14 ]
+
+    steps:
+      - name: Checkout 🛎
+        uses: actions/checkout@master
+
+      - name: Setup node env 🏗
+        uses: actions/setup-node@v2.1.5
+        with:
+          node-version: ${{ matrix.node }}
+          check-latest: true
+
+      - name: Get yarn cache directory path 🛠
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      - name: Cache node_modules 📦
+        uses: actions/cache@v2.1.4
+        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Install dependencies 👨🏻‍💻
+        run: yarn
+
+      - name: Run tests 🧪
+        run: yarn test
+
+      - name: Build 🛠️
+        run: yarn build
+
+      - name: FTP Deploy
+        uses: SamKirkland/FTP-Deploy-Action@4.3.0
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          port: ${{ secrets.FTP_PORT }}
+          local-dir: ./dist/
+#          # protocol to deploy with - ftp, ftps, or ftps-legacy
+#          protocol: # optional
+#          # Path to upload to on the server. Must end with trailing slash /
+#          server-dir: ${{ secrets.FTP_DIR }}
+#          # Path and name of the state file - this file is used to track which files have been deployed
+#          state-name: # optional
+#          # Prints which modifications will be made with current config options, but doesnt actually make any changes
+#          dry-run: # optional
+#          # Deletes ALL contents of server-dir, even items in excluded with exclude argument
+#          dangerous-clean-slate: # optional
+#          # An array of glob patterns, these files will not be included in the publish/delete process
+#          exclude: # optional
+#          # How verbose should the information be - minimal, standard, or verbose
+#          log-level: # optional
+#          # strict or loose
+#          security: # optional
