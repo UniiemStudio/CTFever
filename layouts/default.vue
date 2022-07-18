@@ -30,6 +30,16 @@
       </div>
     </div>
     <Footer/>
+    <!-- Global Search -->
+    <div v-show="isGlobalSearchOpen"
+         class="fixed top-0 left-0 right-0 bottom-0 z-50 flex justify-center items-center
+                backdrop-blur-md bg-white/30 backdrop-transparent font-['Nunito'] transition-all duration-500">
+      <div class="">
+        <PrimaryInput id="global-search-input" key="global-search-input" v-model="globalSearchText"
+                      placeholder="Type to search..." class="global-search-input-field" large/>
+      </div>
+    </div>
+
   </div>
 </template>
 
@@ -38,10 +48,11 @@ import Tool from "~/components/tool/Tool";
 import {wrapI18nPath2MetaRoute} from '~/libs/common';
 
 import Mousetrap from 'mousetrap';
+import PrimaryInput from "~/components/form/PrimaryInput";
 
 export default {
   name: "index",
-  components: {Tool},
+  components: {PrimaryInput, Tool},
   computed: {
     currentAppearance() {
       return this.$store.state.settings.settings.appearance;
@@ -58,6 +69,8 @@ export default {
       toolPageJudgeReg: /^.*\/tools\/.*/,
       isToolPage: () => this.toolPageJudgeReg.test(this.$route.path),
       isDrawerOpen: false,
+      isGlobalSearchOpen: false,
+      globalSearchText: '',
     }
   },
   async mounted() {
@@ -81,7 +94,9 @@ export default {
       console.log('Workbox not found');
     }
 
+    const self = this;
     Mousetrap.bind('shift shift', function () {
+      self.isGlobalSearchOpen = !self.isGlobalSearchOpen;
       console.log('double-shift');
     });
     Mousetrap.bind('up up down down left right left right b a enter', function () {

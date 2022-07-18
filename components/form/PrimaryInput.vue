@@ -6,10 +6,13 @@
     </label>
     <div class="relative">
       <input
-        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none
+        class="shadow appearance-none border rounded w-full py-2 px-3 pr-8 text-gray-700 leading-tight focus:outline-none
              focus:ring transition duration-300 input-transition
              dark:bg-slate-800 dark:text-slate-300 dark:border-slate-600"
-        :class="{'disabled:text-gray-300 disabled:dark:text-slate-500 disabled:bg-gray-50': disable && !copyable}"
+        :class="{
+          'disabled:text-gray-300 disabled:dark:text-slate-500 disabled:bg-gray-50': disable && !copyable,
+          'py-4 px-3 text-xl': large
+        }"
         :id="id" :type="type" :placeholder="placeholder" :value="value" :disabled="disable" :autocomplete="autocomplete"
         @change="$emit('change', type==='file' ? $event : $event.target.value)"
         @input="$emit('input', $event.target.value)"/>
@@ -61,6 +64,10 @@ export default {
       default: ""
     },
     copyable: {
+      type: Boolean,
+      default: false
+    },
+    large: {
       type: Boolean,
       default: false
     }
