@@ -5,17 +5,18 @@
       {{ label }}
     </label>
     <div class="relative">
-      <input
-        class="shadow appearance-none border rounded w-full py-2 px-3 pr-8 text-gray-700 leading-tight focus:outline-none
+      <input :autofocus="autofocus"
+             class="shadow appearance-none border rounded w-full py-2 px-3 pr-8 text-gray-700 leading-tight focus:outline-none
              focus:ring transition duration-300 input-transition
              dark:bg-slate-800 dark:text-slate-300 dark:border-slate-600"
-        :class="{
+             :class="{
           'disabled:text-gray-300 disabled:dark:text-slate-500 disabled:bg-gray-50': disable && !copyable,
           'py-4 px-3 text-xl': large
         }"
-        :id="id" :type="type" :placeholder="placeholder" :value="value" :disabled="disable" :autocomplete="autocomplete"
-        @change="$emit('change', type==='file' ? $event : $event.target.value)"
-        @input="$emit('input', $event.target.value)"/>
+             :id="id" :type="type" :placeholder="placeholder" :value="value" :disabled="disable"
+             :autocomplete="autocomplete"
+             @change="$emit('change', type==='file' ? $event : $event.target.value)"
+             @input="$emit('input', $event.target.value)"/>
       <button v-show="!copyable && type !== 'file'" @mousedown="clean" tabindex="-1"
               class="absolute right-2 text-slate-500 opacity-0 pointer-events-none translate-x-4 transition clear-btn">
         <ion-icon class="text-xl" name="close-circle"></ion-icon>
@@ -58,6 +59,10 @@ export default {
     autocomplete: {
       type: String,
       default: "off"
+    },
+    autofocus: {
+      type: Boolean,
+      default: false
     },
     value: {
       type: [String, Number],

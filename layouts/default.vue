@@ -31,12 +31,13 @@
     </div>
     <Footer/>
     <!-- Global Search -->
-    <div v-show="isGlobalSearchOpen"
-         class="fixed top-0 left-0 right-0 bottom-0 z-50 flex justify-center items-center
-                backdrop-blur-md bg-white/30 backdrop-transparent font-['Nunito'] transition-all duration-500">
+    <div
+      class="fixed top-0 left-0 right-0 bottom-0 z-50 flex justify-center items-center
+                backdrop-blur-md pointer-events-none opacity-0 backdrop-transparent font-['Nunito'] transition-all duration-500"
+      :class="{'bg-white/30 opacity-100 pointer-events-auto': isGlobalSearchOpen}">
       <div class="">
         <PrimaryInput id="global-search-input" key="global-search-input" v-model="globalSearchText"
-                      placeholder="Type to search..." class="global-search-input-field" large/>
+                      placeholder="Type to search..." class="global-search-input-field" label="Search" autofocus large/>
       </div>
     </div>
 
