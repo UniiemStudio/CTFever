@@ -35,6 +35,12 @@
       class="fixed top-0 left-0 right-0 bottom-0 z-50 flex justify-center items-center
                 backdrop-blur-md pointer-events-none opacity-0 backdrop-transparent font-['Nunito'] transition-all duration-500"
       :class="{'bg-white/30 opacity-100 pointer-events-auto': isGlobalSearchOpen}">
+      <button
+        class="fixed flex justify-center items-center left-10 top-10 px-2 py-1 border-2 border-gray-300 rounded space-x-1"
+        @click="isGlobalSearchOpen=false">
+        <ion-icon class="text-lg" name="close-outline"></ion-icon>
+        <span class="font-['Nunito'] font-bold">ESC</span>
+      </button>
       <div class="">
         <PrimaryInput id="global-search-input" key="global-search-input" v-model="globalSearchText"
                       placeholder="Type to search..." class="global-search-input-field" label="Search" autofocus large/>
@@ -99,6 +105,9 @@ export default {
     Mousetrap.bind('shift shift', function () {
       self.isGlobalSearchOpen = !self.isGlobalSearchOpen;
       console.log('double-shift');
+    });
+    Mousetrap.bind('esc', function () {
+      if (self.isGlobalSearchOpen) self.isGlobalSearchOpen = false;
     });
     Mousetrap.bind('up up down down left right left right b a enter', function () {
       console.log('todo 😂');
