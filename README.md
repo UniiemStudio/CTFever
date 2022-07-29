@@ -37,6 +37,7 @@
 | [CRC 计算](https://ctfever.uniiem.com/tools/crc-checksum)        |  ✅  | Base64 图片转换                                               |  ⏰  | 与佛伦禅                                                         | ❌   |
 | [核心价值观密码](https://ctfever.uniiem.com/tools/core-values-cipher) |  ✅  | [端口分析](https://ctfever.uniiem.com/tools/port-scan)        | 🧪  | [Binwalk 分析](https://ctfever.uniiem.com/tools/bin-extractor) | 🧪  |
 | [UTF-8 转换](https://ctfever.uniiem.com/tools/utf8-conversion)   |  ✅  | 字典生成工具                                                    |  ⏰  | 盲水印提取                                                        | ⏰   |
+| 云影密码                                                           | 🚧  | Wireshark 键盘输入数据提取                                        |  ⏰  |                                                              |     |
 
 ## 截图
 
@@ -56,7 +57,8 @@
 
 CTFever 的目标是涵盖大部分 CTF 题型所需要的工具。
 
-~下一步我们将着手开发如 **pyc 在线反编译** 、**在线执行 binwalk** 、**端口分析工具** 等依赖服务器运行的特色功能，并逐步释出更新，尽情期待！~
+~下一步我们将着手开发如 **pyc 在线反编译** 、**在线执行 binwalk** 、**端口分析工具**
+等依赖服务器运行的特色功能，并逐步释出更新，尽情期待！~
 
 目前基础功能和一部分高级功能已经完成，工具库仍在逐渐扩大中
 
