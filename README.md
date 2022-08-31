@@ -7,7 +7,9 @@
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FUniiemStudio%2FCTFever.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FUniiemStudio%2FCTFever?ref=badge_shield)
 
 ---
+
 > ### **近日训练学习任务繁重，可能更新较迟缓，欢迎大家加入我们的开发，欢迎 Pull Request**
+
 ---
 
 ## 简介
@@ -27,17 +29,17 @@
 ❌ **已取消**
 
 | 工具                                                             | 状态  | 工具                                                        | 状态  | 工具                                                           | 状态  |
-|----------------------------------------------------------------|:---:|-----------------------------------------------------------|:---:|--------------------------------------------------------------|-----|
-| [ASCII](https://ctfever.uniiem.com/tools/ascii)                |  ✅  | [URL 编码](https://ctfever.uniiem.com/tools/url-encoding)   |  ✅  | [Base64](https://ctfever.uniiem.com/tools/base-series)       | ✅   |
-| [ROT13](https://ctfever.uniiem.com/tools/rot-series)           |  ✅  | [摩尔斯码](https://ctfever.uniiem.com/tools/morse-code)       |  ✅  | [UUID 生成校验](https://ctfever.uniiem.com/tools/uuid-generator) | ✅   |
-| [摘要哈希计算](https://ctfever.uniiem.com/tools/message-digest)      |  ✅  | [凯撒密码](https://ctfever.uniiem.com/tools/caesar-cipher)    |  ✅  | [栅栏密码](https://ctfever.uniiem.com/tools/rail-fence-cipher)   | 🧪  |
-| [猪圈密码](https://ctfever.uniiem.com/tools/pigpen)                |  ✅  | [维吉尼亚密码](https://ctfever.uniiem.com/tools/vigenereCipher) |  ✅  | [Pyc 反编译](https://ctfever.uniiem.com/tools/pyc-decompiler)   | 🧪  |
-| [JSFuck](https://ctfever.uniiem.com/tools/jsfuck)              |  ✅  | [BrainFuck](https://ctfever.uniiem.com/tools/brain-fuck)  |  ✅  | [IP 归属地](https://ctfever.uniiem.com/tools/ip-geo)            | ✅   |
-| [进制转换](https://ctfever.uniiem.com/tools/radix-conversion)      |  ✅  | [时间戳转换](https://ctfever.uniiem.com/tools/timestamp)       |  ✅  | [串口调试器](https://ctfever.uniiem.com/tools/serial)             | ✅   |
-| [CRC 计算](https://ctfever.uniiem.com/tools/crc-checksum)        |  ✅  | Base64 图片转换                                               |  ⏰  | 与佛伦禅                                                         | ❌   |
-| [核心价值观密码](https://ctfever.uniiem.com/tools/core-values-cipher) |  ✅  | [端口分析](https://ctfever.uniiem.com/tools/port-scan)        | 🧪  | [Binwalk 分析](https://ctfever.uniiem.com/tools/bin-extractor) | 🧪  |
-| [UTF-8 转换](https://ctfever.uniiem.com/tools/utf8-conversion)   |  ✅  | 字典生成工具                                                    |  ⏰  | 盲水印提取                                                        | ⏰   |
-| 云影密码                                                           | 🚧  | Wireshark 键盘输入数据提取                                        |  ⏰  |                                                              |     |
+| -------------------------------------------------------------- |:---:| --------------------------------------------------------- |:---:| ------------------------------------------------------------ | --- |
+| [ASCII](https://ctfever.uniiem.com/tools/ascii)                | ✅   | [URL 编码](https://ctfever.uniiem.com/tools/url-encoding)   | ✅   | [Base64](https://ctfever.uniiem.com/tools/base-series)       | ✅   |
+| [ROT13](https://ctfever.uniiem.com/tools/rot-series)           | ✅   | [摩尔斯码](https://ctfever.uniiem.com/tools/morse-code)       | ✅   | [UUID 生成校验](https://ctfever.uniiem.com/tools/uuid-generator) | ✅   |
+| [摘要哈希计算](https://ctfever.uniiem.com/tools/message-digest)      | ✅   | [凯撒密码](https://ctfever.uniiem.com/tools/caesar-cipher)    | ✅   | [栅栏密码](https://ctfever.uniiem.com/tools/rail-fence-cipher)   | 🧪  |
+| [猪圈密码](https://ctfever.uniiem.com/tools/pigpen)                | ✅   | [维吉尼亚密码](https://ctfever.uniiem.com/tools/vigenereCipher) | ✅   | [Pyc 反编译](https://ctfever.uniiem.com/tools/pyc-decompiler)   | 🧪  |
+| [JSFuck](https://ctfever.uniiem.com/tools/jsfuck)              | ✅   | [BrainFuck](https://ctfever.uniiem.com/tools/brain-fuck)  | ✅   | [IP 归属地](https://ctfever.uniiem.com/tools/ip-geo)            | ✅   |
+| [进制转换](https://ctfever.uniiem.com/tools/radix-conversion)      | ✅   | [时间戳转换](https://ctfever.uniiem.com/tools/timestamp)       | ✅   | [串口调试器](https://ctfever.uniiem.com/tools/serial)             | ✅   |
+| [CRC 计算](https://ctfever.uniiem.com/tools/crc-checksum)        | ✅   | Base64 图片转换                                               | ⏰   | 与佛伦禅                                                         | ❌   |
+| [核心价值观密码](https://ctfever.uniiem.com/tools/core-values-cipher) | ✅   | [端口分析](https://ctfever.uniiem.com/tools/port-scan)        | 🧪  | [Binwalk 分析](https://ctfever.uniiem.com/tools/bin-extractor) | 🧪  |
+| [UTF-8 转换](https://ctfever.uniiem.com/tools/utf8-conversion)   | ✅   | 字典生成工具                                                    | ⏰   | 盲水印提取                                                        | ⏰   |
+| 云影密码                                                           | 🚧  | Wireshark 键盘输入数据提取                                        | ⏰   |                                                              |     |
 
 ## 截图
 
@@ -94,3 +96,5 @@ $ yarn generate
 ## License
 
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FUniiemStudio%2FCTFever.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FUniiemStudio%2FCTFever?ref=badge_large)
+
+<!-- 悄悄放个注释 -->
