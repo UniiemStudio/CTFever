@@ -97,4 +97,4 @@ $ yarn generate
 
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FUniiemStudio%2FCTFever.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FUniiemStudio%2FCTFever?ref=badge_large)
 
-<!-- Hello GPG -->
+<!-- 换 GPG Key 了，望周知 (GPG:9999666677777777) -->
