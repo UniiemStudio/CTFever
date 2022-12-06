@@ -164,6 +164,10 @@ export default {
       title: 'Vigenere Cipher',
       desc: 'It is an encryption method based on the Caesar cipher'
     },
+    cloudShadow: {
+      title: 'Cloud Shadow',
+      desc: 'Cloud Shadow is a simple encryption method'
+    },
     // Network Tool
     ipAttribution: {
       title: 'IP Geo-location',

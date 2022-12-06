@@ -109,8 +109,45 @@ export default {
     Mousetrap.bind('esc', function () {
       if (self.isGlobalSearchOpen) self.isGlobalSearchOpen = false;
     });
-    Mousetrap.bind('up up down down left right left right b a enter', function () {
-      console.log('todo 😂');
+
+    let easterEggInput = [];
+    const handleEasterEgg = () => {
+      if (easterEggInput.length === 11) {
+        if (easterEggInput.join('') === 'uuddlrlrbae') {
+          console.log('todo 😂');
+          easterEggInput = [];
+        } else {
+          easterEggInput.shift();
+        }
+      }
+    }
+    Mousetrap.bind('up', function () {
+      easterEggInput.push('u');
+      handleEasterEgg();
+    });
+    Mousetrap.bind('down', function () {
+      easterEggInput.push('d');
+      handleEasterEgg();
+    });
+    Mousetrap.bind('left', function () {
+      easterEggInput.push('l');
+      handleEasterEgg();
+    });
+    Mousetrap.bind('right', function () {
+      easterEggInput.push('r');
+      handleEasterEgg();
+    });
+    Mousetrap.bind('b', function () {
+      easterEggInput.push('b');
+      handleEasterEgg();
+    });
+    Mousetrap.bind('a', function () {
+      easterEggInput.push('a');
+      handleEasterEgg();
+    });
+    Mousetrap.bind('enter', function () {
+      easterEggInput.push('e');
+      handleEasterEgg();
     });
   },
   watch: {

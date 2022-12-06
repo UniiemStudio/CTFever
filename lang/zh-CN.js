@@ -164,6 +164,10 @@ export default {
       title: '维吉尼亚密码',
       desc: '在凯撒密码基础上产生的一种加密方法'
     },
+    cloudShadow: {
+      title: '云影密码',
+      desc: '一种简单的替换式密码'
+    },
     // Network Tool
     ipAttribution: {
       title: 'IP 地址归属',

@@ -115,6 +115,13 @@ export const state = () => ({
           route: '/tools/vigenereCipher',
           tags: [tagCategories.encryptionAndDecryption]
         },
+        {
+          title: 'tool.cloudShadow.title',
+          description: 'tool.cloudShadow.desc',
+          route: '/tools/cloud-shadow',
+          tags: [tagCategories.encryptionAndDecryption],
+          newest: true,
+        },
       ]
     },
     {
