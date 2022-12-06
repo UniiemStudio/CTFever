@@ -42,7 +42,7 @@
         <ion-icon class="text-4xl md:text-xl mb-2 md:mb-0" :name="'albums-outline'"></ion-icon>
         <span class="text-lg">{{ $t('page.home.favoriteKit.title') }}</span>
       </h1>
-      <p class="text-sm font-thin font-['Nunito'] dark:text-slate-500">{{ $t('page.home.favoriteKit.desc') }}</p>
+      <p class="text-sm font-normal font-['Nunito'] dark:text-slate-500">{{ $t('page.home.favoriteKit.desc') }}</p>
     </div>
     <TransitionGroup tag="div" name="fav-drag" v-if="!searchText"
                      class="my-2 grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
