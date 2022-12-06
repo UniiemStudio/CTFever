@@ -66,7 +66,7 @@
           <span class="text-lg">{{ $t(toolkit.title) || toolkit.title }}</span>
           <!-- TODO: Tools count -->
         </h1>
-        <p class="text-sm font-thin font-['Nunito'] dark:text-slate-500">
+        <p class="text-sm font-normal font-['Nunito'] dark:text-slate-500">
           {{ $t(toolkit.description) || toolkit.description }}</p>
       </div>
       <div class="my-2 grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
