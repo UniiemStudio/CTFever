@@ -13,6 +13,10 @@ module.exports = {
       'sans': ["-apple-system", "PT Sans", "PingFang SC", "sans-serif"],
       'mono': ["PT Mono", "monospace"],
     },
+    fallbackFontFamily: {
+      'sans': ["-apple-system", "PT Sans", "PingFang SC", "sans-serif"],
+      'mono': ["PT Mono", "monospace"],
+    },
     extend: {},
   },
   plugins: [
