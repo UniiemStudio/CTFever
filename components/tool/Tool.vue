@@ -1,7 +1,7 @@
 <template>
   <nuxt-link :to="!tool.disabled ? localePath(tool.route) : ''" :class="{'disabled pointer-events-none': tool.disabled}"
              class="rounded-lg border dark:border h-border transition-all duration-500 p-4 cursor-pointer flex flex-col justify-between
-              dark:bg-slate-800 dark:text-white dark:border-slate-500 relative overflow-hidden"
+              dark:bg-slate-800 dark:text-white dark:border-slate-500 relative overflow-hidden tool"
              :draggable="draggable">
     <div>
       <h1 class="text-base dark:text-slate-300 font-['Nunito'] flex flex-row items-center space-x-1">
@@ -51,6 +51,29 @@ export default {
 </script>
 
 <style scoped>
+.tool {
+  z-index: 1;
+}
+
+.tool::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  object-fit: cover;
+  background-repeat: no-repeat;
+  background-size: 80px 80px;
+  background-position: calc(100% + 20px) calc(100% + 20px);
+  /*background-image: url("@/static/icon.svg");*/
+  filter: grayscale(1);
+  user-select: none;
+  pointer-events: none;
+  @apply dark:grayscale-0;
+}
+
 .disabled {
   /*@apply bg-gray-100 dark:bg-transparent text-gray-600 shadow-none hover:shadow-none cursor-default;*/
   @apply bg-gray-100 dark:bg-transparent text-gray-600 hover:border-gray-200 dark:hover:border-slate-500 cursor-not-allowed;
