@@ -120,7 +120,8 @@ export const state = () => ({
           description: 'tool.cloudShadow.desc',
           route: '/tools/cloud-shadow',
           tags: [tagCategories.encryptionAndDecryption],
-          newest: true,
+          // newest: true,
+          disabled: true
         },
       ]
     },
