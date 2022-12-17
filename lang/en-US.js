@@ -134,6 +134,10 @@ export default {
       title: 'Morse Code',
       desc: 'Convert words to Morse Code'
     },
+    utf8Conversion: {
+      title: 'UTF8 Conversion',
+      desc: 'Conversion of Chinese and special characters'
+    },
     // Cryptography
     uuid: {
       title: 'UUID',
@@ -159,6 +163,10 @@ export default {
     vigenereCipher: {
       title: 'Vigenere Cipher',
       desc: 'It is an encryption method based on the Caesar cipher'
+    },
+    cloudShadow: {
+      title: 'Cloud Shadow',
+      desc: 'Cloud Shadow is a simple encryption method'
     },
     // Network Tool
     ipAttribution: {
@@ -244,7 +252,15 @@ export default {
     coreValues: {
       title: 'Core Values Cipher',
       desc: 'Prosperity, democracy, civilization, harmony!'
-    }
+    },
+    blindWatermark: {
+      title: 'Blind Watermark Extractor',
+      desc: 'A watermark method invisible to the naked eye'
+    },
+    dictionaryGenerator: {
+      title: 'Dictionary Generator',
+      desc: 'Generate an exhaustive dictionary in the specified format'
+    },
   },
   tags: {
     encodingAndDecoding: 'Encoding And Decoding',
@@ -257,6 +273,7 @@ export default {
     compiler: 'Compiler',
     utility: 'Utility',
     check: 'Check',
-    reverse: 'Re'
+    reverse: 'Re',
+    steganography: 'Steganography',
   }
 }

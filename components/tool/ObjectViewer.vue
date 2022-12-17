@@ -9,7 +9,7 @@
         <p class="text-sm font-thin dark:text-slate-500 overflow-x-hidden">{{ v }}</p>
       </div>
     </div>
-    <div class="mt-1 text-xs italic text-gray-300 select-none flex flex-row justify-between">
+    <div class="mt-1 text-xs italic text-gray-300 dark:text-slate-500 select-none flex flex-row justify-between">
       <span>单击项目可以复制其值</span>
       <span v-html="tip"></span>
     </div>

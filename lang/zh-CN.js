@@ -5,7 +5,7 @@ export default {
     subtitle: '工具套件',
     tip: {
       title: '欢迎来到 CTFever',
-      content: '这是为 CTF 发烧者准备的的工具套件，助你过关斩将、攻克难关。第一个版本已经开发完毕，我们目前正在着手高级功能的开发，敬请期待。欢迎给我们的开源仓库 star、pr。同时我们正在招募 i18n 团队，欢迎加入我们！',
+      content: '这是为 CTF 发烧者准备的的工具套件，助你过关斩将、攻克难关。目前基础功能和一部分高级功能已经完成，可以在 GitHub 上查看工具列表和开发进度。欢迎给我们的开源仓库 star、pr。',
     }
   },
   topbar: {
@@ -134,6 +134,10 @@ export default {
       title: '摩尔斯码',
       desc: '将字母和数字转换为摩尔斯码'
     },
+    utf8Conversion: {
+      title: 'UTF8 转换',
+      desc: '中文和特殊符号转换 UTF-8 编码'
+    },
     // Cryptography
     uuid: {
       title: 'UUID',
@@ -159,6 +163,10 @@ export default {
     vigenereCipher: {
       title: '维吉尼亚密码',
       desc: '在凯撒密码基础上产生的一种加密方法'
+    },
+    cloudShadow: {
+      title: '云影密码',
+      desc: '一种简单的替换式密码'
     },
     // Network Tool
     ipAttribution: {
@@ -244,7 +252,15 @@ export default {
     coreValues: {
       title: '核心价值观密码',
       desc: '富强民主文明和谐自由平等公正法制爱国敬业诚信友善！'
-    }
+    },
+    blindWatermark: {
+      title: '盲水印提取',
+      desc: '一种肉眼不可见的水印方式'
+    },
+    dictionaryGenerator: {
+      title: '密码字典生成器',
+      desc: '生成指定格式的穷举字典'
+    },
   },
   tags: {
     encodingAndDecoding: '编码',
@@ -257,6 +273,7 @@ export default {
     compiler: '编译器',
     utility: '调试工具',
     check: '校验',
-    reverse: '逆向'
+    reverse: '逆向',
+    steganography: '隐写',
   }
 }

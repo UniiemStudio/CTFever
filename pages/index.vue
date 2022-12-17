@@ -42,7 +42,7 @@
         <ion-icon class="text-4xl md:text-xl mb-2 md:mb-0" :name="'albums-outline'"></ion-icon>
         <span class="text-lg">{{ $t('page.home.favoriteKit.title') }}</span>
       </h1>
-      <p class="text-sm font-thin font-['Nunito'] dark:text-slate-500">{{ $t('page.home.favoriteKit.desc') }}</p>
+      <p class="text-sm font-normal font-['Nunito'] dark:text-slate-500">{{ $t('page.home.favoriteKit.desc') }}</p>
     </div>
     <TransitionGroup tag="div" name="fav-drag" v-if="!searchText"
                      class="my-2 grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
@@ -66,7 +66,7 @@
           <span class="text-lg">{{ $t(toolkit.title) || toolkit.title }}</span>
           <!-- TODO: Tools count -->
         </h1>
-        <p class="text-sm font-thin font-['Nunito'] dark:text-slate-500">
+        <p class="text-sm font-normal font-['Nunito'] dark:text-slate-500">
           {{ $t(toolkit.description) || toolkit.description }}</p>
       </div>
       <div class="my-2 grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
@@ -90,9 +90,12 @@
         <span class="dark:text-slate-500 font-['Nunito']">{{ $t('common.badge.recommended') }}</span>
       </div>
       <div class="flex flex-row items-center space-x-2">
-        <span
-          class="badge-beta">BETA</span>
+        <span class="badge-beta">BETA</span>
         <span class="dark:text-slate-500 font-['Nunito']">{{ $t('common.badge.beta') }}</span>
+      </div>
+      <div class="flex flex-row items-center space-x-2">
+        <div class="badge-warning-line"></div>
+        <span class="dark:text-slate-500 font-['Nunito']">监修中</span>
       </div>
     </div>
     <!-- /图例 -->
@@ -206,6 +209,18 @@ export default {
 
 .badge-beta {
   @apply text-xs border border-gray-400 text-gray-400 dark:border-slate-400 dark:text-slate-400 font-bold shadow-inner rounded px-0.5 py-0 font-['Nunito'];
+}
+
+.badge-warning-line {
+  @apply border border-gray-400 text-gray-400 dark:border-slate-400 dark:text-slate-400 font-bold shadow-inner rounded w-8 h-4;
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(255, 204, 0, .3),
+    rgba(255, 204, 0, .3) 5px,
+    rgba(0, 0, 0, .3) 5px,
+    rgba(0, 0, 0, .3) 10px,
+    rgba(255, 204, 0, .3) 10px
+  );
 }
 
 .fav-drag-move {

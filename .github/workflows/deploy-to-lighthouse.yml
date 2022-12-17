@@ -1,4 +1,4 @@
-name: ci
+name: Deploy to Lighthouse
 
 on:
   push:
@@ -11,7 +11,7 @@ on:
       - master
 
 jobs:
-  ci:
+  Deploy:
     runs-on: ${{ matrix.os }}
 
     strategy:
@@ -45,6 +45,19 @@ jobs:
       - name: Install dependencies 👨🏻‍💻
         run: yarn
 
-
       - name: Run tests 🧪
         run: yarn test
+
+      - name: Build 🛠️
+        run: |
+          yarn generate
+          ls -la
+
+      - name: FTP Deploy
+        uses: SamKirkland/FTP-Deploy-Action@4.3.0
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          port: ${{ secrets.FTP_PORT }}
+          local-dir: dist/

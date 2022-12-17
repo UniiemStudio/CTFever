@@ -25,6 +25,7 @@ export const tagCategories = Object.freeze({
   utility: 'tags.utility',
   check: 'tags.check',
   reverse: 'tags.reverse',
+  steganography: 'tags.steganography',
 });
 
 export const state = () => ({
@@ -64,6 +65,13 @@ export const state = () => ({
           route: '/tools/morse-code',
           tags: [tagCategories.encodingAndDecoding]
         },
+        {
+          title: 'tool.utf8Conversion.title',
+          description: 'tool.utf8Conversion.desc',
+          route: '/tools/utf8-conversion',
+          tags: [tagCategories.encodingAndDecoding, tagCategories.conversion],
+          newest: true
+        }
       ]
     },
     {
@@ -106,6 +114,14 @@ export const state = () => ({
           description: 'tool.vigenereCipher.desc',
           route: '/tools/vigenereCipher',
           tags: [tagCategories.encryptionAndDecryption]
+        },
+        {
+          title: 'tool.cloudShadow.title',
+          description: 'tool.cloudShadow.desc',
+          route: '/tools/cloud-shadow',
+          tags: [tagCategories.encryptionAndDecryption],
+          // newest: true,
+          disabled: true
         },
       ]
     },
@@ -166,12 +182,6 @@ export const state = () => ({
           premium: true,
           beta: true,
         },
-        // {
-        //   title: 'HTTP(s) 请求头',
-        //   description: '查看 HTTP(s) 请求头信息',
-        //   route: '/tools/http-headers',
-        //   tags: ['HTTP'],
-        // },
       ]
     },
     {
@@ -223,20 +233,34 @@ export const state = () => ({
           description: 'tool.base2img.desc',
           route: '/tools/base-img-convertor',
           tags: [tagCategories.conversion],
-          disabled: true
-        },
-        {
-          title: '与佛论禅',
-          description: '面对这个纷繁复杂的世界, 真神会如何作答呢',
-          route: '/tools/undefined',
-          tags: [tagCategories.encryptionAndDecryption],
           disabled: true,
         },
+        // {
+        //   title: '与佛论禅',
+        //   description: '面对这个纷繁复杂的世界, 真神会如何作答呢',
+        //   route: '/tools/undefined',
+        //   tags: [tagCategories.encryptionAndDecryption],
+        //   disabled: true,
+        // },
         {
           title: 'tool.coreValues.title',
           description: 'tool.coreValues.desc',
           route: '/tools/core-values-cipher',
-          tags: ["tags.encryptionAndDecryption"],
+          tags: [tagCategories.conversion],
+        },
+        {
+          title: 'tool.blindWatermark.title',
+          description: 'tool.blindWatermark.desc',
+          route: '/tools/blind-watermark-extractor',
+          tags: [tagCategories.steganography],
+          disabled: true
+        },
+        {
+          title: 'tool.dictionaryGenerator.title',
+          description: 'tool.dictionaryGenerator.desc',
+          route: '/tools/dictionary-generator',
+          tags: [tagCategories.generator],
+          disabled: true
         },
       ]
     }

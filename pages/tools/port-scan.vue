@@ -5,7 +5,7 @@
         <InteractiveBlock class="space-y-4">
           <PrimaryInput id="host" label="主机" v-model="host" placeholder="域名或者 IP 地址"/>
           <PrimaryInput id="ports" label="端口范围" v-model="port" placeholder="e.g. 22,25,80-88"/>
-          <PrimaryButton class="w-full" @click="scan" :disable="loading">开始扫描</PrimaryButton>
+          <PrimaryButton class="w-full" @click="scan" :disable="loading">{{ buttonText }}</PrimaryButton>
         </InteractiveBlock>
       </template>
       <template v-slot:right>
@@ -78,6 +78,7 @@ export default {
         result: null
       },
       loading: false,
+      buttonText: '开始扫描',
     };
   },
   methods: {
@@ -111,6 +112,11 @@ export default {
           }
         })
         .finally(() => this.loading = false);
+    }
+  },
+  watch: {
+    loading(val) {
+      this.buttonText = val ? '扫描中...' : '开始扫描';
     }
   }
 }

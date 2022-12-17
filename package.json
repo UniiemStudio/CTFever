@@ -31,6 +31,7 @@
     "jsfuck": "^0.4.0",
     "localforage": "^1.10.0",
     "lodash": "^4.17.21",
+    "mousetrap": "^1.6.5",
     "nuxt": "^2.15.8",
     "nuxt-matomo": "^1.2.4",
     "pattern.css": "^1.0.0",
