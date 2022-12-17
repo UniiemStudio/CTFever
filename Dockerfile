@@ -1,5 +1,9 @@
 FROM node:14-alpine as build-stage
 ADD . /build_dir
+
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories
+RUN apk add --update --no-cache  gcc g++ make cmake curl jq py3-configobj py3-pip py3-setuptools python3 python3-dev
+
 RUN cd /build_dir \
   && yarn install \
   && yarn run build \
