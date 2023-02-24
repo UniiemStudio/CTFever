@@ -49,7 +49,8 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '@/plugins/antd-ui'
+    '@/plugins/antd-ui',
+    '@/plugins/g-tag'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -87,9 +88,9 @@ export default {
     '@nuxtjs/sitemap'
   ],
 
-  googleAnalytics: {
-    id: 'UA-197955373-1'
-  },
+  // googleAnalytics: {
+  //   id: 'UA-197955373-1'
+  // },
 
   loading: {
     continuous: true
