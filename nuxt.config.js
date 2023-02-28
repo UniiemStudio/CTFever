@@ -16,13 +16,14 @@ export default {
       },
       {
         hid: "description",
+        name: "description",
         title: "description",
-        content: "A Toolkit for CTF Fever",
+        content: "Free and awesome toolkit for CTF fevers and everyone.",
       },
       {
         name: "keywords",
         content:
-          "CTF, CTFever, CTF Toolkit, CTF Toolkit by uniiem, 进制, 在线工具, 古典密码, 凯撒密码, 哈希, 反编译, URL 编码, 栅栏密码, Base64, ROT-13",
+          "CTF, CTFever, CTF Toolkit, CTF Toolkit by uniiem, 进制, 在线工具, 古典密码, 凯撒密码, 哈希, 反编译, URL 编码, 栅栏密码, 猪圈密码, 摩斯密码, Morse Code, MD5, BrainFuck, 端口扫描, Port Scan, 时间戳, Timestamp, Base64, ROT-13, pyc decompiler, pyc 反编译, IP",
       },
       { title: "format-detection", content: "telephone=no" },
       { name: "apple-mobile-web-app-capable", content: "yes" },

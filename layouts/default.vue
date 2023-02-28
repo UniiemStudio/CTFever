@@ -252,6 +252,10 @@ Global Styles
   }
 }
 
+ion-icon {
+  pointer-events: none;
+}
+
 /* transitions */
 .page-enter-active,
 .page-leave-active {

@@ -23,9 +23,9 @@
             <span>安装 PWA</span>
           </TinyButtonLink>
           <a-dropdown :trigger="['hover']" placement="bottomRight">
-            <a class="ant-dropdown-link" @click="e => e.preventDefault()">
-              <ion-icon class="align-middle text-lg -mt-1" name="language-outline"></ion-icon>
-            </a>
+            <span class="ant-dropdown-link cursor-pointer" @click="e => e.preventDefault()">
+              <ion-icon class="align-middle text-lg -mt-1 pointer-events-none" name="language-outline"></ion-icon>
+            </span>
             <a-menu slot="overlay" class="dark:bg-slate-800">
               <a-menu-item v-for="(locale, k) in availableLocales" :key="k">
                 <nuxt-link
@@ -37,10 +37,10 @@
             </a-menu>
           </a-dropdown>
           <a-dropdown :trigger="['hover']" placement="bottomRight">
-            <a class="ant-dropdown-link" @click="e => e.preventDefault()">
-              <ion-icon class="align-middle text-base -mt-1"
+            <span class="ant-dropdown-link cursor-pointer" @click="e => e.preventDefault()">
+              <ion-icon class="align-middle text-base -mt-1 pointer-events-none"
                         :name="currentAppearanceIcon"></ion-icon>
-            </a>
+            </span>
             <a-menu slot="overlay" class="dark:bg-slate-800">
               <a-menu-item v-for="(mode, k) in colorModes" :key="k"
                            class="flex flex-row items-center space-x-0.5 dark:text-slate-300"
@@ -57,7 +57,7 @@
             </a-menu>
           </a-dropdown>
           <!-- TODO: CTFever Premium -->
-          <!-- <TinyButtonLink :to="localePath('/premium-active')" accent>Premium</TinyButtonLink>-->
+          <!-- <TinyButtonLink :to="localePath('/premium-active')" accent>Premium</TinyButtonLink> -->
         </div>
       </div>
     </div>
