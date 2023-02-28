@@ -97,7 +97,6 @@ export default {
     "@nuxt/postcss8",
     "@nuxtjs/pwa",
     "@nuxtjs/device",
-    "@nuxtjs/google-analytics",
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
