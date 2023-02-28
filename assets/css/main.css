@@ -1,5 +1,5 @@
 /*noinspection CssUnknownTarget*/
-@import url('https://fonts.font.im/css?family=PT+Mono|PT+Sans|Poppins|Nunito');
+@import url('https://fonts.font.im/css?family=PT+Mono|PT+Sans|Poppins|Nunito&display=swap');
 
 @tailwind base;
 @tailwind components;
