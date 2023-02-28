@@ -53,7 +53,7 @@ export default {
       { rel: "preconnect", href: "//analytics.i0x0i.ltd" },
       {
         rel: "preload",
-        href: "//fonts.font.im/css?family=PT+Mono|PT+Sans|Poppins",
+        href: "//fonts.font.im/css?family=PT+Mono|PT+Sans|Poppins|Nunito&display=swap",
         as: "font",
       },
       {
