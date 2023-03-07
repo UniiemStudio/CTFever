@@ -6,11 +6,10 @@
 ![wakatime](https://wakatime.com/badge/user/589c46ee-6ba6-403c-bc9f-3a7aef5b206c/project/c477b34d-85f2-4fe0-b7c8-f74639d78dda.svg)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FUniiemStudio%2FCTFever.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FUniiemStudio%2FCTFever?ref=badge_shield)
 
----
+## 计划更新
+**Major Update** 计划于 `2023-03-11 09:30 - 2023-03-11 15:00 (UTC+08:00)` 对后端服务器进行计划停机并升级新的后端系统，部分工具 UI 将重构。
 
-> ### **近日训练学习任务繁重，可能更新较迟缓，欢迎大家加入我们的开发，欢迎 Pull Request**
-
----
+本次更新后将继续跟进 Todo List 中待完成工具的开发。
 
 ## 简介
 
@@ -59,10 +58,7 @@
 
 CTFever 的目标是涵盖大部分 CTF 题型所需要的工具。
 
-~下一步我们将着手开发如 **pyc 在线反编译** 、**在线执行 binwalk** 、**端口分析工具**
-等依赖服务器运行的特色功能，并逐步释出更新，尽情期待！~
-
-目前基础功能和一部分高级功能已经完成，工具库仍在逐渐扩大中
+我们目前正在着手构建新的后端系统，将支持插件式扩展功能，届时欢迎社区的大家参与 CTFever 的前端和后端开发，为 CTFever 的建设添砖加瓦。
 
 ## Stargazers 趋势
 
