@@ -50,7 +50,7 @@
     <div
       class="fixed top-0 left-0 right-0 bottom-0 z-40 flex justify-center items-center
                 pointer-events-none opacity-0 font-['Nunito'] transition-all duration-500"
-      :class="{'opacity-100 pointer-events-auto': releases_dialog}">
+      :class="{'bg-black/10 backdrop-blur-sm opacity-100 pointer-events-auto': releases_dialog}">
       <!-- backdrop-blur-2xl -->
       <div class="w-full h-full md:w-1/2 md:h-2/3 bg-white  shadow-lg border border-slate-300 rounded-lg
                   flex flex-col justify-around">
@@ -244,11 +244,7 @@ export default {
         }
       })
       .catch(err => {
-        if (err.response) {
-          this.$message.error(err.response.data.detail);
-        } else {
-          this.$message.error(err.toJSON().message);
-        }
+        // pass
       })
   },
   watch: {
