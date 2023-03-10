@@ -52,8 +52,8 @@
                 pointer-events-none opacity-0 font-['Nunito'] transition-all duration-500"
       :class="{'bg-black/10 backdrop-blur-sm opacity-100 pointer-events-auto': releases_dialog}">
       <!-- backdrop-blur-2xl -->
-      <div class="w-full h-full md:w-1/2 md:h-2/3 bg-white  shadow-lg border border-slate-300 rounded-lg
-                  flex flex-col justify-around">
+      <div class="w-full h-full md:w-1/2 md:h-2/3 bg-white shadow-lg
+                  border border-slate-300 rounded-none md:rounded-lg flex flex-col justify-around">
         <div class="flex justify-between items-center m-4">
           <div>
             <h1 class="flex items-center space-x-1 text-xl">
@@ -85,9 +85,13 @@
             </div>
             <div class="flex flex-col space-y-2 pt-2">
               <div v-for="(change, i) in release.changes" :key="i" v-if="release.changes && release.changes.length > 0"
-                   class="flex flex-row items-center space-x-2">
-                <ion-icon :name="release_icon[change.type]" class="text-lg -mt-0.5"></ion-icon>
-                <p>{{ change.content }}</p>
+                   class="flex flex-row items-center justify-center space-x-2">
+                <div class="w-6 h-6 flex justify-center items-center rounded-full bg-gray-100">
+                  <ion-icon :name="release_icon[change.type]" class="text-base`"></ion-icon>
+                </div>
+                <div class="flex-1">
+                  <p class="text-sm break-all">{{ change.content }}</p>
+                </div>
               </div>
             </div>
             <hr/>
@@ -138,7 +142,7 @@ export default {
       release_icon: {
         'add': 'add-outline',
         'remove': 'remove-outline',
-        'enchanted': 'arrow-up-circle-outline',
+        'enchanted': 'rocket-outline',
         'fix': 'bandage-outline'
       },
       releaseConfirmButton: ['干得漂亮', '资瓷', '好样的', 'Good Job!', 'Nice!', 'Nice Job!'],
