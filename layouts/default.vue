@@ -32,7 +32,7 @@
     <Footer/>
     <!-- Global Search -->
     <div
-      class="fixed top-0 left-0 right-0 bottom-0 z-50 flex justify-center items-center
+      class="fixed top-0 left-0 right-0 bottom-0 z-30 flex justify-center items-center
                 backdrop-blur-md pointer-events-none opacity-0 backdrop-transparent font-['Nunito'] transition-all duration-500"
       :class="{'bg-white/30 opacity-100 pointer-events-auto': isGlobalSearchOpen}">
       <button
@@ -46,7 +46,64 @@
                       placeholder="Type to search..." class="global-search-input-field" label="Search" autofocus large/>
       </div>
     </div>
+    <!-- Release Notes -->
+    <div
+      class="fixed top-0 left-0 right-0 bottom-0 z-40 flex justify-center items-center
+                pointer-events-none opacity-0 font-['Nunito'] transition-all duration-500"
+      :class="{'opacity-100 pointer-events-auto': releases_dialog}">
+      <!-- backdrop-blur-2xl -->
+      <div class="w-full h-full md:w-1/2 md:h-2/3 bg-white  shadow-lg border border-slate-300 rounded-lg
+                  flex flex-col justify-around">
+        <div class="flex justify-between items-center m-4">
+          <div>
+            <h1 class="flex items-center space-x-1 text-xl">
+              <ion-icon name="rocket-outline" class="-mt-0.5"></ion-icon>
+              <span class="font-normal">更新日志</span>
+            </h1>
+            <p>距上次使用发布了 {{ releases.length }} 次更新</p>
+          </div>
+          <div>
+            <!-- actions -->
+          </div>
+        </div>
+        <hr/>
+        <div class="p-4 h-full overflow-y-scroll">
+          <div v-for="(release, i) in releases" :key="i" class="flex flex-col space-y-2 mt-2 first-of-type:mt-0">
+            <div class="flex flex-col justify-center">
+              <h1 class="text-xl font-extrabold flex items-center space-x-1">
+                <span>{{ release.version }}</span>
+                <span v-if="release.title" class="text-sm text-blue-400">@</span>
+                <span v-if="release.title" class="font-normal">{{ release.title }}</span>
+              </h1>
+              <p class="text-sm text-gray-500 flex items-center space-x-1">
+                <ion-icon name="calendar-outline" class="-mt-0.5"></ion-icon>
+                <span>{{ new Date(release.timestamp * 1000).toLocaleString() }}</span>
+              </p>
+            </div>
+            <div v-if="release.content" class="pt-2">
+              <p>{{ release.content }}</p>
+            </div>
+            <div class="flex flex-col space-y-2 pt-2">
+              <div v-for="(change, i) in release.changes" :key="i" v-if="release.changes && release.changes.length > 0"
+                   class="flex flex-row items-center space-x-2">
+                <ion-icon :name="release_icon[change.type]" class="text-lg -mt-0.5"></ion-icon>
+                <p>{{ change.content }}</p>
+              </div>
+            </div>
+            <hr/>
+          </div>
 
+        </div>
+        <hr/>
+        <div class="p-4 flex justify-end">
+          <button class="flex items-center space-x-1 text-sm font-bold text-gray-500 hover:text-gray-700
+                         transition-colors duration-300">
+            <ion-icon name="checkmark-outline" class="text-lg -mt-0.5"></ion-icon>
+            <span>{{ releaseConfirmButton[Math.floor(Math.random() * releaseConfirmButton.length)] }}</span>
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -78,9 +135,35 @@ export default {
       isDrawerOpen: false,
       isGlobalSearchOpen: false,
       globalSearchText: '',
+      release_icon: {
+        'add': 'add-outline',
+        'remove': 'remove-outline',
+        'enchanted': 'arrow-up-circle-outline',
+        'fix': 'bandage-outline'
+      },
+      releaseConfirmButton: ['干得漂亮', '资瓷', '好样的', 'Good Job!', 'Nice!', 'Nice Job!'],
+      releases: [
+        // {
+        //   timestamp: 1778496400,
+        //   version: '0.0.0',
+        //   title: '润了',
+        //   content: '我们跑路了',
+        //   changes: [
+        //     {
+        //       type: 'remove',
+        //       content: '移除了全部内容'
+        //     },
+        //     {
+        //       type: 'fix',
+        //       content: '修复需要维护这个项目的问题'
+        //     }
+        //   ]
+        // },
+      ],
+      releases_dialog: false,
     }
   },
-  async mounted() {
+  mounted: async function () {
     this.setAppearance(this.currentAppearance);
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
       if (this.currentAppearance === 'auto') this.setAppearance(e.matches ? 'dark' : 'light');
@@ -149,6 +232,24 @@ export default {
       easterEggInput.push('e');
       handleEasterEgg();
     });
+    this.$api.releases.releases_behind(0)
+      .then(res => {
+        this.releases = res.data.result;
+        if (this.releases && this.releases.length > 0) {
+          let localVersionTimestamp = this.$store.state.settings.latest;
+          if (localVersionTimestamp < this.releases[0].timestamp) {
+            this.releases_dialog = true;
+            this.$store.commit('settings/setLatest', this.releases[0].timestamp);
+          }
+        }
+      })
+      .catch(err => {
+        if (err.response) {
+          this.$message.error(err.response.data.detail);
+        } else {
+          this.$message.error(err.toJSON().message);
+        }
+      })
   },
   watch: {
     currentAppearance(val) {

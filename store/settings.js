@@ -6,6 +6,7 @@ export const state = () => ({
     lastSync: null,
   },
   markedTool: [],
+  latest: 0,
   settings: {
     appearance: 'auto',
   },
@@ -37,4 +38,7 @@ export const mutations = {
       state.settings.appearance = 'auto';
     }
   },
+  setLatest(state, latest) {
+    state.latest = latest;
+  }
 }
