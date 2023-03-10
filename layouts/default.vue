@@ -97,7 +97,7 @@
         <hr/>
         <div class="p-4 flex justify-end">
           <button class="flex items-center space-x-1 text-sm font-bold text-gray-500 hover:text-gray-700
-                         transition-colors duration-300">
+                         transition-colors duration-300" @click="releaseConfirm">
             <ion-icon name="checkmark-outline" class="text-lg -mt-0.5"></ion-icon>
             <span>{{ releaseConfirmButton[Math.floor(Math.random() * releaseConfirmButton.length)] }}</span>
           </button>
@@ -239,7 +239,7 @@ export default {
           let localVersionTimestamp = this.$store.state.settings.latest;
           if (localVersionTimestamp < this.releases[0].timestamp) {
             this.releases_dialog = true;
-            this.$store.commit('settings/setLatest', this.releases[0].timestamp);
+            // this.$store.commit('settings/setLatest', this.releases[0].timestamp);
           }
         }
       })
@@ -300,7 +300,11 @@ export default {
           });
         });
       }, delay ? delay : 0);
-    }
+    },
+    releaseConfirm() {
+      this.releases_dialog = false;
+      this.$store.commit('settings/setLatest', this.releases[0].timestamp);
+    },
   },
 }
 </script>
