@@ -87,10 +87,11 @@
               <div v-for="(change, i) in release.changes" :key="i" v-if="release.changes && release.changes.length > 0"
                    class="flex flex-row items-center justify-center space-x-2">
                 <div class="w-6 h-6 flex justify-center items-center rounded-full bg-gray-100">
-                  <ion-icon :name="release_icon[change.type]" class="text-base`"></ion-icon>
+                  <ion-icon :name="change.type ? release_icon[change.type] : 'checkmark-outline'"
+                            class="text-base`"></ion-icon>
                 </div>
                 <div class="flex-1">
-                  <p class="text-sm break-all">{{ change.content }}</p>
+                  <p class="text-sm break-all">{{ change.content || '没有更新描述' }}</p>
                 </div>
               </div>
             </div>
