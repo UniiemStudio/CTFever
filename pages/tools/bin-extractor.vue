@@ -43,7 +43,7 @@
           <tr>
             <th
               class="border-b dark:border-slate-600 font-medium p-4 pb-3 text-slate-500 dark:text-slate-300 text-left">
-              Artifacts
+              Artifacts (Click to download)
             </th>
           </tr>
           </thead>
@@ -94,10 +94,6 @@ export default {
       if (this.file === '') return this.$message.error('请选择文件');
       this.loading = true;
       this.result = '';
-      let formData = new FormData();
-      formData.append('file', this.file);
-      // const self = this;
-      // this.$axios.post(`https://ctfever-service-gen1.i0x0i.ltd/binwalk`, formData)
       this.$api.tool.binwalk.scan(this.file)
         .then(res => {
           if (res.data.result.available) {

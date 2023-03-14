@@ -208,7 +208,7 @@ export default {
       }
     },
     '/gateway/': {
-      target: process.env.NODE_ENV === 'production' ? '' : 'http://127.0.0.1:8080',
+      target: process.env.NODE_ENV === 'production' ? 'https://ctfever-service.uniiem.com' : 'http://127.0.0.1:8080',
       pathRewrite: {
         '^/gateway/': ''
       }
