@@ -22,12 +22,12 @@
               'open': '打开的端口'
             }"
             :object="{
-              'host': result.result[0]['address'],
-              'elapsed': result.elapsed+'s',
-              'total': result.result.length,
-              'open': result.result.filter(i => i.state === 'open').length
+              'host': result.result.host,
+              'elapsed': `${result.spent}s`,
+              'total': result.result.total,
+              'open': result.result.open
             }"/>
-          <div v-for="(ret, k) in result.result" :key="k"
+          <div v-for="(ret, k) in result.result.ports" :key="k"
                class="p-4 rounded-lg border flex justify-between items-center font-['Nunito']">
             <div class="flex flex-col items-start">
               <h1 class="text-2xl font-extrabold">{{ ret.port }}</h1>
@@ -85,15 +85,11 @@ export default {
     scan() {
       if (this.host === '' || this.port === '') return this.$message.error('请输入主机和端口');
       this.loading = true;
-      this.result = {
-        result: null
-      }
-      let formData = new FormData();
-      formData.append('hosts', this.host);
-      formData.append('ports', this.port);
-      this.$axios.post(`https://ctfever-service-gen1.i0x0i.ltd/port-scan`, formData)
+      this.result = {}
+      this.$api.tool.portScan.scan(this.host, this.port)
         .then(res => {
           this.result = res.data;
+          console.log(this.result)
         })
         .catch(err => {
           if (err.response) {
@@ -112,6 +108,30 @@ export default {
           }
         })
         .finally(() => this.loading = false);
+      // let formData = new FormData();
+      // formData.append('hosts', this.host);
+      // formData.append('ports', this.port);
+      // this.$axios.post(`https://ctfever-service-gen1.i0x0i.ltd/port-scan`, formData)
+      //   .then(res => {
+      //     this.result = res.data;
+      //   })
+      //   .catch(err => {
+      //     if (err.response) {
+      //       switch (err.response.status) {
+      //         case 410:
+      //           this.$message.error(err.response.data.error);
+      //           break;
+      //         case 429:
+      //           this.$message.error('Rate limit exceeded.');
+      //           break;
+      //         default:
+      //           this.$message.error(err.response.data.detail || err.response.data.error || 'Unknown error');
+      //       }
+      //     } else {
+      //       this.$message.error(err.toJSON().message);
+      //     }
+      //   })
+      //   .finally(() => this.loading = false);
     }
   },
   watch: {

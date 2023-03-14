@@ -52,7 +52,7 @@
                 pointer-events-none opacity-0 font-['Nunito'] transition-all duration-500"
       :class="{'bg-black/10 backdrop-blur-sm opacity-100 pointer-events-auto': releases_dialog}">
       <!-- backdrop-blur-2xl -->
-      <div class="w-full h-full md:w-1/2 md:h-2/3 transition-all duration-500 scale-95 opacity-0
+      <div class="w-full h-full md:w-1/2 md:h-2/3 transition-all duration-500 scale-95 opacity-0 ease-in-out
                   border border-slate-300 bg-white shadow-lg rounded-none md:rounded-lg flex flex-col justify-around"
            :class="{'scale-100 opacity-100': releases_dialog}">
         <div class="flex justify-between items-center m-4">
