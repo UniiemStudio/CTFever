@@ -1,9 +1,8 @@
 <template>
   <div>
     <h1 v-show="label" class="text-gray-700 text-sm font-bold font-['Nunito'] mb-2 dark:text-slate-300">{{ label }}</h1>
-    <pre class="hljs p-4 rounded-lg">
-        <code v-html="renderedCode"></code>
-    </pre>
+    <pre class="hljs p-4 rounded-lg overflow-y-scroll" :style="max_height ? {maxHeight: max_height} : {}"><code
+      v-html="renderedCode"></code></pre>
   </div>
 </template>
 
@@ -29,6 +28,10 @@ export default {
     copyable: {
       type: Boolean,
       default: false
+    },
+    max_height: {
+      type: String,
+      default: "none"
     }
   },
   data() {

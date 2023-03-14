@@ -6,7 +6,7 @@
           loading ? 'Decompiling...' : 'Decompile'
         }}
       </PrimaryButton>
-      <CodeBlock v-show="result !== ''" :label="pycInfo" :code="result" copyable/>
+      <CodeBlock v-show="result !== ''" :label="pycInfo" :code="result" max_height="620px" copyable/>
       <InteractiveDoubleColumns v-show="result !== ''">
         <template v-slot:left>
           <PrimaryButton class="w-full" @click="copy">{{ copiedText }}</PrimaryButton>
@@ -42,6 +42,9 @@ export default {
       title: this.$t("tool.pycDecompiler.title") + " - " + this.$t("app.name")
     };
   },
+  async mounted() {
+    console.log(await this.$api.gateway.call('releasenote', 'releases_behind', {"timestamp": 0}))
+  },
   data() {
     return {
       pycFile: '',
@@ -55,18 +58,15 @@ export default {
     fileChanged(e) {
       this.pycFile = e.target.files[0];
     },
-    decompile() {
+    async decompile() {
       if (this.pycFile === '') return this.$message.error('请选择文件');
       this.loading = true;
       this.result = '';
-      let formData = new FormData();
-      formData.append('pyc_file', this.pycFile);
-      // const self = this;
-      this.$axios.post(`https://ctfever-service-gen1.i0x0i.ltd/pyc-dc`, formData)
+      this.$api.tool.pyc.decompile(this.pycFile)
         .then(res => {
-          this.pycInfo = res.data.origin_filename || this.pycFile.name || 'untitled file';
-          this.pycInfo += res.data.py_version_string ? ` (${res.data.py_version_string})` : ' (unknown version)';
-          this.result = res.data.output || res.data.decompiled || res.data.message;
+          this.pycInfo = res.data.result.original_filename || this.pycFile.name || 'untitled file';
+          this.pycInfo += res.data.result.version ? ` (Python ${res.data.result.version})` : ' (unknown version)';
+          this.result = res.data.result.output || res.data.message;
         })
         .catch(err => {
           if (err.response) {

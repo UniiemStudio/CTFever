@@ -221,13 +221,13 @@ export const state = () => ({
           route: '/tools/crc-checksum',
           tags: [tagCategories.check, tagCategories.hash]
         },
-        {
-          title: 'tool.temperatureConversion.title',
-          description: 'tool.temperatureConversion.desc',
-          route: '/tools/temperature-conversion',
-          tags: [tagCategories.conversion],
-          disabled: true,
-        },
+        // {
+        //   title: 'tool.temperatureConversion.title',
+        //   description: 'tool.temperatureConversion.desc',
+        //   route: '/tools/temperature-conversion',
+        //   tags: [tagCategories.conversion],
+        //   disabled: true,
+        // },
         {
           title: 'tool.base2img.title',
           description: 'tool.base2img.desc',
