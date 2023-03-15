@@ -139,7 +139,8 @@ export default {
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: "/"
+    baseURL: "/",
+    proxy: true
   },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
@@ -204,13 +205,14 @@ export default {
       target: 'https://ctfever-service-gen1.i0x0i.ltd',
       changeOrigin: true,
       pathRewrite: {
-        '^/api/': ''
+        '^/api/': '/'
       }
     },
     '/gateway/': {
       target: process.env.NODE_ENV === 'production' ? 'https://ctfever-service.uniiem.com' : 'http://127.0.0.1:8080',
+      changeOrigin: true,
       pathRewrite: {
-        '^/gateway/': ''
+        '^/gateway/': '/'
       }
     }
   },
