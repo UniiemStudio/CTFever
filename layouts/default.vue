@@ -238,7 +238,7 @@ export default {
       easterEggInput.push('e');
       handleEasterEgg();
     });
-    this.$api.releases.releases_behind(0)
+    this.$api.releases.releases_behind(this.$store.state.settings.latest | 0)
       .then(res => {
         this.releases = res.data.result;
         if (this.releases && this.releases.length > 0) {

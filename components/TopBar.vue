@@ -149,7 +149,7 @@ export default {
           icon: 'desktop-outline'
         }
       ],
-      isToolPage: () => /^.*\/tools\/.*/.test(this.$route.path),
+      isToolPage: () => /^.*\/tools\/.*/.test(this.currentPath),
       isMarked: false,
       currentToolName: '',
       pwaAvailable: false,
