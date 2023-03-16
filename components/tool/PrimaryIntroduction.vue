@@ -31,11 +31,19 @@ export default {
       type: Array,
       default: null
     },
-    document: {
-      type: Object,
+    path: {
+      type: String,
       default: null
     }
-  }
+  },
+  data() {
+    return {
+      document: null
+    }
+  },
+  async mounted() {
+    this.document = await this.$content(this.path).fetch();
+  },
 }
 </script>
 

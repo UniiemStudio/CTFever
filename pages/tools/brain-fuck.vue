@@ -34,7 +34,7 @@
       </InteractiveBlock>
     </form>
     <PrimaryIntroduction
-      title="BrainFuck" :document="intro"
+      title="BrainFuck" path="intro/brain-fuck"
       :references="references">
     </PrimaryIntroduction>
   </PrimaryContainer>
@@ -96,12 +96,6 @@ export default {
         },
       ]
     };
-  },
-  async asyncData({$content}) {
-    const intro = await $content('intro/brain-fuck').fetch();
-    return {
-      intro
-    }
   },
   methods: {
     run() {

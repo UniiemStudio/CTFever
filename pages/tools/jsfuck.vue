@@ -19,7 +19,7 @@
         <PrimaryArea id="output" v-model="output" label="JSFucked" placeholder="" :rows="10" copyable></PrimaryArea>
       </InteractiveBlock>
     </form>
-    <PrimaryIntroduction title="JSFuck" :references="references" :document="intro"/>
+    <PrimaryIntroduction title="JSFuck" :references="references" path="intro/jsfuck"/>
   </PrimaryContainer>
 </template>
 
@@ -40,12 +40,6 @@ export default {
     return {
       title: this.$t("tool.jsFuck.title") + " - " + this.$t("app.name")
     };
-  },
-  async asyncData({$content}) {
-    const intro = await $content('intro/jsfuck').fetch();
-    return {
-      intro
-    }
   },
   data() {
     return {

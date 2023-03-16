@@ -23,7 +23,7 @@
                      :rows="10" copyable></PrimaryArea>
       </InteractiveBlock>
     </form>
-    <PrimaryIntroduction title="ROT-13" :document="intro" :references="references"/>
+    <PrimaryIntroduction title="ROT-13" path="intro/rot13" :references="references"/>
   </PrimaryContainer>
 </template>
 
@@ -43,12 +43,6 @@ export default {
     return {
       title: this.$t("tool.rotSeries.title") + " - " + this.$t("app.name")
     };
-  },
-  async asyncData({$content}) {
-    const intro = await $content(`intro/rot13`).fetch();
-    return {
-      intro
-    }
   },
   data() {
     return {

@@ -1,21 +1,24 @@
 <template>
   <PrimaryContainer>
-    <InteractiveBlock class="space-y-4">
-      <PrimaryInput id="pycFile" type="file" @change="fileChanged"/>
-      <PrimaryButton class="w-full" @click="decompile" :disable="loading">{{
-          loading ? 'Decompiling...' : 'Decompile'
-        }}
-      </PrimaryButton>
-      <CodeBlock v-show="result !== ''" :label="pycInfo" :code="result" max_height="620px" copyable/>
-      <InteractiveDoubleColumns v-show="result !== ''">
-        <template v-slot:left>
-          <PrimaryButton class="w-full" @click="copy">{{ copiedText }}</PrimaryButton>
-        </template>
-        <template v-slot:right>
-          <PrimaryButton class="w-full" @click="download">下载</PrimaryButton>
-        </template>
-      </InteractiveDoubleColumns>
-    </InteractiveBlock>
+    <div class="primary-form">
+      <InteractiveBlock class="space-y-4">
+        <PrimaryInput id="pycFile" type="file" @change="fileChanged"/>
+        <PrimaryButton class="w-full" @click="decompile" :disable="loading">{{
+            loading ? 'Decompiling...' : 'Decompile'
+          }}
+        </PrimaryButton>
+        <CodeBlock v-show="result !== ''" :label="pycInfo" :code="result" max_height="620px" copyable/>
+        <InteractiveDoubleColumns v-show="result !== ''">
+          <template v-slot:left>
+            <PrimaryButton class="w-full" @click="copy">{{ copiedText }}</PrimaryButton>
+          </template>
+          <template v-slot:right>
+            <PrimaryButton class="w-full" @click="download">下载</PrimaryButton>
+          </template>
+        </InteractiveDoubleColumns>
+      </InteractiveBlock>
+    </div>
+    <PrimaryIntroduction title="Pyc 反编译" path="intro/pyc-decompiler"/>
   </PrimaryContainer>
 </template>
 
@@ -28,10 +31,12 @@ import InteractiveDoubleColumns from "~/components/tool/InteractiveDoubleColumns
 import PrimaryPreBlock from "~/components/form/PrimaryPreBlock";
 import PrimaryButton from "~/components/form/PrimaryButton";
 import CodeBlock from "~/components/widgets/CodeBlock";
+import PrimaryIntroduction from "~/components/tool/PrimaryIntroduction.vue";
 
 export default {
   name: "pyc-decompiler",
   components: {
+    PrimaryIntroduction,
     CodeBlock,
     PrimaryButton,
     PrimaryPreBlock,
@@ -41,9 +46,6 @@ export default {
     return {
       title: this.$t("tool.pycDecompiler.title") + " - " + this.$t("app.name")
     };
-  },
-  async mounted() {
-    console.log(await this.$api.gateway.call('releasenote', 'releases_behind', {"timestamp": 0}))
   },
   data() {
     return {

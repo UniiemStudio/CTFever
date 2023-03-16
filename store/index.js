@@ -71,7 +71,15 @@ export const state = () => ({
           route: '/tools/utf8-conversion',
           tags: [tagCategories.encodingAndDecoding, tagCategories.conversion],
           newest: true
-        }
+        },
+        // {
+        //   title: 'tool.ciphey.title',
+        //   description: 'tool.ciphey.desc',
+        //   route: '/tools/ciphey',
+        //   tags: [tagCategories.encodingAndDecoding],
+        //   newest: false,
+        //   disabled: true
+        // },
       ]
     },
     {
@@ -136,7 +144,8 @@ export const state = () => ({
           route: '/tools/pyc-decompiler',
           tags: [tagCategories.decompiler],
           premium: true,
-          beta: true,
+          recommended: true,
+          beta: false,
         },
         {
           title: 'tool.binExtract.title',
@@ -145,7 +154,7 @@ export const state = () => ({
           tags: [tagCategories.reverse],
           premium: true,
           recommended: true,
-          beta: true,
+          beta: false,
         },
         {
           title: 'tool.jsFuck.title',
@@ -180,7 +189,8 @@ export const state = () => ({
           route: '/tools/port-scan',
           tags: [tagCategories.utility],
           premium: true,
-          beta: true,
+          recommended: true,
+          beta: false,
         },
       ]
     },
@@ -200,7 +210,6 @@ export const state = () => ({
           description: 'tool.timeStamp.desc',
           route: '/tools/timestamp',
           tags: [tagCategories.conversion],
-          recommended: true,
         },
       ]
     },
@@ -260,6 +269,13 @@ export const state = () => ({
           description: 'tool.dictionaryGenerator.desc',
           route: '/tools/dictionary-generator',
           tags: [tagCategories.generator],
+          disabled: true
+        },
+        {
+          title: 'tool.zipPseudoEncryption.title',
+          description: 'tool.zipPseudoEncryption.desc',
+          route: '/tools/zip-pseudo-encryption',
+          tags: [tagCategories.steganography],
           disabled: true
         },
       ]

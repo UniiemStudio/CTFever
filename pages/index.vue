@@ -132,17 +132,9 @@ export default {
   data() {
     return {
       tips: [
-        // {
-        //   title: 'app.tip.title',
-        //   content: 'app.tip.content',
-        //   references: [
-        //     {name: 'GitHub Repository', url: 'https://github.com/UniiemStudio/CTFever'},
-        //     {name: 'Telegram', url: 'https://t.me/boxmoe'}
-        //   ]
-        // },
         {
-          title: '计划维护: 重大更新',
-          content: '计划于 2023-03-18 09:30 - 2023-03-18 15:00 (UTC+08:00) 对 CTFever 进行停机更新维护，时间可能会提前或延后。更新内容更新完毕后可以查看。',
+          title: 'app.tip.title',
+          content: 'app.tip.content',
           references: [
             {name: 'GitHub Repository', url: 'https://github.com/UniiemStudio/CTFever'},
             {name: 'Telegram', url: 'https://t.me/boxmoe'}

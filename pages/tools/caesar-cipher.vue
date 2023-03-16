@@ -25,7 +25,7 @@
         <PrimaryArea :label="$t('common.text_output').toString()" v-model="output" id="output" copyable/>
       </InteractiveBlock>
     </form>
-    <PrimaryIntroduction title="凯撒密码" :document="intro" :references="references"/>
+    <PrimaryIntroduction title="凯撒密码" path="intro/ceasar-cipher" :references="references"/>
   </PrimaryContainer>
 </template>
 
@@ -57,12 +57,6 @@ export default {
     return {
       title: this.$t("tool.caesarCipher.title") + " - " + this.$t("app.name")
     };
-  },
-  async asyncData({$content}) {
-    const intro = await $content(`intro/ceasar-cipher`).fetch();
-    return {
-      intro
-    }
   },
   data() {
     return {

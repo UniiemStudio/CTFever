@@ -24,7 +24,7 @@
                       copyable/>
       </InteractiveBlock>
     </div>
-    <PrimaryIntroduction title="CRC 循环冗余校验" :document="intro" :references="references"/>
+    <PrimaryIntroduction title="CRC 循环冗余校验" path="intro/crc" :references="references"/>
   </PrimaryContainer>
 </template>
 
@@ -50,10 +50,6 @@ export default {
     return {
       title: this.$t("tool.crc.title") + " - " + this.$t("app.name")
     };
-  },
-  async asyncData({$content}) {
-    const intro = await $content('intro/crc').fetch();
-    return {intro};
   },
   data() {
     return {
