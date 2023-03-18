@@ -3,6 +3,9 @@
 const state = require('~/store').state();
 
 const wrapI18nPath2MetaRoute = (pathWithI18n) => {
+  if (pathWithI18n.endsWith('/')) {
+    pathWithI18n = pathWithI18n.slice(0, -1);
+  }
   return `/${pathWithI18n.split('/').slice(-2).join('/')}`;
 }
 
