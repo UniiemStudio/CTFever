@@ -2,7 +2,7 @@
   <PrimaryContainer>
     <div class="primary-form">
       <InteractiveBlock class="space-y-4">
-        <PrimaryInput id="pycFile" type="file" @change="fileChanged"/>
+        <PrimaryFileUploader @change="fileChanged"/>
         <PrimaryButton class="w-full" @click="decompile" :disable="loading">{{
             loading ? 'Decompiling...' : 'Decompile'
           }}
@@ -32,10 +32,12 @@ import PrimaryPreBlock from "~/components/form/PrimaryPreBlock";
 import PrimaryButton from "~/components/form/PrimaryButton";
 import CodeBlock from "~/components/widgets/CodeBlock";
 import PrimaryIntroduction from "~/components/tool/PrimaryIntroduction.vue";
+import PrimaryFileUploader from "~/components/form/PrimaryFileUploader.vue";
 
 export default {
   name: "pyc-decompiler",
   components: {
+    PrimaryFileUploader,
     PrimaryIntroduction,
     CodeBlock,
     PrimaryButton,
@@ -57,8 +59,8 @@ export default {
     };
   },
   methods: {
-    fileChanged(e) {
-      this.pycFile = e.target.files[0];
+    fileChanged(files) {
+      this.pycFile = files[0];
     },
     async decompile() {
       if (this.pycFile === '') return this.$message.error('请选择文件');

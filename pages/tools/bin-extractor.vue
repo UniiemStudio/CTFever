@@ -1,7 +1,7 @@
 <template>
   <PrimaryContainer>
     <InteractiveBlock class="space-y-4">
-      <PrimaryInput id="file" type="file" @change="fileChanged"/>
+      <PrimaryFileUploader @change="fileChanged"/>
       <PrimaryButton class="w-full" @click="extract" :disable="loading">{{
           loading ? 'Extracting...' : 'Extract'
         }}
@@ -70,10 +70,14 @@ import PrimaryInput from "~/components/form/PrimaryInput";
 import PrimaryButton from "~/components/form/PrimaryButton";
 import CodeBlock from "~/components/widgets/CodeBlock";
 import InteractiveDoubleColumns from "~/components/tool/InteractiveDoubleColumns";
+import PrimaryFileUploader from "~/components/form/PrimaryFileUploader.vue";
 
 export default {
   name: "bin-extractor",
-  components: {InteractiveDoubleColumns, CodeBlock, PrimaryButton, PrimaryInput, InteractiveBlock, PrimaryContainer},
+  components: {
+    PrimaryFileUploader,
+    InteractiveDoubleColumns, CodeBlock, PrimaryButton, PrimaryInput, InteractiveBlock, PrimaryContainer
+  },
   head() {
     return {
       title: this.$t("tool.binExtract.title") + " - " + this.$t("app.name")
@@ -87,8 +91,8 @@ export default {
     }
   },
   methods: {
-    fileChanged(e) {
-      this.file = e.target.files[0];
+    fileChanged(files) {
+      this.file = files[0];
     },
     extract() {
       if (this.file === '') return this.$message.error('请选择文件');
