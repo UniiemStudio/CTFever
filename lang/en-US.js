@@ -261,6 +261,10 @@ export default {
       title: 'Dictionary Generator',
       desc: 'Generate an exhaustive dictionary in the specified format'
     },
+    pseudoEncryptedZipCheck: {
+      title: 'Pseudo Encrypted Zip Check',
+      desc: 'Check if the zip file is pseudo encrypted'
+    },
   },
   tags: {
     encodingAndDecoding: 'Encoding And Decoding',

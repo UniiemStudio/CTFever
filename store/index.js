@@ -272,11 +272,12 @@ export const state = () => ({
           disabled: true
         },
         {
-          title: 'tool.zipPseudoEncryption.title',
-          description: 'tool.zipPseudoEncryption.desc',
-          route: '/tools/zip-pseudo-encryption',
+          title: 'tool.pseudoEncryptedZipCheck.title',
+          description: 'tool.pseudoEncryptedZipCheck.desc',
+          route: '/tools/pseudo-encrypted-zip-check',
           tags: [tagCategories.steganography],
-          disabled: true
+          premium: true,
+          newest: true,
         },
       ]
     }

@@ -261,6 +261,10 @@ export default {
       title: '密码字典生成器',
       desc: '生成指定格式的穷举字典'
     },
+    pseudoEncryptedZipCheck: {
+      title: 'Zip 伪加密检测',
+      desc: '检查上传的 Zip 文件是否为伪加密文件'
+    },
   },
   tags: {
     encodingAndDecoding: '编码',
