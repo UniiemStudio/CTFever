@@ -161,13 +161,14 @@ export default {
         );
         retArray.filter(t => t.length > 0).forEach(t => results.push(...t));
         this.searchResult = results;
-        this.searchAnalytics();
+        this.searchAnalytics(search, results.length);
       }
     }
   },
   methods: {
     searchAnalytics: debounce(function (keyword, count) {
-      console.log('debounce #1');
+      console.log(`Search: ${keyword} (${count})`);
+      console.log(this.$matomo)
     }, 1500),
     dragstart(e, i) {
       this.dragIndex = i;
@@ -190,7 +191,7 @@ export default {
     dragend(e, i) {
       e.target.firstChild.classList.remove('anti-hover');
     }
-  }
+  },
 }
 </script>
 
