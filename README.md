@@ -6,24 +6,6 @@
 ![wakatime](https://wakatime.com/badge/user/589c46ee-6ba6-403c-bc9f-3a7aef5b206c/project/c477b34d-85f2-4fe0-b7c8-f74639d78dda.svg)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FUniiemStudio%2FCTFever.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FUniiemStudio%2FCTFever?ref=badge_shield)
 
-[//]: # (![CTFever]&#40;https://socialify.git.ci/UniiemStudio/CTFever/image?description=1&descriptionEditable=A%20fantastic%20toolkit%20for%20CTFers%20and%20everyone.&font=KoHo&issues=1&logo=https%3A%2F%2Fgithub.com%2FUniiemStudio%2FCTFever%2Fraw%2Fmain%2Fstatic%2Ficon.png&name=1&owner=1&pulls=1&stargazers=1&theme=Light&#41;)
-
-[//]: # (<center>)
-
-[//]: # (<img src="https://img.shields.io/github/actions/workflow/status/UniiemStudio/CTFever/build.yml?branch=main" alt="GitHub Workflow Status"/>)
-
-[//]: # (<img src="https://img.shields.io/github/commit-activity/w/UniiemStudio/CTFever" alt="GitHub commit activity"/>)
-
-[//]: # (<img src="https://wakatime.com/badge/user/589c46ee-6ba6-403c-bc9f-3a7aef5b206c/project/c477b34d-85f2-4fe0-b7c8-f74639d78dda.svg" alt="Work time"/>)
-
-[//]: # (<a href="https://app.fossa.com/projects/git%2Bgithub.com%2FUniiemStudio%2FCTFever?ref=badge_shield" target="_blank">)
-
-[//]: # (  <img src="https://app.fossa.com/api/projects/git%2Bgithub.com%2FUniiemStudio%2FCTFever.svg?type=shield" alt="FOSSA Status"/>)
-
-[//]: # (</a>)
-
-[//]: # (</center>)
-
 ## 简介
 
 **CTFever** (CTF Fevers) 是为 CTF [(什么是 CTF?)](https://baike.baidu.com/item/CTF) 发烧者准备的的常用工具套件，助你过关斩将、攻克难关。
@@ -42,18 +24,18 @@
 ⏰ **未开始**
 ❌ **已取消**
 
-| 工具                                                           | 状态  | 工具                                                             | 状态  | 工具                                                           | 状态  |
-|--------------------------------------------------------------|:---:|----------------------------------------------------------------|:---:|--------------------------------------------------------------|:---:|
-| [ASCII](https://ctfever.uniiem.com/tools/ascii)              |  ✅  | [URL 编码](https://ctfever.uniiem.com/tools/url-encoding)        |  ✅  | [Base64](https://ctfever.uniiem.com/tools/base-series)       |  ✅  |
-| [ROT13](https://ctfever.uniiem.com/tools/rot-series)         |  ✅  | [摩尔斯码](https://ctfever.uniiem.com/tools/morse-code)            |  ✅  | [UUID 生成校验](https://ctfever.uniiem.com/tools/uuid-generator) |  ✅  |
-| [摘要哈希计算](https://ctfever.uniiem.com/tools/message-digest)    |  ✅  | [凯撒密码](https://ctfever.uniiem.com/tools/caesar-cipher)         |  ✅  | [栅栏密码](https://ctfever.uniiem.com/tools/rail-fence-cipher)   | 🧪  |
-| [猪圈密码](https://ctfever.uniiem.com/tools/pigpen)              |  ✅  | [维吉尼亚密码](https://ctfever.uniiem.com/tools/vigenereCipher)      |  ✅  | [Pyc 反编译](https://ctfever.uniiem.com/tools/pyc-decompiler)   |  ✅  |
-| [JSFuck](https://ctfever.uniiem.com/tools/jsfuck)            |  ✅  | [BrainFuck](https://ctfever.uniiem.com/tools/brain-fuck)       |  ✅  | [IP 归属地](https://ctfever.uniiem.com/tools/ip-geo)            |  ✅  |
-| [进制转换](https://ctfever.uniiem.com/tools/radix-conversion)    |  ✅  | [时间戳转换](https://ctfever.uniiem.com/tools/timestamp)            |  ✅  | [串口调试器](https://ctfever.uniiem.com/tools/serial)             |  ✅  |
-| [CRC 计算](https://ctfever.uniiem.com/tools/crc-checksum)      |  ✅  | [核心价值观密码](https://ctfever.uniiem.com/tools/core-values-cipher) |  ✅  | [端口分析(扫描)](https://ctfever.uniiem.com/tools/port-scan)       |  ✅  |
-| [Binwalk 分析](https://ctfever.uniiem.com/tools/bin-extractor) |  ✅  | [UTF-8 转换](https://ctfever.uniiem.com/tools/utf8-conversion)   |  ✅  | Base64 图片转换                                                  |  ⏰  |
-| 字典生成工具                                                       |  ⏰  | 盲水印提取                                                          |  ⏰  | 云影密码                                                         |  ⏰  |
-| Wireshark 键盘输入数据提取                                           |  ⏰  | Zip 伪加密识别                                                      | 🚧  |                                                              |     |
+| 工具                                                           | 状态  | 工具                                                                       | 状态  | 工具                                                           | 状态  |
+|--------------------------------------------------------------|:---:|--------------------------------------------------------------------------|:---:|--------------------------------------------------------------|:---:|
+| [ASCII](https://ctfever.uniiem.com/tools/ascii)              |  ✅  | [URL 编码](https://ctfever.uniiem.com/tools/url-encoding)                  |  ✅  | [Base64](https://ctfever.uniiem.com/tools/base-series)       |  ✅  |
+| [ROT13](https://ctfever.uniiem.com/tools/rot-series)         |  ✅  | [摩尔斯码](https://ctfever.uniiem.com/tools/morse-code)                      |  ✅  | [UUID 生成校验](https://ctfever.uniiem.com/tools/uuid-generator) |  ✅  |
+| [摘要哈希计算](https://ctfever.uniiem.com/tools/message-digest)    |  ✅  | [凯撒密码](https://ctfever.uniiem.com/tools/caesar-cipher)                   |  ✅  | [栅栏密码](https://ctfever.uniiem.com/tools/rail-fence-cipher)   | 🧪  |
+| [猪圈密码](https://ctfever.uniiem.com/tools/pigpen)              |  ✅  | [维吉尼亚密码](https://ctfever.uniiem.com/tools/vigenereCipher)                |  ✅  | [Pyc 反编译](https://ctfever.uniiem.com/tools/pyc-decompiler)   |  ✅  |
+| [JSFuck](https://ctfever.uniiem.com/tools/jsfuck)            |  ✅  | [BrainFuck](https://ctfever.uniiem.com/tools/brain-fuck)                 |  ✅  | [IP 归属地](https://ctfever.uniiem.com/tools/ip-geo)            |  ✅  |
+| [进制转换](https://ctfever.uniiem.com/tools/radix-conversion)    |  ✅  | [时间戳转换](https://ctfever.uniiem.com/tools/timestamp)                      |  ✅  | [串口调试器](https://ctfever.uniiem.com/tools/serial)             |  ✅  |
+| [CRC 计算](https://ctfever.uniiem.com/tools/crc-checksum)      |  ✅  | [核心价值观密码](https://ctfever.uniiem.com/tools/core-values-cipher)           |  ✅  | [端口分析(扫描)](https://ctfever.uniiem.com/tools/port-scan)       |  ✅  |
+| [Binwalk 分析](https://ctfever.uniiem.com/tools/bin-extractor) |  ✅  | [UTF-8 转换](https://ctfever.uniiem.com/tools/utf8-conversion)             |  ✅  | Base64 图片转换                                                  |  ⏰  |
+| 字典生成工具                                                       |  ⏰  | 盲水印提取                                                                    |  ⏰  | 云影密码                                                         |  ⏰  |
+| Wireshark 键盘输入数据提取                                           |  ⏰  | [Zip 伪加密识别](https://ctfever.uniiem.com/tools/pseudo-encrypted-zip-check) | 🧪  |                                                              |     |
 
 ## 截图
 
