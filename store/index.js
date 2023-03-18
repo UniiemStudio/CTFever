@@ -276,9 +276,8 @@ export const state = () => ({
           description: 'tool.pseudoEncryptedZipCheck.desc',
           route: '/tools/pseudo-encrypted-zip-check',
           tags: [tagCategories.steganography],
-          disabled: true
-          // premium: true,
-          // newest: true,
+          premium: true,
+          newest: true,
         },
       ]
     }
