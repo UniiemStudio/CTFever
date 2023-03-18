@@ -1,7 +1,7 @@
 # CTFever - A Toolkit for CTF fevers
 
 ![CTFever](https://socialify.git.ci/UniiemStudio/CTFever/image?description=1&descriptionEditable=A%20fantastic%20toolkit%20for%20CTFers%20and%20everyone.&font=KoHo&issues=1&logo=https%3A%2F%2Fgithub.com%2FUniiemStudio%2FCTFever%2Fraw%2Fmain%2Fstatic%2Ficon.png&name=1&owner=1&pulls=1&stargazers=1&theme=Light)
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/UniiemStudio/CTFever/ci)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/UniiemStudio/CTFever/build.yml?branch=main)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/w/UniiemStudio/CTFever)
 ![wakatime](https://wakatime.com/badge/user/589c46ee-6ba6-403c-bc9f-3a7aef5b206c/project/c477b34d-85f2-4fe0-b7c8-f74639d78dda.svg)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FUniiemStudio%2FCTFever.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FUniiemStudio%2FCTFever?ref=badge_shield)
@@ -12,7 +12,9 @@
 
 ## 使用
 
-没有其他步骤，[马上开始使用](https://ctfever.uniiem.com/)
+**步骤 0：**[🚀立即访问: ctfever.uniiem.com](https://ctfever.uniiem.com/)
+
+**步骤 1：** 没了
 
 ## 工具清单 & ToDo List
 
@@ -22,38 +24,26 @@
 ⏰ **未开始**
 ❌ **已取消**
 
-| 工具 | 状态 | 工具 | 状态 | 工具 | 状态 |
-| --------------------------------------------------------------------- | :--: | --------------------------------------------------------------- | :--: | ---------------------------------------------------------------- | ---- |
-| [ASCII](https://ctfever.uniiem.com/tools/ascii)                       |
-✅ | [URL 编码](https://ctfever.uniiem.com/tools/url-encoding)       |
-✅ | [Base64](https://ctfever.uniiem.com/tools/base-series)           | ✅ |
-| [ROT13](https://ctfever.uniiem.com/tools/rot-series)                  |
-✅ | [摩尔斯码](https://ctfever.uniiem.com/tools/morse-code)         |
-✅ | [UUID 生成校验](https://ctfever.uniiem.com/tools/uuid-generator) | ✅ |
-| [摘要哈希计算](https://ctfever.uniiem.com/tools/message-digest)       |
-✅ | [凯撒密码](https://ctfever.uniiem.com/tools/caesar-cipher)      |
-✅ | [栅栏密码](https://ctfever.uniiem.com/tools/rail-fence-cipher)   | 🧪 |
-| [猪圈密码](https://ctfever.uniiem.com/tools/pigpen)                   |
-✅ | [维吉尼亚密码](https://ctfever.uniiem.com/tools/vigenereCipher) |
-✅ | [Pyc 反编译](https://ctfever.uniiem.com/tools/pyc-decompiler)    | ✅ |
-| [JSFuck](https://ctfever.uniiem.com/tools/jsfuck)                     |
-✅ | [BrainFuck](https://ctfever.uniiem.com/tools/brain-fuck)        |
-✅ | [IP 归属地](https://ctfever.uniiem.com/tools/ip-geo)             | ✅ |
-| [进制转换](https://ctfever.uniiem.com/tools/radix-conversion)         |
-✅ | [时间戳转换](https://ctfever.uniiem.com/tools/timestamp)        |
-✅ | [串口调试器](https://ctfever.uniiem.com/tools/serial)            | ✅ |
-| [CRC 计算](https://ctfever.uniiem.com/tools/crc-checksum)             | ✅ | Base64 图片转换 | ⏰ | 与佛伦禅 | ❌ |
-| [核心价值观密码](https://ctfever.uniiem.com/tools/core-values-cipher) |
-✅ | [端口分析](https://ctfever.uniiem.com/tools/port-scan)          |
-✅ | [Binwalk 分析](https://ctfever.uniiem.com/tools/bin-extractor)   | ✅ |
-| [UTF-8 转换](https://ctfever.uniiem.com/tools/utf8-conversion)        | ✅ | 字典生成工具 | ⏰ | 盲水印提取 | ⏰ |
-| 云影密码 | ⏰ | Wireshark 键盘输入数据提取 | ⏰ | Zip 伪加密识别 | 🚧 |
+| 工具                                                           | 状态  | 工具                                                             | 状态  | 工具                                                           | 状态  |
+|--------------------------------------------------------------|:---:|----------------------------------------------------------------|:---:|--------------------------------------------------------------|:---:|
+| [ASCII](https://ctfever.uniiem.com/tools/ascii)              |  ✅  | [URL 编码](https://ctfever.uniiem.com/tools/url-encoding)        |  ✅  | [Base64](https://ctfever.uniiem.com/tools/base-series)       |  ✅  |
+| [ROT13](https://ctfever.uniiem.com/tools/rot-series)         |  ✅  | [摩尔斯码](https://ctfever.uniiem.com/tools/morse-code)            |  ✅  | [UUID 生成校验](https://ctfever.uniiem.com/tools/uuid-generator) |  ✅  |
+| [摘要哈希计算](https://ctfever.uniiem.com/tools/message-digest)    |  ✅  | [凯撒密码](https://ctfever.uniiem.com/tools/caesar-cipher)         |  ✅  | [栅栏密码](https://ctfever.uniiem.com/tools/rail-fence-cipher)   | 🧪  |
+| [猪圈密码](https://ctfever.uniiem.com/tools/pigpen)              |  ✅  | [维吉尼亚密码](https://ctfever.uniiem.com/tools/vigenereCipher)      |  ✅  | [Pyc 反编译](https://ctfever.uniiem.com/tools/pyc-decompiler)   |  ✅  |
+| [JSFuck](https://ctfever.uniiem.com/tools/jsfuck)            |  ✅  | [BrainFuck](https://ctfever.uniiem.com/tools/brain-fuck)       |  ✅  | [IP 归属地](https://ctfever.uniiem.com/tools/ip-geo)            |  ✅  |
+| [进制转换](https://ctfever.uniiem.com/tools/radix-conversion)    |  ✅  | [时间戳转换](https://ctfever.uniiem.com/tools/timestamp)            |  ✅  | [串口调试器](https://ctfever.uniiem.com/tools/serial)             |  ✅  |
+| [CRC 计算](https://ctfever.uniiem.com/tools/crc-checksum)      |  ✅  | [核心价值观密码](https://ctfever.uniiem.com/tools/core-values-cipher) |  ✅  | [端口分析(扫描)](https://ctfever.uniiem.com/tools/port-scan)       |  ✅  |
+| [Binwalk 分析](https://ctfever.uniiem.com/tools/bin-extractor) |  ✅  | [UTF-8 转换](https://ctfever.uniiem.com/tools/utf8-conversion)   |  ✅  | Base64 图片转换                                                  |  ⏰  |
+| 字典生成工具                                                       |  ⏰  | 盲水印提取                                                          |  ⏰  | 云影密码                                                         |  ⏰  |
+| Wireshark 键盘输入数据提取                                           |  ⏰  | Zip 伪加密识别                                                      | 🚧  |                                                              |     |
 
 ## 截图
 
 ![首页](static/screenshots/screenshot_home.png)
 
-![时间戳转换工具](static/screenshots/screenshot_timestamp.png)
+![Pyc 反编译工具](static/screenshots/screenshot_tool_pyc.png)
+
+![Binwalk 工具](static/screenshots/screenshot_tool_bin.png)
 
 ## 特色
 
@@ -67,7 +57,9 @@
 
 CTFever 的目标是涵盖大部分 CTF 题型所需要的工具。
 
-我们目前正在着手构建新的后端系统，将支持插件式扩展功能，届时欢迎社区的大家参与 CTFever 的前端和后端开发，为 CTFever 的建设添砖加瓦。
+我们目前正在跟进 ToDo List
+中的工具开发，如果你有好点子，欢迎提交 [Issues](https://github.com/UniiemStudio/CTFever/issues/new?assignees=HoshinoSuzumi&labels=feature&template=feature_request.md&title=%5BFEAT%5D+)
+或 [Pull Request](https://github.com/UniiemStudio/CTFever/compare)
 
 ## Stargazers 趋势
 
