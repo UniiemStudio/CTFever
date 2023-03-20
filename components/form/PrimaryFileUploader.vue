@@ -7,18 +7,21 @@
           'disabled:text-gray-300 disabled:dark:text-slate-500 disabled:bg-gray-50': disable,
           'py-4 px-3 text-xl': large,
           'border-blue-400 dark:border-blue-400 bg-blue-50 dark:bg-blue-400/10 dark:text-blue-400': dragOver,
+          'border-red-400 dark:border-red-400 bg-red-50 dark:bg-red-400/10': invalidMIME
         }"
        @click="$refs.input_file.click()"
        @dragover.prevent="dragOver = true"
        @dragleave.prevent="dragOver = false"
-       @drop.prevent="dragOver = false; handleFiles($event.dataTransfer.files)">
+       @drop.prevent="dragOver = false; handleFiles($event.dataTransfer.files, true)">
     <input type="file" class="hidden" :disabled="disable" ref="input_file"
-           @change="handleFiles($event.target.files)" :multiple="multiple"/>
+           @change="handleFiles($event.target.files)" :multiple="multiple" :accept="accept"/>
     <div class="flex flex-col h-40 justify-center items-center space-y-1 mt-4 transition-all">
       <div :class="{'animate-pulse': dragOver}">
-        <ion-icon class="text-4xl" name="cloud-upload-outline"></ion-icon>
+        <ion-icon v-if="invalidMIME" class="text-4xl" name="close-outline"></ion-icon>
+        <ion-icon v-else class="text-4xl" name="cloud-upload-outline"></ion-icon>
       </div>
-      <span class="text-sm text-gray-400 dark:text-slate-400">{{ label }}</span>
+      <span v-if="invalidMIME" class="text-sm text-gray-400 dark:text-slate-400">无效的文件类型</span>
+      <span v-else class="text-sm text-gray-400 dark:text-slate-400">{{ label }}</span>
     </div>
     <span class="w-full h-0 flex flex-row items-center justify-center font-bold
                  border-t-2 border-gray-200 dark:border-slate-600 opacity-0
@@ -53,20 +56,64 @@ export default {
     multiple: {
       type: Boolean,
       default: false
+    },
+    // mineType 属性，支持的文件类型，传递字符串或数组，如：'image/png' 或 ['image/png', 'image/jpeg']
+    mimeType: {
+      type: [String, Array],
+      default: null
     }
   },
   data() {
     return {
       dragOver: false,
-      files: null
+      files: null,
+      invalidMIME: false,
+    }
+  },
+  computed: {
+    accept() {
+      if (this.mimeType) {
+        if (typeof this.mimeType === 'string') {
+          return this.mimeType;
+        } else if (Array.isArray(this.mimeType)) {
+          return this.mimeType.join(',');
+        }
+      }
+      return '*/*';
     }
   },
   methods: {
-    handleFiles(files) {
+    handleFiles(files, drag = false) {
+      if (drag) {
+        // 拖拽上传时，需要判断是否是有效的文件类型，files 和 mimeType 都可为字符串或数组
+        const validFiles = [];
+        for (let i = 0; i < files.length; i++) {
+          if (this.mimeType) {
+            if (typeof this.mimeType === 'string') {
+              if (files[i].type === this.mimeType) {
+                validFiles.push(files[i]);
+              }
+            } else if (Array.isArray(this.mimeType)) {
+              if (this.mimeType.includes(files[i].type)) {
+                validFiles.push(files[i]);
+              }
+            }
+          } else {
+            validFiles.push(files[i]);
+          }
+        }
+        if (validFiles.length === 0) {
+          this.invalidMIME = true;
+          setTimeout(() => {
+            this.invalidMIME = false;
+          }, 1500);
+          return;
+        }
+      }
       if (files.length === 0) return;
       this.files = files;
       this.$emit('change', files);
-    }
+    },
   }
 }
 </script>
