@@ -17,7 +17,7 @@
              :autocomplete="autocomplete"
              @change="$emit('change', type==='file' ? $event : $event.target.value)"
              @input="$emit('input', $event.target.value)"/>
-      <button v-show="!copyable && type !== 'file'" @mousedown="clean" tabindex="-1"
+      <button v-show="!copyable && type !== 'file'" @mousedown="clean" tabindex="-1" type="button"
               class="absolute right-2 text-slate-500 opacity-0 pointer-events-none translate-x-4 transition clear-btn">
         <ion-icon class="text-xl" name="close-circle"></ion-icon>
       </button>
