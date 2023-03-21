@@ -31,7 +31,8 @@
                     class="search-input" v-model="searchText"/>
     </div>
     <div v-if="searchText" class="mt-6 my-2 grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-      <Tool v-for="(tool, k) in searchResult" :key="k" :tool="tool"/>
+      <Tool v-for="(tool, k) in searchResult" :key="k" :tool="tool"
+            @contextmenu.prevent.native="handleRightClick($event, tool)"/>
     </div>
     <!--  /Search  -->
 
@@ -52,7 +53,7 @@
            @dragstart="dragstart($event, k)"
            @dragend="dragend($event, k)"
            draggable="true">
-        <Tool :tool="tool" :draggable="false"/>
+        <Tool :tool="tool" :draggable="false" @contextmenu.prevent.native="handleRightClick($event, tool)"/>
       </div>
     </TransitionGroup>
     <!--  /Favorites  -->
@@ -70,7 +71,8 @@
           {{ $t(toolkit.description) || toolkit.description }}</p>
       </div>
       <div class="my-2 grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        <Tool v-for="(tool, k) in toolkit.tools" :key="k" :tool="tool"/>
+        <Tool v-for="(tool, k) in toolkit.tools" :key="k" :tool="tool"
+              @contextmenu.prevent.native="handleRightClick($event, tool)"/>
       </div>
     </div>
     <!--  /Tool Lists  -->
@@ -99,6 +101,32 @@
       </div>
     </div>
     <!-- /图例 -->
+
+    <!-- 上下文菜单 -->
+    <div class="fixed p-1 rounded-lg shadow-lg bg-white/80 dark:bg-slate-700/80 dark:text-slate-400 transition-opacity opacity-0
+                flex flex-col border border-slate-300 dark:border-slate-600 pointer-events-none backdrop-blur-md"
+         style="z-index: 999; min-width: 160px;" :class="{'opacity-100 pointer-events-auto': contextMenu.show}"
+         :style="{'top': `${contextMenu.position.y}px`, 'left': `${contextMenu.position.x}px`}">
+      <div class="flex flex-row items-center p-2 rounded-lg hover:bg-black/10 dark:hover:bg-white/10 cursor-pointer
+                  transition-colors duration-300"
+           @click="handleContextMenuClick('open')">
+        <ion-icon class="text-xl -mt-0.5" name="open-outline"></ion-icon>
+        <span class="ml-2">在新窗口打开</span>
+      </div>
+      <div class="mx-2 my-0.5 h-[1px] bg-gray-200 dark:bg-slate-600"></div>
+      <div class="flex flex-row items-center p-2 rounded-lg hover:bg-black/10 dark:hover:bg-white/10 cursor-pointer
+                  transition-colors duration-500"
+           @click="handleContextMenuClick('favorite')">
+        <ion-icon class="text-xl -mt-0.5" :name="contextMenu.favorite ? 'star' : 'star-outline'"></ion-icon>
+        <span class="ml-2">{{ contextMenu.favorite ? '移出收藏夹' : '添加到收藏' }}</span>
+      </div>
+      <div class="flex flex-row items-center p-2 rounded-lg hover:bg-black/10 dark:hover:bg-white/10 cursor-pointer
+                  transition-colors duration-500"
+           @click="handleContextMenuClick('copy')">
+        <ion-icon class="text-xl -mt-0.5" name="link-outline"></ion-icon>
+        <span class="ml-2">复制链接</span>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -110,7 +138,7 @@ import Tool from "~/components/tool/Tool";
 
 import {debounce} from 'lodash';
 
-import {getToolByRoute} from '~/libs/common';
+import {copyTextToClipboard, getToolByRoute} from '~/libs/common';
 
 export default {
   name: 'IndexPage',
@@ -141,6 +169,16 @@ export default {
           ]
         },
       ],
+      contextMenu: {
+        show: false,
+        route: null,
+        favorite: false,
+        tool: null,
+        position: {
+          x: 0,
+          y: 0
+        }
+      },
       searchText: '',
       searchResult: [],
       dragIndex: null,
@@ -163,6 +201,18 @@ export default {
         this.searchResult = results;
         this.searchAnalytics(search, results.length);
       }
+    },
+    contextMenu: {
+      handler: function (val) {
+        if (val.show) {
+          this.$nextTick(() => {
+            document.body.addEventListener("click", this.closeContextMenu);
+          })
+        } else {
+          document.body.removeEventListener("click", this.closeContextMenu);
+        }
+      },
+      deep: true
     }
   },
   methods: {
@@ -190,6 +240,38 @@ export default {
     },
     dragend(e, i) {
       e.target.firstChild.classList.remove('anti-hover');
+    },
+    handleRightClick(e, tool) {
+      e.preventDefault();
+      if (this.contextMenu.show) this.contextMenu.show = false;
+      this.contextMenu.show = true;
+      this.contextMenu.tool = tool;
+      this.contextMenu.favorite = this.favoriteTools.some(favoriteTool => favoriteTool.route === tool.route);
+      this.contextMenu.position.x = e.clientX;
+      this.contextMenu.position.y = e.clientY;
+    },
+    handleContextMenuClick(type) {
+      switch (type) {
+        case 'open':
+          window.open(this.contextMenu.tool.route, '_blank')
+          break;
+        case 'favorite':
+          this.$store.commit('settings/markToolByRoute', {
+            route: this.contextMenu.tool.route,
+            mark: !this.contextMenu.favorite
+          });
+          this.$message.success(!this.contextMenu.favorite ? '已添加到收藏夹' : '已移出收藏夹');
+          break;
+        case 'copy':
+          copyTextToClipboard(window.location.origin + this.contextMenu.tool.route);
+          this.$message.success('已复制到剪贴板');
+          break;
+      }
+      this.contextMenu.show = false;
+    },
+    closeContextMenu(e) {
+      e.preventDefault();
+      this.contextMenu.show = false;
     }
   },
 }
