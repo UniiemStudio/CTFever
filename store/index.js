@@ -211,6 +211,13 @@ export const state = () => ({
           route: '/tools/timestamp',
           tags: [tagCategories.conversion],
         },
+        {
+          title: 'tool.base2img.title',
+          description: 'tool.base2img.desc',
+          route: '/tools/base64-to-image',
+          tags: [tagCategories.conversion],
+          newest: true,
+        },
       ]
     },
     {
@@ -237,13 +244,6 @@ export const state = () => ({
         //   tags: [tagCategories.conversion],
         //   disabled: true,
         // },
-        {
-          title: 'tool.base2img.title',
-          description: 'tool.base2img.desc',
-          route: '/tools/base-img-convertor',
-          tags: [tagCategories.conversion],
-          disabled: true,
-        },
         // {
         //   title: '与佛论禅',
         //   description: '面对这个纷繁复杂的世界, 真神会如何作答呢',

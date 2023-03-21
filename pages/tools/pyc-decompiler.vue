@@ -2,7 +2,7 @@
   <PrimaryContainer>
     <div class="primary-form">
       <InteractiveBlock class="space-y-4">
-        <PrimaryFileUploader @change="fileChanged"/>
+        <PrimaryFileUploader @change="fileChanged" :mime-type="['.pyc']"/>
         <PrimaryButton class="w-full" @click="decompile" :disable="loading">{{
             loading ? 'Decompiling...' : 'Decompile'
           }}

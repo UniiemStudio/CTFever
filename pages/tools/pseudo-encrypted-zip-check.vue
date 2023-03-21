@@ -2,7 +2,7 @@
   <PrimaryContainer>
     <div class="primary-form">
       <InteractiveBlock class="space-y-4">
-        <PrimaryFileUploader @change="fileChanged"/>
+        <PrimaryFileUploader @change="fileChanged" :mime-type="['zip', '.zip']"/>
         <PrimaryButton class="w-full" :disable="loading" @click="check">{{
             loading ? 'Uploading...' : 'Check'
           }}

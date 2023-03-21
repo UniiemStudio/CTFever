@@ -6,7 +6,7 @@
        :class="{
           'disabled:text-gray-300 disabled:dark:text-slate-500 disabled:bg-gray-50': disable,
           'py-4 px-3 text-xl': large,
-          'border-blue-400 dark:border-blue-400 bg-blue-50 dark:bg-blue-400/10 dark:text-blue-400': dragOver,
+          'border-blue-400 dark:border-blue-400 bg-blue-50 dark:bg-blue-400/10 dark:text-blue-400 shadow-inner': dragOver,
           'border-red-400 dark:border-red-400 bg-red-50 dark:bg-red-400/10': invalidMIME
         }"
        @click="$refs.input_file.click()"
@@ -85,18 +85,19 @@ export default {
   methods: {
     handleFiles(files, drag = false) {
       if (drag) {
-        // 拖拽上传时，需要判断是否是有效的文件类型，files 和 mimeType 都可为字符串或数组
         const validFiles = [];
         for (let i = 0; i < files.length; i++) {
           if (this.mimeType) {
             if (typeof this.mimeType === 'string') {
-              if (files[i].type === this.mimeType) {
+              if (files[i].type.includes(this.mimeType) || files[i].name.includes(this.mimeType)) {
                 validFiles.push(files[i]);
               }
             } else if (Array.isArray(this.mimeType)) {
-              if (this.mimeType.includes(files[i].type)) {
-                validFiles.push(files[i]);
-              }
+              this.mimeType.forEach(mime => {
+                if (files[i].type.includes(mime) || files[i].name.includes(mime)) {
+                  validFiles.push(files[i]);
+                }
+              })
             }
           } else {
             validFiles.push(files[i]);
