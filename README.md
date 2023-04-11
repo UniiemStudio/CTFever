@@ -90,6 +90,8 @@ $ docker run -d -p 80:80 ctfever
 
 ### [贡献指南](https://github.com/UniiemStudio/CTFever/blob/main/CONTRIBUTING.md)
 
+<a href="https://www.producthunt.com/posts/ctfever?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-ctfever" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=388536&theme=light" alt="CTFever - A&#0032;fantastic&#0032;toolkit&#0032;for&#0032;CTFers&#0032;and&#0032;everyone | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
+
 ### 捐赠
 
 [![](static/readme/afdian.jpg)](https://afdian.net/@hoshino_suzumi)
