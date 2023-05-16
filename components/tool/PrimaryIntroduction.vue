@@ -1,6 +1,6 @@
 <template>
-  <div class="lg:m-8 lg:mt-6 p-4 rounded-lg border border-gray-200 bg-gray-50
-              dark:bg-slate-800 dark:border-slate-500">
+  <div class="lg:mt-6 p-4 rounded-lg border border-gray-200 bg-gray-50
+              dark:bg-slate-800 dark:border-slate-500" :class="{'lg:m-8': !noMargin}">
     <p class="font-bold text-lg mb-1.5 dark:text-slate-300" v-if="title">{{ title }}</p>
     <div class="mb-4" v-if="document">
       <nuxt-content class="prose prose-sm max-w-none reset-code overflow-x-auto
@@ -34,6 +34,10 @@ export default {
     path: {
       type: String,
       default: null
+    },
+    noMargin: {
+      type: Boolean,
+      default: false
     }
   },
   data() {

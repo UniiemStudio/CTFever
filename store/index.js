@@ -26,6 +26,7 @@ export const tagCategories = Object.freeze({
   check: 'tags.check',
   reverse: 'tags.reverse',
   steganography: 'tags.steganography',
+  editor: 'tags.editor',
 });
 
 export const state = () => ({
@@ -70,6 +71,13 @@ export const state = () => ({
           description: 'tool.utf8Conversion.desc',
           route: '/tools/utf8-conversion',
           tags: [tagCategories.encodingAndDecoding, tagCategories.conversion],
+          newest: true
+        },
+        {
+          title: 'tool.jsonSerializer.title',
+          description: 'tool.jsonSerializer.desc',
+          route: '/tools/json-serializer',
+          tags: [tagCategories.editor, tagCategories.conversion],
           newest: true
         },
         // {

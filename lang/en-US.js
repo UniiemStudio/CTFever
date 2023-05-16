@@ -138,6 +138,10 @@ export default {
       title: 'UTF8 Conversion',
       desc: 'Conversion of Chinese and special characters'
     },
+    jsonSerializer: {
+      title: 'JSON Serializer',
+      desc: 'Json data editing, supports JSONPath'
+    },
     // Cryptography
     uuid: {
       title: 'UUID',
@@ -279,5 +283,6 @@ export default {
     check: 'Check',
     reverse: 'Re',
     steganography: 'Steganography',
+    editor: 'Editor',
   }
 }

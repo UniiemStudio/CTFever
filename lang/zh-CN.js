@@ -138,6 +138,10 @@ export default {
       title: 'UTF8 转换',
       desc: '中文和特殊符号转换 UTF-8 编码'
     },
+    jsonSerializer: {
+      title: 'JSON 编辑器',
+      desc: 'JSON 数据编辑，支持 JSONPath'
+    },
     // Cryptography
     uuid: {
       title: 'UUID',
@@ -279,5 +283,6 @@ export default {
     check: '校验',
     reverse: '逆向',
     steganography: '隐写',
+    editor: '编辑器',
   }
 }
