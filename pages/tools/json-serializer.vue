@@ -46,6 +46,8 @@ export default defineComponent({
       output_json: '',
       expressionType: 'jsonpath',
       expression: '$',
+      beautify: true,
+      indent: 2,
       references: [
         {
           name: 'JSONPath - XPath for JSON',
@@ -84,10 +86,14 @@ export default defineComponent({
       })
       if (this.expressionType === 'jsonpath') {
         try {
+          let result = jsonpath.query(JSON.parse(this.input_json), this.expression)
+          if (Array.isArray(result) && result.length === 1) {
+            result = result[0]
+          }
           this.output_json = JSON.stringify(
-            jsonpath.query(JSON.parse(this.input_json), this.expression),
+            result,
             null,
-            4
+            this.beautify ? parseInt(this.indent || '0') : null
           )
         } catch (e) {
           this.output_json = e.message
@@ -144,14 +150,25 @@ export default defineComponent({
       </template>
       <template v-slot:right>
         <h2 class="block-title">表达式输出</h2>
-        <codemirror
-          v-model="output_json"
-          :options="{
-            ...cmOptions,
-            readOnly: true,
-            placeholder: 'Output goes here...'
-          }"
-          :disabled="true"/>
+        <codemirror class="output"
+                    v-model="output_json"
+                    :options="{
+                      ...cmOptions,
+                      readOnly: true,
+                      placeholder: 'Output goes here...'
+                    }"
+                    :disabled="true"/>
+        <div
+          class="h-12 px-4 space-x-2 flex flex-row items-center border border-slate-300 dark:border-slate-700 rounded-md overflow-hidden">
+          <div>
+            <a-checkbox v-model="beautify" @change="processJson">美化输出</a-checkbox>
+          </div>
+          <div class="flex flex-row items-center space-x-1">
+            <h2>缩进</h2>
+            <PrimaryInput id="indent" placeholder="缩进数量" v-model="indent" :disable="!beautify"
+                          @input="processJson"/>
+          </div>
+        </div>
       </template>
     </InteractiveDoubleColumns>
     <PrimaryIntroduction title="Json Path" path="intro/jsonpath" :references="references" no-margin/>
@@ -167,5 +184,9 @@ export default defineComponent({
 <style>
 .CodeMirror {
   @apply h-96 md:h-[calc(100vh-96px-165px-146px)] border border-slate-300 dark:border-slate-700 rounded-md;
+}
+
+.output .CodeMirror {
+  @apply h-80 md:h-[calc(100vh-96px-165px-146px-64px)] mb-4;
 }
 </style>
