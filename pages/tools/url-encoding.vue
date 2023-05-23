@@ -38,7 +38,10 @@ export default {
   components: {InteractiveBlock, PrimaryArea, PrimaryButton, PrimaryContainer},
   head() {
     return {
-      title: this.$t("tool.urlEncoding.title") + " - " + this.$t("app.name")
+      title: this.$t("tool.urlEncoding.title") + " - " + this.$t("app.name"),
+      meta: [
+        {hid: "description", name: "description", content: this.$t("tool.urlEncoding.desc")},
+      ],
     };
   },
   data() {

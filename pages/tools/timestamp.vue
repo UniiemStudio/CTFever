@@ -63,7 +63,10 @@ export default {
   components: {GridWithDoubleColumns, PrimarySelector, PrimaryButton, PrimaryInput, InteractiveBlock, PrimaryContainer},
   head() {
     return {
-      title: this.$t("tool.timeStamp.title") + " - " + this.$t("app.name")
+      title: this.$t("tool.timeStamp.title") + " - " + this.$t("app.name"),
+      meta: [
+        {hid: "description", name: "description", content: this.$t("tool.timeStamp.desc")},
+      ],
     };
   },
   data() {

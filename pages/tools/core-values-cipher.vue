@@ -35,7 +35,10 @@ export default {
   components: {PrimaryButton, PrimaryArea, PrimarySelector, InteractiveBlock, PrimaryContainer},
   head() {
     return {
-      title: this.$t("tool.coreValues.title") + " - " + this.$t("app.name")
+      title: this.$t("tool.coreValues.title") + " - " + this.$t("app.name"),
+      meta: [
+        {hid: "description", name: "description", content: this.$t("tool.coreValues.desc")},
+      ],
     };
   },
   data() {

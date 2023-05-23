@@ -41,7 +41,10 @@ export default {
   components: {InteractiveDoubleColumns, PrimaryContainer, PrimaryButton, PrimaryInput, InteractiveBlock},
   head() {
     return {
-      title: this.$t("tool.pigpen.title") + " - " + this.$t("app.name")
+      title: this.$t("tool.pigpen.title") + " - " + this.$t("app.name"),
+      meta: [
+        {hid: "description", name: "description", content: this.$t("tool.pigpen.desc")},
+      ],
     };
   },
   data() {

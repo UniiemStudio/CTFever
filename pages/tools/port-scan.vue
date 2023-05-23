@@ -67,7 +67,10 @@ export default {
   },
   head() {
     return {
-      title: this.$t("tool.portScan.title") + " - " + this.$t("app.name")
+      title: this.$t("tool.portScan.title") + " - " + this.$t("app.name"),
+      meta: [
+        {hid: "description", name: "description", content: this.$t("tool.portScan.desc")},
+      ],
     };
   },
   data() {

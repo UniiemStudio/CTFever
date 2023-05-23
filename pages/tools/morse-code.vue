@@ -39,7 +39,10 @@ export default {
   components: {PrimaryIntroduction, PrimaryButton, PrimaryArea, InteractiveBlock, PrimaryContainer},
   head() {
     return {
-      title: this.$t("tool.morseCode.title") + " - " + this.$t("app.name")
+      title: this.$t("tool.morseCode.title") + " - " + this.$t("app.name"),
+      meta: [
+        {hid: "description", name: "description", content: this.$t("tool.morseCode.desc")},
+      ],
     };
   },
   data() {

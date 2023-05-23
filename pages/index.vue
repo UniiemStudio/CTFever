@@ -143,6 +143,17 @@ import {copyTextToClipboard, getToolByRoute} from '~/libs/common';
 export default {
   name: 'IndexPage',
   components: {Tool, BadgeDot, PrimaryInput, PrimaryIntroduction},
+  head() {
+    return {
+      meta: [
+        {
+          hid: "description",
+          name: "description",
+          content: '免费的超赞 CTF 工具箱。为所有人准备的工具箱，包含pyc反编译、binwalk、端口扫描、Zip伪加密检测，以及多种加密、编码、Json编辑器和各种实用工具。'
+        },
+      ],
+    }
+  },
   computed: {
     favoriteTools: {
       get() {

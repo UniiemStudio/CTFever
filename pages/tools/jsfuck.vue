@@ -38,7 +38,10 @@ export default {
   components: {PrimaryIntroduction, PrimaryPreBlock, PrimaryButton, PrimaryArea, InteractiveBlock, PrimaryContainer},
   head() {
     return {
-      title: this.$t("tool.jsFuck.title") + " - " + this.$t("app.name")
+      title: this.$t("tool.jsFuck.title") + " - " + this.$t("app.name"),
+      meta: [
+        {hid: "description", name: "description", content: this.$t("tool.jsFuck.desc")},
+      ],
     };
   },
   data() {

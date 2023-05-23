@@ -32,7 +32,10 @@ export default {
   components: {PrimarySelector, PrimaryPreBlock, PrimaryArea, InteractiveBlock, PrimaryContainer},
   head() {
     return {
-      title: this.$t("tool.messageDigest.title") + " - " + this.$t("app.name")
+      title: this.$t("tool.messageDigest.title") + " - " + this.$t("app.name"),
+      meta: [
+        {hid: "description", name: "description", content: this.$t("tool.messageDigest.desc")},
+      ],
     };
   },
   watch: {

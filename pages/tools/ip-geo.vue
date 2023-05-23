@@ -25,7 +25,10 @@ export default {
   components: {ObjectViewer, PrimaryArea, PrimaryButton, PrimaryInput, InteractiveBlock, PrimaryContainer},
   head() {
     return {
-      title: this.$t("tool.ipAttribution.title") + " - " + this.$t("app.name")
+      title: this.$t("tool.ipAttribution.title") + " - " + this.$t("app.name"),
+      meta: [
+        {hid: "description", name: "description", content: this.$t("tool.ipAttribution.desc")},
+      ],
     };
   },
   data() {

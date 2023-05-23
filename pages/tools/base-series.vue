@@ -50,7 +50,10 @@ export default {
   },
   head() {
     return {
-      title: this.$t("tool.baseSeries.title") + " - " + this.$t("app.name")
+      title: this.$t("tool.baseSeries.title") + " - " + this.$t("app.name"),
+      meta: [
+        {hid: "description", name: "description", content: this.$t("tool.baseSeries.desc")},
+      ],
     };
   },
   methods: {

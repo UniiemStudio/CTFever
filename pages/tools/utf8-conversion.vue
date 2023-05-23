@@ -34,7 +34,10 @@ export default {
   components: {PrimaryButton, PrimaryArea, InteractiveBlock, PrimaryContainer},
   head() {
     return {
-      title: this.$t("tool.utf8Conversion.title") + " - " + this.$t("app.name")
+      title: this.$t("tool.utf8Conversion.title") + " - " + this.$t("app.name"),
+      meta: [
+        {hid: "description", name: "description", content: this.$t("tool.utf8Conversion.desc")},
+      ],
     };
   },
   data() {

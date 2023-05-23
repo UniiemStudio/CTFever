@@ -2,7 +2,10 @@ export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
   target: "static",
-
+  // target: "server",
+  // server: {
+  //   host: process.env.NODE_ENV === 'production' ? '0.0.0.0' : 'localhost'
+  // },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: "CTFever Toolkit by uniiem",
@@ -18,12 +21,12 @@ export default {
         hid: "description",
         name: "description",
         title: "description",
-        content: "Free and awesome toolkit for CTF fevers and everyone."
+        content: "免费的超赞 CTF 工具箱。为所有人准备的工具箱，包含pyc反编译、binwalk、端口扫描、Zip伪加密检测，以及多种加密、编码、Json编辑器和各种实用工具。"
       },
       {
         name: "keywords",
         content:
-          "CTF, CTFever, CTF Toolkit, CTF Toolkit by uniiem, 进制, 在线工具, 古典密码, 凯撒密码, 哈希, 反编译, URL 编码, 栅栏密码, 猪圈密码, 摩斯密码, Morse Code, MD5, BrainFuck, 端口扫描, Port Scan, 时间戳, Timestamp, Base64, ROT-13, pyc decompiler, pyc 反编译, IP",
+          "CTF,CTFever,CTF Toolkit,CTF Toolkit by uniiem,进制,在线工具,古典密码,凯撒密码,哈希,反编译,URL 编码,栅栏密码,猪圈密码,摩斯密码,Morse Code,MD5,BrainFuck,端口扫描,Port Scan,时间戳,Timestamp,Base64,ROT-13,pyc decompiler,pyc 反编译,IP,伪加密,数据存储格式转换",
       },
       {title: "format-detection", content: "telephone=no"},
       {name: "apple-mobile-web-app-capable", content: "yes"},
@@ -201,13 +204,6 @@ export default {
   },
 
   proxy: {
-    '/api/': {
-      target: 'https://ctfever-service-gen1.i0x0i.ltd',
-      changeOrigin: true,
-      pathRewrite: {
-        '^/api/': '/'
-      }
-    },
     '/gateway/': {
       target: process.env.NODE_ENV === 'production' ? 'https://ctfever-service.uniiem.com' : 'http://127.0.0.1:8080',
       changeOrigin: true,
@@ -266,9 +262,11 @@ export default {
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     postcss: {
-      plugins: {
-        tailwindcss: {},
-        autoprefixer: {}
+      postcssOptions: {
+        plugins: {
+          tailwindcss: {},
+          autoprefixer: {}
+        }
       }
     }
   }

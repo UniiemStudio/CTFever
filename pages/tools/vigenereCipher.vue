@@ -44,7 +44,10 @@ export default {
   components: {InteractiveDoubleColumns, PrimaryButton, PrimaryArea, InteractiveBlock, PrimaryContainer, PrimaryInput},
   head() {
     return {
-      title: this.$t("tool.vigenereCipher.title") + " - " + this.$t("app.name")
+      title: this.$t("tool.vigenereCipher.title") + " - " + this.$t("app.name"),
+      meta: [
+        {hid: "description", name: "description", content: this.$t("tool.vigenereCipher.desc")},
+      ],
     };
   },
   data() {

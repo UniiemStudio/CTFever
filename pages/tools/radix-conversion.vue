@@ -26,7 +26,10 @@ export default {
   components: {PrimaryInput, InteractiveBlock, PrimaryIntroduction, PrimaryContainer},
   head() {
     return {
-      title: this.$t("tool.radixConversion.title") + " - " + this.$t("app.name")
+      title: this.$t("tool.radixConversion.title") + " - " + this.$t("app.name"),
+      meta: [
+        {hid: "description", name: "description", content: this.$t("tool.radixConversion.desc")},
+      ],
     };
   },
   data() {
