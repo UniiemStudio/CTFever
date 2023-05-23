@@ -26,6 +26,11 @@ export default defineComponent({
     InteractiveDoubleColumns,
     PrimaryContainer
   },
+  head() {
+    return {
+      title: this.$t("tool.jsonSerializer.title") + " - " + this.$t("app.name")
+    }
+  },
   data() {
     return {
       expressionOptions: [
