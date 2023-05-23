@@ -224,6 +224,12 @@ export const state = () => ({
           description: 'tool.base2img.desc',
           route: '/tools/base64-to-image',
           tags: [tagCategories.conversion],
+        },
+        {
+          title: 'tool.dataUnitsConversion.title',
+          description: 'tool.dataUnitsConversion.desc',
+          route: '/tools/data-units-conversion',
+          tags: [tagCategories.conversion],
           newest: true,
         },
       ]

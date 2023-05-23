@@ -202,6 +202,14 @@ export default {
       dayOfYear: '天数',
       weekOfYear: '周数'
     },
+    base2img: {
+      title: 'Base64 图片转换',
+      desc: '图片和 Base64 互相转换'
+    },
+    dataUnitsConversion: {
+      title: '数据存储单位换算',
+      desc: 'kbit/KB/KiB 等单位的换算'
+    },
     // Program Related
     pycDecompiler: {
       title: 'Pyc 反编译',
@@ -248,10 +256,6 @@ export default {
     temperatureConversion: {
       title: '温度换算',
       desc: '将温度转换为多种单位'
-    },
-    base2img: {
-      title: 'Base64 图片转换',
-      desc: '图片和 Base64 互相转换'
     },
     coreValues: {
       title: '核心价值观密码',

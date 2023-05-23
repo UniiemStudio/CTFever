@@ -202,6 +202,14 @@ export default {
       dayOfYear: 'Day of Year',
       weekOfYear: 'Week of Year'
     },
+    base2img: {
+      title: 'Base64 to Image',
+      desc: 'Convert base64 string to image'
+    },
+    dataUnitsConversion: {
+      title: 'Data Unit Conversion',
+      desc: 'Convert data storage units'
+    },
     // Program Related
     pycDecompiler: {
       title: 'Pyc Decompiler',
@@ -248,10 +256,6 @@ export default {
     temperatureConversion: {
       title: 'Temperature Conversion',
       desc: 'Convert temperature into multiple units'
-    },
-    base2img: {
-      title: 'Base64 to Image',
-      desc: 'Convert base64 string to image'
     },
     coreValues: {
       title: 'Core Values Cipher',
