@@ -24,7 +24,7 @@
     </div>
     <div v-if="tool.disabled" class="warning-line"></div>
     <div class="absolute top-2 right-2 flex flex-row space-x-4">
-      <BadgeDot :info="tool.newest"/>
+      <BadgeDot ping :info="tool.newest"/>
       <BadgeDot ping :success="tool.recommended"/>
       <BadgeDot :warn="tool.premium"/>
     </div>

@@ -71,7 +71,6 @@ export const state = () => ({
           description: 'tool.utf8Conversion.desc',
           route: '/tools/utf8-conversion',
           tags: [tagCategories.encodingAndDecoding, tagCategories.conversion],
-          newest: true
         },
         {
           title: 'tool.jsonSerializer.title',
@@ -152,8 +151,6 @@ export const state = () => ({
           route: '/tools/pyc-decompiler',
           tags: [tagCategories.decompiler],
           premium: true,
-          recommended: true,
-          beta: false,
         },
         {
           title: 'tool.binExtract.title',
@@ -161,8 +158,6 @@ export const state = () => ({
           route: '/tools/bin-extractor',
           tags: [tagCategories.reverse],
           premium: true,
-          recommended: true,
-          beta: false,
         },
         {
           title: 'tool.jsFuck.title',
@@ -197,8 +192,6 @@ export const state = () => ({
           route: '/tools/port-scan',
           tags: [tagCategories.utility],
           premium: true,
-          recommended: true,
-          beta: false,
         },
       ]
     },
@@ -291,7 +284,6 @@ export const state = () => ({
           route: '/tools/pseudo-encrypted-zip-check',
           tags: [tagCategories.steganography],
           premium: true,
-          newest: true,
         },
       ]
     }
