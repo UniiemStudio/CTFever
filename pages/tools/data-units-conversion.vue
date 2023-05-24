@@ -129,8 +129,11 @@ export default defineComponent({
     }
   },
   mounted() {
-    let b = byte(1000, DATA_UNITS.KIBIBYTE)
-    console.log(b.to(DATA_UNITS.BYTE))
+    const shared_value = this.$route.query.byte
+    if (shared_value) {
+      this.formData[DATA_UNITS.BYTE] = shared_value
+      this.inputHandler(DATA_UNITS.BYTE)
+    }
   },
   methods: {
     inputHandler(eventUnit) {
@@ -149,6 +152,11 @@ export default defineComponent({
           this.formData[unit] = value
         }
       }
+      this.$router.replace({
+        query: {
+          byte: this.formData[DATA_UNITS.BYTE]
+        }
+      })
     }
   },
 })

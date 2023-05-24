@@ -2,6 +2,9 @@
 
 各单位间的转换关系如下，这里没有列出 P/E/Z/Y 级别的单位，因为目前很少使用，根据此表类推即可：
 
+<div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+<div class="w-full">
+
 ### 十进制单位
 
 | 全名       | 缩写 | 倍率    |
@@ -11,6 +14,9 @@
 | Gigabyte | GB | 10^9  |
 | Terabyte | TB | 10^12 |
 
+</div>
+<div class="w-full">
+
 ### 二进制单位
 
 | 全名        | 缩写  | 倍率   |
@@ -19,6 +25,9 @@
 | Mebibyte  | MiB | 2^20 |
 | Gibibyte  | GiB | 2^30 |
 | Tebibyte] | TiB | 2^40 |
+
+</div>
+</div>
 
 ## 数据单位规范
 
