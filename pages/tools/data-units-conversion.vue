@@ -154,6 +154,7 @@ export default defineComponent({
       }
       this.$router.replace({
         query: {
+          ...this.$route.query,
           byte: this.formData[DATA_UNITS.BYTE]
         }
       })

@@ -1,14 +1,16 @@
 <template>
   <PrimaryContainer>
     <InteractiveBlock class="space-y-2">
-      <PrimaryInput id="radix-2" v-model="radix2" :label="$t('common.radix.bin').toString()"
-                    placeholder="Binary..." copyable/>
-      <PrimaryInput id="radix-8" v-model="radix8" :label="$t('common.radix.oct').toString()"
-                    placeholder="Octal..." copyable/>
-      <PrimaryInput id="radix-10" v-model="radix10" :label="$t('common.radix.dec').toString()"
-                    placeholder="Decimal..." copyable/>
-      <PrimaryInput id="radix-16" v-model="radix16" :label="$t('common.radix.hex').toString()"
-                    placeholder="Hexadecimal..." copyable/>
+      <PrimaryInput id="radix-2" v-model="formData['r2']" :label="$t('common.radix.bin').toString()"
+                    @input="inputHandler('r2')" placeholder="Binary..." copyable/>
+      <PrimaryInput id="radix-8" v-model="formData['r8']" :label="$t('common.radix.oct').toString()"
+                    @input="inputHandler('r8')" placeholder="Octal..." copyable/>
+      <PrimaryInput id="radix-10" v-model="formData['r10']" :label="$t('common.radix.dec').toString()"
+                    @input="inputHandler('r10')" placeholder="Decimal..." copyable/>
+      <PrimaryInput id="radix-16" v-model="formData['r16']" :label="$t('common.radix.hex').toString()"
+                    @input="inputHandler('r16')" placeholder="Hexadecimal..." copyable/>
+      <PrimaryInput id="readable" v-model="formData['readable']" :label="$t('tool.radixConversion.readable').toString()"
+                    @input="inputHandler('readable')" placeholder="Readable..." copyable/>
     </InteractiveBlock>
   </PrimaryContainer>
 </template>
@@ -19,7 +21,7 @@ import PrimaryIntroduction from "~/components/tool/PrimaryIntroduction";
 import InteractiveBlock from "~/components/tool/InteractiveBlock";
 import PrimaryInput from "~/components/form/PrimaryInput";
 
-import radixc from '~/libs/radixc';
+import {decimal_to_readable, radixc, readable_to_decimal} from '~/libs/radixc';
 
 export default {
   name: "radix-conversion",
@@ -32,39 +34,82 @@ export default {
       ],
     };
   },
+  mounted() {
+    for (let format in this.formData) {
+      if (this.$route.query[format] && this.$route.query[format] !== '') {
+        this.formData[format] = this.$route.query[format];
+        this.inputHandler(format);
+      }
+    }
+  },
   data() {
     return {
-      radix2: "",
-      radix8: "",
-      radix10: "",
-      radix16: ""
+      formData: {
+        ['r2']: "",
+        ['r8']: "",
+        ['r10']: "",
+        ['r16']: "",
+        ['readable']: "",
+      },
     };
-  },
-  watch: {
-    radix2: function (val) {
-      this.radix8 = this.convert(val, 2, 8);
-      this.radix10 = this.convert(val, 2, 10);
-      this.radix16 = this.convert(val, 2, 16);
-    },
-    radix8: function (val) {
-      this.radix2 = this.convert(val, 8, 2);
-      this.radix10 = this.convert(val, 8, 10);
-      this.radix16 = this.convert(val, 8, 16);
-    },
-    radix10: function (val) {
-      this.radix2 = this.convert(val, 10, 2);
-      this.radix8 = this.convert(val, 10, 8);
-      this.radix16 = this.convert(val, 10, 16);
-    },
-    radix16: function (val) {
-      this.radix2 = this.convert(val, 16, 2);
-      this.radix8 = this.convert(val, 16, 8);
-      this.radix10 = this.convert(val, 16, 10);
-    }
   },
   methods: {
     convert(val, from, to) {
       return radixc(val, from, to);
+    },
+    inputHandler(eventFormat) {
+      const eventValue = this.formData[eventFormat];
+      this.$router.replace({
+        query: {
+          [eventFormat]: eventValue
+        }
+      })
+      if (eventValue === '') {
+        for (let format in this.formData) {
+          if (format !== eventFormat) {
+            this.formData[format] = '';
+          }
+        }
+        return
+      }
+      if (eventFormat === 'readable') {
+        const decimal = readable_to_decimal(eventValue);
+        if (decimal === null) {
+          return
+        }
+        for (let format in this.formData) {
+          if (format !== eventFormat) {
+            if (format === 'readable') {
+              this.formData[format] = eventValue;
+              continue
+            }
+            this.formData[format] = this.convert(
+              decimal,
+              10,
+              parseInt(format.replace('r', ''))
+            );
+          }
+        }
+        return
+      }
+      for (let format in this.formData) {
+        if (format !== eventFormat) {
+          if (format === 'readable') {
+            this.formData[format] = decimal_to_readable(
+              this.convert(
+                eventValue,
+                parseInt(eventFormat.replace('r', '')),
+                10
+              )
+            );
+            continue
+          }
+          this.formData[format] = this.convert(
+            eventValue,
+            parseInt(eventFormat.replace('r', '')),
+            parseInt(format.replace('r', '')));
+        }
+      }
     }
   }
 }

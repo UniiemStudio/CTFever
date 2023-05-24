@@ -205,7 +205,8 @@ export const state = () => ({
           title: 'tool.radixConversion.title',
           description: 'tool.radixConversion.desc',
           route: '/tools/radix-conversion',
-          tags: [tagCategories.conversion]
+          tags: [tagCategories.conversion],
+          shareable: true,
         },
         {
           title: 'tool.timeStamp.title',

@@ -87,6 +87,7 @@ export default defineComponent({
       this.$router.replace({
         path: this.$route.fullPath,
         query: {
+          ...this.$route.query,
           json: Buffer.from(this.input_json).toString('base64'),
           expression: encodeURIComponent(this.expression),
           expressionType: this.expressionType,
