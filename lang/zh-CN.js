@@ -200,7 +200,8 @@ export default {
     // Data Conversion
     radixConversion: {
       title: '进制转换',
-      desc: '将输入数字转换为不同进制的输出'
+      desc: '将输入数字转换为不同进制的输出',
+      readable: '易读形式',
     },
     timeStamp: {
       title: '时间戳转换',

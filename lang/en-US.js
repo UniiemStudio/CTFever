@@ -200,7 +200,8 @@ export default {
     // Data Conversion
     radixConversion: {
       title: 'Radix Converter',
-      desc: 'Convert a number to a different radix'
+      desc: 'Convert a number to a different radix',
+      readable: 'Human Readable',
     },
     timeStamp: {
       title: 'Time Stamp Converter',

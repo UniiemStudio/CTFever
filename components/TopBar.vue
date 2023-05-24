@@ -143,7 +143,6 @@ export default {
       return icon;
     },
     getTagName() {
-      console.log('getTagName', this.isTagPage())
       return this.isTagPage() ? this.$t(`tags.${this.$route.params.tag}`) : null;
     },
   },
