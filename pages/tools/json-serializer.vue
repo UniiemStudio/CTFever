@@ -84,7 +84,7 @@ export default defineComponent({
   },
   methods: {
     processJson() {
-      this.$router.push({
+      this.$router.replace({
         path: this.$route.fullPath,
         query: {
           json: Buffer.from(this.input_json).toString('base64'),
