@@ -5,7 +5,7 @@
         <h1 class="text-lg font-bold flex flex-col md:flex-row justify-center md:justify-start items-center space-x-1
                   dark:text-slate-300">
           <ion-icon class="text-4xl md:text-xl mb-2 md:mb-0" name="pricetag-outline"></ion-icon>
-          <span class="text-lg font-thin"
+          <span class="text-lg font-medium"
                 v-html="$t('common.text_tag_archive').toString().replace('{}', this.getTagName())"
           ></span>
         </h1>

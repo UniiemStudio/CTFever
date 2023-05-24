@@ -110,21 +110,23 @@
       <div class="flex flex-row items-center p-2 rounded-lg hover:bg-black/10 dark:hover:bg-white/10 cursor-pointer
                   transition-colors duration-300"
            @click="handleContextMenuClick('open')">
-        <ion-icon class="text-xl -mt-0.5" name="open-outline"></ion-icon>
-        <span class="ml-2">在新窗口打开</span>
+        <Icon icon="tabler:external-link" class="text-xl"/>
+        <span class="ml-2">{{ $t('context_menu.external_link') }}</span>
       </div>
       <div class="mx-2 my-0.5 h-[1px] bg-gray-200 dark:bg-slate-600"></div>
       <div class="flex flex-row items-center p-2 rounded-lg hover:bg-black/10 dark:hover:bg-white/10 cursor-pointer
                   transition-colors duration-500"
            @click="handleContextMenuClick('favorite')">
-        <ion-icon class="text-xl -mt-0.5" :name="contextMenu.favorite ? 'star' : 'star-outline'"></ion-icon>
-        <span class="ml-2">{{ contextMenu.favorite ? '移出收藏夹' : '添加到收藏' }}</span>
+        <Icon :icon="contextMenu.favorite ? 'tabler:star-filled' : 'tabler:star'" class="text-xl"/>
+        <span class="ml-2">
+          {{ contextMenu.favorite ? $t('context_menu.mark_remove') : $t('context_menu.mark_add') }}
+        </span>
       </div>
       <div class="flex flex-row items-center p-2 rounded-lg hover:bg-black/10 dark:hover:bg-white/10 cursor-pointer
                   transition-colors duration-500"
            @click="handleContextMenuClick('copy')">
-        <ion-icon class="text-xl -mt-0.5" name="link-outline"></ion-icon>
-        <span class="ml-2">复制链接</span>
+        <Icon icon="tabler:link" class="text-xl"/>
+        <span class="ml-2">{{ $t('context_menu.copy') }}</span>
       </div>
     </div>
   </div>
@@ -139,10 +141,11 @@ import Tool from "~/components/tool/Tool";
 import {debounce} from 'lodash';
 
 import {copyTextToClipboard, getToolByRoute} from '~/libs/common';
+import {Icon} from "@iconify/vue2";
 
 export default {
   name: 'IndexPage',
-  components: {Tool, BadgeDot, PrimaryInput, PrimaryIntroduction},
+  components: {Icon, Tool, BadgeDot, PrimaryInput, PrimaryIntroduction},
   head() {
     return {
       meta: [
@@ -271,11 +274,15 @@ export default {
             route: this.contextMenu.tool.route,
             mark: !this.contextMenu.favorite
           });
-          this.$message.success(!this.contextMenu.favorite ? '已添加到收藏夹' : '已移出收藏夹');
+          this.$message.success(
+            !this.contextMenu.favorite ?
+              this.$t('action.marked').toString() :
+              this.$t('action.unmarked').toString()
+          );
           break;
         case 'copy':
           copyTextToClipboard(window.location.origin + this.contextMenu.tool.route);
-          this.$message.success('已复制到剪贴板');
+          this.$message.success(this.$t('action.copied').toString());
           break;
       }
       this.contextMenu.show = false;

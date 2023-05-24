@@ -12,15 +12,27 @@ export default {
     login: '登陆',
     signup: '创建账号',
     back: '返回',
+    install_pwa: '安装',
     appearance: {
       light: '亮色',
       dark: '暗色',
       auto: '自动'
     },
+    share: '分享',
+    share_link: '包含页面状态的链接',
+    drawer_collapse: '收起',
+  },
+  context_menu: {
+    external_link: '在新窗口打开',
+    mark_add: '添加到收藏',
+    mark_remove: '移出收藏夹',
+    copy: '复制链接',
   },
   action: {
     marked: '已收藏',
-    unmarked: '已移出收藏'
+    unmarked: '已移出收藏',
+    copied: '已复制到剪贴板',
+    copied_with_state: '已复制{}到剪贴板',
   },
   common: {
     radix: {

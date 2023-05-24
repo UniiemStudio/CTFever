@@ -1,7 +1,7 @@
 <template>
   <div class="w-full h-full flex flex-col justify-center items-center md:justify-start md:items-start mt-8 md:mt-4">
     <div class="flex flex-col md:flex-row justify-items-center text-center md:text-left">
-      <ion-icon class="text-6xl mx-auto" name="alert-circle-outline"></ion-icon>
+      <Icon icon="tabler:info-square-rounded" class="text-6xl mx-auto"/>
       <div class="flex flex-col justify-center ml-0 md:ml-2">
         <h1 class="text-2xl font-bold">{{ $t('page.notFound.title') }}</h1>
         <p>{{ $route.path }}</p>
@@ -16,10 +16,11 @@
 
 <script>
 import TinyButtonLink from "~/components/TinyButtonLink";
+import {Icon} from "@iconify/vue2";
 
 export default {
   name: "not-found",
-  components: {TinyButtonLink},
+  components: {Icon, TinyButtonLink},
   head() {
     return {
       title: this.$t("page.notFound.title")

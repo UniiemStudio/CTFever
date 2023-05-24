@@ -12,15 +12,27 @@ export default {
     login: 'LOGIN',
     signup: 'SIGN UP',
     back: 'Back',
+    install_pwa: 'Install',
     appearance: {
       light: 'Light',
       dark: 'Dark',
       auto: 'Auto'
     },
+    share: 'Share',
+    share_link: 'Link with page state',
+    drawer_collapse: 'Collapse',
+  },
+  context_menu: {
+    external_link: 'Open in new tab',
+    mark_add: 'Add to favorites',
+    mark_remove: 'Remove from favorites',
+    copy: 'Copy link',
   },
   action: {
-    marked: 'Added to bookmarks',
-    unmarked: 'Removed from bookmarks',
+    marked: 'Added to favorites',
+    unmarked: 'Removed from favorites',
+    copied: 'Copied to clipboard',
+    copied_with_state: 'Copied {} to clipboard',
   },
   common: {
     radix: {

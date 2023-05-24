@@ -10,21 +10,24 @@
             <div class="w-fit h-full flex flex-row items-center space-x-2.5 ml-1">
               <img src="/icon.svg" class="w-6 h-6" alt="CTFever Logo">
               <span
-                :class="{'subtitle-show': isToolPage(), 'cursor-default pointer-events-none': !isToolPage()}"
-                class="font-light cursor-pointer pointer-events-auto transition duration-500 translate-x-2 opacity-0">{{
-                  currentToolName
+                :class="{'subtitle-show': isToolPage() || isTagPage(), 'cursor-default pointer-events-none': !(isToolPage() || isTagPage())}"
+                class="font-medium cursor-pointer pointer-events-auto transition duration-500 translate-x-2 opacity-0">{{
+                  getTagName ?? currentToolName
                 }}</span>
             </div>
           </nuxt-link>
         </div>
         <div class="space-x-2 dark:text-slate-300">
-          <TinyButtonLink v-if="pwaAvailable" :clk="installPWA" class="group">
-            <ion-icon class="text-base translate-y-[2px]" name="download-outline"></ion-icon>
-            <span>安装 PWA</span>
+          <!--          <nuxt-link to="/settings">-->
+          <!--            <Icon icon="tabler:settings-2" class="text-lg inline -mt-1 pointer-events-none"/>-->
+          <!--          </nuxt-link>-->
+          <TinyButtonLink v-if="pwaAvailable" :clk="installPWA" class="group inline-flex flex-row justify-center gap-1">
+            <Icon icon="tabler:download" class="text-base inline -translate-y-[2px]"/>
+            <span>{{ $t('topbar.install_pwa') }}</span>
           </TinyButtonLink>
           <a-dropdown :trigger="['hover']" placement="bottomRight">
             <span class="ant-dropdown-link cursor-pointer" @click="e => e.preventDefault()">
-              <ion-icon class="align-middle text-lg -mt-1 pointer-events-none" name="language-outline"></ion-icon>
+              <Icon icon="prime:language" class="text-xl inline -mt-1 pointer-events-none"/>
             </span>
             <a-menu slot="overlay" class="dark:bg-slate-800">
               <a-menu-item v-for="(locale, k) in availableLocales" :key="k">
@@ -38,15 +41,14 @@
           </a-dropdown>
           <a-dropdown :trigger="['hover']" placement="bottomRight">
             <span class="ant-dropdown-link cursor-pointer" @click="e => e.preventDefault()">
-              <ion-icon class="align-middle text-base -mt-1 pointer-events-none"
-                        :name="currentAppearanceIcon"></ion-icon>
+              <Icon :icon="currentAppearanceIcon" class="text-lg inline -mt-1 pointer-events-none"/>
             </span>
             <a-menu slot="overlay" class="dark:bg-slate-800">
               <a-menu-item v-for="(mode, k) in colorModes" :key="k"
                            class="flex flex-row items-center space-x-0.5 dark:text-slate-300"
                            :class="{'dropdown-item-active': $store.state.settings.settings.appearance === mode.code}"
                            @click="switchDarkMode(mode.code)">
-                <ion-icon class="align-middle text-lg" :name="mode.icon"></ion-icon>
+                <Icon :icon="mode.icon" class="text-lg inline"/>
                 <nuxt-link
                   class="px-2 py-px"
                   :class="{'dropdown-item-active': $store.state.settings.settings.appearance === mode.code}"
@@ -68,25 +70,31 @@
       <div class="w-full h-full px-4 container flex justify-between items-center border-t border-t-gray-150
                   dark:border-t-slate-700 dark:text-slate-300">
         <div class="space-x-2">
-          <nuxt-link class="group" :to="localePath('/')">
-            <ion-icon
-              class="align-middle -mt-1 transition-transform group-hover:-translate-x-1"
-              name="arrow-back"/>
+          <nuxt-link class="group flex flex-row items-center gap-1" :to="localePath('/')">
+            <Icon icon="tabler:square-rounded-chevron-left"
+                  class="text-lg inline transition-transform"/>
             {{ $t('topbar.back') }}
           </nuxt-link>
         </div>
         <div class="space-x-2 flex flex-row">
           <!--TODO: Rating-->
+          <TinyButtonLink :class="{'opacity-100 pointer-events-auto': currentTool.shareable}" :clk="shareHandler"
+                          class="flex flex-row justify-center transition opacity-0 pointer-events-none" accent>
+            <Icon icon="tabler:share-3" class="text-base inline -translate-y-[2px] transition"/>
+            <span class="transition">{{ $t('topbar.share') }}</span>
+          </TinyButtonLink>
           <button class="transition-transform active:scale-90 group" @click="markTool">
-            <ion-icon class="align-middle text-lg -mt-1 transition group-hover:text-amber-300"
-                      :name="isMarked ? 'bookmark' : 'bookmark-outline'"></ion-icon>
+            <Icon :icon="isMarked ? 'tabler:bookmark-filled' : 'tabler:bookmark-plus'"
+                  class="text-xl transition group-hover:text-amber-300"/>
           </button>
           <button :class="{'bg-gray-100 dark:bg-slate-700': isDrawerOpen}"
                   class="transition-transform active:scale-90 rounded flex flex-row justify-center space-x-1 px-1 py-0.5"
                   @click="isDrawerOpen = !isDrawerOpen">
-            <ion-icon class="align-middle text-lg transition"
-                      :name="isDrawerOpen ? 'arrow-forward-circle-outline' : 'menu-outline'"></ion-icon>
-            <span class="text-xs transition" :class="{'hidden': !isDrawerOpen}">收起列表</span>
+            <Icon :icon="`tabler:${isDrawerOpen ? 'layout-sidebar-right-collapse' : 'menu-2'}`"
+                  class="text-lg transition"/>
+            <span class="text-xs transition" :class="{'hidden': !isDrawerOpen}">
+              {{ $t('topbar.drawer_collapse') }}
+            </span>
           </button>
         </div>
       </div>
@@ -96,17 +104,22 @@
 
 <script>
 import TinyButtonLink from "~/components/TinyButtonLink";
-import {getToolByRoute, wrapI18nPath2MetaRoute} from "~/libs/common";
+import {copyTextToClipboard, getToolByRoute, wrapI18nPath2MetaRoute} from "~/libs/common";
+import {Icon} from "@iconify/vue2";
+import PrimaryButton from "~/components/form/PrimaryButton.vue";
 
 export default {
   name: "TopBar",
-  components: {TinyButtonLink},
+  components: {PrimaryButton, Icon, TinyButtonLink},
   computed: {
     availableLocales() {
       return this.$i18n.locales.filter(i => i.code !== this.$i18n.locale)
     },
     currentPath() {
       return this.$route.path
+    },
+    currentTool() {
+      return getToolByRoute(this.currentPath);
     },
     markedTools() {
       return this.$store.state.settings.markedTool;
@@ -118,16 +131,20 @@ export default {
       let icon = '';
       switch (this.currentAppearance) {
         case 'light':
-          icon = 'sunny-outline';
+          icon = this.colorModes[0].icon;
           break;
         case 'dark':
-          icon = 'moon-outline';
+          icon = this.colorModes[1].icon;
           break;
         case 'auto':
-          icon = 'contrast-outline';
+          icon = this.colorModes[2].icon;
           break;
       }
       return icon;
+    },
+    getTagName() {
+      console.log('getTagName', this.isTagPage())
+      return this.isTagPage() ? this.$t(`tags.${this.$route.params.tag}`) : null;
     },
   },
   data() {
@@ -136,20 +153,21 @@ export default {
         {
           code: 'light',
           name: 'topbar.appearance.light',
-          icon: 'sunny-outline'
+          icon: 'tabler:sun'
         },
         {
           code: 'dark',
           name: 'topbar.appearance.dark',
-          icon: 'moon-outline'
+          icon: 'tabler:moon-stars'
         },
         {
           code: 'auto',
           name: 'topbar.appearance.auto',
-          icon: 'desktop-outline'
+          icon: 'tabler:device-desktop-cog'
         }
       ],
       isToolPage: () => /^.*\/tools\/.*/.test(this.currentPath),
+      isTagPage: () => /^.*\/tag\/.*/.test(this.currentPath),
       isMarked: false,
       currentToolName: '',
       pwaAvailable: false,
@@ -185,6 +203,9 @@ export default {
       if (this.isToolPage()) {
         this.currentToolName = this.$t(getToolByRoute(route).title);
       }
+      if (this.isTagPage()) {
+        this.currentToolName = this.getTagName;
+      }
     },
     switchDarkMode(mode) {
       this.$store.commit('settings/setAppearance', mode);
@@ -202,6 +223,12 @@ export default {
           this.deferredPrompt = null;
         });
       }
+    },
+    shareHandler() {
+      copyTextToClipboard(window.location.href);
+      this.$message.success(
+        this.$t('action.copied_with_state').toString().replace('{}', this.$t('topbar.share_link').toString())
+      );
     },
   },
   watch: {

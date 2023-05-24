@@ -77,6 +77,7 @@ export const state = () => ({
           description: 'tool.jsonSerializer.desc',
           route: '/tools/json-serializer',
           tags: [tagCategories.editor, tagCategories.conversion],
+          shareable: true,
           newest: true
         },
         // {
@@ -223,6 +224,7 @@ export const state = () => ({
           description: 'tool.dataUnitsConversion.desc',
           route: '/tools/data-units-conversion',
           tags: [tagCategories.conversion],
+          shareable: true,
           newest: true,
         },
       ]

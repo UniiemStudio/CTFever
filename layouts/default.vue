@@ -9,8 +9,8 @@
       <div
         class="fixed md:mt-4 left-0 md:left-auto top-24 right-0 md:right-4 bottom-0 md:bottom-4 md:rounded-lg w-full md:w-64
                bg-gray-50/75 backdrop-blur-md border border-gray-300/75 scroll-smooth z-50
-               transition-transform ease-in-out p-2 space-y-2 overflow-y-auto overflow-x-hidden
-               dark:bg-slate-800/75 dark:border-slate-600/75 duration-600"
+               transition-transform ease-in-out p-2 space-y-2 overflow-hidden overflow-y-scroll
+               dark:bg-slate-800/75 dark:border-slate-600/75 duration-600 shadow-xl"
         :class="{'translate-x-0': isDrawerOpen && isToolPage(), 'translate-x-[120%]': !isDrawerOpen || !isToolPage()}">
         <div v-for="(toolkit, k) in $store.state.toolkits"
              :key="k" class="space-y-2">
@@ -26,7 +26,7 @@
           <!-- TODO: 此处列表不显示标签 -->
           <Tool class="border-gray-300"
                 :ref="tool.route === wrapI18nPath2MetaRoute(currentPath) ? 'activeMenuItem' : null"
-                :class="{'shadow-inner border-gray-600': tool.route === wrapI18nPath2MetaRoute(currentPath)}"
+                :class="{'shadow-inner border-sky-500 ring-1 ring-sky-400': tool.route === wrapI18nPath2MetaRoute(currentPath)}"
                 v-for="(tool, k) in toolkit.tools.filter(t => !t.disabled)" :key="k" :tool="tool"/>
         </div>
       </div>
