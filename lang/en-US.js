@@ -34,6 +34,55 @@ export default {
     copied: 'Copied to clipboard',
     copied_with_state: 'Copied {} to clipboard',
   },
+  settings: {
+    appearance: {
+      label: 'Appearance',
+      language: {
+        label: 'Language',
+      },
+      color_mode: {
+        label: 'Color mode',
+        mode: {
+          light: 'Light',
+          dark: 'Dark',
+          auto: 'Auto',
+        },
+      },
+    },
+    about: {
+      label: 'About CTFever',
+      version: {
+        label: 'Version',
+        check_update_logs: 'Check update logs',
+      },
+      follow_us: {
+        label: 'Follow us',
+        subtitle: 'Follow us for updates and more',
+      },
+      donate: {
+        label: 'Donate',
+        subtitle: 'If you like CTFever, please buy us a coffee',
+        link: {
+          afdian: 'Afdian',
+        }
+      },
+    },
+    danger_zone: {
+      label: 'Danger Zone',
+      subtitle: 'These actions may affect or clear local data',
+      wipe: {
+        label: 'Wipe local data',
+        subtitle: 'Clear all local data, unrecoverable',
+        btn: 'Wipe',
+        dialog: {
+          title: 'Wipe data',
+          content: 'Delete your local favorites list, all preferences, and recently used tools. This action cannot be undone',
+          okText: 'Confirm wipe',
+          cancelText: 'cancel',
+        },
+      }
+    }
+  },
   common: {
     radix: {
       bin: 'Binary',
@@ -47,6 +96,8 @@ export default {
       recommended: 'Recommended',
       beta: 'Experimental'
     },
+    copy: 'Copy',
+    copied: 'Copied',
     btn_encode: 'Encode',
     btn_decode: 'Decode',
     text_encoded: 'Encoded',

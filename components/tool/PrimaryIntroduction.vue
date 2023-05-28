@@ -12,16 +12,19 @@
       <a v-for="reference in references" :href="reference.url"
          class="group text-blue-500 italic w-fit" target="_blank">
         {{ reference.name }}
-        <ion-icon class="align-middle -mt-0.5 transition-transform group-hover:translate-x-1"
-                  name="arrow-forward-outline"/>
+        <Icon icon="ion:arrow-forward-outline"
+              class="inline -mt-0.5 transition-transform group-hover:translate-x-1"/>
       </a>
     </div>
   </div>
 </template>
 
 <script>
+import {Icon} from "@iconify/vue2";
+
 export default {
   name: "PrimaryIntroduction",
+  components: {Icon},
   props: {
     title: {
       type: String,

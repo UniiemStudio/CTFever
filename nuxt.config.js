@@ -58,26 +58,6 @@ export default {
         rel: "preload",
         href: "//fonts.font.im/css?family=PT+Mono|PT+Sans|Poppins|Nunito&display=swap",
         as: "font"
-      },
-      {
-        rel: "preload",
-        href: "//unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js",
-        as: "script"
-      },
-      {
-        rel: "preload",
-        href: "//unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js",
-        as: "script"
-      }
-    ],
-    script: [
-      {
-        src: "https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js",
-        type: "module"
-      },
-      {
-        src: "https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js",
-        type: "nomodule"
       }
     ]
   },
@@ -205,7 +185,8 @@ export default {
 
   proxy: {
     '/gateway/': {
-      target: process.env.NODE_ENV === 'production' ? 'https://ctfever-service.uniiem.com' : 'http://127.0.0.1:8080',
+      // target: process.env.NODE_ENV === 'production' ? 'https://ctfever-service.uniiem.com' : 'http://127.0.0.1:8080',
+      target: 'https://ctfever-service.uniiem.com',
       changeOrigin: true,
       pathRewrite: {
         '^/gateway/': '/'
@@ -221,14 +202,16 @@ export default {
         iso: "en-US",
         file: "en-US.js",
         name: "English",
-        label: "English"
+        label: "English",
+        icon: "twemoji:flag-united-kingdom"
       },
       {
         code: "zh",
         iso: "zh-CN",
         file: "zh-CN.js",
         name: "简体中文",
-        label: "简体中文"
+        label: "简体中文",
+        icon: "twemoji:flag-china"
       },
       // {
       //   code: 'ja',

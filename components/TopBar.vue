@@ -18,9 +18,6 @@
           </nuxt-link>
         </div>
         <div class="space-x-2 dark:text-slate-300">
-          <!--          <nuxt-link to="/settings">-->
-          <!--            <Icon icon="tabler:settings-2" class="text-lg inline -mt-1 pointer-events-none"/>-->
-          <!--          </nuxt-link>-->
           <TinyButtonLink v-if="pwaAvailable" :clk="installPWA" class="group inline-flex flex-row justify-center gap-1">
             <Icon icon="tabler:download" class="text-base inline -translate-y-[2px]"/>
             <span>{{ $t('topbar.install_pwa') }}</span>
@@ -39,32 +36,35 @@
               </a-menu-item>
             </a-menu>
           </a-dropdown>
-          <a-dropdown :trigger="['hover']" placement="bottomRight">
-            <span class="ant-dropdown-link cursor-pointer" @click="e => e.preventDefault()">
-              <Icon :icon="currentAppearanceIcon" class="text-lg inline -mt-1 pointer-events-none"/>
-            </span>
-            <a-menu slot="overlay" class="dark:bg-slate-800">
-              <a-menu-item v-for="(mode, k) in colorModes" :key="k"
-                           class="flex flex-row items-center space-x-0.5 dark:text-slate-300"
-                           :class="{'dropdown-item-active': $store.state.settings.settings.appearance === mode.code}"
-                           @click="switchDarkMode(mode.code)">
-                <Icon :icon="mode.icon" class="text-lg inline"/>
-                <nuxt-link
-                  class="px-2 py-px"
-                  :class="{'dropdown-item-active': $store.state.settings.settings.appearance === mode.code}"
-                  :key="mode.code"
-                  :to="switchLocalePath(mode.code)">{{ $t(mode.name) }}
-                </nuxt-link>
-              </a-menu-item>
-            </a-menu>
-          </a-dropdown>
+          <!--          <a-dropdown :trigger="['hover']" placement="bottomRight">-->
+          <!--            <span class="ant-dropdown-link cursor-pointer" @click="e => e.preventDefault()">-->
+          <!--              <Icon :icon="currentAppearanceIcon" class="text-lg inline -mt-1 pointer-events-none transition"/>-->
+          <!--            </span>-->
+          <!--            <a-menu slot="overlay" class="dark:bg-slate-800">-->
+          <!--              <a-menu-item v-for="(mode, k) in colorModes" :key="k"-->
+          <!--                           class="flex flex-row items-center space-x-0.5 dark:text-slate-300"-->
+          <!--                           :class="{'dropdown-item-active': $store.state.settings.settings.appearance === mode.code}"-->
+          <!--                           @click="switchDarkMode(mode.code)">-->
+          <!--                <Icon :icon="mode.icon" class="text-lg inline"/>-->
+          <!--                <nuxt-link-->
+          <!--                  class="px-2 py-px"-->
+          <!--                  :class="{'dropdown-item-active': $store.state.settings.settings.appearance === mode.code}"-->
+          <!--                  :key="mode.code"-->
+          <!--                  :to="switchLocalePath(mode.code)">{{ $t(mode.name) }}-->
+          <!--                </nuxt-link>-->
+          <!--              </a-menu-item>-->
+          <!--            </a-menu>-->
+          <!--          </a-dropdown>-->
+          <nuxt-link :to="localePath('/settings')">
+            <Icon icon="tabler:settings-2" class="text-lg inline -mt-1 pointer-events-none"/>
+          </nuxt-link>
           <!-- TODO: CTFever Premium -->
           <!-- <TinyButtonLink :to="localePath('/premium-active')" accent>Premium</TinyButtonLink> -->
         </div>
       </div>
     </div>
     <div
-      class="fixed z-10 top-16 w-full h-8 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md opacity-0 -translate-y-8 transition duration-500 flex flex-col items-center h-16"
+      class="fixed z-10 top-16 w-full h-8 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md opacity-0 -translate-y-8 transition duration-500 flex flex-col items-center"
       :class="{'shadow dark:shadow-slate-800/50 hover:shadow-md opacity-100 translate-y-0': isToolPage()}"
     >
       <div class="w-full h-full px-4 container flex justify-between items-center border-t border-t-gray-150
@@ -152,12 +152,12 @@ export default {
         {
           code: 'light',
           name: 'topbar.appearance.light',
-          icon: 'tabler:sun'
+          icon: 'line-md:moon-alt-to-sunny-outline-loop-transition'
         },
         {
           code: 'dark',
           name: 'topbar.appearance.dark',
-          icon: 'tabler:moon-stars'
+          icon: 'line-md:sunny-outline-to-moon-alt-loop-transition'
         },
         {
           code: 'auto',
@@ -181,7 +181,7 @@ export default {
       this.updateTitle(this.currentPath);
     });
     window.addEventListener('beforeinstallprompt', (e) => {
-      e.preventDefault();
+      // e.preventDefault();
       self.pwaAvailable = true;
       this.deferredPrompt = e;
     });

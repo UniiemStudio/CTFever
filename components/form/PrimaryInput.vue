@@ -10,30 +10,33 @@
              focus:ring transition duration-300 input-transition
              dark:bg-slate-800 dark:text-slate-300 dark:border-slate-600"
              :class="{
-          'disabled:text-gray-300 disabled:dark:text-slate-500 disabled:bg-gray-50': disable && !copyable,
-          'py-4 px-3 text-xl': large
-        }"
+               'disabled:text-gray-300 disabled:dark:text-slate-500 disabled:bg-gray-50': disable && !copyable,
+               'py-4 px-3 text-xl': large
+             }"
              :id="id" :type="type" :placeholder="placeholder" :value="value" :disabled="disable"
-             :autocomplete="autocomplete"
-             @change="$emit('change', type==='file' ? $event : $event.target.value)"
-             @input="$emit('input', $event.target.value)"/>
-      <button v-show="!copyable && type !== 'file'" @mousedown="clean" tabindex="-1" type="button"
+             :autocomplete="autocomplete" ref="input"
+             @change="$emit('change', $event.target.value)"
+             @input="inputHandler($event)"/>
+      <button v-show="!copyable" @mousedown="clean" tabindex="-1" type="button"
               class="absolute right-2 text-slate-500 opacity-0 pointer-events-none translate-x-4 transition clear-btn">
-        <ion-icon class="text-xl" name="close-circle"></ion-icon>
+        <Icon icon="tabler:circle-x-filled" class="text-xl"/>
       </button>
-      <button v-show="copyable && value !== '' && type !== 'file'"
-              @click="copy" :id="`copy_${id}`" :class="{'text-emerald-500': copiedText === 'copied!'}"
+      <button v-show="copyable && value !== ''"
+              @click="copy" :id="`copy_${id}`" :class="{'text-emerald-500': copiedText === 'common.copied'}"
               class="absolute transition flex flex-row items-center space-x-1 copy-btn">
-        <ion-icon class="text-sm" :name="copiedText === 'copied!' ? 'checkmark-outline' : 'copy-outline'"></ion-icon>
-        <span class="text-xs" :class="{'text-emerald-500': copiedText === 'copied!'}">{{ copiedText }}</span>
+        <Icon :icon="copiedText === 'common.copied' ? 'tabler:check' : 'tabler:copy'" class="text-base"/>
+        <span class="text-xs" :class="{'text-emerald-500': copiedText === 'common.copied'}">{{ $t(copiedText) }}</span>
       </button>
     </div>
   </div>
 </template>
 
 <script>
+import {Icon} from "@iconify/vue2";
+
 export default {
   name: "PrimaryInput",
+  components: {Icon},
   props: {
     id: {
       type: String,
@@ -75,22 +78,34 @@ export default {
     large: {
       type: Boolean,
       default: false
+    },
+    pattern: {
+      type: RegExp,
+      default: null
     }
   },
   data() {
     return {
-      copiedText: 'copy',
+      copiedText: 'common.copy',
     }
   },
   methods: {
+    inputHandler(e) {
+      let eventValue = e.target.value;
+      if (this.pattern) {
+        eventValue = eventValue.replaceAll(this.pattern, '');
+        this.$refs.input.value = eventValue;
+      }
+      this.$emit('input', eventValue);
+    },
     clean() {
       this.$emit('input', '');
     },
     copy() {
       navigator.clipboard.writeText(this.value);
-      this.copiedText = 'copied!';
+      this.copiedText = 'common.copied';
       setTimeout(() => {
-        this.copiedText = 'copy';
+        this.copiedText = 'common.copy';
       }, 1500);
     },
   },

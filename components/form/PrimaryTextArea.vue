@@ -14,18 +14,21 @@
         :disabled="disable"
         :autocomplete="autocomplete"/>
       <button v-show="copyable && value !== ''" tabindex="-1" type="button"
-              @click="copy" :id="`copy_${id}`" :class="{'text-emerald-500': copiedText === 'copied!'}"
+              @click="copy" :id="`copy_${id}`" :class="{'text-emerald-500': copiedText === 'common.copied'}"
               class="absolute transition flex flex-row items-center space-x-1 copy-btn">
-        <ion-icon class="text-sm" :name="copiedText === 'copied!' ? 'checkmark-outline' : 'copy-outline'"></ion-icon>
-        <span class="text-xs" :class="{'text-emerald-500': copiedText === 'copied!'}">{{ copiedText }}</span>
+        <Icon :icon="copiedText === 'common.copied' ? 'tabler:check' : 'tabler:copy'" class="text-base"/>
+        <span class="text-xs" :class="{'text-emerald-500': copiedText === 'common.copied'}">{{ $t(copiedText) }}</span>
       </button>
     </div>
   </div>
 </template>
 
 <script>
+import {Icon} from "@iconify/vue2";
+
 export default {
   name: "PrimaryArea",
+  components: {Icon},
   props: {
     id: {
       type: String,
@@ -63,15 +66,15 @@ export default {
   },
   data() {
     return {
-      copiedText: 'copy'
+      copiedText: 'common.copy'
     }
   },
   methods: {
     copy() {
       navigator.clipboard.writeText(this.value);
-      this.copiedText = 'copied!';
+      this.copiedText = 'common.copied';
       setTimeout(() => {
-        this.copiedText = 'copy';
+        this.copiedText = 'common.copy';
       }, 1500);
     },
   },

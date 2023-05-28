@@ -92,6 +92,8 @@ export default defineComponent({
           expression: encodeURIComponent(this.expression),
           expressionType: this.expressionType,
         }
+      }).catch(() => {
+        // pass
       })
       if (this.expressionType === 'jsonpath') {
         try {

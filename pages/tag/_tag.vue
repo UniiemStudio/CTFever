@@ -4,7 +4,7 @@
       <div class="py-4 text-center md:text-left">
         <h1 class="text-lg font-bold flex flex-col md:flex-row justify-center md:justify-start items-center space-x-1
                   dark:text-slate-300">
-          <ion-icon class="text-4xl md:text-xl mb-2 md:mb-0" name="pricetag-outline"></ion-icon>
+          <Icon icon="tabler:tag" class="text-4xl md:text-xl mb-2 md:mb-0"/>
           <span class="text-lg font-medium"
                 v-html="$t('common.text_tag_archive').toString().replace('{}', this.getTagName())"
           ></span>
@@ -18,8 +18,11 @@
 </template>
 
 <script>
+import {Icon} from "@iconify/vue2";
+
 export default {
   name: "TagArchive",
+  components: {Icon},
   head() {
     return {
       title: "标签: " + this.getTagName() + " - " + this.$t("app.name"),

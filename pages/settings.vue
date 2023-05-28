@@ -1,0 +1,174 @@
+<script>
+import {defineComponent} from 'vue'
+import PrimaryContainer from "~/components/tool/PrimaryContainer.vue";
+import {Icon} from "@iconify/vue2";
+
+export default defineComponent({
+  name: "settings",
+  components: {Icon, PrimaryContainer},
+  data() {
+    return {
+      languageOptions: [],
+      colorModeOptions: [
+        {
+          value: 'light',
+          label: this.$t('settings.appearance.color_mode.mode.light').toString(),
+          icon: 'line-md:moon-alt-to-sunny-outline-loop-transition'
+        },
+        {
+          value: 'dark',
+          label: this.$t('settings.appearance.color_mode.mode.dark').toString(),
+          icon: 'line-md:sunny-outline-to-moon-alt-loop-transition'
+        },
+        {
+          value: 'auto',
+          label: this.$t('settings.appearance.color_mode.mode.auto').toString(),
+          icon: 'tabler:device-desktop-cog'
+        },
+      ],
+    }
+  },
+  computed: {
+    language: {
+      get() {
+        return this.$i18n.localeProperties.code
+      },
+      set(value) {
+        this.$i18n.setLocale(value)
+      }
+    },
+    darkMode: {
+      get() {
+        return this.$store.state.settings.settings.appearance;
+      },
+      set(value) {
+        this.$store.commit('settings/setAppearance', value)
+      }
+    }
+  },
+  mounted() {
+    this.languageOptions = this.$i18n.locales.map(locale => ({
+      value: locale.code,
+      label: locale.name,
+      icon: locale.icon
+    }))
+  },
+  methods: {
+    handleWipe() {
+      const self = this;
+      this.$confirm({
+        title: self.$t('settings.danger_zone.wipe.dialog.title').toString(),
+        content: self.$t('settings.danger_zone.wipe.dialog.content').toString(),
+        okType: 'danger',
+        okText: self.$t('settings.danger_zone.wipe.dialog.okText').toString(),
+        cancelText: self.$t('settings.danger_zone.wipe.dialog.cancelText').toString(),
+        onOk() {
+          return new Promise((resolve, reject) => {
+            setTimeout(() => {
+              self.$store.commit('settings/wipe')
+              self.$router.push('/')
+              setTimeout(() => {
+                self.$router.go(0)
+              }, 500);
+              resolve()
+            }, 1000);
+          });
+        },
+        onCancel() {
+        },
+      })
+    },
+  }
+})
+</script>
+
+<template>
+  <PrimaryContainer>
+    <div>
+
+      <SettingsArea
+        :title="$t('settings.appearance.label').toString()"
+        icon="tabler:layout">
+        <SettingsItem :title="$t('settings.appearance.language.label').toString()">
+          <template #actions>
+            <SettingsFormSelect :options="languageOptions" v-model="language"/>
+          </template>
+        </SettingsItem>
+        <SettingsItem :title="$t('settings.appearance.color_mode.label').toString()">
+          <template #actions>
+            <SettingsFormSelect :options="colorModeOptions" v-model="darkMode"/>
+          </template>
+        </SettingsItem>
+      </SettingsArea>
+      <SettingsArea
+        :title="$t('settings.about.label').toString()"
+        icon="tabler:info-square-rounded">
+        <SettingsItem
+          :title="$t('settings.about.version.label').toString()"
+          subtitle="2.7.0">
+          <template #actions>
+            <SettingsButton ghost>{{ $t('settings.about.version.check_update_logs').toString() }}</SettingsButton>
+          </template>
+        </SettingsItem>
+        <SettingsItem
+          :title="$t('settings.about.follow_us.label').toString()"
+          :subtitle="$t('settings.about.follow_us.subtitle').toString()">
+          <template #actions>
+            <SettingsLink href="https://github.com/UniiemStudio/CTFever" external>GitHub</SettingsLink>
+            <SettingsLink href="https://t.me/boxmoe" external>Telegram</SettingsLink>
+          </template>
+        </SettingsItem>
+        <SettingsItem
+          :title="$t('settings.about.donate.label').toString()"
+          :subtitle="$t('settings.about.donate.subtitle').toString()">
+          <template #actions>
+            <SettingsLink href="https://afdian.net/a/hoshino_suzumi" external>
+              {{ $t('settings.about.donate.link.afdian').toString() }}
+            </SettingsLink>
+          </template>
+        </SettingsItem>
+      </SettingsArea>
+      <SettingsDivider/>
+      <SettingsArea
+        danger
+        :title="$t('settings.danger_zone.label').toString()"
+        :subtitle="$t('settings.danger_zone.subtitle').toString()"
+        icon="tabler:alert-triangle">
+        <SettingsItem
+          :title="$t('settings.danger_zone.wipe.label').toString()"
+          :subtitle="$t('settings.danger_zone.wipe.subtitle').toString()">
+          <template #actions>
+            <SettingsButton @click="handleWipe" danger>
+              {{ $t('settings.danger_zone.wipe.btn').toString() }}
+            </SettingsButton>
+          </template>
+        </SettingsItem>
+      </SettingsArea>
+
+    </div>
+  </PrimaryContainer>
+</template>
+
+<style>
+.ant-modal-content {
+  @apply rounded-xl dark:bg-slate-800;
+}
+
+.ant-modal-content * {
+  @apply dark:text-slate-300;
+}
+
+.ant-btn {
+  @apply dark:bg-slate-800 inline-flex flex-row items-center gap-x-0.5;
+}
+
+.ant-btn-primary {
+  background-color: #1890ff;
+  @apply dark:!border-slate-500;
+}
+
+.ant-btn-danger {
+  background-color: #ff4d4f !important;
+  @apply dark:!bg-red-500/50 dark:!border-red-500/50;
+}
+</style>

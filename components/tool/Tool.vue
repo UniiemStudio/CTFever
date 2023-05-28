@@ -13,13 +13,12 @@
     </div>
     <div v-if="tool.tags && tool.tags.length > 0" class="mt-2 text-xs text-gray-400 dark:text-slate-500 w-fit"
          @click.stop>
-      <ion-icon class="align-middle -mt-0.5" name="pricetag-outline"></ion-icon>
+      <Icon :icon="tool.tags.length > 1 ? 'tabler:tags' : 'tabler:tag'" class="text-sm inline -mt-0.5"/>
       <div class="inline-block" v-for="(tag, k) in tool.tags">
         <nuxt-link class="underline-offset-2 hover:underline" :key="k"
                    :to="localePath(`/tag/${tag.replace('tags.', '')}`)">
-          {{ $t(tag) }}
+          {{ `${$t(tag)}${k < tool.tags.length - 1 ? ',&nbsp;' : ''}` }}
         </nuxt-link>
-        <span v-if="k < tool.tags.length - 1">, </span>
       </div>
     </div>
     <div v-if="tool.disabled" class="warning-line"></div>
@@ -33,10 +32,11 @@
 
 <script>
 import BadgeDot from "~/components/tool/BadgeDot";
+import {Icon} from "@iconify/vue2";
 
 export default {
   name: "Tool",
-  components: {BadgeDot},
+  components: {Icon, BadgeDot},
   props: {
     tool: {
       type: Object,

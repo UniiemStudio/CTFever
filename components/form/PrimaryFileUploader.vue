@@ -17,8 +17,7 @@
            @change="handleFiles($event.target.files)" :multiple="multiple" :accept="accept"/>
     <div class="flex flex-col h-40 justify-center items-center space-y-1 mt-4 transition-all">
       <div :class="{'animate-pulse': dragOver}">
-        <ion-icon v-if="invalidMIME" class="text-4xl" name="close-outline"></ion-icon>
-        <ion-icon v-else class="text-4xl" name="cloud-upload-outline"></ion-icon>
+        <Icon :icon="invalidMIME ? 'tabler:file-alert' : 'tabler:cloud-upload'" class="text-4xl"/>
       </div>
       <span v-if="invalidMIME" class="text-sm text-gray-400 dark:text-slate-400">无效的文件类型</span>
       <span v-else class="text-sm text-gray-400 dark:text-slate-400">{{ label }}</span>
@@ -28,7 +27,7 @@
                  text-xs text-gray-400 dark:text-slate-400 transition-all duration-500"
           :class="{'h-auto p-1 opacity-100': files}">
       <span class="flex flex-row items-center space-x-0.5">
-        <ion-icon class="text-sm" :name="multiple ? 'file-tray-full-outline' : 'attach-outline'"></ion-icon>
+        <Icon :icon="multiple ? 'tabler:files' : 'tabler:file'" class="text-sm"/>
         <span class="text-inherit">{{
             multiple ? `&nbsp;${files && files.length} 个文件` : `${files && files[0].name}`
           }}</span>
@@ -38,8 +37,11 @@
 </template>
 
 <script>
+import {Icon} from "@iconify/vue2";
+
 export default {
   name: "PrimaryFileUploader",
+  components: {Icon},
   props: {
     label: {
       type: String,

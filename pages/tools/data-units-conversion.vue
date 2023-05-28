@@ -157,6 +157,8 @@ export default defineComponent({
           ...this.$route.query,
           byte: this.formData[DATA_UNITS.BYTE]
         }
+      }).catch(() => {
+        // pass
       })
     }
   },

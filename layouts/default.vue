@@ -16,7 +16,7 @@
              :key="k" class="space-y-2">
           <div class="flex flex-row items-center justify-between">
             <div class="flex items-center space-x-1 w-max">
-              <ion-icon class="text-base dark:text-slate-300" :name="toolkit.icon || 'albums-outline'"></ion-icon>
+              <Icon :icon="toolkit.icon || 'tabler:archive'" class="text-base dark:text-slate-300"/>
               <h1 class="text-base font-bold font-['Nunito'] dark:text-slate-300 w-fit">{{
                   $t(toolkit.title) || toolkit.title
                 }}</h1>
@@ -40,7 +40,7 @@
       <button
         class="fixed flex justify-center items-center left-10 top-10 px-2 py-1 border-2 border-gray-300 rounded space-x-1"
         @click="isGlobalSearchOpen=false">
-        <ion-icon class="text-lg" name="close-outline"></ion-icon>
+        <Icon icon="ion:close-outline" class="text-lg"/>
         <span class="font-['Nunito'] font-bold">ESC</span>
       </button>
       <div class="">
@@ -54,59 +54,61 @@
                 pointer-events-none opacity-0 font-['Nunito'] transition-all duration-500"
       :class="{'bg-black/10 backdrop-blur-sm opacity-100 pointer-events-auto': releases_dialog}">
       <!-- backdrop-blur-2xl -->
-      <div class="w-full h-full md:w-1/2 md:h-2/3 transition-all duration-500 scale-95 opacity-0 ease-in-out
-                  border border-slate-300 bg-white shadow-lg rounded-none md:rounded-lg flex flex-col justify-around"
+      <div class="w-full h-full md:w-1/2 lg:w-2/3 md:h-2/3 transition-all duration-500 scale-95 opacity-0 ease-in-out
+                  border border-slate-300 bg-white shadow-lg rounded-none md:rounded-lg flex flex-col justify-around
+                  dark:border-slate-500 dark:bg-slate-800"
            :class="{'scale-100 opacity-100': releases_dialog}">
         <div class="flex justify-between items-center m-4">
           <div>
-            <h1 class="flex items-center space-x-1 text-xl">
-              <ion-icon name="rocket-outline" class="-mt-0.5"></ion-icon>
+            <h1 class="flex items-center space-x-1 text-xl dark:text-slate-50">
+              <Icon icon="tabler:versions" class="-mt-0.5"/>
               <span class="font-normal">更新日志</span>
             </h1>
-            <p>距上次使用发布了 {{ releases.length }} 次更新</p>
+            <p class="dark:text-slate-300">距上次使用发布了 {{ releases.length }} 次更新</p>
           </div>
           <div>
             <!-- actions -->
           </div>
         </div>
-        <hr/>
+        <hr class="dark:border-slate-500"/>
         <div class="p-4 h-full overflow-y-scroll">
           <div v-for="(release, i) in releases" :key="i" class="flex flex-col space-y-2 mt-2 first-of-type:mt-0">
             <div class="flex flex-col justify-center">
-              <h1 class="text-xl font-extrabold flex items-center space-x-1">
+              <h1 class="text-xl font-extrabold flex items-center space-x-1 dark:text-slate-50">
                 <span>{{ release.version }}</span>
                 <span v-if="release.title" class="text-sm text-blue-400">@</span>
                 <span v-if="release.title" class="font-normal">{{ release.title }}</span>
               </h1>
-              <p class="text-sm text-gray-500 flex items-center space-x-1">
-                <ion-icon name="calendar-outline" class="-mt-0.5"></ion-icon>
+              <p class="text-sm text-gray-500 flex items-center space-x-1 dark:text-slate-500">
+                <Icon icon="tabler:calendar-time" class="-mt-0.5"/>
                 <span>{{ new Date(release.timestamp * 1000).toLocaleString() }}</span>
               </p>
             </div>
-            <div v-if="release.content" class="pt-2">
+            <div v-if="release.content" class="pt-2 dark:text-slate-300">
               <p>{{ release.content }}</p>
             </div>
             <div class="flex flex-col space-y-2 pt-2">
               <div v-for="(change, i) in release.changes" :key="i" v-if="release.changes && release.changes.length > 0"
                    class="flex flex-row items-center justify-center space-x-2">
-                <div class="w-6 h-6 flex justify-center items-center rounded-full bg-gray-100">
-                  <ion-icon :name="change.type ? release_icon[change.type] : 'checkmark-outline'"
-                            class="text-base`"></ion-icon>
+                <div class="w-6 h-6 flex justify-center items-center rounded-full bg-gray-100 dark:bg-slate-700">
+                  <Icon :icon="change.type ? release_icon[change.type] : 'tabler:check'"
+                        class="text-base dark:text-slate-300"/>
                 </div>
-                <div class="flex-1">
+                <div class="flex-1 dark:text-slate-300">
                   <p class="text-sm break-all">{{ change.content || '没有更新描述' }}</p>
                 </div>
               </div>
             </div>
-            <hr/>
+            <hr class="dark:border-slate-500"/>
           </div>
 
         </div>
-        <hr/>
+        <hr class="dark:border-slate-500"/>
         <div class="p-4 flex justify-end">
           <button class="flex items-center space-x-1 text-sm font-bold text-gray-500 hover:text-gray-700
-                         transition-colors duration-300" @click="releaseConfirm">
-            <ion-icon name="checkmark-outline" class="text-lg -mt-0.5"></ion-icon>
+                         transition-colors duration-300 dark:text-slate-300 dark:hover:text-slate-50"
+                  @click="releaseConfirm">
+            <Icon icon="tabler:thumb-up" class="text-lg -mt-0.5"/>
             <span>{{ releaseConfirmButton[Math.floor(Math.random() * releaseConfirmButton.length)] }}</span>
           </button>
         </div>
@@ -121,10 +123,11 @@ import {wrapI18nPath2MetaRoute} from '~/libs/common';
 
 import Mousetrap from 'mousetrap';
 import PrimaryInput from "~/components/form/PrimaryInput";
+import {Icon} from "@iconify/vue2";
 
 export default {
   name: "index",
-  components: {PrimaryInput, Tool},
+  components: {Icon, PrimaryInput, Tool},
   computed: {
     currentAppearance() {
       return this.$store.state.settings.settings.appearance;
@@ -144,10 +147,11 @@ export default {
       isGlobalSearchOpen: false,
       globalSearchText: '',
       release_icon: {
-        'add': 'add-outline',
-        'remove': 'remove-outline',
-        'enchanted': 'rocket-outline',
-        'fix': 'bandage-outline'
+        'add': 'tabler:plus',
+        'remove': 'tabler:minus',
+        'enchant': 'tabler:rocket',
+        'enchanted': 'tabler:rocket',
+        'fix': 'tabler:bandage'
       },
       releaseConfirmButton: ['干得漂亮', '资瓷', '好样的', 'Good Job!', 'Nice!', 'Nice Job!'],
       releases: [
@@ -359,10 +363,6 @@ Global Styles
   html[class*="dark"] {
     @apply bg-slate-900;
   }
-}
-
-ion-icon {
-  pointer-events: none;
 }
 
 /* transitions */

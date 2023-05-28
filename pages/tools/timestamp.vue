@@ -19,7 +19,7 @@
         </PrimaryButton>
       </InteractiveBlock>
     </GridWithDoubleColumns>
-    <hr class="mt-3 mb-4"/>
+    <hr class="mt-3 mb-4 dark:border-slate-500"/>
     <GridWithDoubleColumns>
       <InteractiveBlock>
         <PrimaryInput id="utc" :label="$t('tool.timeStamp.utc').toString()" :value="date.utc().format()" disable

@@ -34,7 +34,7 @@ export const state = () => ({
     {
       title: 'toolkit.EaD.title',
       description: 'toolkit.EaD.desc',
-      icon: 'code-outline',
+      icon: 'tabler:code-asterix',
       tools: [
         {
           title: 'tool.ascii.title',
@@ -93,7 +93,7 @@ export const state = () => ({
     {
       title: 'toolkit.cryptography.title',
       description: 'toolkit.cryptography.desc',
-      icon: 'key-outline',
+      icon: 'tabler:key',
       tools: [
         {
           title: 'tool.uuid.title',
@@ -144,7 +144,7 @@ export const state = () => ({
     {
       title: 'toolkit.programRelated.title',
       description: 'toolkit.programRelated.desc',
-      icon: 'bug-outline',
+      icon: 'tabler:code',
       tools: [
         {
           title: 'tool.pycDecompiler.title',
@@ -178,7 +178,7 @@ export const state = () => ({
     {
       title: 'toolkit.networkTool.title',
       description: 'toolkit.networkTool.desc',
-      icon: 'globe-outline',
+      icon: 'tabler:planet',
       tools: [
         {
           title: 'tool.ipAttribution.title',
@@ -199,7 +199,7 @@ export const state = () => ({
     {
       title: 'toolkit.dataConversion.title',
       description: 'toolkit.dataConversion.desc',
-      icon: 'hardware-chip-outline',
+      icon: 'tabler:transform',
       tools: [
         {
           title: 'tool.radixConversion.title',
@@ -233,7 +233,7 @@ export const state = () => ({
     {
       title: 'toolkit.misc.title',
       description: 'toolkit.misc.desc',
-      icon: 'construct-outline',
+      icon: 'tabler:tools',
       tools: [
         {
           title: 'tool.serialTool.title',

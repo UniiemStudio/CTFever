@@ -13,10 +13,10 @@
           <div
             class="flex flex-col justify-center items-center p-4 bg-gray-100 dark:bg-slate-700 dark:text-slate-300 rounded-lg">
             <div class="flex flex-col items-center">
-              <ion-icon v-if="result && result.assert === 1" class="text-6xl" name="glasses-outline"></ion-icon>
-              <ion-icon v-if="result && result.assert === 0" class="text-6xl" name="document-lock-outline"></ion-icon>
-              <ion-icon v-if="result && result.assert === -1" class="text-6xl" name="lock-open-outline"></ion-icon>
-              <ion-icon v-if="result && result.assert === -2" class="text-6xl" name="help-circle-outline"></ion-icon>
+              <Icon v-if="result && result.assert === 1" icon="tabler:spy" class="text-6xl"/>
+              <Icon v-if="result && result.assert === 0" icon="tabler:shield-lock" class="text-6xl"/>
+              <Icon v-if="result && result.assert === -1" icon="tabler:file-zip" class="text-6xl"/>
+              <Icon v-if="result && result.assert === -2" icon="tabler:file-unknown" class="text-6xl"/>
               <p v-if="result && result.assert === 1" class="text-lg font-bold text-orange-500">伪加密</p>
               <p v-if="result && result.assert === 0" class="text-lg font-bold text-green-500">加密</p>
               <p v-if="result && result.assert === -1" class="text-lg font-bold text-blue-500">未加密</p>
@@ -79,12 +79,14 @@ import PrimaryButton from "~/components/form/PrimaryButton.vue";
 import CodeBlock from "~/components/widgets/CodeBlock.vue";
 import PrimaryFileUploader from "~/components/form/PrimaryFileUploader.vue";
 import InteractiveDoubleColumns from "~/components/tool/InteractiveDoubleColumns.vue";
+import {Icon} from "@iconify/vue2";
 
 // TODO: i18n
 
 export default {
   name: 'PseudoEncryptedZipCheck',
   components: {
+    Icon,
     InteractiveDoubleColumns,
     PrimaryFileUploader, CodeBlock, PrimaryButton, PrimaryInput, InteractiveBlock, PrimaryContainer
   },

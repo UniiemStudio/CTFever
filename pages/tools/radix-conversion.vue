@@ -2,13 +2,13 @@
   <PrimaryContainer>
     <InteractiveBlock class="space-y-2">
       <PrimaryInput id="radix-2" v-model="formData['r2']" :label="$t('common.radix.bin').toString()"
-                    @input="inputHandler('r2')" placeholder="Binary..." copyable/>
+                    @input="inputHandler('r2')" placeholder="Binary..." copyable :pattern="/[^0-1]/g"/>
       <PrimaryInput id="radix-8" v-model="formData['r8']" :label="$t('common.radix.oct').toString()"
-                    @input="inputHandler('r8')" placeholder="Octal..." copyable/>
+                    @input="inputHandler('r8')" placeholder="Octal..." copyable :pattern="/[^0-7]/g"/>
       <PrimaryInput id="radix-10" v-model="formData['r10']" :label="$t('common.radix.dec').toString()"
-                    @input="inputHandler('r10')" placeholder="Decimal..." copyable/>
+                    @input="inputHandler('r10')" placeholder="Decimal..." copyable type="number"/>
       <PrimaryInput id="radix-16" v-model="formData['r16']" :label="$t('common.radix.hex').toString()"
-                    @input="inputHandler('r16')" placeholder="Hexadecimal..." copyable/>
+                    @input="inputHandler('r16')" placeholder="Hexadecimal..." copyable :pattern="/[^0-9a-fA-F]/g"/>
       <PrimaryInput id="readable" v-model="formData['readable']" :label="$t('tool.radixConversion.readable').toString()"
                     @input="inputHandler('readable')" placeholder="Readable..." copyable/>
     </InteractiveBlock>
@@ -63,7 +63,9 @@ export default {
         query: {
           [eventFormat]: eventValue
         }
-      })
+      }).catch(() => {
+        // pass
+      });
       if (eventValue === '') {
         for (let format in this.formData) {
           if (format !== eventFormat) {
@@ -109,6 +111,13 @@ export default {
             parseInt(eventFormat.replace('r', '')),
             parseInt(format.replace('r', '')));
         }
+      }
+    }
+  },
+  watch: {
+    'formData.r16': function (val) {
+      if (val.length > 0) {
+        this.formData.r16 = val.toUpperCase();
       }
     }
   }

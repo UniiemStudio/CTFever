@@ -15,7 +15,7 @@
                  :src="imageBase64" alt="Placeholder">
             <div v-else class="w-full h-40 border-2 border-dashed rounded-lg border-slate-300 dark:border-slate-600
                                flex justify-center items-center">
-              <ion-icon class="text-4xl text-gray-400 dark:text-slate-400" name="image-outline"></ion-icon>
+              <Icon icon="tabler:photo" class="text-4xl text-gray-400 dark:text-slate-400"/>
             </div>
             <InteractiveDoubleColumns class="mt-2">
               <template v-slot:left>
@@ -38,10 +38,12 @@ import InteractiveDoubleColumns from "~/components/tool/InteractiveDoubleColumns
 import InteractiveBlock from "~/components/tool/InteractiveBlock.vue";
 import PrimaryFileUploader from "~/components/form/PrimaryFileUploader.vue";
 import PrimaryButton from "~/components/form/PrimaryButton.vue";
+import {Icon} from "@iconify/vue2";
 
 export default {
   name: 'Base64ToImage',
   components: {
+    Icon,
     PrimaryButton, PrimaryFileUploader, InteractiveBlock, InteractiveDoubleColumns, PrimaryContainer
   },
   head() {

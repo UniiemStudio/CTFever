@@ -34,6 +34,55 @@ export default {
     copied: '已复制到剪贴板',
     copied_with_state: '已复制{}到剪贴板',
   },
+  settings: {
+    appearance: {
+      label: '外观',
+      language: {
+        label: '语言',
+      },
+      color_mode: {
+        label: '颜色模式',
+        mode: {
+          light: '浅色',
+          dark: '深色',
+          auto: '自动',
+        },
+      },
+    },
+    about: {
+      label: '关于',
+      version: {
+        label: '版本',
+        check_update_logs: '更新日志',
+      },
+      follow_us: {
+        label: '关注我们',
+        subtitle: '关注我们并取得更新资讯',
+      },
+      donate: {
+        label: '捐赠',
+        subtitle: '如果你喜欢 CTFever，欢迎捐赠以支持我们的开发',
+        link: {
+          afdian: '爱发电',
+        }
+      },
+    },
+    danger_zone: {
+      label: '危险区',
+      subtitle: '这些操作可能会影响或破坏本地数据',
+      wipe: {
+        label: '清空数据',
+        subtitle: '删除所有本地数据，该操作不可恢复',
+        btn: '清除',
+        dialog: {
+          title: '清空数据',
+          content: '删除本地的收藏列表、所有偏好设置及最近使用的工具。该操作无法撤销',
+          okText: '确认清空',
+          cancelText: '取消',
+        },
+      }
+    }
+  },
   common: {
     radix: {
       bin: '二进制',
@@ -47,6 +96,8 @@ export default {
       recommended: '精选',
       beta: '实验性'
     },
+    copy: '复制',
+    copied: '已复制',
     btn_encode: '编码',
     btn_decode: '解码',
     btn_encrypt: '加密',

@@ -40,5 +40,16 @@ export const mutations = {
   },
   setLatest(state, latest) {
     state.latest = latest;
+  },
+  wipe(state) {
+    state.cloudSync = {
+      enabled: false,
+      lastSync: null,
+    };
+    state.markedTool = [];
+    state.latest = 0;
+    state.settings = {
+      appearance: 'auto',
+    };
   }
 }

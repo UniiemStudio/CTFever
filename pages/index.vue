@@ -9,8 +9,8 @@
           <a v-for="(ref, k) in tip.references" :key="'ref' + k" class="group text-blue-500 w-fit"
              :href="ref.url" target="_blank">
             {{ ref.name }}
-            <ion-icon class="align-middle -mt-0.5 transition-transform group-hover:translate-x-1"
-                      name="arrow-forward-outline"/>
+            <Icon icon="ion:arrow-forward-outline"
+                  class="inline -mt-0.5 transition-transform group-hover:translate-x-1"/>
           </a>
         </div>
       </div>
@@ -20,8 +20,8 @@
     <div class="py-4 text-center md:text-left search-tip" :class="{'show': searchText}">
       <h1 class="text-lg font-bold flex flex-col md:flex-row justify-center md:justify-start items-center space-x-1
                 dark:text-slate-300 font-['Nunito']">
-        <ion-icon class="text-4xl md:text-xl mb-2 md:mb-0" :name="'search-outline'"></ion-icon>
-        <span class="text-lg font-thin"
+        <Icon v-if="searchText" icon="line-md:search-twotone" class="text-4xl md:text-2xl mb-2 md:mb-0" h-flip="true"/>
+        <span class="text-lg font-medium"
               v-html="$t('common.text_search_result').toString().replace('{}', searchText)"
         ></span>
       </h1>
@@ -34,19 +34,24 @@
       <Tool v-for="(tool, k) in searchResult" :key="k" :tool="tool"
             @contextmenu.prevent.native="handleRightClick($event, tool)"/>
     </div>
+    <div v-if="searchText && searchResult.length <= 0"
+         class="w-full flex flex-col justify-center items-center rounded-lg bg-slate-100 dark:bg-slate-800 dark:text-slate-500 p-4">
+      <Icon icon="line-md:question-circle" class="text-4xl"/>
+      <p class="text-base mt-2">没有相关结果</p>
+    </div>
     <!--  /Search  -->
 
     <!--  Favorites  -->
-    <div v-if="favoriteTools.length > 0 && !searchText" class="py-4 text-center md:text-left">
+    <div v-if="favoriteTools.length > 0 && !searchText" class="py-4 text-center md:text-left mt-0 md:mt-4">
       <h1 class="text-lg font-bold flex flex-col md:flex-row justify-center md:justify-start items-center space-x-1
                 dark:text-slate-300 font-['Nunito']">
-        <ion-icon class="text-4xl md:text-xl mb-2 md:mb-0" :name="'albums-outline'"></ion-icon>
+        <Icon icon="tabler:bookmarks" class="text-4xl md:text-xl mb-2 md:mb-0"/>
         <span class="text-lg">{{ $t('page.home.favoriteKit.title') }}</span>
       </h1>
       <p class="text-sm font-normal font-['Nunito'] dark:text-slate-500">{{ $t('page.home.favoriteKit.desc') }}</p>
     </div>
     <TransitionGroup tag="div" name="fav-drag" v-if="!searchText"
-                     class="my-2 grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                     class="mb-2 grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
       <div v-for="(tool, k) in favoriteTools" :key="k" class="inline-block"
            @dragenter="dragenter($event, k)"
            @dragover="dragover($event, k)"
@@ -60,17 +65,17 @@
 
     <!--  Tool Lists  -->
     <div v-if="!searchText" v-for="(toolkit, k) in $store.state.toolkits" :key="k">
-      <div class="py-4 text-center md:text-left">
+      <div class="py-4 text-center md:text-left mt-0 md:mt-4">
         <h1 class="text-lg font-bold flex flex-col md:flex-row justify-center md:justify-start items-center space-x-1
                 dark:text-slate-300 font-['Nunito']">
-          <ion-icon class="text-4xl md:text-xl mb-2 md:mb-0" :name="toolkit.icon || 'albums-outline'"></ion-icon>
+          <Icon :icon="toolkit.icon || 'tabler:archive'" class="text-4xl md:text-xl mb-2 md:mb-0"/>
           <span class="text-lg">{{ $t(toolkit.title) || toolkit.title }}</span>
           <!-- TODO: Tools count -->
         </h1>
         <p class="text-sm font-normal font-['Nunito'] dark:text-slate-500">
           {{ $t(toolkit.description) || toolkit.description }}</p>
       </div>
-      <div class="my-2 grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      <div class="mb-2 grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         <Tool v-for="(tool, k) in toolkit.tools" :key="k" :tool="tool"
               @contextmenu.prevent.native="handleRightClick($event, tool)"/>
       </div>
