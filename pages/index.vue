@@ -83,24 +83,24 @@
     <!--  /Tool Lists  -->
 
     <!-- 图例 -->
-    <div class="px-2 py-4 text-xs flex flex-row space-x-6 justify-around md:justify-start">
-      <div class="flex flex-row items-center space-x-2">
-        <BadgeDot class="-mt-1.5" warn/>
+    <div class="px-2 py-4 text-xs flex flex-row flex-wrap gap-x-4 gap-y-2 justify-start">
+      <div class="flex flex-row items-center space-x-1">
+        <BadgeDot warn/>
         <span class="dark:text-slate-500 font-['Nunito']">{{ $t('common.badge.premium') }}</span>
       </div>
-      <div class="flex flex-row items-center space-x-2">
-        <BadgeDot class="-mt-1.5" info/>
+      <div class="flex flex-row items-center space-x-1">
+        <BadgeDot info/>
         <span class="dark:text-slate-500 font-['Nunito']">{{ $t('common.badge.newest') }}</span>
       </div>
-      <div class="flex flex-row items-center space-x-2">
-        <BadgeDot class="-mt-1.5" ping success/>
+      <div class="flex flex-row items-center space-x-1">
+        <BadgeDot ping success/>
         <span class="dark:text-slate-500 font-['Nunito']">{{ $t('common.badge.recommended') }}</span>
       </div>
-      <div class="flex flex-row items-center space-x-2">
+      <div class="flex flex-row items-center space-x-1">
         <span class="badge-beta">BETA</span>
         <span class="dark:text-slate-500 font-['Nunito']">{{ $t('common.badge.beta') }}</span>
       </div>
-      <div class="flex flex-row items-center space-x-2">
+      <div class="flex flex-row items-center space-x-1">
         <div class="badge-warning-line"></div>
         <span class="dark:text-slate-500 font-['Nunito']">监修中</span>
       </div>

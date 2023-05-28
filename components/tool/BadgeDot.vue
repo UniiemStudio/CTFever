@@ -1,5 +1,5 @@
 <template>
-  <div v-show="info || warn || success || error" class="relative">
+  <div v-show="info || warn || success || error" class="relative inline-block w-2 h-2">
     <div :class="{'bg-blue-400': info, 'bg-green-400': success, 'bg-orange-400': warn, 'bg-red-400': error}"
          class="absolute w-2 h-2 top-0 right-0 rounded-full opacity-60"></div>
     <div v-show="ping"
