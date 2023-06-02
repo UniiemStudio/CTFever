@@ -1,7 +1,7 @@
 <template>
   <nuxt-link :to="!tool.disabled ? localePath(tool.route) : ''" :class="{'disabled pointer-events-none': tool.disabled}"
              class="rounded-lg border dark:border h-border transition-all duration-500 p-4 cursor-pointer flex flex-col justify-between
-              dark:bg-slate-800 dark:text-white dark:border-slate-500 relative overflow-hidden tool"
+              dark:bg-slate-800 dark:text-white dark:border-slate-500 relative overflow-hidden group tool"
              :draggable="draggable">
     <div>
       <h1 class="text-base dark:text-slate-300 font-['Nunito'] flex flex-row items-center space-x-1">
@@ -22,6 +22,9 @@
       </div>
     </div>
     <div v-if="tool.disabled" class="warning-line"></div>
+    <Icon v-if="isFavorite" icon="tabler:bookmark-filled"
+          class="absolute right-4 -top-2 group-hover:-top-4 transition-all text-4xl
+                 text-gray-200 group-hover:text-orange-300 dark:text-slate-600 group-hover:text-orange-300/60"/>
     <div class="absolute top-2 right-2 flex flex-row space-x-4">
       <BadgeDot ping :info="tool.newest"/>
       <BadgeDot ping :success="tool.recommended"/>
@@ -47,6 +50,11 @@ export default {
       default: true
     }
   },
+  computed: {
+    isFavorite() {
+      return this.$store.state.settings.markedTool.filter(item => item.route === this.tool.route).length > 0
+    }
+  }
 }
 </script>
 
