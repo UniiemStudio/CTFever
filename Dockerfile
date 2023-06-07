@@ -12,7 +12,7 @@ RUN yarn install && \
 FROM node:16-alpine as production-stage
 
 LABEL maintainer="hoshinosuzumi"
-LABEL org.opencontainers.image.source=https://github.com/UniiemStudio/CTFever
+LABEL org.opencontainers.image.source="https://github.com/UniiemStudio/CTFever"
 
 ENV CEVER_RUN_MODE=server
 ENV CEVER_BACKEND_BASE=https://ctfever-service.uniiem.com
