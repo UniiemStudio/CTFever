@@ -2,9 +2,8 @@ name: "Make Docker Image"
 
 on:
   push:
-#    branches: [ main ]
     tags:
-      - '*'
+      - '**'
 
 jobs:
   build:
