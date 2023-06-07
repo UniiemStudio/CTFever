@@ -60,3 +60,21 @@ jobs:
             hoshinosuzumi/ctfever:latest
             ghcr.io/uniiemstudio/ctfever:${{ steps.get_version.outputs.VERSION }}
             ghcr.io/uniiemstudio/ctfever:latest
+            
+  deploy:
+    name: "Trigger automatic pull"
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ ubuntu-latest ]
+        node: [ 16 ]
+        
+    steps:
+      - name: Trigger webhook
+        # You may pin to the exact commit or the version.
+        # uses: magdemajt/trigger-webhook@edc83d0c964b43640521e976fd3c0821317aeec9
+        uses: magdemajt/trigger-webhook@v1
+        with:
+          # URL to send the request to
+          url: ${{ secrets.DEPLOY_WEBHOOK }}
