@@ -5,6 +5,14 @@ import {Icon} from "@iconify/vue2";
 
 export default defineComponent({
   name: "settings",
+  head() {
+    return {
+      title: "Preferences" + " - " + this.$t("app.name"),
+      meta: [
+        {hid: "description", name: "description", content: '偏好设置'},
+      ],
+    };
+  },
   components: {Icon, PrimaryContainer},
   data() {
     return {
@@ -26,6 +34,9 @@ export default defineComponent({
           icon: 'tabler:device-desktop-cog'
         },
       ],
+      server_online: 'pending...',
+      server_endpoint: this.$config.CEVER_BACKEND_BASE.includes('uniiem.com') ? 'Official' : this.$config.CEVER_BACKEND_BASE,
+      server_version: null
     }
   },
   computed: {
@@ -47,6 +58,18 @@ export default defineComponent({
     }
   },
   mounted() {
+    const server_status_endpoint = new URL('status', this.$config.CEVER_BACKEND_BASE);
+    this.$axios.get(server_status_endpoint.href).then(res => {
+      if (res.data.status === 'ok')
+        this.server_online = 'online'
+      else
+        this.server_online = 'offline'
+      this.server_version = res.data.version;
+    }).catch(err => {
+      this.server_online = 'offline'
+      this.server_version = `Failed to fetch (${err.response.status} ${err.response.data.detail})`
+    })
+
     this.languageOptions = this.$i18n.locales.map(locale => ({
       value: locale.code,
       label: locale.name,
@@ -105,7 +128,7 @@ export default defineComponent({
         icon="tabler:info-square-rounded">
         <SettingsItem
           :title="$t('settings.about.version.label').toString()"
-          subtitle="2.7.0">
+          :subtitle="$config.version">
           <template #actions>
             <SettingsButton ghost>{{ $t('settings.about.version.check_update_logs').toString() }}</SettingsButton>
           </template>
@@ -127,6 +150,17 @@ export default defineComponent({
             </SettingsLink>
           </template>
         </SettingsItem>
+      </SettingsArea>
+      <SettingsArea
+        :title="$t('settings.backend.label').toString()"
+        :subtitle="$t('settings.backend.subtitle').toString()"
+        icon="tabler:server-2">
+        <SettingsItem
+          :title="$t('settings.backend.endpoint.label').toString()"
+          :subtitle="`${server_endpoint} - ${server_online}`"/>
+        <SettingsItem
+          :title="$t('settings.backend.version.label').toString()"
+          :subtitle="server_version || (server_online === 'pending...' ? 'Fetching...' : server_online === 'online' ? server_version : 'unavailable')"/>
       </SettingsArea>
       <SettingsDivider/>
       <SettingsArea

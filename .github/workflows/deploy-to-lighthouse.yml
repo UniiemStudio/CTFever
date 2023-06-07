@@ -44,6 +44,8 @@ jobs:
         run: yarn test
 
       - name: Build 🛠️
+        env:
+          CEVER_RUN_MODE: static
         run: |
           yarn generate
           ls -la

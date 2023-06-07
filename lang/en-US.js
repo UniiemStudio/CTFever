@@ -67,6 +67,16 @@ export default {
         }
       },
     },
+    backend: {
+      label: 'Backend',
+      subtitle: 'Some tools require backend support',
+      endpoint: {
+        label: 'Endpoint',
+      },
+      version: {
+        label: 'Version',
+      }
+    },
     danger_zone: {
       label: 'Danger Zone',
       subtitle: 'These actions may affect or clear local data',
