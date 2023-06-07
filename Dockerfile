@@ -1,17 +1,25 @@
-FROM node:14-alpine as build-stage
-ADD . /build_dir
+FROM node:16-alpine as build-stage
 
-RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories
-RUN apk add --update --no-cache  gcc g++ make cmake curl jq py3-configobj py3-pip py3-setuptools python3 python3-dev
+WORKDIR /build
+COPY . .
 
-RUN cd /build_dir \
-  && yarn install \
-  && yarn run build \
-  && yarn run generate \
-  && mv dist /dist
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apk/repositories
+RUN apk add --update --no-cache gcc g++ make cmake curl jq py3-configobj py3-pip py3-setuptools python3 python3-dev
 
-FROM nginx:stable-alpine as production-stage
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-COPY --from=build-stage /dist /usr/share/nginx/html
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+RUN yarn install && \
+    yarn run build
+
+FROM node:16-alpine as production-stage
+
+LABEL maintainer="hoshinosuzumi"
+LABEL org.opencontainers.image.source=https://github.com/UniiemStudio/CTFever
+
+ENV CEVER_RUN_MODE=server
+ENV CEVER_BACKEND_BASE=https://ctfever-service.uniiem.com
+
+WORKDIR /app
+COPY --from=build-stage /build .
+
+EXPOSE 3000
+
+CMD yarn start

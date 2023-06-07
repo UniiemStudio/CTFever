@@ -1,11 +1,14 @@
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
-  target: "static",
-  // target: "server",
-  // server: {
-  //   host: process.env.NODE_ENV === 'production' ? '0.0.0.0' : 'localhost'
-  // },
+  target: process.env.CEVER_RUN_MODE || "static",
+  server: {
+    host: process.env.NODE_ENV === 'production' ? '0.0.0.0' : 'localhost'
+  },
+  publicRuntimeConfig: {
+    version: process.env.CEVER_VERSION || 'unstable',
+    CEVER_BACKEND_BASE: process.env.CEVER_BACKEND_BASE
+  },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: "CTFever Toolkit by uniiem",
@@ -186,7 +189,7 @@ export default {
   proxy: {
     '/gateway/': {
       // target: process.env.NODE_ENV === 'production' ? 'https://ctfever-service.uniiem.com' : 'http://127.0.0.1:8080',
-      target: 'https://ctfever-service.uniiem.com',
+      target: process.env.CEVER_BACKEND_BASE || 'https://ctfever-service.uniiem.com',
       changeOrigin: true,
       pathRewrite: {
         '^/gateway/': '/'

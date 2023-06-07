@@ -67,6 +67,16 @@ export default {
         }
       },
     },
+    backend: {
+      label: '后端',
+      subtitle: '部分工具需要后端支持',
+      endpoint: {
+        label: '服务器端点',
+      },
+      version: {
+        label: '服务端版本',
+      }
+    },
     danger_zone: {
       label: '危险区',
       subtitle: '这些操作可能会影响或破坏本地数据',
