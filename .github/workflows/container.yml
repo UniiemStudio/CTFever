@@ -2,7 +2,7 @@ name: "Make Docker Image"
 
 on:
   push:
-    branches: [ main ]
+#    branches: [ main ]
     tags:
       - '*'
 
@@ -43,8 +43,8 @@ jobs:
         uses: actually-colab/github-action-create-env-file@v2.3
         with:
           envkey_CEVER_VERSION: ${{ github.ref }}
-          file_name: .env
           directory: .
+          file_name: .env
 
       - name: Build and push
         uses: docker/build-push-action@v4
