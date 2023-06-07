@@ -58,17 +58,23 @@ export default defineComponent({
     }
   },
   mounted() {
-    const server_status_endpoint = new URL('status', this.$config.CEVER_BACKEND_BASE);
-    this.$axios.get(server_status_endpoint.href).then(res => {
-      if (res.data.status === 'ok')
-        this.server_online = 'online'
-      else
+    if (!this.$config.CEVER_BACKEND_BASE) {
+      const server_status_endpoint = new URL('status', this.$config.CEVER_BACKEND_BASE);
+      this.$axios.get(server_status_endpoint.href).then(res => {
+        if (res.data.status === 'ok')
+          this.server_online = 'online'
+        else
+          this.server_online = 'offline'
+        this.server_version = res.data.version;
+      }).catch(err => {
         this.server_online = 'offline'
-      this.server_version = res.data.version;
-    }).catch(err => {
-      this.server_online = 'offline'
-      this.server_version = `Failed to fetch (${err.response.status} ${err.response.data.detail})`
-    })
+        this.server_version = `Failed to fetch (${err.response.status} ${err.response.data.detail})`
+      })
+    } else {
+      this.server_endpoint = 'unavailable'
+      this.server_online = 'unavailable'
+      this.server_version = 'unavailable'
+    }
 
     this.languageOptions = this.$i18n.locales.map(locale => ({
       value: locale.code,

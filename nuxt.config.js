@@ -7,7 +7,7 @@ export default {
   },
   publicRuntimeConfig: {
     version: process.env.CEVER_VERSION || 'unstable',
-    CEVER_BACKEND_BASE: process.env.CEVER_BACKEND_BASE
+    CEVER_BACKEND_BASE: process.env.CEVER_BACKEND_BASE | null
   },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
