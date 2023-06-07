@@ -72,7 +72,7 @@ export default defineComponent({
     let sys_server_endpoint_fallback = this.$config.CEVER_BACKEND_BASE_FALLBACK;
     if (!env_server_endpoint) {
       this.server_fallback = true;
-      this.server_endpoint = 'Fallback - official';
+      this.server_endpoint = 'Official - fallback';
     } else {
       if (env_server_endpoint.includes('uniiem.com')) {
         this.server_endpoint = 'Official';
