@@ -34,9 +34,13 @@ export default defineComponent({
           icon: 'tabler:device-desktop-cog'
         },
       ],
-      server_online: 'pending...',
-      server_endpoint: this.$config.CEVER_BACKEND_BASE.includes('uniiem.com') ? 'Official' : this.$config.CEVER_BACKEND_BASE,
-      server_version: null
+      // server_online: 'pending...',
+      // server_endpoint: !this.$config.CEVER_BACKEND_BASE ? 'unavailable' : this.$config.CEVER_BACKEND_BASE.includes('uniiem.com') ? 'Official' : this.$config.CEVER_BACKEND_BASE,
+      // server_version: null,
+      server_fallback: false,
+      server_endpoint: '',
+      server_status: 'checking...',
+      server_version: '',
     }
   },
   computed: {
@@ -58,29 +62,39 @@ export default defineComponent({
     }
   },
   mounted() {
-    if (!this.$config.CEVER_BACKEND_BASE) {
-      const server_status_endpoint = new URL('status', this.$config.CEVER_BACKEND_BASE);
-      this.$axios.get(server_status_endpoint.href).then(res => {
-        if (res.data.status === 'ok')
-          this.server_online = 'online'
-        else
-          this.server_online = 'offline'
-        this.server_version = res.data.version;
-      }).catch(err => {
-        this.server_online = 'offline'
-        this.server_version = `Failed to fetch (${err.response.status} ${err.response.data.detail})`
-      })
-    } else {
-      this.server_endpoint = 'unavailable'
-      this.server_online = 'unavailable'
-      this.server_version = 'unavailable'
-    }
-
     this.languageOptions = this.$i18n.locales.map(locale => ({
       value: locale.code,
       label: locale.name,
       icon: locale.icon
     }))
+
+    let env_server_endpoint = this.$config.CEVER_BACKEND_BASE;
+    let sys_server_endpoint_fallback = this.$config.CEVER_BACKEND_BASE_FALLBACK;
+    if (!env_server_endpoint) {
+      this.server_fallback = true;
+      this.server_endpoint = 'Fallback - official';
+    } else {
+      if (env_server_endpoint.includes('uniiem.com')) {
+        this.server_endpoint = 'Official';
+      } else {
+        this.server_endpoint = env_server_endpoint;
+      }
+    }
+    const server_endpoint_status = new URL('status', this.server_fallback ? sys_server_endpoint_fallback : env_server_endpoint);
+    this.$axios.get(server_endpoint_status.href)
+      .then(res => {
+        if (res.data.status === 'ok') {
+          this.server_status = 'online';
+          this.server_version = res.data.version;
+        } else {
+          this.server_status = 'offline';
+          this.server_version = 'unavailable';
+        }
+      })
+      .catch(err => {
+        this.server_status = 'offline';
+        this.server_version = `Failed to fetch (${err.response.status} ${err.response.data.detail})`;
+      })
   },
   methods: {
     handleWipe() {
@@ -163,10 +177,10 @@ export default defineComponent({
         icon="tabler:server-2">
         <SettingsItem
           :title="$t('settings.backend.endpoint.label').toString()"
-          :subtitle="`${server_endpoint} - ${server_online}`"/>
+          :subtitle="`${server_endpoint} (${server_status})`"/>
         <SettingsItem
           :title="$t('settings.backend.version.label').toString()"
-          :subtitle="server_version || (server_online === 'pending...' ? 'Fetching...' : server_online === 'online' ? server_version : 'unavailable')"/>
+          :subtitle="server_version || 'unknown'"/>
       </SettingsArea>
       <SettingsDivider/>
       <SettingsArea

@@ -1,3 +1,5 @@
+const CEVER_BACKEND_BASE_FALLBACK = 'https://ctfever-service.uniiem.com'
+
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
@@ -7,7 +9,8 @@ export default {
   },
   publicRuntimeConfig: {
     version: process.env.CEVER_VERSION || 'unstable',
-    CEVER_BACKEND_BASE: process.env.CEVER_BACKEND_BASE | null
+    CEVER_BACKEND_BASE: process.env.CEVER_BACKEND_BASE || null,
+    CEVER_BACKEND_BASE_FALLBACK: CEVER_BACKEND_BASE_FALLBACK
   },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -189,7 +192,7 @@ export default {
   proxy: {
     '/gateway/': {
       // target: process.env.NODE_ENV === 'production' ? 'https://ctfever-service.uniiem.com' : 'http://127.0.0.1:8080',
-      target: process.env.CEVER_BACKEND_BASE || 'https://ctfever-service.uniiem.com',
+      target: process.env.CEVER_BACKEND_BASE || CEVER_BACKEND_BASE_FALLBACK,
       changeOrigin: true,
       pathRewrite: {
         '^/gateway/': '/'
