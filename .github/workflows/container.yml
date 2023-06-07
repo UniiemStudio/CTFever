@@ -3,7 +3,7 @@ name: "Make Docker Image"
 on:
   push:
     tags:
-      - '**'
+      - v**.**.**
 
 jobs:
   build:
