@@ -5,8 +5,8 @@
         <PrimaryArea id="input" :label="$t('common.text_original_content').toString()" v-model="input" :rows="10"/>
       </InteractiveBlock>
       <InteractiveBlock>
-        <PrimarySelector id="algorithm" :label="$t('common.text_algorithm').toString()" v-model="algorithm"
-                         :options="algorithms"/>
+        <UniSelect id="algorithm" :label="$t('common.text_algorithm').toString()" v-model="algorithm"
+                   :options="algorithms"/>
       </InteractiveBlock>
       <InteractiveBlock>
         <PrimaryPreBlock :label="$t('common.text_result_content').toString()">{{ output }}</PrimaryPreBlock>
@@ -20,7 +20,6 @@ import PrimaryContainer from "~/components/tool/PrimaryContainer";
 import InteractiveBlock from "~/components/tool/InteractiveBlock";
 import PrimaryArea from "~/components/form/PrimaryTextArea";
 import PrimaryPreBlock from "~/components/form/PrimaryPreBlock";
-import PrimarySelector from "~/components/form/PrimarySelector";
 
 import md5 from 'js-md5';
 import sha1 from 'js-sha1';
@@ -29,7 +28,7 @@ import {sha384, sha512, sha512_224, sha512_256} from 'js-sha512';
 
 export default {
   name: "message-digest",
-  components: {PrimarySelector, PrimaryPreBlock, PrimaryArea, InteractiveBlock, PrimaryContainer},
+  components: {PrimaryPreBlock, PrimaryArea, InteractiveBlock, PrimaryContainer},
   head() {
     return {
       title: this.$t("tool.messageDigest.title") + " - " + this.$t("app.name"),

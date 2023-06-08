@@ -3,46 +3,35 @@
     <form class="primary-form" @submit.prevent="submit">
       <InteractiveDoubleColumns>
         <template v-slot:left>
-          <PrimarySelector
-            :label="$t('common.text_radix').toString()"
-            id="base" v-model="input_base"
-            :options="[
-              { value: 2, label: 'common.radix.bin' },
-              { value: 8, label: 'common.radix.oct' },
-              { value: 10, label: 'common.radix.dec' },
-              { value: 16, label: 'common.radix.hex' }
-            ]"
-          />
+          <UniSelect :label="$t('common.text_radix').toString()" v-model="input_base" :options="[
+              { value: 2, label: $t('common.radix.bin'), icon: 'tabler:binary' },
+              { value: 8, label: $t('common.radix.oct'), icon: 'tabler:number-8' },
+              { value: 10, label: $t('common.radix.dec'), icon: 'tabler:decimal' },
+              { value: 16, label: $t('common.radix.hex'), icon: 'mdi:hexadecimal' }
+            ]"/>
         </template>
         <template v-slot:right>
-          <PrimarySelector
-            :label="$t('common.text_mode').toString()"
-            id="mode" v-model="input_mode"
-            :options="[
-              { value: 'continuity', label: 'tool.ascii.continuity' },
-              { value: 'split', label: 'tool.ascii.split' }
-            ]"
-          />
+          <UniSelect :label="$t('common.text_mode').toString()" v-model="input_mode" :options="[
+              { value: 'continuity', label: $t('tool.ascii.continuity'), icon: 'tabler:abc' },
+              { value: 'split', label: $t('tool.ascii.split'), icon: 'mdi:comma-box-outline' }
+            ]"/>
         </template>
       </InteractiveDoubleColumns>
       <InteractiveBlock>
-        <PrimaryInput
-          id="ascii" :placeholder="input_mode === 'split' ? '65,66,67 => ABC' : '656667 => ABC'" label="ASCII"
-          v-model="input_ascii" :disable="input_string !== ''"/>
+        <UniInput :placeholder="input_mode === 'split' ? '65,66,67 => ABC' : '656667 => ABC'" label="ASCII"
+                  v-model="input_ascii" :disabled="input_string !== ''"/>
       </InteractiveBlock>
       <InteractiveBlock>
-        <PrimaryInput
-          id="string"
-          :placeholder="$t('common.text_string').toString()"
-          :label="$t('common.text_string').toString()" v-model="input_string" :disable="input_ascii !== ''"/>
+        <UniInput :placeholder="$t('common.text_string').toString()"
+                  :label="$t('common.text_string').toString()" v-model="input_string" :disabled="input_ascii !== ''"/>
       </InteractiveBlock>
       <InteractiveBlock v-if="result !== ''">
         <PrimaryPreBlock :label="$t('common.text_result_content').toString()">
           {{ result }}
         </PrimaryPreBlock>
-        <PrimaryButton class="mt-2" type="button" @click="input_ascii = ''; input_string = ''; result = '';" danger>
+        <UniButton class="mt-2" @click="input_ascii = ''; input_string = ''; result = '';" danger>
           {{ $t('common.btn_clean') }}
-        </PrimaryButton>
+        </UniButton>
       </InteractiveBlock>
     </form>
   </PrimaryContainer>
@@ -50,9 +39,6 @@
 
 <script>
 import PrimaryContainer from "~/components/tool/PrimaryContainer";
-import PrimaryButton from "~/components/form/PrimaryButton";
-import PrimaryInput from "~/components/form/PrimaryInput";
-import PrimarySelector from "~/components/form/PrimarySelector";
 import InteractiveBlock from "~/components/tool/InteractiveBlock";
 import InteractiveDoubleColumns from "~/components/tool/InteractiveDoubleColumns";
 import PrimaryPreBlock from "~/components/form/PrimaryPreBlock";
@@ -63,9 +49,6 @@ export default {
     PrimaryPreBlock,
     InteractiveDoubleColumns,
     InteractiveBlock,
-    PrimarySelector,
-    PrimaryInput,
-    PrimaryButton,
     PrimaryContainer
   },
   head() {
@@ -80,7 +63,7 @@ export default {
     return {
       input_ascii: "",
       input_string: "",
-      input_base: "10",
+      input_base: 10,
       input_mode: "continuity",
       result: '',
     };

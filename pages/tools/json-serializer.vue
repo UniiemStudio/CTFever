@@ -3,7 +3,6 @@
 import {defineComponent} from 'vue'
 import PrimaryContainer from "~/components/tool/PrimaryContainer.vue";
 import InteractiveDoubleColumns from "~/components/tool/InteractiveDoubleColumns.vue";
-import PrimaryInput from "~/components/form/PrimaryInput.vue";
 import PrimaryIntroduction from "~/components/tool/PrimaryIntroduction.vue";
 
 import jsonpath from 'jsonpath';
@@ -12,17 +11,14 @@ import 'codemirror/lib/codemirror.css';
 import 'codemirror/addon/display/placeholder'
 import 'codemirror/mode/javascript/javascript';
 import 'codemirror/theme/idea.css';
-import PrimaryButton from "~/components/form/PrimaryButton.vue";
 import {copyTextToClipboard} from "~/libs/common";
 // import 'codemirror/theme/darcula.css';
 
 export default defineComponent({
   name: "json-serializer",
   components: {
-    PrimaryButton,
     codemirror,
     PrimaryIntroduction,
-    PrimaryInput,
     InteractiveDoubleColumns,
     PrimaryContainer
   },
@@ -132,18 +128,14 @@ export default defineComponent({
     <div class="mb-2">
       <h2 class="block-title">表达式</h2>
       <div class="flex items-center space-x-2">
-        <a-select
-          v-model:value="expressionType"
-          style="width: 120px"
-          :options="expressionOptions"
-          @change="handleExpressionTypeChange"/>
-        <PrimaryInput
+        <UniSelect style="width: 120px" :options="expressionOptions" v-model="expressionType"
+                   @change="handleExpressionTypeChange"/>
+        <UniInput
           id="expression"
           v-model="expression"
           @input="processJson"
-          class="w-full"
+          class="w-full" copyable
           :placeholder="expressionType === 'jsonpath' ? 'JSONPath 表达式' : 'JavaScript 对象操作语句'"/>
-        <PrimaryButton @click="handleShare">Share</PrimaryButton>
       </div>
     </div>
     <InteractiveDoubleColumns>
@@ -176,8 +168,8 @@ export default defineComponent({
           </div>
           <div class="flex flex-row items-center space-x-1">
             <h2>缩进</h2>
-            <PrimaryInput id="indent" placeholder="缩进数量" v-model="indent" :disable="!beautify"
-                          @input="processJson"/>
+            <UniInput id="indent" placeholder="缩进数量" v-model="indent" :disabled="!beautify"
+                      @input="processJson" type="number"/>
           </div>
         </div>
       </template>

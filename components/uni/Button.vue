@@ -1,8 +1,10 @@
 <script>
 import {defineComponent} from 'vue'
+import {Icon} from "@iconify/vue2";
 
 export default defineComponent({
   name: "Button",
+  components: {Icon},
   props: {
     ghost: {
       type: Boolean,
@@ -20,6 +22,14 @@ export default defineComponent({
       type: Boolean,
       default: false
     },
+    type: {
+      type: String,
+      default: 'button'
+    },
+    icon: {
+      type: String,
+      default: ''
+    }
   },
   methods: {
     handleClick(e) {
@@ -30,7 +40,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <button v-if="ghost"
+  <button v-if="ghost" type="button"
           class="text-sm font-bold text-blue-500 hover:text-blue-400
                  dark:text-blue-400/80 dark:hover:text-blue-400 transition"
           :class="{
@@ -40,7 +50,7 @@ export default defineComponent({
           @click="handleClick">
     <slot/>
   </button>
-  <button v-else
+  <button v-else :type="type"
           class="text-sm font-bold text-gray-600 dark:text-slate-300/80
                  px-3 py-1.5 shadow-sm rounded-md bg-gray-50 border border-gray-300 dark:border-slate-700 dark:bg-slate-800
                  hover:bg-gray-100 dark:hover:bg-slate-700 active:bg-gray-200 dark:active:bg-slate-800
@@ -50,10 +60,12 @@ export default defineComponent({
             'text-red-500 dark:text-red-400/80': danger,
             'text-gray-500/60 dark:text-slate-500/40 bg-gray-200 hover:bg-gray-200 dark:!bg-slate-900 dark:hover:!bg-slate-900': disabled,
             '!text-red-500/40 dark:!text-red-400/20': disabled && danger,
-            '!px-2 !py-0.5': mini
+            '!px-2 !py-0.5': mini,
+            'flex flex-row items-center gap-1': icon
           }"
           :disabled="disabled"
           @click="handleClick">
+    <Icon :icon="icon" v-if="icon" class="inline text-base"/>
     <slot/>
   </button>
 </template>

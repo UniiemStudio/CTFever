@@ -3,8 +3,9 @@
     <InteractiveDoubleColumns>
       <template v-slot:left>
         <InteractiveBlock class="space-y-2">
-          <PrimarySelector :label="$t('common.text_type').toString()" id="type" :options="uuidTypes" v-model="type"/>
-          <PrimaryButton @click="generate" class="w-full">{{ $t('common.btn_generate').toString() }}</PrimaryButton>
+          <UniSelect :label="$t('common.text_type').toString()" :options="uuidTypes" v-model="type"/>
+          <!--          <PrimarySelector :label="$t('common.text_type').toString()" id="type" :options="uuidTypes" v-model="type"/>-->
+          <UniButton @click="generate" class="w-full">{{ $t('common.btn_generate').toString() }}</UniButton>
           <PrimaryPreBlock v-if="uuidResult" label="UUID">
             {{ uuidResult }}
           </PrimaryPreBlock>
@@ -12,11 +13,11 @@
       </template>
       <template v-slot:right>
         <InteractiveBlock class="space-y-2">
-          <PrimaryInput id="input" :label="`UUID ${$t('common.text_input')}`" v-model="inputUUID"/>
-          <div class="flex flex-row space-x-2 overflow-x-auto">
-            <PrimaryButton @click="validate" class="w-full">{{ $t('common.btn_validate').toString() }}</PrimaryButton>
-            <PrimaryButton @click="parse" class="w-full">{{ $t('common.btn_parse').toString() }}</PrimaryButton>
-            <PrimaryButton @click="version" class="w-full">{{ $t('common.btn_version').toString() }}</PrimaryButton>
+          <UniInput :label="`UUID ${$t('common.text_input')}`" v-model="inputUUID"/>
+          <div class="flex flex-row space-x-2">
+            <UniButton @click="validate" class="w-full">{{ $t('common.btn_validate').toString() }}</UniButton>
+            <UniButton @click="parse" class="w-full">{{ $t('common.btn_parse').toString() }}</UniButton>
+            <UniButton @click="version" class="w-full">{{ $t('common.btn_version').toString() }}</UniButton>
           </div>
           <PrimaryPreBlock v-if="validateResult" :label="$t('common.text_output').toString()">
             {{ validateResult }}
@@ -30,20 +31,15 @@
 <script>
 import PrimaryContainer from "~/components/tool/PrimaryContainer";
 import InteractiveBlock from "~/components/tool/InteractiveBlock";
-import PrimarySelector from "~/components/form/PrimarySelector";
+import InteractiveDoubleColumns from "~/components/tool/InteractiveDoubleColumns";
+import PrimaryPreBlock from "~/components/form/PrimaryPreBlock";
 
 import {NIL as uuidNIL, parse, v1 as uuidv1, v3 as uuidv3, v4 as uuidv4, v5 as uuidv5, validate, version} from 'uuid';
-import InteractiveDoubleColumns from "~/components/tool/InteractiveDoubleColumns";
-import PrimaryButton from "~/components/form/PrimaryButton";
-import PrimaryInput from "~/components/form/PrimaryInput";
-import PrimaryPreBlock from "~/components/form/PrimaryPreBlock";
 
 export default {
   name: "uuid-generator",
   components: {
-    PrimaryPreBlock,
-    PrimaryInput,
-    PrimaryButton, InteractiveDoubleColumns, PrimarySelector, InteractiveBlock, PrimaryContainer
+    PrimaryPreBlock, InteractiveDoubleColumns, InteractiveBlock, PrimaryContainer
   },
   head() {
     return {
@@ -56,11 +52,11 @@ export default {
   data() {
     return {
       uuidTypes: [
-        {label: 'NIL', value: 'nil'},
-        {label: 'UUID v1', value: 'v1'},
-        {label: 'UUID v3', value: 'v3'},
-        {label: 'UUID v4', value: 'v4'},
-        {label: 'UUID v5', value: 'v5'},
+        {label: 'NIL', value: 'nil', icon: 'tabler:square-rounded-number-0'},
+        {label: 'UUID v1', value: 'v1', icon: 'tabler:square-rounded-number-1'},
+        {label: 'UUID v3', value: 'v3', icon: 'tabler:square-rounded-number-3'},
+        {label: 'UUID v4', value: 'v4', icon: 'tabler:square-rounded-number-4'},
+        {label: 'UUID v5', value: 'v5', icon: 'tabler:square-rounded-number-5'},
       ],
       type: 'v4',
       uuidResult: '',

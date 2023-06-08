@@ -2,22 +2,20 @@
   <PrimaryContainer>
     <form class="primary-form">
       <InteractiveBlock>
-        <PrimarySelector v-model="method" :options="options"
-                         :label="$t('common.text_type').toString()"></PrimarySelector>
+        <UniSelect :options="options" v-model="method" :label="$t('common.text_type').toString()"/>
       </InteractiveBlock>
       <InteractiveBlock>
         <PrimaryArea id="input" v-model="input" :label="$t('common.text_decoded').toString()" :rows="10"
                      copyable></PrimaryArea>
       </InteractiveBlock>
       <InteractiveBlock class="flex items-center justify-between">
-        <div class="space-x-1">
-          <PrimaryButton type="button" @click="encode">{{ $t('common.btn_encode') }} ↓</PrimaryButton>
-          <PrimaryButton type="button" @click="decode">{{ $t('common.btn_decode') }} ↑</PrimaryButton>
+        <div class="flex flex-row items-center space-x-1">
+          <UniButton @click="encode" icon="tabler:arrow-narrow-up">{{ $t('common.btn_encode') }}</UniButton>
+          <UniButton @click="decode" icon="tabler:arrow-narrow-down">{{ $t('common.btn_decode') }}</UniButton>
         </div>
-        <PrimaryButton type="button" danger @click="input = ''; output = '';">{{
-            $t('common.btn_clean')
-          }}
-        </PrimaryButton>
+        <UniButton danger @click="input = ''; output = '';" icon="tabler:trash">
+          {{ $t('common.btn_clean') }}
+        </UniButton>
       </InteractiveBlock>
       <InteractiveBlock>
         <PrimaryArea id="output" v-model="output" :label="$t('common.text_encoded').toString()"
@@ -30,21 +28,19 @@
 <script>
 import PrimaryContainer from "~/components/tool/PrimaryContainer";
 import InteractiveBlock from "~/components/tool/InteractiveBlock";
-import PrimaryButton from "~/components/form/PrimaryButton";
 import PrimaryArea from "~/components/form/PrimaryTextArea";
 import InteractiveDoubleColumns from "~/components/tool/InteractiveDoubleColumns";
-import PrimarySelector from "~/components/form/PrimarySelector";
 
 import * as base64 from "hi-base64";
 import * as base32 from "hi-base32";
+import {Icon} from "@iconify/vue2";
 
 export default {
   name: "base-series",
   components: {
-    PrimarySelector,
+    Icon,
     InteractiveDoubleColumns,
     PrimaryArea,
-    PrimaryButton,
     InteractiveBlock,
     PrimaryContainer
   },

@@ -7,19 +7,19 @@
       </InteractiveBlock>
       <InteractiveDoubleColumns>
         <template v-slot:left>
-          <PrimaryInput id="offset" :label="$t('tool.railFenceCipher.rows').toString()"
-                        v-model="rows" type="number" min="1" max="26"/>
+          <UniInput id="offset" :label="$t('tool.railFenceCipher.rows').toString()"
+                    v-model="rows" type="number" min="1" max="26"/>
         </template>
         <template v-slot:right>
-          <PrimarySelector id="type" :label="$t('common.text_type').toString()" v-model="type" :options="typeOptions"/>
+          <UniSelect id="type" :label="$t('common.text_type').toString()" v-model="type" :options="typeOptions"/>
         </template>
       </InteractiveDoubleColumns>
       <InteractiveBlock class="flex items-center justify-between">
         <div class="space-x-1">
-          <PrimaryButton type="button" @click="encode">{{ $t('common.btn_encode') }}</PrimaryButton>
-          <PrimaryButton type="button" @click="decode">{{ $t('common.btn_decode') }}</PrimaryButton>
+          <UniButton @click="encode">{{ $t('common.btn_encode') }}</UniButton>
+          <UniButton @click="decode">{{ $t('common.btn_decode') }}</UniButton>
         </div>
-        <PrimaryButton type="reset" danger>{{ $t('common.btn_clean') }}</PrimaryButton>
+        <UniButton type="reset" danger icon="tabler:trash">{{ $t('common.btn_clean') }}</UniButton>
       </InteractiveBlock>
       <InteractiveBlock>
         <PrimaryArea :label="$t('common.text_output').toString()" v-model="output" id="output" copyable/>
@@ -35,18 +35,12 @@ import PrimaryIntroduction from "~/components/tool/PrimaryIntroduction";
 import InteractiveBlock from "~/components/tool/InteractiveBlock";
 import PrimaryArea from "~/components/form/PrimaryTextArea";
 import InteractiveDoubleColumns from "~/components/tool/InteractiveDoubleColumns";
-import PrimaryInput from "~/components/form/PrimaryInput";
-import PrimarySelector from "~/components/form/PrimarySelector";
-import PrimaryButton from "~/components/form/PrimaryButton";
 
 import {RailFence, RailFenceW} from "~/libs/railFence";
 
 export default {
   name: "rail-fence-cipher",
   components: {
-    PrimaryButton,
-    PrimarySelector,
-    PrimaryInput,
     InteractiveDoubleColumns, PrimaryArea, InteractiveBlock, PrimaryIntroduction, PrimaryContainer
   },
   head() {
@@ -68,7 +62,7 @@ export default {
       rows: 3,
       type: "w",
       typeOptions: [
-        {label: '基础型', value: 'standard'},
+        {label: '基础型', value: 'standard', disabled: true},
         {label: 'W型', value: 'w'},
       ]
     }

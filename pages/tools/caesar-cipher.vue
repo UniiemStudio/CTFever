@@ -6,20 +6,20 @@
       </InteractiveBlock>
       <InteractiveDoubleColumns>
         <template v-slot:left>
-          <PrimaryInput id="offset" :label="$t('common.text_offset').toString()" v-model="offset" type="number" min="1"
-                        max="26"/>
+          <UniInput id="offset" :label="$t('common.text_offset').toString()" v-model="offset" type="number" min="1"
+                    max="26"/>
         </template>
         <template v-slot:right>
-          <PrimarySelector id="mode" :label="$t('common.text_mode').toString()" v-model="mode" :options="modeOptions"/>
+          <UniSelect id="mode" :label="$t('common.text_mode').toString()" v-model="mode" :options="modeOptions"/>
         </template>
       </InteractiveDoubleColumns>
       <InteractiveBlock class="flex items-center justify-between">
         <div class="space-x-1">
-          <PrimaryButton type="button" @click="exec">{{ $t('common.btn_execute').toString() }}</PrimaryButton>
+          <UniButton @click="exec">{{ $t('common.btn_execute').toString() }}</UniButton>
         </div>
-        <PrimaryButton type="button" danger @click="input = ''; output = '';">
+        <UniButton danger @click="input = ''; output = '';" icon="tabler:trash">
           {{ $t('common.btn_clean').toString() }}
-        </PrimaryButton>
+        </UniButton>
       </InteractiveBlock>
       <InteractiveBlock>
         <PrimaryArea :label="$t('common.text_output').toString()" v-model="output" id="output" copyable/>
@@ -32,11 +32,8 @@
 <script>
 import PrimaryContainer from "~/components/tool/PrimaryContainer";
 import InteractiveBlock from "~/components/tool/InteractiveBlock";
-import PrimaryInput from "~/components/form/PrimaryInput";
 import PrimaryArea from "~/components/form/PrimaryTextArea";
 import InteractiveDoubleColumns from "~/components/tool/InteractiveDoubleColumns";
-import PrimarySelector from "~/components/form/PrimarySelector";
-import PrimaryButton from "~/components/form/PrimaryButton";
 
 import ceasarCipher from '~/libs/ceasarCipher';
 import PrimaryIntroduction from "~/components/tool/PrimaryIntroduction";
@@ -45,11 +42,8 @@ export default {
   name: "caesar-cipher",
   components: {
     PrimaryIntroduction,
-    PrimaryButton,
-    PrimarySelector,
     InteractiveDoubleColumns,
     PrimaryArea,
-    PrimaryInput,
     InteractiveBlock,
     PrimaryContainer
   },
@@ -69,11 +63,11 @@ export default {
       mode: "encode",
       modeOptions: [
         {
-          label: "common.text_encode",
+          label: this.$t("common.text_encode"),
           value: "encode"
         },
         {
-          label: "common.text_decode",
+          label: this.$t("common.text_decode"),
           value: "decode"
         }
       ],

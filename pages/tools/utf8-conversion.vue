@@ -5,14 +5,14 @@
                    :rows="10" copyable></PrimaryArea>
     </InteractiveBlock>
     <InteractiveBlock class="flex items-center justify-between">
-      <div class="space-x-1">
-        <PrimaryButton type="button" @click="encode">{{ $t('common.text_encode').toString() }} ↓</PrimaryButton>
-        <PrimaryButton type="button" @click="decode">{{ $t('common.text_decode').toString() }} ↑</PrimaryButton>
+      <div class="flex items-center space-x-1">
+        <UniButton @click="encode" icon="tabler:arrow-narrow-down">{{ $t('common.text_encode').toString() }}</UniButton>
+        <UniButton @click="decode" icon="tabler:arrow-narrow-up">{{ $t('common.text_decode').toString() }}</UniButton>
       </div>
-      <PrimaryButton type="button" danger @click="input = ''; output = '';">{{
+      <UniButton danger @click="input = ''; output = '';" icon="tabler:trash">{{
           $t('common.btn_clean').toString()
         }}
-      </PrimaryButton>
+      </UniButton>
     </InteractiveBlock>
     <InteractiveBlock>
       <PrimaryArea id="output" v-model="output" :label="$t('common.text_result_content').toString()"
@@ -25,13 +25,12 @@
 import PrimaryContainer from "~/components/tool/PrimaryContainer";
 import InteractiveBlock from "~/components/tool/InteractiveBlock";
 import PrimaryArea from "~/components/form/PrimaryTextArea";
-import PrimaryButton from "~/components/form/PrimaryButton";
 
 import UTF8Translate from '~/libs/utf8-util';
 
 export default {
   name: "utf8-conversion",
-  components: {PrimaryButton, PrimaryArea, InteractiveBlock, PrimaryContainer},
+  components: {PrimaryArea, InteractiveBlock, PrimaryContainer},
   head() {
     return {
       title: this.$t("tool.utf8Conversion.title") + " - " + this.$t("app.name"),

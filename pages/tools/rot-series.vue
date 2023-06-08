@@ -7,16 +7,16 @@
       </InteractiveBlock>
       <InteractiveBlock class="flex items-center justify-between">
         <div class="space-x-1">
-          <PrimaryButton type="button" @click="output = ceasarCipher.encode(input, 13)">{{
+          <UniButton @click="output = ceasarCipher.encode(input, 13)">{{
               $t('common.btn_encode')
             }}
-          </PrimaryButton>
+          </UniButton>
         </div>
-        <PrimaryButton type="button" @click="swap">↑ {{ $t('common.btn_swap') }} ↓</PrimaryButton>
-        <PrimaryButton type="button" danger @click="input = ''; output = '';">{{
+        <UniButton @click="swap" icon="tabler:arrows-up-down">{{ $t('common.btn_swap') }}</UniButton>
+        <UniButton danger @click="input = ''; output = '';" icon="tabler:trash">{{
             $t('common.btn_clean')
           }}
-        </PrimaryButton>
+        </UniButton>
       </InteractiveBlock>
       <InteractiveBlock>
         <PrimaryArea id="result" v-model="output" :label="$t('common.text_output').toString()" placeholder="Output..."
@@ -32,13 +32,12 @@ import PrimaryContainer from "~/components/tool/PrimaryContainer";
 import PrimaryIntroduction from "~/components/tool/PrimaryIntroduction";
 import InteractiveBlock from "~/components/tool/InteractiveBlock";
 import PrimaryArea from "~/components/form/PrimaryTextArea";
-import PrimaryButton from "~/components/form/PrimaryButton";
 
 import ceasarCipher from '~/libs/ceasarCipher';
 
 export default {
   name: "rot-series",
-  components: {PrimaryButton, PrimaryArea, InteractiveBlock, PrimaryIntroduction, PrimaryContainer},
+  components: {PrimaryArea, InteractiveBlock, PrimaryIntroduction, PrimaryContainer},
   head() {
     return {
       title: this.$t("tool.rotSeries.title") + " - " + this.$t("app.name"),

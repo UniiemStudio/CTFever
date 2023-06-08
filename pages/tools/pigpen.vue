@@ -14,15 +14,15 @@
       </template>
       <template v-slot:right>
         <InteractiveBlock>
-          <PrimaryInput id="input" :label="$t('common.text_cipher').toString()" v-model="result" class="pig-font"
-                        disable/>
+          <UniInput id="input" :label="$t('common.text_cipher').toString()" v-model="result" class="pig-font" disabled/>
         </InteractiveBlock>
         <InteractiveBlock>
-          <PrimaryInput id="output" :label="$t('common.text_plain').toString()" v-model="result" copyable/>
+          <UniInput id="output" :label="$t('common.text_plain').toString()" v-model="result" copyable/>
         </InteractiveBlock>
-        <InteractiveBlock>
-          <PrimaryButton type="button" @click="backspace">{{ $t('common.btn_backspace') }}</PrimaryButton>
-          <PrimaryButton type="button" @click="clear">{{ $t('common.btn_clean') }}</PrimaryButton>
+        <InteractiveBlock class="flex items-center space-x-1">
+          <!--          <Icon icon="tabler:backspace" class="inline text-base" />-->
+          <UniButton @click="backspace" icon="tabler:backspace" class="!py-2"></UniButton>
+          <UniButton @click="clear">{{ $t('common.btn_clean') }}</UniButton>
         </InteractiveBlock>
       </template>
     </InteractiveDoubleColumns>
@@ -31,14 +31,13 @@
 
 <script>
 import InteractiveBlock from "~/components/tool/InteractiveBlock";
-import PrimaryInput from "~/components/form/PrimaryInput";
-import PrimaryButton from "~/components/form/PrimaryButton";
 import PrimaryContainer from "~/components/tool/PrimaryContainer";
 import InteractiveDoubleColumns from "~/components/tool/InteractiveDoubleColumns";
+import {Icon} from "@iconify/vue2";
 
 export default {
   name: "pigpen",
-  components: {InteractiveDoubleColumns, PrimaryContainer, PrimaryButton, PrimaryInput, InteractiveBlock},
+  components: {Icon, InteractiveDoubleColumns, PrimaryContainer, InteractiveBlock},
   head() {
     return {
       title: this.$t("tool.pigpen.title") + " - " + this.$t("app.name"),
