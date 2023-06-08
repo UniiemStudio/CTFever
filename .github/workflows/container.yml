@@ -55,6 +55,7 @@ jobs:
           context: .
           platforms: linux/amd64
           push: true
+          outputs: type=image,name=target,annotation-index.org.opencontainers.image.description=The official CTFever frontend image
           tags: |
             hoshinosuzumi/ctfever:${{ steps.get_version.outputs.VERSION }}
             hoshinosuzumi/ctfever:latest
