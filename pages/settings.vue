@@ -200,45 +200,45 @@ export default defineComponent({
           </template>
         </SettingsItem>
       </SettingsArea>
-      <SettingsDivider/>
-      <SettingsArea
-        title="组件展柜"
-        icon="tabler:components">
-        <SettingsItem
-          title="Buttons">
-          <template #actions>
-            <UniButton ghost>ghost</UniButton>
-            <UniButton ghost disabled>ghost</UniButton>
-            <UniButton>normal</UniButton>
-            <UniButton danger>danger</UniButton>
-            <UniButton disabled>normal</UniButton>
-            <UniButton danger disabled>danger</UniButton>
-            <UniButton mini>mini</UniButton>
-            <UniButton mini disabled>mini</UniButton>
-          </template>
-        </SettingsItem>
-        <SettingsItem
-          title="Links">
-          <template #actions>
-            <UniLink href="https://github.com" external>External</UniLink>
-            <UniLink href="https://github.com">Normal</UniLink>
-          </template>
-        </SettingsItem>
-        <SettingsItem
-          title="Inputs">
-          <template #actions>
-            <UniInput v-model="input_val" label="With label"/>
-            <UniInput v-model="input_val" placeholder="input..." copyable/>
-            <UniInput v-model="input_val" placeholder="input..." disabled/>
-          </template>
-        </SettingsItem>
-        <SettingsItem
-          title="Select">
-          <template #actions>
-            <UniSelect value="zh" :options="languageOptions"/>
-          </template>
-        </SettingsItem>
-      </SettingsArea>
+      <!--      <SettingsDivider/>-->
+      <!--      <SettingsArea-->
+      <!--        title="组件展柜"-->
+      <!--        icon="tabler:components">-->
+      <!--        <SettingsItem-->
+      <!--          title="Buttons">-->
+      <!--          <template #actions>-->
+      <!--            <UniButton ghost>ghost</UniButton>-->
+      <!--            <UniButton ghost disabled>ghost</UniButton>-->
+      <!--            <UniButton>normal</UniButton>-->
+      <!--            <UniButton danger>danger</UniButton>-->
+      <!--            <UniButton disabled>normal</UniButton>-->
+      <!--            <UniButton danger disabled>danger</UniButton>-->
+      <!--            <UniButton mini>mini</UniButton>-->
+      <!--            <UniButton mini disabled>mini</UniButton>-->
+      <!--          </template>-->
+      <!--        </SettingsItem>-->
+      <!--        <SettingsItem-->
+      <!--          title="Links">-->
+      <!--          <template #actions>-->
+      <!--            <UniLink href="https://github.com" external>External</UniLink>-->
+      <!--            <UniLink href="https://github.com">Normal</UniLink>-->
+      <!--          </template>-->
+      <!--        </SettingsItem>-->
+      <!--        <SettingsItem-->
+      <!--          title="Inputs">-->
+      <!--          <template #actions>-->
+      <!--            <UniInput v-model="input_val" label="With label"/>-->
+      <!--            <UniInput v-model="input_val" placeholder="input..." copyable/>-->
+      <!--            <UniInput v-model="input_val" placeholder="input..." disabled/>-->
+      <!--          </template>-->
+      <!--        </SettingsItem>-->
+      <!--        <SettingsItem-->
+      <!--          title="Select">-->
+      <!--          <template #actions>-->
+      <!--            <UniSelect value="zh" :options="languageOptions"/>-->
+      <!--          </template>-->
+      <!--        </SettingsItem>-->
+      <!--      </SettingsArea>-->
 
     </div>
   </PrimaryContainer>
