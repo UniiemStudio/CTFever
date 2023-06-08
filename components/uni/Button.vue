@@ -2,13 +2,17 @@
 import {defineComponent} from 'vue'
 
 export default defineComponent({
-  name: "SettingsButton",
+  name: "Button",
   props: {
     ghost: {
       type: Boolean,
       default: false
     },
     danger: {
+      type: Boolean,
+      default: false
+    },
+    mini: {
       type: Boolean,
       default: false
     },
@@ -45,7 +49,8 @@ export default defineComponent({
           :class="{
             'text-red-500 dark:text-red-400/80': danger,
             'text-gray-500/60 dark:text-slate-500/40 bg-gray-200 hover:bg-gray-200 dark:!bg-slate-900 dark:hover:!bg-slate-900': disabled,
-            '!text-red-500/40 dark:!text-red-400/20': disabled && danger
+            '!text-red-500/40 dark:!text-red-400/20': disabled && danger,
+            '!px-2 !py-0.5': mini
           }"
           :disabled="disabled"
           @click="handleClick">

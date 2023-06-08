@@ -3,7 +3,7 @@ import {defineComponent} from 'vue'
 import {Icon} from "@iconify/vue2";
 
 export default defineComponent({
-  name: "SettingsArea",
+  name: "Area",
   components: {Icon},
   props: {
     title: {

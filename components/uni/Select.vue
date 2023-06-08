@@ -3,7 +3,7 @@ import {defineComponent} from 'vue'
 import {Icon} from "@iconify/vue2";
 
 export default defineComponent({
-  name: "SettingsFormSelect",
+  name: "Select",
   components: {Icon},
   props: {
     options: {

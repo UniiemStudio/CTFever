@@ -41,6 +41,8 @@ export default defineComponent({
       server_endpoint: '',
       server_status: 'checking...',
       server_version: '',
+
+      input_val: ''
     }
   },
   computed: {
@@ -134,12 +136,12 @@ export default defineComponent({
         icon="tabler:layout">
         <SettingsItem :title="$t('settings.appearance.language.label').toString()">
           <template #actions>
-            <SettingsFormSelect :options="languageOptions" v-model="language"/>
+            <UniSelect :options="languageOptions" v-model="language"/>
           </template>
         </SettingsItem>
         <SettingsItem :title="$t('settings.appearance.color_mode.label').toString()">
           <template #actions>
-            <SettingsFormSelect :options="colorModeOptions" v-model="darkMode"/>
+            <UniSelect :options="colorModeOptions" v-model="darkMode"/>
           </template>
         </SettingsItem>
       </SettingsArea>
@@ -150,24 +152,24 @@ export default defineComponent({
           :title="$t('settings.about.version.label').toString()"
           :subtitle="$config.version">
           <template #actions>
-            <SettingsButton ghost>{{ $t('settings.about.version.check_update_logs').toString() }}</SettingsButton>
+            <UniButton ghost>{{ $t('settings.about.version.check_update_logs').toString() }}</UniButton>
           </template>
         </SettingsItem>
         <SettingsItem
           :title="$t('settings.about.follow_us.label').toString()"
           :subtitle="$t('settings.about.follow_us.subtitle').toString()">
           <template #actions>
-            <SettingsLink href="https://github.com/UniiemStudio/CTFever" external>GitHub</SettingsLink>
-            <SettingsLink href="https://t.me/boxmoe" external>Telegram</SettingsLink>
+            <UniLink href="https://github.com/UniiemStudio/CTFever" external>GitHub</UniLink>
+            <UniLink href="https://t.me/boxmoe" external>Telegram</UniLink>
           </template>
         </SettingsItem>
         <SettingsItem
           :title="$t('settings.about.donate.label').toString()"
           :subtitle="$t('settings.about.donate.subtitle').toString()">
           <template #actions>
-            <SettingsLink href="https://afdian.net/a/hoshino_suzumi" external>
+            <UniLink href="https://afdian.net/a/hoshino_suzumi" external>
               {{ $t('settings.about.donate.link.afdian').toString() }}
-            </SettingsLink>
+            </UniLink>
           </template>
         </SettingsItem>
       </SettingsArea>
@@ -192,9 +194,48 @@ export default defineComponent({
           :title="$t('settings.danger_zone.wipe.label').toString()"
           :subtitle="$t('settings.danger_zone.wipe.subtitle').toString()">
           <template #actions>
-            <SettingsButton @click="handleWipe" danger>
+            <UniButton @click="handleWipe" danger>
               {{ $t('settings.danger_zone.wipe.btn').toString() }}
-            </SettingsButton>
+            </UniButton>
+          </template>
+        </SettingsItem>
+      </SettingsArea>
+      <SettingsDivider/>
+      <SettingsArea
+        title="组件展柜"
+        icon="tabler:components">
+        <SettingsItem
+          title="Buttons">
+          <template #actions>
+            <UniButton ghost>ghost</UniButton>
+            <UniButton ghost disabled>ghost</UniButton>
+            <UniButton>normal</UniButton>
+            <UniButton danger>danger</UniButton>
+            <UniButton disabled>normal</UniButton>
+            <UniButton danger disabled>danger</UniButton>
+            <UniButton mini>mini</UniButton>
+            <UniButton mini disabled>mini</UniButton>
+          </template>
+        </SettingsItem>
+        <SettingsItem
+          title="Links">
+          <template #actions>
+            <UniLink href="https://github.com" external>External</UniLink>
+            <UniLink href="https://github.com">Normal</UniLink>
+          </template>
+        </SettingsItem>
+        <SettingsItem
+          title="Inputs">
+          <template #actions>
+            <UniInput v-model="input_val" label="With label"/>
+            <UniInput v-model="input_val" placeholder="input..." copyable/>
+            <UniInput v-model="input_val" placeholder="input..." disabled/>
+          </template>
+        </SettingsItem>
+        <SettingsItem
+          title="Select">
+          <template #actions>
+            <UniSelect value="zh" :options="languageOptions"/>
           </template>
         </SettingsItem>
       </SettingsArea>

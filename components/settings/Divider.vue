@@ -2,7 +2,7 @@
 import {defineComponent} from 'vue'
 
 export default defineComponent({
-  name: "SettingsItemDivider",
+  name: "Divider",
   props: {
     forItem: {
       type: Boolean,
