@@ -39,23 +39,23 @@ export default defineComponent({
   data() {
     return {
       inputFieldId: `input-${Math.random().toString(16).slice(2, 9)}`,
+      inputText: '',
       isValid: true,
       copyTip: false,
     }
   },
   mounted() {
-    this.isValid = this.validator(this.value)
+    if (this.value) {
+      this.inputText = this.value
+    }
   },
   methods: {
-    validator(str) {
-      return this.pattern ? this.pattern.test(str) : true
-    },
-    handleInput(e) {
-      this.eventValue = e.target.value
-      // this.$refs.input.value = this.eventValue
-      this.isValid = this.validator(this.eventValue)
-      if (this.isValid) {
-        this.$emit('input', this.eventValue)
+    validate(str) {
+      if (this.pattern) {
+        this.pattern.lastIndex = 0;
+        return this.pattern.test(str)
+      } else {
+        return true
       }
     },
     copyHandler() {
@@ -70,6 +70,14 @@ export default defineComponent({
       this.$emit('input', '')
     }
   },
+  watch: {
+    inputText(val) {
+      this.isValid = this.validate(val)
+      if (this.isValid) {
+        this.$emit('input', val)
+      }
+    }
+  }
 })
 </script>
 
@@ -86,10 +94,8 @@ export default defineComponent({
              'text-gray-500/60 dark:text-slate-500/60 bg-gray-200/40 dark:!bg-slate-800/40': disabled,
              '!border-red-500': !isValid,
            }"
-           @input="handleInput"
-           @change="$emit('change', $event.target.value)"
            :id="inputFieldId"
-           :value="value" :type="type"
+           v-model="inputText" :type="type"
            :disabled="disabled" ref="input"
            :placeholder="placeholder"/>
     <div class="absolute inset-y-0 right-2 my-auto w-fit flex flex-row items-center space-x-1 overflow-hidden"

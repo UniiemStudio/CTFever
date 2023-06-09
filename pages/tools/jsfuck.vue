@@ -6,14 +6,17 @@
                      :rows="10"></PrimaryArea>
       </InteractiveBlock>
       <InteractiveBlock class="flex items-center justify-between">
-        <div class="space-x-1">
-          <PrimaryButton type="button" @click="encode">{{ $t('common.btn_encode').toString() }} ↓</PrimaryButton>
+        <div class="flex items-center space-x-2">
+          <UniButton @click="encode" icon="tabler:arrow-narrow-down">{{
+              $t('common.btn_encode').toString()
+            }}
+          </UniButton>
           <a-checkbox v-model:checked="wrapWithEval" class="dark:text-slate-300">用 eval 函数包裹</a-checkbox>
           <!--          <PrimaryButton type="button" @click="decode">解码 ↑</PrimaryButton>-->
         </div>
-        <PrimaryButton type="button" danger @click="input_code = ''; output = '';">
+        <UniButton danger @click="input_code = ''; output = '';" icon="tabler:trash">
           {{ $t('common.btn_clean').toString() }}
-        </PrimaryButton>
+        </UniButton>
       </InteractiveBlock>
       <InteractiveBlock>
         <PrimaryArea id="output" v-model="output" label="JSFucked" placeholder="" :rows="10" copyable></PrimaryArea>
@@ -27,7 +30,6 @@
 import PrimaryContainer from "~/components/tool/PrimaryContainer";
 import InteractiveBlock from "~/components/tool/InteractiveBlock";
 import PrimaryArea from "~/components/form/PrimaryTextArea";
-import PrimaryButton from "~/components/form/PrimaryButton";
 import PrimaryPreBlock from "~/components/form/PrimaryPreBlock";
 
 import Jsfuck from 'jsfuck';
@@ -35,7 +37,7 @@ import PrimaryIntroduction from "~/components/tool/PrimaryIntroduction";
 
 export default {
   name: "jsfuck",
-  components: {PrimaryIntroduction, PrimaryPreBlock, PrimaryButton, PrimaryArea, InteractiveBlock, PrimaryContainer},
+  components: {PrimaryIntroduction, PrimaryPreBlock, PrimaryArea, InteractiveBlock, PrimaryContainer},
   head() {
     return {
       title: this.$t("tool.jsFuck.title") + " - " + this.$t("app.name"),

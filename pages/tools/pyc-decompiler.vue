@@ -3,17 +3,17 @@
     <div class="primary-form">
       <InteractiveBlock class="space-y-4">
         <PrimaryFileUploader @change="fileChanged" :mime-type="['.pyc']"/>
-        <PrimaryButton class="w-full" @click="decompile" :disable="loading">{{
+        <UniButton class="w-full" @click="decompile" :disable="loading">{{
             loading ? 'Decompiling...' : 'Decompile'
           }}
-        </PrimaryButton>
+        </UniButton>
         <CodeBlock v-show="result !== ''" :label="pycInfo" :code="result" max_height="620px" copyable/>
         <InteractiveDoubleColumns v-show="result !== ''">
           <template v-slot:left>
-            <PrimaryButton class="w-full" @click="copy">{{ copiedText }}</PrimaryButton>
+            <UniButton class="w-full" @click="copy">{{ copiedText }}</UniButton>
           </template>
           <template v-slot:right>
-            <PrimaryButton class="w-full" @click="download">下载</PrimaryButton>
+            <UniButton class="w-full" @click="download">下载</UniButton>
           </template>
         </InteractiveDoubleColumns>
       </InteractiveBlock>
@@ -26,10 +26,8 @@
 import PrimaryContainer from "~/components/tool/PrimaryContainer";
 import GridWithDoubleColumns from "~/components/form/GridWithDoubleColumns";
 import InteractiveBlock from "~/components/tool/InteractiveBlock";
-import PrimaryInput from "~/components/form/PrimaryInput";
 import InteractiveDoubleColumns from "~/components/tool/InteractiveDoubleColumns";
 import PrimaryPreBlock from "~/components/form/PrimaryPreBlock";
-import PrimaryButton from "~/components/form/PrimaryButton";
 import CodeBlock from "~/components/widgets/CodeBlock";
 import PrimaryIntroduction from "~/components/tool/PrimaryIntroduction.vue";
 import PrimaryFileUploader from "~/components/form/PrimaryFileUploader.vue";
@@ -40,9 +38,8 @@ export default {
     PrimaryFileUploader,
     PrimaryIntroduction,
     CodeBlock,
-    PrimaryButton,
     PrimaryPreBlock,
-    InteractiveDoubleColumns, PrimaryInput, InteractiveBlock, GridWithDoubleColumns, PrimaryContainer
+    InteractiveDoubleColumns, InteractiveBlock, GridWithDoubleColumns, PrimaryContainer
   },
   head() {
     return {

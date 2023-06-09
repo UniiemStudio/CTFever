@@ -2,10 +2,10 @@
   <PrimaryContainer>
     <InteractiveBlock class="space-y-4">
       <PrimaryFileUploader @change="fileChanged"/>
-      <PrimaryButton class="w-full" @click="extract" :disable="loading">{{
+      <UniButton class="w-full" @click="extract" :disable="loading">{{
           loading ? 'Extracting...' : 'Extract'
         }}
-      </PrimaryButton>
+      </UniButton>
       <div v-show="result" class="rounded-t-lg overflow-hidden">
         <table class="border-collapse table-auto w-full text-sm">
           <thead class="bg-gray-200 dark:bg-slate-700">
@@ -66,8 +66,6 @@
 <script>
 import PrimaryContainer from "~/components/tool/PrimaryContainer";
 import InteractiveBlock from "~/components/tool/InteractiveBlock";
-import PrimaryInput from "~/components/form/PrimaryInput";
-import PrimaryButton from "~/components/form/PrimaryButton";
 import CodeBlock from "~/components/widgets/CodeBlock";
 import InteractiveDoubleColumns from "~/components/tool/InteractiveDoubleColumns";
 import PrimaryFileUploader from "~/components/form/PrimaryFileUploader.vue";
@@ -76,7 +74,7 @@ export default {
   name: "bin-extractor",
   components: {
     PrimaryFileUploader,
-    InteractiveDoubleColumns, CodeBlock, PrimaryButton, PrimaryInput, InteractiveBlock, PrimaryContainer
+    InteractiveDoubleColumns, CodeBlock, InteractiveBlock, PrimaryContainer
   },
   head() {
     return {

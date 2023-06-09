@@ -1,10 +1,10 @@
 <template>
   <PrimaryContainer>
     <InteractiveBlock class="space-y-4">
-      <PrimaryInput label="IP" id="ip" v-model="ip" placeholder="Leave blank for Local"/>
-      <PrimaryButton class="w-full" @click="query" :disable="isLoading">
-        {{ isLoading ? 'LOADING...' : 'QUERY' }}
-      </PrimaryButton>
+      <UniInput label="IP" id="ip" v-model="ip" placeholder="Leave blank for Local"/>
+      <UniButton class="w-full text-center" @click="query" :disabled="isLoading" icon="tabler:world-search">
+        {{ isLoading ? 'Loading...' : 'Query' }}
+      </UniButton>
     </InteractiveBlock>
     <InteractiveBlock>
       <ObjectViewer :object="info" :map="map" tip="数据来自 ip.sb"/>
@@ -15,14 +15,12 @@
 <script>
 import PrimaryContainer from "~/components/tool/PrimaryContainer";
 import InteractiveBlock from "~/components/tool/InteractiveBlock";
-import PrimaryInput from "~/components/form/PrimaryInput";
-import PrimaryButton from "~/components/form/PrimaryButton";
 import PrimaryArea from "~/components/form/PrimaryTextArea";
 import ObjectViewer from "~/components/tool/ObjectViewer";
 
 export default {
   name: "ip-geo",
-  components: {ObjectViewer, PrimaryArea, PrimaryButton, PrimaryInput, InteractiveBlock, PrimaryContainer},
+  components: {ObjectViewer, PrimaryArea, InteractiveBlock, PrimaryContainer},
   head() {
     return {
       title: this.$t("tool.ipAttribution.title") + " - " + this.$t("app.name"),

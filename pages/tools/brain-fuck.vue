@@ -5,8 +5,8 @@
         <PrimaryArea id="input" v-model="input_code" label="BrainFuck"
                      placeholder="BrainFuck Code..."
                      :rows="10" copyable></PrimaryArea>
-        <PrimaryInput id="inputs" v-model="arg" :label="$t('common.text_input').toString()"
-                      placeholder="Input..."></PrimaryInput>
+        <UniInput id="inputs" v-model="arg" :label="$t('common.text_input').toString()"
+                  placeholder="Input..."></UniInput>
       </InteractiveBlock>
       <InteractiveBlock>
         <div class="flex overflow-x-auto snap-x gap-4 py-1 snap-mandatory">
@@ -23,11 +23,11 @@
       </InteractiveBlock>
       <InteractiveBlock class="flex items-center justify-between">
         <div class="space-x-1">
-          <PrimaryButton type="button" @click="run">{{ $t('common.btn_run') }}</PrimaryButton>
+          <UniButton @click="run" icon="tabler:caret-right">{{ $t('common.btn_run') }}</UniButton>
         </div>
-        <PrimaryButton type="button" danger @click="input_code = ''; output = '';">
+        <UniButton danger @click="input_code = ''; output = '';" icon="tabler:trash">
           {{ $t('common.btn_clean') }}
-        </PrimaryButton>
+        </UniButton>
       </InteractiveBlock>
       <InteractiveBlock>
         <PrimaryPreBlock label="输出" v-if="output">{{ output }}</PrimaryPreBlock>
@@ -44,18 +44,15 @@
 import PrimaryContainer from "~/components/tool/PrimaryContainer";
 import InteractiveBlock from "~/components/tool/InteractiveBlock";
 import PrimaryArea from "~/components/form/PrimaryTextArea";
-import PrimaryButton from "~/components/form/PrimaryButton";
 import PrimaryPreBlock from "~/components/form/PrimaryPreBlock";
+import PrimaryIntroduction from "~/components/tool/PrimaryIntroduction";
 
 import runBrainFuck from '~/libs/brainfuck';
-import PrimaryIntroduction from "~/components/tool/PrimaryIntroduction";
-import PrimaryInput from "~/components/form/PrimaryInput";
 
 export default {
   name: "brain-fuck",
   components: {
-    PrimaryInput,
-    PrimaryIntroduction, PrimaryPreBlock, PrimaryButton, PrimaryArea, InteractiveBlock, PrimaryContainer
+    PrimaryIntroduction, PrimaryPreBlock, PrimaryArea, InteractiveBlock, PrimaryContainer
   },
   head() {
     return {

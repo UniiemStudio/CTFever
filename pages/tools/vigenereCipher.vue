@@ -6,18 +6,24 @@
                      :placeholder="$t('common.text_original_content').toString()" :rows="10" copyable></PrimaryArea>
       </InteractiveBlock>
       <InteractiveBlock>
-        <PrimaryInput id="key" :label="$t('common.text_secret').toString()" v-model="key" type="string"/>
+        <UniInput id="key" :label="$t('common.text_secret').toString()" v-model="key" :pattern="/^[A-Za-z]*$/g"/>
       </InteractiveBlock>
       <InteractiveBlock>
         <div class="flex flex-row justify-between items-center">
-          <div class="space-x-1">
-            <PrimaryButton type="button" @click="encode">{{ $t('common.btn_encode') }} ↓</PrimaryButton>
-            <PrimaryButton type="button" @click="decode">{{ $t('common.btn_decode') }} ↑</PrimaryButton>
+          <div class="flex space-x-1">
+            <UniButton type="button" @click="encode" icon="tabler:arrow-narrow-down">{{
+                $t('common.btn_encode')
+              }}
+            </UniButton>
+            <UniButton type="button" @click="decode" icon="tabler:arrow-narrow-up">{{
+                $t('common.btn_decode')
+              }}
+            </UniButton>
           </div>
-          <PrimaryButton type="button" danger @click="input = ''; output = ''; key = ''">{{
+          <UniButton type="button" danger @click="input = ''; output = ''; key = ''">{{
               $t('common.btn_clean')
             }}
-          </PrimaryButton>
+          </UniButton>
         </div>
       </InteractiveBlock>
       <InteractiveBlock>
@@ -32,8 +38,6 @@
 import PrimaryContainer from "~/components/tool/PrimaryContainer";
 import InteractiveBlock from "~/components/tool/InteractiveBlock";
 import PrimaryArea from "~/components/form/PrimaryTextArea";
-import PrimaryButton from "~/components/form/PrimaryButton";
-import PrimaryInput from "~/components/form/PrimaryInput";
 
 import {decryptVigenere, encryptVigenere} from "~/libs/vigenereCipher";
 import InteractiveDoubleColumns from "~/components/tool/InteractiveDoubleColumns";
@@ -41,7 +45,7 @@ import InteractiveDoubleColumns from "~/components/tool/InteractiveDoubleColumns
 
 export default {
   name: "vigenereCipher",
-  components: {InteractiveDoubleColumns, PrimaryButton, PrimaryArea, InteractiveBlock, PrimaryContainer, PrimaryInput},
+  components: {InteractiveDoubleColumns, PrimaryArea, InteractiveBlock, PrimaryContainer},
   head() {
     return {
       title: this.$t("tool.vigenereCipher.title") + " - " + this.$t("app.name"),
@@ -59,10 +63,22 @@ export default {
   },
   methods: {
     encode() {
-      this.output = encryptVigenere(this.input, this.key);
+      if (this.input) {
+        if (this.key) {
+          this.output = encryptVigenere(this.input, this.key);
+        } else {
+          this.output = "Please input key";
+        }
+      }
     },
     decode() {
-      this.input = decryptVigenere(this.output, this.key);
+      if (this.output) {
+        if (this.key) {
+          this.input = decryptVigenere(this.input, this.key);
+        } else {
+          this.input = "Please input key";
+        }
+      }
     },
   }
 }
