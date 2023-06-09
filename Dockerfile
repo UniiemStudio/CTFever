@@ -9,8 +9,8 @@ ENV CEVER_BACKEND_BASE=https://ctfever-service.uniiem.com
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apk/repositories
 RUN apk add --update --no-cache gcc g++ make cmake curl jq py3-configobj py3-pip py3-setuptools python3 python3-dev
 
-RUN yarn install && \
-    yarn run build
+RUN npm config set registry https://registry.npm.taobao.org && \
+    yarn && yarn build
 
 FROM node:16-alpine as production-stage
 
