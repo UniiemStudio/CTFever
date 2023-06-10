@@ -59,8 +59,8 @@ export default defineComponent({
           :class="{
             '!text-red-500 dark:!text-red-400/80': !disabled && danger,
             '!text-red-500/40 dark:!text-red-400/20': disabled && danger,
-            '!text-gray-500/60 dark:!text-slate-500/40 bg-gray-200 hover:bg-gray-200 dark:!bg-slate-900 dark:hover:!bg-slate-900': disabled,
-            '!px-2 !py-0.5': mini,
+            '!text-gray-500/60 dark:!text-slate-500/40 !bg-gray-200 hover:!bg-gray-200 dark:!bg-slate-900 dark:hover:!bg-slate-900': disabled && !danger,
+            'text-xs !px-2 !py-0.5 my-auto': mini,
             'inline-flex flex-row justify-center items-center gap-1': icon
           }"
           :disabled="disabled"

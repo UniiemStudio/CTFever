@@ -3,10 +3,11 @@
     <div class="primary-form">
       <InteractiveBlock class="space-y-4">
         <PrimaryFileUploader @change="fileChanged" :mime-type="['zip', '.zip']"/>
-        <PrimaryButton class="w-full" :disable="loading" @click="check">{{
+        <UniButton class="w-full" :disabled="loading" @click="check"
+                   :icon="loading ? 'tabler:cloud-upload' : 'tabler:eyeglass'">{{
             loading ? 'Uploading...' : 'Check'
           }}
-        </PrimaryButton>
+        </UniButton>
       </InteractiveBlock>
       <InteractiveDoubleColumns v-if="result">
         <template v-slot:left>
@@ -74,8 +75,6 @@
 <script>
 import PrimaryContainer from "~/components/tool/PrimaryContainer.vue";
 import InteractiveBlock from "~/components/tool/InteractiveBlock.vue";
-import PrimaryInput from "~/components/form/PrimaryInput.vue";
-import PrimaryButton from "~/components/form/PrimaryButton.vue";
 import CodeBlock from "~/components/widgets/CodeBlock.vue";
 import PrimaryFileUploader from "~/components/form/PrimaryFileUploader.vue";
 import InteractiveDoubleColumns from "~/components/tool/InteractiveDoubleColumns.vue";
@@ -88,7 +87,7 @@ export default {
   components: {
     Icon,
     InteractiveDoubleColumns,
-    PrimaryFileUploader, CodeBlock, PrimaryButton, PrimaryInput, InteractiveBlock, PrimaryContainer
+    PrimaryFileUploader, CodeBlock, InteractiveBlock, PrimaryContainer
   },
   head() {
     return {

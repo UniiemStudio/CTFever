@@ -6,13 +6,13 @@
     </InteractiveBlock>
     <InteractiveBlock class="flex items-center justify-between">
       <div class="space-x-1">
-        <PrimaryButton type="button" @click="encode">{{ $t('common.btn_encrypt') }} ↓</PrimaryButton>
-        <PrimaryButton type="button" @click="decode">{{ $t('common.btn_decrypt') }} ↑</PrimaryButton>
+        <UniButton @click="encode" icon="tabler:arrow-narrow-down">{{ $t('common.btn_encrypt') }}</UniButton>
+        <UniButton @click="decode" icon="tabler:arrow-narrow-up">{{ $t('common.btn_decrypt') }}</UniButton>
       </div>
-      <PrimaryButton type="button" danger @click="input = ''; output = '';">{{
+      <UniButton danger @click="input = ''; output = '';" icon="tabler:trash">{{
           $t('common.btn_clean')
         }}
-      </PrimaryButton>
+      </UniButton>
     </InteractiveBlock>
     <InteractiveBlock>
       <PrimaryArea id="output" v-model="output" :label="$t('common.text_cipher').toString()"
@@ -24,15 +24,13 @@
 <script>
 import PrimaryContainer from "~/components/tool/PrimaryContainer";
 import InteractiveBlock from "~/components/tool/InteractiveBlock";
-import PrimarySelector from "~/components/form/PrimarySelector";
 import PrimaryArea from "~/components/form/PrimaryTextArea";
-import PrimaryButton from "~/components/form/PrimaryButton";
 
 import {coreValuesDecode, coreValuesEncode} from '~/libs/coreValuesCipher';
 
 export default {
   name: "core-values-cipher",
-  components: {PrimaryButton, PrimaryArea, PrimarySelector, InteractiveBlock, PrimaryContainer},
+  components: {PrimaryArea, InteractiveBlock, PrimaryContainer},
   head() {
     return {
       title: this.$t("tool.coreValues.title") + " - " + this.$t("app.name"),

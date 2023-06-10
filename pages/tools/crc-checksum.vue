@@ -2,26 +2,26 @@
   <PrimaryContainer>
     <div class="primary-form">
       <InteractiveBlock>
-        <PrimaryInput id="data" :placeholder="input_mode === 'hex' ? '01 03 00 01 ...' : 'Any char...'"
-                      :label="$t('common.text_input').toString()" v-model="input_data"/>
+        <UniInput id="data" :placeholder="input_mode === 'hex' ? '01 03 00 01 ...' : 'Any char...'"
+                  :label="$t('common.text_input').toString()" v-model="input_data"/>
       </InteractiveBlock>
       <InteractiveDoubleColumns>
         <template v-slot:left>
-          <PrimarySelector :label="$t('tool.crc.crcModel').toString()" v-model="crc_mode" :options="crc_modes"/>
+          <UniSelect :label="$t('tool.crc.crcModel').toString()" v-model="crc_mode" :options="crc_modes"/>
         </template>
         <template v-slot:right>
-          <PrimarySelector :label="$t('tool.crc.inputMode').toString()" v-model="input_mode" :options="input_modes"/>
+          <UniSelect :label="$t('tool.crc.inputMode').toString()" v-model="input_mode" :options="input_modes"/>
         </template>
       </InteractiveDoubleColumns>
       <InteractiveBlock class="flex justify-between">
-        <PrimaryButton type="button" @click="checksum">{{ $t('common.btn_calculate') }}</PrimaryButton>
-        <PrimaryButton type="reset" danger>{{ $t('common.btn_reset') }}</PrimaryButton>
+        <UniButton @click="checksum" icon="tabler:calculator">{{ $t('common.btn_calculate') }}</UniButton>
+        <UniButton type="reset" danger icon="tabler:trash">{{ $t('common.btn_reset') }}</UniButton>
       </InteractiveBlock>
       <InteractiveBlock class="space-y-2">
-        <PrimaryInput id="outputHex" :label="$t('tool.crc.checksum_result') + '(Hex)'" v-model="output.hex" disable
-                      copyable/>
-        <PrimaryInput id="outputBin" :label="$t('tool.crc.checksum_result') + '(Bin)'" v-model="output.bin" disable
-                      copyable/>
+        <UniInput id="outputHex" :label="$t('tool.crc.checksum_result') + '(Hex)'" v-model="output.hex" disable
+                  copyable/>
+        <UniInput id="outputBin" :label="$t('tool.crc.checksum_result') + '(Bin)'" v-model="output.bin" disable
+                  copyable/>
       </InteractiveBlock>
     </div>
     <PrimaryIntroduction title="CRC 循环冗余校验" path="intro/crc" :references="references"/>
@@ -32,19 +32,14 @@
 import PrimaryContainer from "~/components/tool/PrimaryContainer";
 import PrimaryIntroduction from "~/components/tool/PrimaryIntroduction";
 import InteractiveBlock from "~/components/tool/InteractiveBlock";
-import PrimaryInput from "~/components/form/PrimaryInput";
 import InteractiveDoubleColumns from "~/components/tool/InteractiveDoubleColumns";
-import PrimaryButton from "~/components/form/PrimaryButton";
-import PrimarySelector from "~/components/form/PrimarySelector";
 
 import crc from '~/libs/crc';
 
 export default {
   name: "crc-checksum",
   components: {
-    PrimarySelector,
-    PrimaryButton,
-    InteractiveDoubleColumns, PrimaryInput, InteractiveBlock, PrimaryIntroduction, PrimaryContainer
+    InteractiveDoubleColumns, InteractiveBlock, PrimaryIntroduction, PrimaryContainer
   },
   head() {
     return {
@@ -75,13 +70,13 @@ export default {
         {label: 'CRC16-DNP', value: 'crc16_dnp'},
       ],
       input_modes: [
-        {label: 'Hex', value: 'hex'},
-        {label: 'ASCII', value: 'ascii'}
+        {label: 'Hex', value: 'hex', icon: 'mdi:hexadecimal'},
+        {label: 'ASCII', value: 'ascii', icon: 'tabler:abc'}
       ],
       references: [
         {
-          name: '霓红的博客: CRC16 在 Java 中的实现',
-          url: 'https://blog.i0x0i.ltd/posts/crc16-principle-and-implementation-in-java/'
+          name: '星野鈴美的博客: CRC16 在 Java 中的实现',
+          url: 'https://uniiem.com/blog/post/crc16-principle-and-implementation-in-java/'
         }
       ]
     }

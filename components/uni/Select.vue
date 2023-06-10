@@ -64,6 +64,11 @@ export default defineComponent({
       this.$emit("change", option.value);
     },
   },
+  watch: {
+    // value(val) {
+    //   this.selectOption(this.options.find((option) => option.value === val) || {});
+    // },
+  },
 })
 </script>
 
@@ -98,7 +103,7 @@ export default defineComponent({
                   bg-white dark:bg-slate-800 hover:bg-gray-100 dark:hover:bg-slate-700"
              v-for="(option, index) in options" :key="index"
              :class="{
-               'bg-gray-200 dark:bg-slate-700 hover:bg-gray-200 dark:hover:bg-slate-700': option.value === selectedOption.value,
+               '!bg-gray-200 dark:!bg-slate-700 hover:!bg-gray-200 dark:!hover:bg-slate-700': option.value === selectedOption.value,
                'cursor-not-allowed text-gray-300 dark:text-slate-500 hover:bg-white dark:hover:bg-white': option.disabled
              }"
              @click="!option.disabled ? selectOption(option) : null"

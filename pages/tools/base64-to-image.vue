@@ -5,7 +5,9 @@
         <template v-slot:left>
           <InteractiveBlock class="space-y-2">
             <PrimaryFileUploader @change="fileChanged" :mime-type="['image/*', 'png', 'jpg']"/>
-            <PrimaryButton class="w-full" @click="download" :disable="!imageBase64">下载</PrimaryButton>
+            <UniButton class="w-full" @click="download" :disabled="!imageBase64" icon="solar:gallery-download-outline">
+              下载
+            </UniButton>
           </InteractiveBlock>
         </template>
         <template v-slot:right>
@@ -13,16 +15,18 @@
             <img v-if="imageBase64"
                  class="w-full aspect-auto object-cover border border-slate-300 dark:border-slate-600"
                  :src="imageBase64" alt="Placeholder">
-            <div v-else class="w-full h-40 border-2 border-dashed rounded-lg border-slate-300 dark:border-slate-600
+            <div v-else class="w-full h-44 border-2 border-dashed rounded-lg border-slate-300 dark:border-slate-600
                                flex justify-center items-center">
               <Icon icon="tabler:photo" class="text-4xl text-gray-400 dark:text-slate-400"/>
             </div>
             <InteractiveDoubleColumns class="mt-2">
               <template v-slot:left>
-                <PrimaryButton class="w-full" @click="copy" :disable="!imageBase64">复制</PrimaryButton>
+                <UniButton class="w-full" @click="copy" :disabled="!imageBase64" icon="solar:copy-line-duotone">复制
+                  Base64
+                </UniButton>
               </template>
               <template v-slot:right>
-                <PrimaryButton class="w-full" @click="paste">从剪贴板获取</PrimaryButton>
+                <UniButton class="w-full" @click="paste" icon="solar:clipboard-linear">从剪贴板获取</UniButton>
               </template>
             </InteractiveDoubleColumns>
           </div>
@@ -37,14 +41,12 @@ import PrimaryContainer from "~/components/tool/PrimaryContainer.vue";
 import InteractiveDoubleColumns from "~/components/tool/InteractiveDoubleColumns.vue";
 import InteractiveBlock from "~/components/tool/InteractiveBlock.vue";
 import PrimaryFileUploader from "~/components/form/PrimaryFileUploader.vue";
-import PrimaryButton from "~/components/form/PrimaryButton.vue";
 import {Icon} from "@iconify/vue2";
 
 export default {
   name: 'Base64ToImage',
   components: {
-    Icon,
-    PrimaryButton, PrimaryFileUploader, InteractiveBlock, InteractiveDoubleColumns, PrimaryContainer
+    Icon, PrimaryFileUploader, InteractiveBlock, InteractiveDoubleColumns, PrimaryContainer
   },
   head() {
     return {

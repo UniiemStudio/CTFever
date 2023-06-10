@@ -27,8 +27,8 @@
       </h1>
     </div>
     <div class="grid gap-4 grid-cols-1 -mt-2">
-      <PrimaryInput id="search-input" key="search-input" :placeholder="`${$t('common.text_search').toString()}...`"
-                    class="search-input" v-model="searchText"/>
+      <UniInput :placeholder="`${$t('common.text_search').toString()} (Press '/')`"
+                class="search-input" v-model="searchText" ref="searchInput"/>
     </div>
     <div v-if="searchText" class="mt-6 my-2 grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
       <Tool v-for="(tool, k) in searchResult" :key="k" :tool="tool"
@@ -203,6 +203,12 @@ export default {
       dragIndex: null,
     }
   },
+  mounted() {
+    Mousetrap.bind('/', () => {
+      this.$refs.searchInput.focus()
+      return false;
+    });
+  },
   watch: {
     searchText(search) {
       if (search.length > 0) {
@@ -211,8 +217,8 @@ export default {
         let results = [];
         this.$store.state.toolkits.forEach(toolkit =>
           retArray.push(toolkit.tools.filter(function (t) {
-              return self.$t(t.title).toLowerCase().includes(search.toLowerCase())
-                || self.$t(t.description).toLowerCase().includes(search.toLowerCase());
+            return self.$t(t.title).toLowerCase().includes(search.toLowerCase())
+              || self.$t(t.description).toLowerCase().includes(search.toLowerCase());
             })
           )
         );
@@ -301,7 +307,7 @@ export default {
 </script>
 
 <style>
-.search-input > * > input {
+.search-input > input {
   @apply py-3 px-3;
 }
 

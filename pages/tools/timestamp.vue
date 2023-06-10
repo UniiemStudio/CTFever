@@ -2,40 +2,42 @@
   <PrimaryContainer>
     <GridWithDoubleColumns>
       <InteractiveBlock>
-        <PrimaryInput id="timestamp" :label="$t('tool.timeStamp.timestamp').toString()" @input="changeTimestamp"
-                      :value="isUnixTime ? date.unix() : date.valueOf()"/>
+        <UniInput id="timestamp" :label="$t('tool.timeStamp.timestamp').toString()" @input="changeTimestamp"
+                  :value="isUnixTime ? date.unix() : date.valueOf()" copyable
+                  :pattern="isUnixTime ? /^\d{10}$/g : /^\d{13}$/g"/>
       </InteractiveBlock>
       <InteractiveBlock>
-        <PrimaryInput id="human-readable" :label="$t('tool.timeStamp.humanReadable').toString()"
-                      @input="changeHumanDate" :value="humanReadable"/>
+        <UniInput id="human-readable" :label="$t('tool.timeStamp.humanReadable').toString()"
+                  @input="changeHumanDate" :value="humanReadable" copyable
+                  :pattern="/^\d{4}-\d{2}-\d{2}\s\d{2}:\d{2}:\d{2}$/g"/>
       </InteractiveBlock>
       <InteractiveBlock>
-        <PrimarySelector id="unit" :label="$t('tool.timeStamp.unit').toString()" :options="units" value="sec"
-                         @input="(val)=>this.isUnixTime = val === 'sec'"/>
+        <UniSelect id="unit" :label="$t('tool.timeStamp.unit').toString()" :options="units" value="sec"
+                   @input="(val)=>this.isUnixTime = val === 'sec'" v-model="unit"/>
       </InteractiveBlock>
       <InteractiveBlock>
-        <PrimaryButton class="w-full mt-2 md:mt-7" @click="refreshDayjs">
+        <UniButton class="w-full mt-2 md:mt-6" @click="refreshDayjs">
           {{ $t('tool.timeStamp.now').toString() }}
-        </PrimaryButton>
+        </UniButton>
       </InteractiveBlock>
     </GridWithDoubleColumns>
     <hr class="mt-3 mb-4 dark:border-slate-500"/>
     <GridWithDoubleColumns>
       <InteractiveBlock>
-        <PrimaryInput id="utc" :label="$t('tool.timeStamp.utc').toString()" :value="date.utc().format()" disable
-                      copyable/>
+        <UniInput id="utc" :label="$t('tool.timeStamp.utc').toString()" :value="date.utc().format()" disabled
+                  copyable/>
       </InteractiveBlock>
       <InteractiveBlock>
-        <PrimaryInput id="from-now" :label="$t('tool.timeStamp.fromNow').toString()" :value="date.fromNow()" disable
-                      copyable/>
+        <UniInput id="from-now" :label="$t('tool.timeStamp.fromNow').toString()" :value="date.fromNow()" disabled
+                  copyable/>
       </InteractiveBlock>
       <InteractiveBlock>
-        <PrimaryInput id="day-of-year" :label="$t('tool.timeStamp.dayOfYear').toString()" :value="date.dayOfYear()"
-                      disable copyable/>
+        <UniInput id="day-of-year" :label="$t('tool.timeStamp.dayOfYear').toString()" :value="date.dayOfYear()"
+                  disabled copyable/>
       </InteractiveBlock>
       <InteractiveBlock>
-        <PrimaryInput id="week-of-year" :label="$t('tool.timeStamp.weekOfYear').toString()" :value="date.isoWeek()"
-                      disable copyable/>
+        <UniInput id="week-of-year" :label="$t('tool.timeStamp.weekOfYear').toString()" :value="date.isoWeek()"
+                  disabled copyable/>
       </InteractiveBlock>
     </GridWithDoubleColumns>
   </PrimaryContainer>
@@ -44,13 +46,10 @@
 <script>
 import PrimaryContainer from "~/components/tool/PrimaryContainer";
 import InteractiveBlock from "~/components/tool/InteractiveBlock";
-import PrimaryInput from "~/components/form/PrimaryInput";
+import GridWithDoubleColumns from "~/components/form/GridWithDoubleColumns";
 
 import dayjs from 'dayjs';
 import 'dayjs/locale/zh-cn';
-import PrimaryButton from "~/components/form/PrimaryButton";
-import PrimarySelector from "~/components/form/PrimarySelector";
-import GridWithDoubleColumns from "~/components/form/GridWithDoubleColumns";
 
 dayjs.extend(require('dayjs/plugin/utc'));
 dayjs.extend(require('dayjs/plugin/relativeTime'));
@@ -60,7 +59,7 @@ dayjs.extend(require('dayjs/plugin/customParseFormat'));
 
 export default {
   name: "timestamp",
-  components: {GridWithDoubleColumns, PrimarySelector, PrimaryButton, PrimaryInput, InteractiveBlock, PrimaryContainer},
+  components: {GridWithDoubleColumns, InteractiveBlock, PrimaryContainer},
   head() {
     return {
       title: this.$t("tool.timeStamp.title") + " - " + this.$t("app.name"),
@@ -79,11 +78,13 @@ export default {
       units: [
         {
           label: 'sec',
-          value: 'sec'
+          value: 'sec',
+          icon: 'tabler:circle'
         },
         {
           label: 'msec',
-          value: 'msec'
+          value: 'msec',
+          icon: 'tabler:circle-dot'
         }
       ]
     }

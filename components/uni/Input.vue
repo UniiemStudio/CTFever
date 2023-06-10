@@ -44,6 +44,9 @@ export default defineComponent({
       copyTip: false,
     }
   },
+  mounted() {
+    this.inputText = this.value
+  },
   methods: {
     validate(str) {
       if (this.pattern) {
@@ -63,6 +66,9 @@ export default defineComponent({
     },
     clearHandler() {
       this.$emit('input', '')
+    },
+    focus() {
+      this.$refs.input.focus()
     }
   },
   watch: {
@@ -73,7 +79,9 @@ export default defineComponent({
       }
     },
     value(val) {
-      this.inputText = val
+      if (this.validate(val)) {
+        this.inputText = val
+      }
     }
   }
 })

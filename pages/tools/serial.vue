@@ -4,11 +4,12 @@
       <template v-slot:left>
         <PrimaryArea id="tx" label="TX" v-model="tx" :rows="15"/>
         <InteractiveBlock>
-          <PrimaryInput id="autoSendDelay" :label="$t('tool.serialTool.resendDelay') + '(ms)'" v-model="autoSendDelay"
-                        type="number"/>
+          <UniInput id="autoSendDelay" :label="$t('tool.serialTool.resendDelay') + '(ms)'" v-model="autoSendDelay"
+                    type="number"/>
         </InteractiveBlock>
         <InteractiveBlock>
-          <PrimaryButton @click="writeSerial" :disable="!connected" class="w-full">SEND</PrimaryButton>
+          <UniButton @click="writeSerial" :disabled="!connected" class="w-full" icon="iconamoon:send-duotone">发送
+          </UniButton>
         </InteractiveBlock>
         <InteractiveDoubleColumns>
           <template v-slot:left>
@@ -31,22 +32,23 @@
         <PrimaryArea id="rx" label="RX" v-model="rx" :rows="15" class="font-mono"/>
         <InteractiveDoubleColumns>
           <template v-slot:left>
-            <PrimaryInput
+            <UniInput
               :label="$t('tool.serialTool.status').toString()" id="status"
               :value="connected ? `${$t('tool.serialTool.connected')}[${baud}]` : $t('tool.serialTool.disconnected')"
               class="w-full"
-              disable/>
+              disabled/>
           </template>
           <template v-slot:right>
             <!--suppress JSValidateTypes -->
-            <PrimarySelector :label="$t('tool.serialTool.baud')" v-model="baud" :options="baudRates"
-                             :disable="connected"/>
+            <UniSelect :label="$t('tool.serialTool.baud')" v-model="baud" :options="baudRates"
+                       :disabled="connected"/>
           </template>
         </InteractiveDoubleColumns>
         <InteractiveBlock>
-          <PrimaryButton @click="!connected ? openSerial() : closeSerial()" :danger="connected" class="w-full">
+          <UniButton @click="!connected ? openSerial() : closeSerial()" :danger="connected" class="w-full"
+                     :icon="connected ? 'tabler:plug-connected-x' : 'tabler:plug-connected'">
             {{ !connected ? $t('tool.serialTool.open') : $t('tool.serialTool.close') }}
-          </PrimaryButton>
+          </UniButton>
         </InteractiveBlock>
       </template>
     </InteractiveDoubleColumns>
@@ -55,24 +57,18 @@
 
 <script>
 import PrimaryContainer from "~/components/tool/PrimaryContainer";
-import PrimaryButton from "~/components/form/PrimaryButton";
 import InteractiveBlock from "~/components/tool/InteractiveBlock";
 import InteractiveDoubleColumns from "~/components/tool/InteractiveDoubleColumns";
 import PrimaryArea from "~/components/form/PrimaryTextArea";
 
 import Serial from '~/libs/serial';
-import PrimarySelector from "~/components/form/PrimarySelector";
-import PrimaryInput from "~/components/form/PrimaryInput";
 
 export default {
   name: "serial",
   components: {
-    PrimaryInput,
-    PrimarySelector,
     PrimaryArea,
     InteractiveDoubleColumns,
     InteractiveBlock,
-    PrimaryButton,
     PrimaryContainer
   },
   head() {

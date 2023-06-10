@@ -17,11 +17,11 @@
             </div>
           </nuxt-link>
         </div>
-        <div class="space-x-2 dark:text-slate-300">
-          <TinyButtonLink v-if="pwaAvailable" :clk="installPWA" class="group inline-flex flex-row justify-center gap-1">
-            <Icon icon="tabler:download" class="text-base inline -translate-y-[2px]"/>
-            <span>{{ $t('topbar.install_pwa') }}</span>
-          </TinyButtonLink>
+        <div class="flex flex-row items-center gap-4 dark:text-slate-300">
+          <UniButton v-if="pwaAvailable" @click="installPWA" mini icon="tabler:download">{{
+              $t('topbar.install_pwa')
+            }}
+          </UniButton>
           <a-dropdown :trigger="['hover']" placement="bottomRight">
             <span class="ant-dropdown-link cursor-pointer" @click="e => e.preventDefault()">
               <Icon icon="prime:language" class="text-xl inline -mt-1 pointer-events-none"/>
@@ -106,11 +106,10 @@
 import TinyButtonLink from "~/components/TinyButtonLink";
 import {copyTextToClipboard, getToolByRoute, wrapI18nPath2MetaRoute} from "~/libs/common";
 import {Icon} from "@iconify/vue2";
-import PrimaryButton from "~/components/form/PrimaryButton.vue";
 
 export default {
   name: "TopBar",
-  components: {PrimaryButton, Icon, TinyButtonLink},
+  components: {Icon, TinyButtonLink},
   computed: {
     availableLocales() {
       return this.$i18n.locales.filter(i => i.code !== this.$i18n.locale)
