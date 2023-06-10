@@ -1,16 +1,16 @@
 <template>
   <PrimaryContainer>
     <InteractiveBlock class="space-y-2">
-      <PrimaryInput id="radix-2" v-model="formData['r2']" :label="$t('common.radix.bin').toString()"
-                    @input="inputHandler('r2')" placeholder="Binary..." copyable :pattern="/[^0-1]/g"/>
-      <PrimaryInput id="radix-8" v-model="formData['r8']" :label="$t('common.radix.oct').toString()"
-                    @input="inputHandler('r8')" placeholder="Octal..." copyable :pattern="/[^0-7]/g"/>
-      <PrimaryInput id="radix-10" v-model="formData['r10']" :label="$t('common.radix.dec').toString()"
-                    @input="inputHandler('r10')" placeholder="Decimal..." copyable type="number"/>
-      <PrimaryInput id="radix-16" v-model="formData['r16']" :label="$t('common.radix.hex').toString()"
-                    @input="inputHandler('r16')" placeholder="Hexadecimal..." copyable :pattern="/[^0-9a-fA-F]/g"/>
-      <PrimaryInput id="readable" v-model="formData['readable']" :label="$t('tool.radixConversion.readable').toString()"
-                    @input="inputHandler('readable')" placeholder="Readable..." copyable/>
+      <UniInput id="radix-2" v-model="formData['r2']" :label="$t('common.radix.bin').toString()"
+                @input="inputHandler('r2')" placeholder="Binary..." copyable/>
+      <UniInput id="radix-8" v-model="formData['r8']" :label="$t('common.radix.oct').toString()"
+                @input="inputHandler('r8')" placeholder="Octal..." copyable/>
+      <UniInput id="radix-10" v-model="formData['r10']" :label="$t('common.radix.dec').toString()"
+                @input="inputHandler('r10')" placeholder="Decimal..." copyable type="number"/>
+      <UniInput id="radix-16" v-model="formData['r16']" :label="$t('common.radix.hex').toString()"
+                @input="inputHandler('r16')" placeholder="Hexadecimal..." copyable :pattern="/[^0-9a-fA-F]/g"/>
+      <UniInput id="readable" v-model="formData['readable']" :label="$t('tool.radixConversion.readable').toString()"
+                @input="inputHandler('readable')" placeholder="Readable..." copyable/>
     </InteractiveBlock>
   </PrimaryContainer>
 </template>
@@ -19,13 +19,12 @@
 import PrimaryContainer from "~/components/tool/PrimaryContainer";
 import PrimaryIntroduction from "~/components/tool/PrimaryIntroduction";
 import InteractiveBlock from "~/components/tool/InteractiveBlock";
-import PrimaryInput from "~/components/form/PrimaryInput";
 
 import {decimal_to_readable, radixc, readable_to_decimal} from '~/libs/radixc';
 
 export default {
   name: "radix-conversion",
-  components: {PrimaryInput, InteractiveBlock, PrimaryIntroduction, PrimaryContainer},
+  components: {InteractiveBlock, PrimaryIntroduction, PrimaryContainer},
   head() {
     return {
       title: this.$t("tool.radixConversion.title") + " - " + this.$t("app.name"),
@@ -119,7 +118,7 @@ export default {
       if (val.length > 0) {
         this.formData.r16 = val.toUpperCase();
       }
-    }
+    },
   }
 }
 </script>

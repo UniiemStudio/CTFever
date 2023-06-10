@@ -3,9 +3,12 @@
     <InteractiveDoubleColumns>
       <template v-slot:left>
         <InteractiveBlock class="space-y-4">
-          <PrimaryInput id="host" label="主机" v-model="host" placeholder="域名或者 IP 地址"/>
-          <PrimaryInput id="ports" label="端口范围" v-model="port" placeholder="e.g. 22,25,80-88"/>
-          <PrimaryButton class="w-full" @click="scan" :disable="loading">{{ buttonText }}</PrimaryButton>
+          <UniInput id="host" label="主机" v-model="host" placeholder="域名或者 IP 地址"/>
+          <UniInput id="ports" label="端口范围" v-model="port" placeholder="e.g. 22,25,80-88"/>
+          <UniButton class="w-full" @click="scan" :disabled="loading" icon="tabler:world-search">{{
+              buttonText
+            }}
+          </UniButton>
         </InteractiveBlock>
       </template>
       <template v-slot:right>
@@ -53,17 +56,13 @@
 import PrimaryContainer from "~/components/tool/PrimaryContainer";
 import InteractiveDoubleColumns from "~/components/tool/InteractiveDoubleColumns";
 import InteractiveBlock from "~/components/tool/InteractiveBlock";
-import PrimaryInput from "~/components/form/PrimaryInput";
-import PrimaryButton from "~/components/form/PrimaryButton";
 import PrimaryPreBlock from "~/components/form/PrimaryPreBlock";
 import ObjectViewer from "~/components/tool/ObjectViewer";
 
 export default {
   name: "port-scan",
   components: {
-    ObjectViewer,
-    PrimaryPreBlock,
-    PrimaryButton, PrimaryInput, InteractiveBlock, InteractiveDoubleColumns, PrimaryContainer
+    ObjectViewer, PrimaryPreBlock, InteractiveBlock, InteractiveDoubleColumns, PrimaryContainer
   },
   head() {
     return {

@@ -44,11 +44,6 @@ export default defineComponent({
       copyTip: false,
     }
   },
-  mounted() {
-    if (this.value) {
-      this.inputText = this.value
-    }
-  },
   methods: {
     validate(str) {
       if (this.pattern) {
@@ -76,6 +71,9 @@ export default defineComponent({
       if (this.isValid) {
         this.$emit('input', val)
       }
+    },
+    value(val) {
+      this.inputText = val
     }
   }
 })
