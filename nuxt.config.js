@@ -88,7 +88,6 @@ export default {
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     "@nuxt/postcss8",
-    "@nuxtjs/pwa",
     "@nuxtjs/device"
   ],
 
@@ -100,6 +99,7 @@ export default {
     "@nuxtjs/pwa",
     // https://go.nuxtjs.dev/i18n
     "@nuxtjs/i18n",
+    "@nuxtjs/pwa",
     "@nuxt/content",
     [
       "nuxt-matomo",
@@ -154,7 +154,8 @@ export default {
     workbox: {
       workboxURL: "/third_party/workbox/workbox-sw.js",
       config: {
-        modulePathPrefix: "/third_party/workbox/"
+        modulePathPrefix: "/third_party/workbox/",
+        debug: process.env.NODE_ENV !== "production"
       }
     },
     manifest: {
