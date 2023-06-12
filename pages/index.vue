@@ -27,8 +27,8 @@
       </h1>
     </div>
     <div class="grid gap-4 grid-cols-1 -mt-2">
-      <UniInput :placeholder="`${$t('common.text_search').toString()} (Press '/')`"
-                class="search-input" v-model="searchText" ref="searchInput"/>
+      <UniInput :placeholder="`${$t('common.text_search').toString()}`"
+                class="search-input" input-class="py-3 px-3" v-model="searchText" hotkey="ctrl+k"/>
     </div>
     <div v-if="searchText" class="mt-6 my-2 grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
       <Tool v-for="(tool, k) in searchResult" :key="k" :tool="tool"
@@ -204,10 +204,10 @@ export default {
     }
   },
   mounted() {
-    Mousetrap.bind('/', () => {
-      this.$refs.searchInput.focus()
-      return false;
-    });
+    // Mousetrap.bind('/', () => {
+    //   this.$refs.searchInput.focus()
+    //   return false;
+    // });
   },
   watch: {
     searchText(search) {
@@ -307,10 +307,6 @@ export default {
 </script>
 
 <style>
-.search-input > input {
-  @apply py-3 px-3;
-}
-
 .search-tip {
   @apply h-0 opacity-0 scale-y-0 overflow-hidden opacity-0 transition-all duration-300 ease-in-out;
 }
