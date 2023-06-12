@@ -243,7 +243,6 @@ export default {
   methods: {
     searchAnalytics: debounce(function (keyword, count) {
       console.log(`Search: ${keyword} (${count})`);
-      console.log(this.$matomo)
     }, 1500),
     dragstart(e, i) {
       this.dragIndex = i;

@@ -114,6 +114,7 @@
         </div>
       </div>
     </div>
+    <v-dialog :clickToClose="false" :shiftX="0.5" :shiftY="0.5"></v-dialog>
   </div>
 </template>
 
@@ -187,7 +188,25 @@ export default {
     if (workbox) {
       workbox.addEventListener('installed', (event) => {
         if (event.isUpdate) {
-          console.log('New version available');
+          this.$modal.show('dialog', {
+            title: '发现新版本',
+            text: '距上次使用以来发布了新的版本，刷新页面来加载新版本',
+            buttons: [
+              {
+                title: '稍后',
+                handler: () => {
+                  this.$modal.hide('dialog')
+                }
+              },
+              {
+                title: '重新加载',
+                default: true,
+                handler: () => {
+                  window.location.reload()
+                }
+              },
+            ]
+          });
         } else {
           console.log('No update available');
         }
@@ -195,6 +214,27 @@ export default {
     } else {
       console.log('Workbox not found');
     }
+
+    // let toast = this.$toasted.show("发现新版本", {
+    //   theme: "outline",
+    //   position: "top-right",
+    //   duration : null,
+    //   action : [
+    //     {
+    //       text : '重新加载',
+    //       onClick : (e, toastObject) => {
+    //         toastObject.goAway(0);
+    //       }
+    //     },
+    //     {
+    //       text : '稍后',
+    //       push : {
+    //         name : 'somewhere',
+    //         dontClose : true
+    //       }
+    //     }
+    //   ]
+    // });
 
     const self = this;
     Mousetrap.bind('shift shift', function () {

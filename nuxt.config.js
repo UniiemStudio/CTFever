@@ -79,7 +79,8 @@ export default {
   plugins: [
     "@/plugins/antd-ui",
     "@/plugins/g-tag",
-    "@/plugins/api"
+    "@/plugins/api",
+    "@/plugins/vue-js-modal"
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -100,6 +101,7 @@ export default {
     // https://go.nuxtjs.dev/i18n
     "@nuxtjs/i18n",
     "@nuxtjs/pwa",
+    '@nuxtjs/toast',
     "@nuxt/content",
     [
       "nuxt-matomo",
@@ -160,6 +162,7 @@ export default {
     },
     manifest: {
       lang: "zh",
+      id: "com.uniiem.ctfever",
       name: "CTFever",
       short_name: "CTFever",
       description: "A fantastic toolkit for CTFers and everyone by uniiem.",
@@ -176,6 +179,10 @@ export default {
         }
       ]
     }
+  },
+
+  toast: {
+    position: 'top-center'
   },
 
   sitemap: {

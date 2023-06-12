@@ -126,10 +126,6 @@ export default defineComponent({
            class="block w-fit text-gray-700 dark:text-slate-300 text-sm font-bold font-['Nunito'] mb-1">
       <span>{{ label }}</span>
     </label>
-    <!--    <label :for="inputFieldId"-->
-    <!--           class="absolute inset-0 text-gray-700 dark:text-slate-300 text-sm font-bold font-['Nunito']">-->
-    <!--      <span>{{ label + '233' }}</span>-->
-    <!--    </label>-->
     <div class="relative">
       <input class="p-2 pr-8 rounded-md border border-gray-300 focus:border-gray-400 dark:border-slate-800 dark:focus:border-slate-700 dark:bg-slate-800
                 dark:text-slate-300 focus:outline-none focus:ring-4 focus:ring-gray-200 w-full h-full input-field
