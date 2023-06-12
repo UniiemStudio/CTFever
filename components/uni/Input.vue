@@ -144,7 +144,7 @@ export default defineComponent({
              :disabled="disabled" ref="input"
              :placeholder="placeholder"/>
       <div class="absolute inset-y-0 left-0 pointer-events-none opacity-80 transition-all
-                  flex flex-row items-center justify-center"
+                  flex flex-row items-center justify-center select-none" v-if="hotkey"
            :class="{
               '!opacity-0': focused || inputText,
               'p-2': !extraPaddingClasses,
