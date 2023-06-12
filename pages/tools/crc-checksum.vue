@@ -14,8 +14,8 @@
         </template>
       </InteractiveDoubleColumns>
       <InteractiveBlock class="flex justify-between">
-        <UniButton @click="checksum" icon="tabler:calculator">{{ $t('common.btn_calculate') }}</UniButton>
-        <UniButton type="reset" danger icon="tabler:trash">{{ $t('common.btn_reset') }}</UniButton>
+        <UniButton @click="checksum(true)" icon="tabler:calculator">{{ $t('common.btn_calculate') }}</UniButton>
+        <UniButton @click="handleClean" danger icon="tabler:trash">{{ $t('common.btn_clean') }}</UniButton>
       </InteractiveBlock>
       <InteractiveBlock class="space-y-2">
         <UniInput id="outputHex" :label="$t('tool.crc.checksum_result') + '(Hex)'" v-model="output.hex" disable
@@ -81,11 +81,43 @@ export default {
       ]
     }
   },
+  mounted() {
+    this.$nextTick(() => {
+      if (this.$route.query.crc_mode) {
+        this.crc_mode = this.$route.query.crc_mode
+      }
+      if (this.$route.query.input_mode) {
+        this.input_mode = this.$route.query.input_mode
+      }
+      if (this.$route.query.input_data) {
+        this.input_data = this.$route.query.input_data
+      }
+      this.checksum()
+    })
+  },
   methods: {
-    checksum() {
-      let data = this.input_data;
+    checksum(updateRoute = false) {
+      if (updateRoute) {
+        this.$router.replace({
+          query: {
+            crc_mode: this.crc_mode,
+            input_mode: this.input_mode,
+            input_data: this.input_data
+          }
+        })
+      }
+      let input_data = this.input_data;
+      let data = this.input_data
       if (this.input_mode === 'hex') {
-        data = data.split(' ').map(item => parseInt(item, 16));
+        data = []
+        input_data = input_data.replaceAll(' ', '')
+        if (input_data.length % 2 !== 0) {
+          return this.$message.error('Hex 格式输入错误，请使用两个字符表示一个字节');
+        }
+        // 从 input_data 中每两个字符为一个元素插入 data 中
+        for (let i = 0; i < input_data.length; i += 2) {
+          data.push(parseInt(input_data.substr(i, 2), 16));
+        }
       }
       let result = 0;
       switch (this.crc_mode) {
@@ -120,6 +152,13 @@ export default {
       this.output = {
         hex: result.toString(16).toUpperCase(),
         bin: result.toString(2)
+      };
+    },
+    handleClean() {
+      this.input_data = '';
+      this.output = {
+        hex: '',
+        bin: ''
       };
     }
   },

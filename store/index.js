@@ -245,7 +245,8 @@ export const state = () => ({
           title: 'tool.crc.title',
           description: 'tool.crc.desc',
           route: '/tools/crc-checksum',
-          tags: [tagCategories.check, tagCategories.hash]
+          tags: [tagCategories.check, tagCategories.hash],
+          shareable: true
         },
         // {
         //   title: 'tool.temperatureConversion.title',

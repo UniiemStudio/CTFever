@@ -162,7 +162,7 @@ export default {
     },
     manifest: {
       lang: "zh",
-      id: "com.uniiem.ctfever",
+      id: "/?standalone=true",
       name: "CTFever",
       short_name: "CTFever",
       description: "A fantastic toolkit for CTFers and everyone by uniiem.",
