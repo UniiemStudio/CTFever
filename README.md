@@ -40,11 +40,11 @@
 
 ## 截图
 
-![首页](static/screenshots/screenshot_home.png)
-
-![Pyc 反编译工具](static/screenshots/screenshot_tool_pyc.png)
-
-![Binwalk 工具](static/screenshots/screenshot_tool_bin.png)
+![首页](static/screenshots/header.png)
+![Pyc 反编译工具](static/screenshots/tool_pyc_decompiler.png)
+![Binwalk 工具](static/screenshots/tool_bin_extractor.png)
+![Zip 伪加密识别工具](static/screenshots/tool_pseudo_zip.png)
+![末页](static/screenshots/footer.png)
 
 ## 特色
 
