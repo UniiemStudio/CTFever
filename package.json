@@ -1,7 +1,7 @@
 {
   "name": "ctfever",
   "version": "2.0.0",
-  "private": false,
+  "private": true,
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
@@ -23,6 +23,7 @@
     "bigi": "^1.4.2",
     "core-js": "^3.19.3",
     "dayjs": "^1.11.2",
+    "fast-glob": "^3.2.12",
     "hi-base32": "^0.5.1",
     "hi-base64": "^0.2.1",
     "highlight.js": "^11.5.1",

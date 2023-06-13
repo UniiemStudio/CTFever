@@ -124,7 +124,14 @@ export default {
   // },
 
   loading: {
+    color: 'mediumspringgreen',
     continuous: true
+  },
+
+  loadingIndicator: {
+    name: 'folding-cube',
+    color: '#81dab4',
+    background: 'white'
   },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -158,7 +165,8 @@ export default {
       config: {
         modulePathPrefix: "/third_party/workbox/",
         debug: process.env.NODE_ENV !== "production"
-      }
+      },
+      offlineAnalytics: true
     },
     manifest: {
       lang: "zh",
@@ -254,7 +262,11 @@ export default {
     vueI18nLoader: true
   },
 
-  content: {},
+  content: {
+    experimental: {
+      clientDb: true
+    }
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {

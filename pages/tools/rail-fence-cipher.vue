@@ -25,7 +25,7 @@
         <PrimaryArea :label="$t('common.text_output').toString()" v-model="output" id="output" copyable/>
       </InteractiveBlock>
     </form>
-    <!--    <PrimaryIntroduction title="栅栏密码(基础型 / W 型)" :document="intro"/>-->
+    <PrimaryIntroduction title="栅栏密码(基础型 / W 型)" path="intro/rail-fence"/>
   </PrimaryContainer>
 </template>
 
@@ -50,10 +50,6 @@ export default {
         {hid: "description", name: "description", content: this.$t("tool.railFenceCipher.desc")},
       ],
     };
-  },
-  async asyncData({$content}) {
-    const intro = await $content('intro/rail-fence').fetch();
-    return {intro};
   },
   data() {
     return {
