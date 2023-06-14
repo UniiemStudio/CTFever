@@ -81,6 +81,14 @@ export default defineComponent({
     }
   },
   methods: {
+    onFocus() {
+      this.focused = true
+      this.$emit('focus')
+    },
+    onBlur() {
+      this.focused = false
+      this.$emit('blur')
+    },
     validate(str) {
       if (this.pattern) {
         this.pattern.lastIndex = 0;
@@ -135,7 +143,7 @@ export default defineComponent({
                '!border-red-500': !isValid,
                [inputClass]: inputClass
              }"
-             :id="inputFieldId" @focus="focused = true" @blur="focused = false"
+             :id="inputFieldId" @focus="onFocus" @blur="onBlur"
              v-model="inputText" :type="type"
              :disabled="disabled" ref="input"
              :placeholder="placeholder"/>

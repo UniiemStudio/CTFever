@@ -150,6 +150,9 @@ export default {
         desc: '收藏的常用工具集'
       },
     },
+    settings: {
+      title: '首选项'
+    },
     notFound: {
       title: '未找到页面',
       message: '探索的精神可贵，但很遗憾这里什么都没有 :(',

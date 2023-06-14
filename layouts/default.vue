@@ -2,7 +2,7 @@
   <div class="flex-col min-h-screen antialiased dark:bg-slate-900 flex">
     <script async src="https://analytics.uniiem.com/script.js"
             data-website-id="6426a9b9-ff68-4701-967a-546d0574b5e4"></script>
-    <TopBar ref="topbar" @switchDrawer="switchDrawer"/>
+    <TopBar ref="topbar" :title="'TEST'" @switchDrawer="switchDrawer"/>
     <div class="container mx-auto p-4 pt-20 overscroll-none"
          :class="{'pt-28': isToolPage(), 'pt-20': !isToolPage()}">
       <Nuxt/>
@@ -129,6 +129,14 @@ import {Icon} from "@iconify/vue2";
 export default {
   name: "index",
   components: {Icon, PrimaryInput, Tool},
+  middleware: ['title-guard'],
+  asyncData(context) {
+    const myRoute = context.app.data.myRoute
+
+    return {
+      myRoute
+    }
+  },
   computed: {
     currentAppearance() {
       return this.$store.state.settings.settings.appearance;
@@ -313,6 +321,9 @@ export default {
           this.$refs.topbar.isDrawerOpen = false;
         }, 150);
       }
+    },
+    myRoute(val) {
+      console.log(val)
     }
   },
   methods: {

@@ -150,6 +150,9 @@ export default {
         desc: 'Tools that you marked as favorite',
       },
     },
+    settings: {
+      title: 'Preferences'
+    },
     notFound: {
       title: 'Page Not Found',
       message: 'The spirit of exploration is valuable, but unfortunately there is nothing here :(',

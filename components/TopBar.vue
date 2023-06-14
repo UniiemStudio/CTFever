@@ -2,7 +2,7 @@
   <div>
     <div
       class="fixed z-20 top-0 w-full bg-white/80 dark:bg-slate-900/80 backdrop-blur-md transition-shadow flex flex-col items-center h-16"
-      :class="{'shadow dark:shadow-slate-800/50 hover:shadow-md': !isToolPage()}"
+      :class="{'shadow dark:shadow-slate-800/50 hover:shadow-md': !showMiniBar}"
     >
       <div class="w-full h-16 px-4 container flex justify-between items-center">
         <div>
@@ -10,10 +10,12 @@
             <div class="w-fit h-full flex flex-row items-center space-x-2.5 ml-1">
               <img src="/icon.svg" class="w-6 h-6" alt="CTFever Logo">
               <span
-                :class="{'subtitle-show': isToolPage() || isTagPage(), 'cursor-default pointer-events-none': !(isToolPage() || isTagPage())}"
-                class="font-medium cursor-pointer pointer-events-auto transition duration-500 translate-x-2 opacity-0">{{
-                  getTagName ?? currentToolName
-                }}</span>
+                class="font-medium cursor-default pointer-events-none transition duration-500 translate-x-2 opacity-0 w-fit"
+                :class="{
+                      'subtitle-show cursor-pointer pointer-events-auto': appbarTitle.show
+                    }">
+                {{ appbarTitle.title }}
+              </span>
             </div>
           </nuxt-link>
         </div>
@@ -22,42 +24,28 @@
               $t('topbar.install_pwa')
             }}
           </UniButton>
-          <a-dropdown :trigger="['hover']" placement="bottomRight">
+          <div class="hidden md:block">
+            <UniInput v-model="searchText" placeholder="搜索" hotkey="ctrl+k"/>
+          </div>
+          <div class="flex flex-row items-center gap-4">
+            <a-dropdown :trigger="['hover']" placement="bottomRight">
             <span class="ant-dropdown-link cursor-pointer" @click="e => e.preventDefault()">
               <Icon icon="prime:language" class="text-xl inline -mt-1 pointer-events-none"/>
             </span>
-            <a-menu slot="overlay" class="dark:bg-slate-800">
-              <a-menu-item v-for="(locale, k) in availableLocales" :key="k">
-                <nuxt-link
-                  class="px-2 py-px"
-                  :key="locale.code"
-                  :to="switchLocalePath(locale.code)">{{ locale.name }}
-                </nuxt-link>
-              </a-menu-item>
-            </a-menu>
-          </a-dropdown>
-          <!--          <a-dropdown :trigger="['hover']" placement="bottomRight">-->
-          <!--            <span class="ant-dropdown-link cursor-pointer" @click="e => e.preventDefault()">-->
-          <!--              <Icon :icon="currentAppearanceIcon" class="text-lg inline -mt-1 pointer-events-none transition"/>-->
-          <!--            </span>-->
-          <!--            <a-menu slot="overlay" class="dark:bg-slate-800">-->
-          <!--              <a-menu-item v-for="(mode, k) in colorModes" :key="k"-->
-          <!--                           class="flex flex-row items-center space-x-0.5 dark:text-slate-300"-->
-          <!--                           :class="{'dropdown-item-active': $store.state.settings.settings.appearance === mode.code}"-->
-          <!--                           @click="switchDarkMode(mode.code)">-->
-          <!--                <Icon :icon="mode.icon" class="text-lg inline"/>-->
-          <!--                <nuxt-link-->
-          <!--                  class="px-2 py-px"-->
-          <!--                  :class="{'dropdown-item-active': $store.state.settings.settings.appearance === mode.code}"-->
-          <!--                  :key="mode.code"-->
-          <!--                  :to="switchLocalePath(mode.code)">{{ $t(mode.name) }}-->
-          <!--                </nuxt-link>-->
-          <!--              </a-menu-item>-->
-          <!--            </a-menu>-->
-          <!--          </a-dropdown>-->
-          <nuxt-link :to="localePath('/settings')">
-            <Icon icon="tabler:settings-2" class="text-lg inline -mt-1 pointer-events-none"/>
-          </nuxt-link>
+              <a-menu slot="overlay" class="dark:bg-slate-800">
+                <a-menu-item v-for="(locale, k) in availableLocales" :key="k">
+                  <nuxt-link
+                    class="px-2 py-px"
+                    :key="locale.code"
+                    :to="switchLocalePath(locale.code)">{{ locale.name }}
+                  </nuxt-link>
+                </a-menu-item>
+              </a-menu>
+            </a-dropdown>
+            <nuxt-link :to="localePath('/settings')">
+              <Icon icon="tabler:settings-2" class="text-lg inline -mt-1"/>
+            </nuxt-link>
+          </div>
           <!-- TODO: CTFever Premium -->
           <!-- <TinyButtonLink :to="localePath('/premium-active')" accent>Premium</TinyButtonLink> -->
         </div>
@@ -65,7 +53,7 @@
     </div>
     <div
       class="fixed z-10 top-16 w-full h-8 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md opacity-0 -translate-y-8 transition duration-500 flex flex-col items-center"
-      :class="{'shadow dark:shadow-slate-800/50 hover:shadow-md opacity-100 translate-y-0': isToolPage()}"
+      :class="{'shadow dark:shadow-slate-800/50 hover:shadow-md opacity-100 translate-y-0': showMiniBar}"
     >
       <div class="w-full h-full px-4 container flex justify-between items-center border-t border-t-gray-150
                   dark:border-t-slate-700 dark:text-slate-300">
@@ -110,6 +98,12 @@ import {Icon} from "@iconify/vue2";
 export default {
   name: "TopBar",
   components: {Icon, TinyButtonLink},
+  props: {
+    title: {
+      type: String,
+      default: ''
+    },
+  },
   computed: {
     availableLocales() {
       return this.$i18n.locales.filter(i => i.code !== this.$i18n.locale)
@@ -141,9 +135,15 @@ export default {
       }
       return icon;
     },
-    getTagName() {
-      return this.isTagPage() ? this.$t(`tags.${this.$route.params.tag}`) : null;
+    currentTitle() {
+      return this.$store.state.runtime.currentTitle;
     },
+    showTitle() {
+      return !!this.currentTitle;
+    },
+    showMiniBar() {
+      return this.$store.state.runtime.showMiniBar;
+    }
   },
   data() {
     return {
@@ -164,26 +164,31 @@ export default {
           icon: 'tabler:device-desktop-cog'
         }
       ],
-      isToolPage: () => /^.*\/tools\/.*/.test(this.currentPath),
-      isTagPage: () => /^.*\/tag\/.*/.test(this.currentPath),
       isMarked: false,
-      currentToolName: '',
+      appbarTitle: {
+        show: false,
+        title: ''
+      },
       pwaAvailable: false,
       deferredPrompt: null,
       isDrawerOpen: false,
+      searchText: '',
     }
   },
   mounted() {
     const self = this;
     this.$nextTick(() => {
       this.updateMarkStatus(this.currentPath);
-      this.updateTitle(this.currentPath);
+      this.updateTitle(true);
     });
     window.addEventListener('beforeinstallprompt', (e) => {
       // e.preventDefault();
       self.pwaAvailable = true;
       this.deferredPrompt = e;
     });
+    if (this.$route.query.q) {
+      this.searchText = this.$route.query.q;
+    }
   },
   methods: {
     markTool() {
@@ -197,12 +202,18 @@ export default {
     updateMarkStatus(route) {
       this.markedTools.filter(f => f.route === wrapI18nPath2MetaRoute(route)).length > 0 ? this.isMarked = true : this.isMarked = false;
     },
-    updateTitle(route) {
-      if (this.isToolPage()) {
-        this.currentToolName = this.$t(getToolByRoute(route).title);
-      }
-      if (this.isTagPage()) {
-        this.currentToolName = this.getTagName;
+    updateTitle(show) {
+      if (show) {
+        this.appbarTitle.show = false
+        setTimeout(() => {
+          this.appbarTitle.show = true
+          this.appbarTitle.title = this.$t(this.currentTitle)
+        }, 500)
+      } else {
+        this.appbarTitle.show = false
+        setTimeout(() => {
+          this.appbarTitle.title = ''
+        }, 500)
       }
     },
     switchDarkMode(mode) {
@@ -232,11 +243,30 @@ export default {
   watch: {
     currentPath(val) {
       this.updateMarkStatus(val);
-      this.updateTitle(val);
     },
     isDrawerOpen(val) {
       this.$emit('switchDrawer', val);
     },
+    currentTitle(val) {
+      this.updateTitle(true);
+    },
+    showTitle(val) {
+      this.updateTitle(val);
+    },
+    searchText(val) {
+      if (val) {
+        this.$router.push({
+          path: this.localePath('/'),
+          query: {
+            q: val
+          }
+        });
+      } else {
+        this.$router.push({
+          path: this.localePath('/')
+        });
+      }
+    }
   },
 }
 </script>
@@ -257,6 +287,6 @@ export default {
 }
 
 .subtitle-show {
-  @apply translate-x-0 opacity-100;
+  @apply !translate-x-0 !opacity-100;
 }
 </style>

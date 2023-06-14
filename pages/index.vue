@@ -17,20 +17,24 @@
     </div>
 
     <!--  Search  -->
-    <div class="py-4 text-center md:text-left search-tip" :class="{'show': searchText}">
+    <div class="text-center md:text-left search-tip" :class="{'show': searchText}">
       <h1 class="text-lg font-bold flex flex-col md:flex-row justify-center md:justify-start items-center space-x-1
                 dark:text-slate-300 font-['Nunito']">
-        <Icon v-if="searchText" icon="line-md:search-twotone" class="text-4xl md:text-2xl mb-2 md:mb-0" h-flip="true"/>
+        <Icon v-if="searchText" icon="line-md:search-twotone" class="text-4xl md:text-2xl mb-2 md:mb-0"
+              h-flip="true"/>
         <span class="text-lg font-medium"
               v-html="$t('common.text_search_result').toString().replace('{}', searchText)"
         ></span>
       </h1>
     </div>
-    <div class="grid gap-4 grid-cols-1 -mt-2">
-      <UniInput :placeholder="`${$t('common.text_search').toString()}`"
-                class="search-input" input-class="py-3 px-3" v-model="searchText" hotkey="ctrl+k"/>
+    <div v-if="isMobile" class="mt-6">
+      <div class="grid gap-4 grid-cols-1">
+        <UniInput :placeholder="`${$t('common.text_search').toString()}`" ref="searchInput"
+                  class="search-input" input-class="py-3 px-3" v-model="searchText" hotkey="ctrl+k"/>
+      </div>
     </div>
-    <div v-if="searchText" class="mt-6 my-2 grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+    <div v-if="searchText"
+         class="mt-6 md:mt-0 my-2 grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
       <Tool v-for="(tool, k) in searchResult" :key="k" :tool="tool"
             @contextmenu.prevent.native="handleRightClick($event, tool)"/>
     </div>
@@ -163,6 +167,9 @@ export default {
     }
   },
   computed: {
+    isMobile() {
+      return this.$device.isMobile;
+    },
     favoriteTools: {
       get() {
         let tools = [];
@@ -174,6 +181,9 @@ export default {
       set(v) {
         this.$store.commit('settings/setMarkedTools', v);
       }
+    },
+    queryText() {
+      return (this.$route.query && this.$route.query.q) || '';
     },
   },
   data() {
@@ -204,10 +214,9 @@ export default {
     }
   },
   mounted() {
-    // Mousetrap.bind('/', () => {
-    //   this.$refs.searchInput.focus()
-    //   return false;
-    // });
+    this.$nextTick(() => {
+      this.searchText = this.queryText;
+    });
   },
   watch: {
     searchText(search) {
@@ -217,8 +226,8 @@ export default {
         let results = [];
         this.$store.state.toolkits.forEach(toolkit =>
           retArray.push(toolkit.tools.filter(function (t) {
-            return self.$t(t.title).toLowerCase().includes(search.toLowerCase())
-              || self.$t(t.description).toLowerCase().includes(search.toLowerCase());
+              return self.$t(t.title).toLowerCase().includes(search.toLowerCase())
+                || self.$t(t.description).toLowerCase().includes(search.toLowerCase());
             })
           )
         );
@@ -226,6 +235,9 @@ export default {
         this.searchResult = results;
         this.searchAnalytics(search, results.length);
       }
+    },
+    queryText(val) {
+      this.searchText = val;
     },
     contextMenu: {
       handler: function (val) {
@@ -307,11 +319,11 @@ export default {
 
 <style>
 .search-tip {
-  @apply h-0 opacity-0 scale-y-0 overflow-hidden opacity-0 transition-all duration-300 ease-in-out;
+  @apply h-0 scale-y-0 overflow-hidden opacity-0 transition-all duration-300 ease-in-out;
 }
 
 .search-tip.show {
-  @apply h-auto opacity-100 scale-y-100 opacity-100 mb-2;
+  @apply h-auto opacity-100 scale-y-100 py-4;
 }
 
 .badge-beta {
