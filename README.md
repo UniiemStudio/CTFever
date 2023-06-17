@@ -86,7 +86,7 @@ $ yarn generate
 
 # or use docker
 $ docker build -t ctfever .
-$ docker run -d -p 80:80 ctfever
+$ docker run -d -p 8000:3000 ctfever
 ```
 
 ### [贡献指南](https://github.com/UniiemStudio/CTFever/blob/main/CONTRIBUTING.md)
