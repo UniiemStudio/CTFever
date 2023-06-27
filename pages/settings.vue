@@ -70,13 +70,19 @@ export default defineComponent({
       icon: locale.icon
     }))
 
+    const allowedOfficialEndpoints = [
+      'uniiem.com',
+      'ctfever-service.uniiem.com'
+    ];
+
     let env_server_endpoint = this.$config.CEVER_BACKEND_BASE;
     let sys_server_endpoint_fallback = this.$config.CEVER_BACKEND_BASE_FALLBACK;
     if (!env_server_endpoint) {
       this.server_fallback = true;
       this.server_endpoint = 'Official - fallback';
     } else {
-      if (env_server_endpoint.includes('uniiem.com')) {
+      let host = new URL(env_server_endpoint).host;
+      if (allowedOfficialEndpoints.includes(host)) {
         this.server_endpoint = 'Official';
       } else {
         this.server_endpoint = env_server_endpoint;
