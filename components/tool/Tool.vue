@@ -1,9 +1,9 @@
 <template>
   <nuxt-link :to="!tool.disabled ? localePath(tool.route) : ''" :class="{'disabled pointer-events-none': tool.disabled}"
-             class="rounded-lg border dark:border h-border transition-all duration-500 p-4 cursor-pointer flex flex-col justify-between
-              dark:bg-slate-800 dark:text-white dark:border-slate-500 relative overflow-hidden group tool"
+             class="rounded-lg border dark:border h-border transition-all duration-500 p-0 cursor-pointer flex flex-col justify-between
+              dark:bg-slate-800 dark:text-white dark:border-slate-500 relative overflow-hidden shadow-sm group tool"
              :draggable="draggable">
-    <div>
+    <div class="p-3 pb-3">
       <h1 class="text-base dark:text-slate-300 font-['Nunito'] flex flex-row items-center space-x-1">
         <span>{{ $t(tool.title) || tool.title }}</span>
         <span v-if="tool.beta" class="badge-beta">BETA</span>
@@ -11,17 +11,28 @@
       <p class="text-xs text-black/80 dark:text-slate-500 md:truncate"
          :title="$t(tool.description) || tool.description">{{ $t(tool.description) || tool.description }}</p>
     </div>
-    <div v-if="tool.tags && tool.tags.length > 0" class="mt-2 text-xs text-gray-400 dark:text-slate-500 w-fit"
-         @click.stop>
-      <Icon :icon="tool.tags.length > 1 ? 'tabler:tags' : 'tabler:tag'" class="text-sm inline -mt-0.5"/>
-      <div class="inline-block" v-for="(tag, k) in tool.tags">
-        <nuxt-link class="underline-offset-2 hover:underline" :key="k"
-                   :to="localePath(`/tag/${tag.replace('tags.', '')}`)">
-          {{ `${$t(tag)}${k < tool.tags.length - 1 ? ',&nbsp;' : ''}` }}
-        </nuxt-link>
+    <div class="px-3 py-1 text-xs bg-gray-100/50" v-if="showBar">
+      <div v-if="tool.tags && tool.tags.length > 0">
+        <Icon :icon="tool.tags.length > 1 ? 'tabler:tags' : 'tabler:tag'" class="text-sm inline -mt-0.5"/>
+        <div class="inline-block" v-for="(tag, k) in tool.tags">
+          <nuxt-link class="underline-offset-2 hover:underline" :key="k"
+                     :to="localePath(`/tag/${tag.replace('tags.', '')}`)">
+            {{ `${$t(tag)}${k < tool.tags.length - 1 ? ',&nbsp;' : ''}` }}
+          </nuxt-link>
+        </div>
       </div>
     </div>
-    <div v-if="tool.disabled" class="warning-line"></div>
+    <!--    <div v-if="tool.tags && tool.tags.length > 0" class="mt-2 text-xs text-gray-400 dark:text-slate-500 w-fit"-->
+    <!--         @click.stop>-->
+    <!--      <Icon :icon="tool.tags.length > 1 ? 'tabler:tags' : 'tabler:tag'" class="text-sm inline -mt-0.5"/>-->
+    <!--      <div class="inline-block" v-for="(tag, k) in tool.tags">-->
+    <!--        <nuxt-link class="underline-offset-2 hover:underline" :key="k"-->
+    <!--                   :to="localePath(`/tag/${tag.replace('tags.', '')}`)">-->
+    <!--          {{ `${$t(tag)}${k < tool.tags.length - 1 ? ',&nbsp;' : ''}` }}-->
+    <!--        </nuxt-link>-->
+    <!--      </div>-->
+    <!--    </div>-->
+    <div v-if="tool.disabled" class="warning-line">监修中</div>
     <Icon v-if="isFavorite" icon="tabler:bookmark-filled"
           class="absolute right-4 -top-2 group-hover:-top-4 transition-all text-4xl
                  text-gray-200 group-hover:text-orange-300 dark:text-slate-600 group-hover:text-orange-300/60"/>
@@ -46,6 +57,10 @@ export default {
       required: true
     },
     draggable: {
+      type: Boolean,
+      default: true
+    },
+    showBar: {
       type: Boolean,
       default: true
     }

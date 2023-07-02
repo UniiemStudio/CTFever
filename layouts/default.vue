@@ -25,7 +25,7 @@
           </div>
           <!-- TODO: 此处列表不显示标签 -->
           <Tool class="border-gray-300"
-                :ref="tool.route === wrapI18nPath2MetaRoute(currentPath) ? 'activeMenuItem' : null"
+                :ref="tool.route === wrapI18nPath2MetaRoute(currentPath) ? 'activeMenuItem' : null" :show-bar="false"
                 :class="{'shadow-inner border-sky-500 ring-1 ring-sky-400': tool.route === wrapI18nPath2MetaRoute(currentPath)}"
                 v-for="(tool, k) in toolkit.tools.filter(t => !t.disabled)" :key="k" :tool="tool"/>
         </div>
