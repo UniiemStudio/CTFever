@@ -41,7 +41,7 @@ export default defineComponent({
 
 <template>
   <button v-if="ghost" type="button"
-          class="text-sm font-bold text-blue-500 hover:text-blue-400
+          class="text-sm font-bold text-blue-500 hover:text-blue-400 whitespace-nowrap
                  dark:text-blue-400/80 dark:hover:text-blue-400 transition"
           :class="{
             'text-blue-500/40 dark:text-blue-400/40 hover:text-blue-500/40 dark:hover:text-blue-400/40': disabled
@@ -51,7 +51,7 @@ export default defineComponent({
     <slot/>
   </button>
   <button v-else :type="type"
-          class="text-sm font-bold text-gray-600 dark:text-slate-300/80
+          class="text-sm font-bold text-gray-600 dark:text-slate-300/80 whitespace-nowrap
                  px-3 py-1.5 shadow-sm rounded-md bg-gray-50 border border-gray-300 dark:border-slate-700 dark:bg-slate-800
                  hover:bg-gray-100 dark:hover:bg-slate-700 active:bg-gray-200 dark:active:bg-slate-800
                  focus:outline-none focus:ring-4 focus:ring-gray-200

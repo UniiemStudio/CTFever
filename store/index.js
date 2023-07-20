@@ -85,7 +85,6 @@ export const state = () => ({
         //   description: 'tool.ciphey.desc',
         //   route: '/tools/ciphey',
         //   tags: [tagCategories.encodingAndDecoding],
-        //   newest: false,
         //   disabled: true
         // },
       ]
@@ -136,7 +135,6 @@ export const state = () => ({
           description: 'tool.cloudShadow.desc',
           route: '/tools/cloud-shadow',
           tags: [tagCategories.encryptionAndDecryption],
-          // newest: true,
           disabled: true
         },
       ]
@@ -288,6 +286,14 @@ export const state = () => ({
           route: '/tools/pseudo-encrypted-zip-check',
           tags: [tagCategories.steganography],
           premium: true,
+        },
+        {
+          title: 'tool.zeroWidthSteganography.title',
+          description: 'tool.zeroWidthSteganography.desc',
+          route: '/tools/zero-width-steganography',
+          tags: [tagCategories.steganography],
+          // newest: true,
+          disabled: true
         },
       ]
     }

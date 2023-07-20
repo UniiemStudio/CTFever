@@ -32,7 +32,7 @@
     <!--        </nuxt-link>-->
     <!--      </div>-->
     <!--    </div>-->
-    <div v-if="tool.disabled" class="warning-line">监修中</div>
+    <div v-if="tool.disabled" class="warning-line"></div>
     <Icon v-if="isFavorite" icon="tabler:bookmark-filled"
           class="absolute right-4 -top-2 group-hover:-top-4 transition-all text-4xl
                  text-gray-200 group-hover:text-orange-300 dark:text-slate-600 group-hover:text-orange-300/60"/>

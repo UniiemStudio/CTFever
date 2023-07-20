@@ -350,6 +350,10 @@ export default {
       title: 'Pseudo Encrypted Zip Check',
       desc: 'Check if the zip file is pseudo encrypted'
     },
+    zeroWidthSteganography: {
+      title: 'Zero Width Steganography',
+      desc: 'Plain text steganography with zero-width characters of Unicode'
+    },
   },
   tags: {
     encodingAndDecoding: 'Encoding And Decoding',

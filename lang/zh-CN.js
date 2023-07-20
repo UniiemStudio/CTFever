@@ -350,6 +350,10 @@ export default {
       title: 'Zip 伪加密检测',
       desc: '检查上传的 Zip 文件是否为伪加密文件'
     },
+    zeroWidthSteganography: {
+      title: '零宽文本隐写',
+      desc: '带有 Unicode 零宽度字符的纯文本隐写术'
+    },
   },
   tags: {
     encodingAndDecoding: '编码',
