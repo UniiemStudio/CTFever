@@ -1,8 +1,0 @@
-/.github
-/.nuxt
-/dist
-/node_modules
-/coverage
-
-yarn.lock
-yarn-error.log
