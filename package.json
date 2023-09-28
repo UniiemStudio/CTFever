@@ -16,7 +16,21 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
+    "@nuxt/content": "^2.8.2",
     "@nuxt/devtools": "latest",
-    "nuxt": "^3.7.3"
+    "@nuxt/ui": "^2.8.1",
+    "@nuxtjs/i18n": "^8.0.0-rc.4",
+    "@pinia-plugin-persistedstate/nuxt": "^1.1.2",
+    "@pinia/nuxt": "^0.4.11",
+    "@vueuse/nuxt": "^10.4.1",
+    "dayjs-nuxt": "^1.1.2",
+    "nuxt": "^3.7.3",
+    "nuxt-icon": "^0.5.0",
+    "nuxt-snackbar": "^1.0.3",
+    "sass": "^1.68.0"
+  },
+  "dependencies": {
+    "@iconify-json/solar": "^1.1.3",
+    "@iconify-json/tabler": "^1.1.92"
   }
 }

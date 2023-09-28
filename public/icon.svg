@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 207.5 210.59">
+    <defs>
+        <style>.cls-1{fill:url(#未命名的渐变_75);}.cls-2{fill:url(#未命名的渐变_74);}</style>
+        <linearGradient id="未命名的渐变_75" x1="255.75" y1="154.54" x2="64.45" y2="-36.75"
+                        gradientUnits="userSpaceOnUse">
+            <stop offset="0.05" stop-color="#46add5"/>
+            <stop offset="0.98" stop-color="#a9f99e"/>
+        </linearGradient>
+        <linearGradient id="未命名的渐变_74" x1="172.08" y1="207.59" x2="-35.57" y2="-0.06"
+                        gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#46add5"/>
+            <stop offset="1" stop-color="#a9f99e"/>
+        </linearGradient>
+    </defs>
+    <g id="图层_2" data-name="图层 2">
+        <g id="V2">
+            <path class="cls-1"
+                  d="M176.21,88.29a1,1,0,0,0,0,1.42L207.5,121v88.59a1,1,0,0,1-1.71.7L140.5,145V57.56L84.65,1.71A1,1,0,0,1,85.35,0H206.5a1,1,0,0,1,1,1V57Z"/>
+            <path class="cls-2"
+                  d="M197.29,208.79a1,1,0,0,1-.7,1.71H107.5A107.5,107.5,0,0,1,76,.22a1,1,0,0,1,1,.25l50.32,50.32a1,1,0,0,1-.7,1.71H107.5A50.41,50.41,0,0,0,67.14,72.64c-.87,1.15-1.68,2.33-2.45,3.55A50.31,50.31,0,0,0,57,102.77c-.12,27.9,23.37,50.73,51.27,50.73H142l33.09,33.09Z"/>
+        </g>
+    </g>
+</svg>

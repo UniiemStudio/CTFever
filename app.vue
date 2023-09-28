@@ -1,5 +1,41 @@
+<script lang="ts" setup>
+
+</script>
+
 <template>
-  <div>
-    <NuxtWelcome/>
-  </div>
+  <NuxtLayout>
+    <NuxtPage/>
+  </NuxtLayout>
 </template>
+
+<style>
+::-webkit-scrollbar {
+  /*滚动条整体*/
+  width: 4px;
+  height: 4px;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100 dark:bg-slate-700;
+}
+
+:hover::-webkit-scrollbar-track {
+  /* ignore */
+}
+
+::-webkit-scrollbar-thumb {
+  /*滚动条里面的滑块*/
+  border-radius: 10px;
+  @apply bg-gray-300 dark:bg-slate-500;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-400;
+}
+
+::-webkit-scrollbar-corner {
+  border: none;
+  background: transparent;
+}
+</style>
