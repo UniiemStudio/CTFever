@@ -1,11 +1,29 @@
 .page-enter-active,
 .page-leave-active {
-  transition: all 0.3s;
+  transition: all 0.6s;
+  -webkit-transition: all 0.6s;
+  -moz-transition: all 0.6s;
+  -ms-transition: all 0.6s;
+  -o-transition: all 0.6s;
 }
 
-.page-enter-from,
+.page-leave-active {
+  position: fixed;
+}
+
+.page-enter-from {
+  opacity: 0;
+  transform: scale(0.98);
+}
+
 .page-leave-to {
   opacity: 0;
-  filter: blur(4px);
+  filter: blur(6px);
+  -webkit-filter: blur(6px);
   transform: translateY(20px) scale(0.98);
+  transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -ms-transition: all 0.3s;
+  -o-transition: all 0.3s;
 }

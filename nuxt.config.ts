@@ -7,7 +7,7 @@ export default defineNuxtConfig({
     app: {
         pageTransition: {
             name: 'page',
-            mode: 'out-in',
+            // mode: 'out-in',
         }
     },
     modules: [
@@ -33,6 +33,9 @@ export default defineNuxtConfig({
     },
     ui: {
         icons: ['solar', 'tabler']
+    },
+    colorMode: {
+        preference: 'dark'
     },
     i18n: {
         locales: ['en', 'zh'],

@@ -1,33 +1,36 @@
-import {defineStore} from "pinia";
+import { defineStore } from "pinia";
 
 export const useConstant = defineStore('ctfever_stuff', () => {
+    const tags = Object.freeze<{ [key: string]: Tag }>({
+        Encoding: {
+            key: 'encoding',
+        },
+    })
     const toolkits = ref<Toolkit[]>([
         {
-            title: '编码和解码',
-            description: '常见数据编码和解码',
-            icon: 'i-solar-box-linear',
+            key: 'encoding',
+            icon: 'i-solar-code-line-duotone',
             tools: [
                 {
-                    label: 'ASCII',
-                    description: '',
-                    route: '/tool/ascii'
+                    key: 'ascii',
+                    route: '/tools/ascii',
+                    tags: [tags.Encoding]
                 },
                 {
-                    label: 'Base64',
-                    description: '',
-                    route: '/tool/base-64'
+                    key: 'urlEncoding',
+                    route: '/tools/url-encoding',
+                    tags: [tags.Encoding]
                 },
             ]
         },
         {
-            title: '加密',
-            description: '加密解密',
-            icon: 'i-solar-inbox-line-bold',
+            key: 'cryptology',
+            icon: 'i-solar-lock-password-bold-duotone',
             tools: [
                 {
-                    label: 'GGG',
-                    description: '',
-                    route: '/tool/ascii'
+                    key: 'uuidGenerator',
+                    route: '/tools/uuid-generator',
+                    tags: [tags.Encoding]
                 },
             ]
         }

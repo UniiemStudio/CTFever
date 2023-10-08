@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <UniMessageProvider>
+  <UniMessageProvider :max="5">
     <NuxtLayout>
       <NuxtLoadingIndicator />
       <NuxtPage />
