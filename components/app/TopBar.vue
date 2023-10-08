@@ -1,9 +1,12 @@
 <script lang="ts" setup>
+import { useMessage } from '~/composables/uni/useMessage';
+
 const route = useRoute()
 const router = useRouter()
 const localePath = useLocalePath()
 const switchLocalePath = useSwitchLocalePath()
 const toolkits = useConstant().toolkits
+const message = useMessage()
 
 const commandPlatteRef = ref()
 const commandPlatteActive = ref(false)
@@ -35,6 +38,12 @@ const handleCommandSelect = (option: any) => {
   } else if (option.href) {
     window.open(option.href, '_blank')
   }
+}
+
+const count = ref(0)
+const handleMessageCreate = () => {
+  // message.info('info' + count.value++, 100000)
+  message.info('info' + count.value++)
 }
 
 defineProps({
@@ -71,7 +80,7 @@ defineShortcuts({
               <Icon name="tabler:search" class="text-lg inline -mt-1"/>
             </button>
           </UTooltip>
-          <UButton color="white" @click="minibar = !minibar">minibar</UButton>
+          <UButton @click="handleMessageCreate">Message!</UButton>
           <nuxt-link :to="localePath('/settings')">
             <Icon name="tabler:settings-2" class="text-lg inline -mt-1"/>
           </nuxt-link>

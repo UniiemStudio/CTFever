@@ -1,11 +1,13 @@
 <script lang="ts" setup>
-
 </script>
 
 <template>
-  <NuxtLayout>
-    <NuxtPage/>
-  </NuxtLayout>
+  <UniMessageProvider>
+    <NuxtLayout>
+      <NuxtLoadingIndicator />
+      <NuxtPage />
+    </NuxtLayout>
+  </UniMessageProvider>
 </template>
 
 <style>

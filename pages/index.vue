@@ -1,13 +1,11 @@
-<script lang="ts">
-import {defineComponent} from 'vue'
+<script lang="ts" setup>
 
-export default defineComponent({
-  name: "index"
-})
 </script>
 
 <template>
-  <h1>index</h1>
+  <ToolContainer>
+    <h1>index</h1>
+  </ToolContainer>
 </template>
 
 <style scoped>
