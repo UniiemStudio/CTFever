@@ -22,9 +22,7 @@
   @apply bg-gray-100 dark:bg-slate-700;
 }
 
-:hover::-webkit-scrollbar-track {
-  /* ignore */
-}
+/* :hover::-webkit-scrollbar-track { ignored } */
 
 ::-webkit-scrollbar-thumb {
   /*滚动条里面的滑块*/

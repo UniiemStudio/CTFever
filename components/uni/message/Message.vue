@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { Message, MessageProviderApi, MessageType } from '~/types/uni/uni';
+import { Message, MessageProviderApi, MessageType } from '~/types/uni/message';
 
 const providerApi = inject<MessageProviderApi>('uni-message-provider')
 

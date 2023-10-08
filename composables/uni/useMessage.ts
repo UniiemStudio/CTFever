@@ -1,4 +1,4 @@
-import { MessageApi } from "~/types/uni/uni"
+import { MessageApi } from "~/types/uni/message"
 
 export const useMessage = () => {
   const message = inject<MessageApi>('uni-message')

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { Message, MessageType } from '~/types/uni/uni';
+import { Message, MessageType } from '~/types/uni/message';
 
 const props = defineProps({
   max: {
