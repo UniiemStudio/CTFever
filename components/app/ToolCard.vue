@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const { $i18nMeta } = useNuxtApp()
+const {createI18nToolKey, createI18nTagKey} = useI18nKey()
 
 defineProps({
   tool: {
@@ -14,10 +14,10 @@ defineProps({
     class="flex flex-col justify-between border border-neutral-200 dark:bg-neutral-900 dark:border-neutral-700 shadow-sm dark:shadow-neutral-900 rounded-lg overflow-hidden">
     <nuxt-link :to="tool.route" class="p-2 space-y-1">
       <h1 class="text-base dark:text-neutral-200">
-        {{ $i18nMeta.tool.label(tool.key) }}
+        {{ $t(createI18nToolKey(tool.key).label) }}
       </h1>
       <p class="text-xs dark:text-neutral-400 md:truncate">
-        {{ $i18nMeta.tool.descriptipn(tool.key) }}
+        {{ $t(createI18nToolKey(tool.key).description) }}
       </p>
     </nuxt-link>
     <div
@@ -26,7 +26,7 @@ defineProps({
         <div class="flex items-center gap-1">
           <Icon name="tabler:tag" class="text-sm" />
           <nuxt-link v-for="(tag, k) in tool.tags" :key="k" to="/">
-            {{ $i18nMeta.tag.label(tag.key) }}
+          {{ $t(createI18nTagKey(tag.key).label) }}
           </nuxt-link>
         </div>
       </div>
