@@ -19,7 +19,7 @@
     "@nuxt/content": "^2.8.2",
     "@nuxt/devtools": "latest",
     "@nuxt/ui": "^2.8.1",
-    "@nuxtjs/i18n": "^8.0.0-rc.4",
+    "@nuxtjs/i18n": "npm:@nuxtjs/i18n-edge",
     "@pinia-plugin-persistedstate/nuxt": "^1.1.2",
     "@pinia/nuxt": "^0.4.11",
     "@vueuse/nuxt": "^10.4.1",
