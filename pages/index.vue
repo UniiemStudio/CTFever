@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import { storeToRefs } from 'pinia';
 
-const i18nMeta = useI18nMeta()
 const { toolkits } = storeToRefs(useConstant())
 
 onMounted(() => {

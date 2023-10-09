@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { content } from '#tailwind-config';
-
 defineProps({
   fullSize: {
     type: Boolean,

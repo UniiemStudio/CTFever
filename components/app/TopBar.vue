@@ -4,13 +4,14 @@ import { useMessage } from '~/composables/uni/useMessage';
 
 const route = useRoute()
 const router = useRouter()
+const { locale } = useI18n()
 const localePath = useLocalePath()
 const switchLocalePath = useSwitchLocalePath()
 const toolkits = useConstant().toolkits
 const { metaSymbol } = useShortcuts()
 const message = useMessage()
 
-const i18nMeta = useI18nMeta()
+const i18nMeta = useI18nMeta(useNuxtApp())
 const { currentPageTitle } = storeToRefs(useGlobalState())
 
 const commandPlatteRef = ref()
@@ -19,13 +20,13 @@ const flattedToolkits = computed(() => toolkits.flatMap(toolkit => {
   return {
     id: toolkit.key,
     icon: toolkit.icon,
-    label: i18nMeta.toolkit.label(toolkit.key),
+    label: i18nMeta().toolkit.label(toolkit.key),
   }
 }))
 const flattedTools = computed(() => toolkits.flatMap(toolkit => toolkit.tools.map(tool => {
   return {
     id: tool.route,
-    label: i18nMeta.tool.label(tool.key),
+    label: i18nMeta().tool.label(tool.key),
     route: tool.route,
     icon: 'i-solar-square-arrow-right-up-bold-duotone',
   }
@@ -98,6 +99,10 @@ defineShortcuts({
             <option value="light">Light</option>
             <option value="dark">Dark</option>
             <option value="sepia">Sepia</option>
+          </select>
+          <select v-model="locale">
+            <option value="en">en</option>
+            <option value="zh">zh</option>
           </select>
         </div>
       </div>
