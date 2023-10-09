@@ -4,14 +4,14 @@ import { useMessage } from '~/composables/uni/useMessage';
 
 const route = useRoute()
 const router = useRouter()
-const { locale, t } = useI18n()
+const { locale } = useI18n()
+const {$t_toolkit, $t_tool} = useNuxtApp()
 const localePath = useLocalePath()
 const switchLocalePath = useSwitchLocalePath()
 const toolkits = useConstant().toolkits
 const { metaSymbol } = useShortcuts()
 const message = useMessage()
 
-const {createI18nToolkitKey, createI18nToolKey} = useI18nKey()
 const { currentPageTitle } = storeToRefs(useGlobalState())
 
 const commandPlatteRef = ref()
@@ -20,13 +20,13 @@ const flattedToolkits = computed(() => toolkits.flatMap(toolkit => {
   return {
     id: toolkit.key,
     icon: toolkit.icon,
-    label: t(createI18nToolkitKey(toolkit.key).label),
+    label: $t_toolkit(toolkit.key).label,
   }
 }))
 const flattedTools = computed(() => toolkits.flatMap(toolkit => toolkit.tools.map(tool => {
   return {
     id: tool.route,
-    label: t(createI18nToolKey(tool.key).label),
+    label: $t_tool(tool.key).label,
     route: tool.route,
     icon: 'i-solar-square-arrow-right-up-bold-duotone',
   }
