@@ -50,7 +50,7 @@ const handleMessageCreate = () => {
   message.info('info ' + count.value++)
 }
 
-const props = defineProps({
+defineProps({
   minibar: {
     type: Boolean,
     default: false
@@ -69,8 +69,8 @@ defineShortcuts({
 
 <template>
   <div class="sticky top-0 left-0 right-0 h-fit">
-    <nav class="relative h-16 z-20 px-4 overflow-hidden flex items-center border-b transition"
-      :class="{ 'border-b': props.minibar, 'shadow-md border-transparent': !props.minibar }">
+    <nav class="relative h-16 z-20 px-4 overflow-hidden flex items-center transition border-b"
+      :class="{ 'border-b dark:border-neutral-800': minibar, 'shadow-md border-transparent': !minibar }">
       <div class="flex items-center justify-between container mx-auto">
         <nuxt-link :to="localePath('/')">
           <div class="flex items-center space-x-2.5">
@@ -103,8 +103,8 @@ defineShortcuts({
       </div>
     </nav>
     <div
-      class="relative w-full z-10 px-4 overflow-hidden flex items-center transition-all ease-in-out duration-300 shadow-md"
-      :class="{ 'h-0 opacity-0': !props.minibar, 'h-8 opacity-100': props.minibar }">
+      class="relative w-full z-10 px-4 overflow-hidden flex items-center transition-all ease-in-out duration-300 shadow-md border-transparent border-b"
+      :class="{ 'h-0 opacity-0': !minibar, 'h-8 opacity-100 dark:border-neutral-800': minibar }">
       <div class="flex items-center justify-between container mx-auto">
         subbar
       </div>
