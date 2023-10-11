@@ -2,10 +2,6 @@
 import { storeToRefs } from 'pinia';
 
 const { toolkits } = storeToRefs(useConstant())
-
-onMounted(() => {
-  useGlobalState().currentPageTitle = 'CTFever'
-})
 </script>
 
 <template>

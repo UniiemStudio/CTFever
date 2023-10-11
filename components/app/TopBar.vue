@@ -1,16 +1,15 @@
 <script lang="ts" setup>
 import { storeToRefs } from 'pinia';
-import { useMessage } from '~/composables/uni/useMessage';
 
 const route = useRoute()
 const router = useRouter()
-const { locale } = useI18n()
-const {$t_toolkit, $t_tool} = useNuxtApp()
+const { availableLocales } = useI18n()
 const localePath = useLocalePath()
 const switchLocalePath = useSwitchLocalePath()
+const { $t_toolkit, $t_tool } = useNuxtApp()
 const toolkits = useConstant().toolkits
+const tools = toolkits.flatMap(toolkit => toolkit.tools)
 const { metaSymbol } = useShortcuts()
-const message = useMessage()
 
 const { currentPageTitle } = storeToRefs(useGlobalState())
 
@@ -40,15 +39,15 @@ const handleCommandSelect = (option: any) => {
   if (option.click) {
     option.click()
   } else if (option.route) {
+    commandPlatteActive.value = false
     router.push(localePath(option.route))
   } else if (option.href) {
     window.open(option.href, '_blank')
   }
 }
 
-const count = ref(0)
-const handleMessageCreate = () => {
-  message.info('info ' + count.value++)
+const handleLocaleSelect = (e: Event | any) => {
+  router.push(switchLocalePath(e?.target?.value))
 }
 
 defineProps({
@@ -73,37 +72,38 @@ defineShortcuts({
     <nav class="relative h-16 z-20 px-4 overflow-hidden flex items-center transition border-b"
       :class="{ 'border-b dark:border-neutral-800': minibar, 'shadow-md border-transparent': !minibar }">
       <div class="flex items-center justify-between container mx-auto">
-        <nuxt-link :to="localePath('/')">
+        <NuxtLinkLocale to="/">
           <div class="flex items-center space-x-2.5">
             <img src="/icon.svg" class="w-6 h-6" alt="CTFever Logo">
             <Transition name="title" mode="out-in">
               <h1 :key="currentPageTitle">{{ currentPageTitle }}</h1>
             </Transition>
           </div>
-        </nuxt-link>
+        </NuxtLinkLocale>
         <div class="flex items-center space-x-4">
-          <UTooltip text="搜索" :shortcuts="[metaSymbol, 'K']">
-            <button @click="commandPlatteActive = true">
-              <Icon name="tabler:search" class="text-lg inline -mt-1" />
-            </button>
-          </UTooltip>
-          <UButton @click="handleMessageCreate">Message!</UButton>
-          <nuxt-link :to="localePath('/tools/ascii')">
-            <Icon name="tabler:settings-2" class="text-lg inline -mt-1" />
-          </nuxt-link>
+          <select v-model="$colorMode.preference">
+            <option value="system">跟随系统</option>
+            <option value="light">亮色</option>
+            <option value="dark">暗色</option>
+            <option value="sepia">褐色</option>
+          </select>
+          <select @change="handleLocaleSelect">
+            <option v-for="(locale, k) in availableLocales" :key="k" :value="locale">
+              {{ locale }}
+            </option>
+          </select>
+          <button @click="commandPlatteActive = true"
+            class="flex items-center space-x-2 px-2 py-1 border border-neutral-300 bg-neutral-50 text-neutral-500 dark:border-neutral-600 hover:border-neutral-500 dark:hover:border-neutral-500 transition dark:bg-neutral-800 text-xs rounded-lg cursor-pointer">
+            <Icon name="tabler:search" class="text-base" />
+            <span>搜索</span>
+            <div class="flex items-center gap-0.5">
+              <UKbd>{{ metaSymbol }}</UKbd>
+              <UKbd>K</UKbd>
+            </div>
+          </button>
           <nuxt-link :to="localePath('/settings')">
             <Icon name="tabler:settings-2" class="text-lg inline -mt-1" />
           </nuxt-link>
-          <select v-model="$colorMode.preference">
-            <option value="system">System</option>
-            <option value="light">Light</option>
-            <option value="dark">Dark</option>
-            <option value="sepia">Sepia</option>
-          </select>
-          <select v-model="locale">
-            <option value="en">en</option>
-            <option value="zh">zh</option>
-          </select>
         </div>
       </div>
     </nav>
@@ -111,14 +111,27 @@ defineShortcuts({
       class="relative w-full z-10 px-4 overflow-hidden flex items-center transition-all ease-in-out duration-300 shadow-md border-transparent border-b"
       :class="{ 'h-0 opacity-0': !minibar, 'h-8 opacity-100 dark:border-neutral-800': minibar }">
       <div class="flex items-center justify-between container mx-auto">
-        subbar
+        <div class="flex items-center">
+          <nuxt-link to="/" class="flex items-center space-x-1 text-sm">
+            <Icon name="solar:square-alt-arrow-left-linear" class="text-lg" />
+            <span>返回</span>
+          </nuxt-link>
+        </div>
+        <div class="flex items-center space-x-3">
+          <button class="flex items-center">
+            <Icon name="tabler:bookmark-plus" class="text-lg" />
+          </button>
+          <button class="flex items-center">
+            <Icon name="solar:hamburger-menu-linear" class="text-lg" />
+          </button>
+        </div>
       </div>
     </div>
     <UModal v-model="commandPlatteActive">
-      <UCommandPalette ref="commandPlatteRef" placeholder="搜索工具、命令、设置..." :empty-state="{
+      <UCommandPalette ref="commandPlatteRef" :placeholder="$t('component.commandPlatte.placeholder')" :empty-state="{
         icon: 'i-heroicons-magnifying-glass-20-solid',
-        label: '没有数据',
-        queryLabel: `什么都找不到...`
+        label: $t('component.commandPlatte.empty.label'),
+        queryLabel: $t('component.commandPlatte.empty.queryLabel')
       }" :groups="commandPlatteGroups" @update:model-value="handleCommandSelect" />
     </UModal>
   </div>

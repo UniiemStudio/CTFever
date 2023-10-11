@@ -1,6 +1,12 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
     devtools: {enabled: true},
+    runtimeConfig: {
+        public: {
+            appName: 'CTFever',
+            appTitleTemplate: '%s - CTFever',
+        }
+    },
     css: [
         '~/assets/css/transitions.scss',
     ],
@@ -38,10 +44,18 @@ export default defineNuxtConfig({
         preference: 'dark'
     },
     i18n: {
+        legacy: false,
         locales: ['en', 'zh'],
         defaultLocale: 'zh',
+        fallbackLocale: 'en',
         customBlocks: {
             defaultSFCLang: 'yaml'
-        }
+        },
+        detectBrowserLanguage: {
+            useCookie: true,
+            cookieKey: "i18n_redirected",
+            // redirectOn: 'root',
+            alwaysRedirect: true
+        },
     },
 })

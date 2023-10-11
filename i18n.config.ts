@@ -1,7 +1,18 @@
 export default defineI18nConfig(() => ({
     messages: {
         en: {
+            component: {
+                commandPlatte: {
+                    placeholder: 'Search tools, commands or settings...',
+                    empty: {
+                        label: 'Nothing here',
+                        queryLabel: 'Nothing found...'
+                    }
+                }
+            },
             app: {
+                title: 'CTFever',
+                titleTemplate: '{title} - @:app.title',
                 tags: {
                     encoding: {
                         label: 'Encoding',
@@ -35,7 +46,18 @@ export default defineI18nConfig(() => ({
             },
         },
         zh: {
+            component: {
+                commandPlatte: {
+                    placeholder: '搜索工具、命令、设置...',
+                    empty: {
+                        label: '没有数据',
+                        queryLabel: '什么都找不到...'
+                    }
+                }
+            },
             app: {
+                title: 'CTFever',
+                titleTemplate: '{title} - @:app.title',
                 tags: {
                     encoding: {
                         label: '编码',

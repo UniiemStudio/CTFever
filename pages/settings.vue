@@ -1,7 +1,4 @@
 <script lang="ts" setup>
-onMounted(() => {
-  useGlobalState().currentPageTitle = 'Settings'
-})
 </script>
 
 <template>
