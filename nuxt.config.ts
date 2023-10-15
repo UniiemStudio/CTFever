@@ -9,6 +9,7 @@ export default defineNuxtConfig({
     },
     css: [
         '~/assets/css/transitions.scss',
+        '~/assets/css/main.scss',
     ],
     app: {
         pageTransition: {
@@ -44,7 +45,6 @@ export default defineNuxtConfig({
         preference: 'dark'
     },
     i18n: {
-        legacy: false,
         locales: ['en', 'zh'],
         defaultLocale: 'zh',
         fallbackLocale: 'en',

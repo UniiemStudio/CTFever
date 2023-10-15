@@ -2,6 +2,9 @@ export default defineI18nConfig(() => ({
     messages: {
         en: {
             component: {
+                topSubBar: {
+                    back: 'Back',
+                },
                 commandPlatte: {
                     placeholder: 'Search tools, commands or settings...',
                     empty: {
@@ -47,6 +50,9 @@ export default defineI18nConfig(() => ({
         },
         zh: {
             component: {
+                topSubBar: {
+                    back: '返回',
+                },
                 commandPlatte: {
                     placeholder: '搜索工具、命令、设置...',
                     empty: {

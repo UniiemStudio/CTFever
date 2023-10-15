@@ -38,9 +38,53 @@ export const useConstant = defineStore('ctfever_stuff', () => {
     const favorites = ref<Tool[]>([])
     const recent = ref<Tool[]>([])
 
+    const getToolByPath = (path: string) => {
+        return toolkits.value.flatMap(t => t.tools).find(t => t.route === path)
+    }
+
+    const getToolByKey = (key: string) => {
+        return toolkits.value.flatMap(t => t.tools).find(t => t.key === key)
+    }
+
+    const addFavorite = (tool: Tool) => {
+        if (favorites.value.includes(tool)) return
+        favorites.value.push(tool)
+    }
+
+    const removeFavorite = (tool: Tool) => {
+        const index = favorites.value.indexOf(tool)
+        if (index === -1) return
+        favorites.value.splice(index, 1)
+    }
+
+    const addRecent = (tool: Tool) => {
+        if (recent.value.includes(tool)) return
+        recent.value.push(tool)
+    }
+
+    const removeRecent = (tool: Tool) => {
+        const index = recent.value.indexOf(tool)
+        if (index === -1) return
+        recent.value.splice(index, 1)
+    }
+
     return {
         toolkits,
         favorites,
         recent,
+        getToolByPath,
+        getToolByKey,
+        addFavorite,
+        addRecent,
+        removeFavorite,
+        removeRecent
+    }
+}, {
+    persist: {
+        storage: persistedState.localStorage,
+        paths: [
+            'favorites',
+            'recent'
+        ]
     }
 })

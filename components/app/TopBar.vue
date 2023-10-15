@@ -3,26 +3,28 @@ import { storeToRefs } from 'pinia';
 
 const route = useRoute()
 const router = useRouter()
-const { availableLocales } = useI18n()
+const { availableLocales, locale } = useI18n()
 const localePath = useLocalePath()
 const switchLocalePath = useSwitchLocalePath()
 const { $t_toolkit, $t_tool } = useNuxtApp()
-const toolkits = useConstant().toolkits
-const tools = toolkits.flatMap(toolkit => toolkit.tools)
+const { addFavorite } = useConstant()
+const { toolkits } = storeToRefs(useConstant())
+const tools = toolkits.value.flatMap(toolkit => toolkit.tools)
 const { metaSymbol } = useShortcuts()
 
-const { currentPageTitle } = storeToRefs(useGlobalState())
+const { isOnToolPage, currentPageTitle, currentTool } = storeToRefs(useGlobalState())
 
+const sidebarActive = ref(false)
 const commandPlatteRef = ref()
 const commandPlatteActive = ref(false)
-const flattedToolkits = computed(() => toolkits.flatMap(toolkit => {
+const flattedToolkits = computed(() => toolkits.value.flatMap(toolkit => {
   return {
     id: toolkit.key,
     icon: toolkit.icon,
     label: $t_toolkit(toolkit.key).label,
   }
 }))
-const flattedTools = computed(() => toolkits.flatMap(toolkit => toolkit.tools.map(tool => {
+const flattedTools = computed(() => toolkits.value.flatMap(toolkit => toolkit.tools.map(tool => {
   return {
     id: tool.route,
     label: $t_tool(tool.key).label,
@@ -48,6 +50,10 @@ const handleCommandSelect = (option: any) => {
 
 const handleLocaleSelect = (e: Event | any) => {
   router.push(switchLocalePath(e?.target?.value))
+}
+
+const handleFavorite = () => {
+
 }
 
 defineProps({
@@ -76,24 +82,23 @@ defineShortcuts({
           <div class="flex items-center space-x-2.5">
             <img src="/icon.svg" class="w-6 h-6" alt="CTFever Logo">
             <Transition name="title" mode="out-in">
-              <h1 :key="currentPageTitle">{{ currentPageTitle }}</h1>
+              <h1 :key="currentPageTitle" class="whitespace-nowrap">{{ currentPageTitle }}</h1>
             </Transition>
           </div>
         </NuxtLinkLocale>
         <div class="flex items-center space-x-4">
           <select v-model="$colorMode.preference">
-            <option value="system">跟随系统</option>
+            <option value="system">系统</option>
             <option value="light">亮色</option>
             <option value="dark">暗色</option>
-            <option value="sepia">褐色</option>
           </select>
-          <select @change="handleLocaleSelect">
+          <select @change="handleLocaleSelect" :value="locale">
             <option v-for="(locale, k) in availableLocales" :key="k" :value="locale">
               {{ locale }}
             </option>
           </select>
           <button @click="commandPlatteActive = true"
-            class="flex items-center space-x-2 px-2 py-1 border border-neutral-300 bg-neutral-50 text-neutral-500 dark:border-neutral-600 hover:border-neutral-500 dark:hover:border-neutral-500 transition dark:bg-neutral-800 text-xs rounded-lg cursor-pointer">
+            class="flex items-center space-x-2 px-2 py-1 border border-neutral-300 bg-neutral-50 text-neutral-500 dark:border-neutral-600 hover:border-neutral-500 dark:hover:border-neutral-500 transition dark:bg-neutral-800 text-xs rounded-lg cursor-pointer whitespace-nowrap">
             <Icon name="tabler:search" class="text-base" />
             <span>搜索</span>
             <div class="flex items-center gap-0.5">
@@ -101,6 +106,9 @@ defineShortcuts({
               <UKbd>K</UKbd>
             </div>
           </button>
+          <a href="https://github.com/UniiemStudio/CTFever" target="_blank">
+            <Icon name="simple-icons:github" class="text-lg inline -mt-1" />
+          </a>
           <nuxt-link :to="localePath('/settings')">
             <Icon name="tabler:settings-2" class="text-lg inline -mt-1" />
           </nuxt-link>
@@ -112,18 +120,38 @@ defineShortcuts({
       :class="{ 'h-0 opacity-0': !minibar, 'h-8 opacity-100 dark:border-neutral-800': minibar }">
       <div class="flex items-center justify-between container mx-auto">
         <div class="flex items-center">
-          <nuxt-link to="/" class="flex items-center space-x-1 text-sm">
+          <nuxt-link :to="localePath('/')" class="flex items-center space-x-1 text-sm">
             <Icon name="solar:square-alt-arrow-left-linear" class="text-lg" />
-            <span>返回</span>
+            <span>{{ $t('component.topSubBar.back') }}</span>
           </nuxt-link>
         </div>
         <div class="flex items-center space-x-3">
-          <button class="flex items-center">
+          <button class="flex items-center" @click="currentTool ? addFavorite(currentTool) : void 0">
             <Icon name="tabler:bookmark-plus" class="text-lg" />
           </button>
-          <button class="flex items-center">
+          <button class="flex items-center" @click="sidebarActive = !sidebarActive">
             <Icon name="solar:hamburger-menu-linear" class="text-lg" />
           </button>
+        </div>
+      </div>
+    </div>
+    <!-- Sidebar -->
+    <div
+      class="fixed top-24 right-0 bottom-0 p-4 bg-gradient-to-l from-gray-100 dark:from-neutral-900 to-transparent translate-x-full transition ease-out"
+      :class="{ '!translate-x-0': sidebarActive && isOnToolPage }">
+      <div class="w-64 h-full p-2 border rounded-xl shadow-md bg-white dark:bg-neutral-800 dark:border-neutral-700">
+        <div v-for="(toolkit, k) in toolkits" :key="k" class="mt-6 first-of-type:mt-0">
+          <div class="mb-2 flex items-center">
+            <div class="flex items-center space-x-1 mr-2">
+              <Icon :name="toolkit.icon" class="text-lg" />
+              <h1 class="text-sm font-medium">{{ $t_toolkit(toolkit.key).label }}</h1>
+            </div>
+            <div class="h-[1px] bg-neutral-300 dark:bg-neutral-700 w-full flex-1"></div>
+          </div>
+          <div class="flex flex-col gap-2">
+            <AppToolCard v-for="(tool, k) in toolkit.tools" :key="k" :tool="tool" in-sidebar
+              :active="currentTool?.key === tool.key" />
+          </div>
         </div>
       </div>
     </div>

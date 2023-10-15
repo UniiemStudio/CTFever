@@ -12,11 +12,11 @@ defineProps({
     <div>
       <div class="flex items-center gap-2">
         <Icon name="solar:code-line-duotone" class="text-2xl" />
-        <h1 class="text-lg font-bold text-black/80 dark:text-neutral-200">
+        <h1 class="text-lg font-extrabold text-black/80 dark:text-neutral-200">
           {{ $t_toolkit(toolkit.key).label }}
         </h1>
       </div>
-      <span class="text-sm font-thin dark:text-neutral-400">
+      <span class="text-sm font-normal dark:text-neutral-400">
         {{ $t_toolkit(toolkit.key).description }}
       </span>
     </div>
