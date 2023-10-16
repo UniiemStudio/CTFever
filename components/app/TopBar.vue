@@ -75,7 +75,7 @@ defineShortcuts({
 
 <template>
   <div class="sticky top-0 left-0 right-0 h-fit">
-    <nav class="relative h-16 z-20 px-4 overflow-hidden flex items-center transition border-b"
+    <nav class="relative h-16 z-20 px-4 overflow-hidden flex items-center transition border-b bg-white/50 dark:bg-neutral-800/50 backdrop-blur-xl"
       :class="{ 'border-b dark:border-neutral-800': minibar, 'shadow-md border-transparent': !minibar }">
       <div class="flex items-center justify-between container mx-auto">
         <NuxtLinkLocale to="/">
@@ -116,7 +116,7 @@ defineShortcuts({
       </div>
     </nav>
     <div
-      class="relative w-full z-10 px-4 overflow-hidden flex items-center transition-all ease-in-out duration-300 shadow-md border-transparent border-b"
+      class="relative w-full z-10 px-4 overflow-hidden flex items-center transition-all ease-in-out duration-300 shadow-md border-transparent border-b bg-white/50 dark:bg-neutral-800/50 backdrop-blur-xl"
       :class="{ 'h-0 opacity-0': !minibar, 'h-8 opacity-100 dark:border-neutral-800': minibar }">
       <div class="flex items-center justify-between container mx-auto">
         <div class="flex items-center">
@@ -136,10 +136,10 @@ defineShortcuts({
       </div>
     </div>
     <!-- Sidebar -->
-    <div
-      class="fixed top-24 right-0 bottom-0 p-4 bg-gradient-to-l from-gray-100 dark:from-neutral-900 to-transparent translate-x-full transition ease-out"
+    <div class="fixed top-24 left-0 md:left-auto right-0 bottom-0 md:bg-gradient-to-l from-gray-100 dark:from-neutral-900 to-transparent translate-x-[120%] transition ease-out
+                p-0 md:p-4 overflow-hidden"
       :class="{ '!translate-x-0': sidebarActive && isOnToolPage }">
-      <div class="w-64 h-full p-2 border rounded-xl shadow-md bg-white dark:bg-neutral-800 dark:border-neutral-700">
+      <div class="w-full md:w-64 h-full p-2 md:border rounded-none md:rounded-xl shadow-md bg-white dark:bg-neutral-800 dark:border-neutral-700 overflow-y-auto">
         <div v-for="(toolkit, k) in toolkits" :key="k" class="mt-6 first-of-type:mt-0">
           <div class="mb-2 flex items-center">
             <div class="flex items-center space-x-1 mr-2">

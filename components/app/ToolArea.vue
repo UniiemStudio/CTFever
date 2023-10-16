@@ -11,7 +11,7 @@ defineProps({
   <div class="flex flex-col space-y-4">
     <div>
       <div class="flex items-center gap-2">
-        <Icon name="solar:code-line-duotone" class="text-2xl" />
+        <Icon :name="toolkit.icon" class="text-2xl" />
         <h1 class="text-lg font-extrabold text-black/80 dark:text-neutral-200">
           {{ $t_toolkit(toolkit.key).label }}
         </h1>

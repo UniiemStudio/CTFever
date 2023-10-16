@@ -19,7 +19,7 @@
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-gray-100 dark:bg-slate-700;
+  @apply bg-gray-100 dark:bg-neutral-800;
 }
 
 /* :hover::-webkit-scrollbar-track { ignored } */
@@ -27,7 +27,7 @@
 ::-webkit-scrollbar-thumb {
   /*滚动条里面的滑块*/
   border-radius: 10px;
-  @apply bg-gray-300 dark:bg-slate-500;
+  @apply bg-gray-300 dark:bg-neutral-700;
 }
 
 ::-webkit-scrollbar-thumb:hover {

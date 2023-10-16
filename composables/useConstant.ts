@@ -25,7 +25,7 @@ export const useConstant = defineStore('ctfever_stuff', () => {
         },
         {
             key: 'cryptology',
-            icon: 'i-solar-lock-password-bold-duotone',
+            icon: 'i-solar-password-linear',
             tools: [
                 {
                     key: 'uuidGenerator',

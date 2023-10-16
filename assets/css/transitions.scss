@@ -1,4 +1,6 @@
 .page-enter-active {
+  position: relative;
+  z-index: -1;
   transition: all 1s;
   -webkit-transition: all 1s;
   -moz-transition: all 1s;
@@ -7,16 +9,13 @@
 }
 
 .page-leave-active {
+  z-index: -1;
+  position: fixed;
   transition: all 0.5s;
   -webkit-transition: all 0.5s;
   -moz-transition: all 0.5s;
   -ms-transition: all 0.5s;
   -o-transition: all 0.5s;
-}
-
-.page-leave-active {
-  position: fixed;
-  z-index: -1;
 }
 
 .page-enter-from {
@@ -27,6 +26,4 @@
 .page-leave-to {
   opacity: 0;
   filter: blur(6px);
-  // -webkit-filter: blur(6px);
-  // transform: translateY(10%) scale(0.95);
 }
