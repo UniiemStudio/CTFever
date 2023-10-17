@@ -55,7 +55,8 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="flex flex-col space-y-1" :class="{ 'justify-start': justify === 'start', 'justify-end': justify === 'end' }">
+  <div class="flex flex-col space-y-1"
+    :class="{ 'justify-start': justify === 'start', 'justify-end': justify === 'end' }">
     <p class="block w-fit text-neutral-700 dark:text-neutral-300 text-sm font-bold font-['Nunito']" v-if="label">
       {{ label }}
     </p>
@@ -76,9 +77,9 @@ onMounted(() => {
         <Icon name="tabler:dots-vertical"
           class="absolute bg-neutral-50 text-gray-500 dark:bg-neutral-700/50 dark:text-neutral-500 inset-y-0 right-0 h-full" />
       </button>
-      <div class="absolute top-full right-0 w-fit rounded-md border overflow-hidden transition shadow-lg -translate-y-4 opacity-0 pointer-events-none
+      <div class="absolute top-full mt-2 right-0 w-fit rounded-md border overflow-hidden transition shadow-lg opacity-0 pointer-events-none
                 bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-800"
-        :class="{ '!translate-y-2 opacity-100 pointer-events-auto': optionsExpanded }" ref="optionsRef">
+        :class="{ 'opacity-100 pointer-events-auto': optionsExpanded, '-translate-y-4': !optionsExpanded }" ref="optionsRef">
 
         <div class="flex items-center gap-2.5 px-2 py-2 cursor-pointer
                   dark:text-neutral-300 font-['Nunito'] transition whitespace-nowrap
