@@ -1,18 +1,24 @@
 <script lang="ts" setup>
 import { storeToRefs } from 'pinia';
+import { useMessage } from '~/composables/uni/useMessage';
 
 const route = useRoute()
 const router = useRouter()
-const { availableLocales, locale } = useI18n()
+const message = useMessage()
+const { availableLocales, locale, t } = useI18n()
 const localePath = useLocalePath()
 const switchLocalePath = useSwitchLocalePath()
 const { $t_toolkit, $t_tool } = useNuxtApp()
-const { addFavorite } = useConstant()
-const { toolkits } = storeToRefs(useConstant())
-const tools = toolkits.value.flatMap(toolkit => toolkit.tools)
+const { addFavorite, removeFavorite } = useConstant()
+const { toolkits, favorites } = storeToRefs(useConstant())
+// const tools = toolkits.value.flatMap(toolkit => toolkit.tools)
 const { metaSymbol } = useShortcuts()
 
 const { isOnToolPage, currentPageTitle, currentTool } = storeToRefs(useGlobalState())
+
+const isCurrentToolFavorited = computed(() => {
+  return !!favorites.value.find(t => t.key === currentTool.value?.key)
+})
 
 const sidebarActive = ref(false)
 const commandPlatteRef = ref()
@@ -33,8 +39,8 @@ const flattedTools = computed(() => toolkits.value.flatMap(toolkit => toolkit.to
   }
 })))
 const commandPlatteGroups = computed(() => [
-  { key: 'category', label: '分类', commands: flattedToolkits.value },
-  { key: 'tool', label: '工具', commands: flattedTools.value },
+  { key: 'category', label: t('component.commandPlatte.groups.category'), commands: flattedToolkits.value },
+  { key: 'tool', label: t('component.commandPlatte.groups.tool'), commands: flattedTools.value },
 ].filter(Boolean))
 
 const handleCommandSelect = (option: any) => {
@@ -53,7 +59,15 @@ const handleLocaleSelect = (e: Event | any) => {
 }
 
 const handleFavorite = () => {
-
+  if (isOnToolPage) {
+    if (isCurrentToolFavorited.value) {
+      removeFavorite(currentTool.value?.key as string)
+      message.success(t('component.topSubBar.favorite.removed'))
+    } else {
+      addFavorite(currentTool.value as Tool)
+      message.success(t('component.topSubBar.favorite.success'))
+    }
+  }
 }
 
 defineProps({
@@ -75,7 +89,8 @@ defineShortcuts({
 
 <template>
   <div class="sticky top-0 left-0 right-0 h-fit">
-    <nav class="relative h-16 z-20 px-4 overflow-hidden flex items-center transition border-b bg-white/50 dark:bg-neutral-800/50 backdrop-blur-xl"
+    <nav
+      class="relative h-16 z-20 px-4 overflow-hidden flex items-center transition border-b bg-white/50 dark:bg-neutral-800/50 backdrop-blur-xl"
       :class="{ 'border-b dark:border-neutral-800': minibar, 'shadow-md border-transparent': !minibar }">
       <div class="flex items-center justify-between container mx-auto">
         <NuxtLinkLocale to="/">
@@ -126,8 +141,9 @@ defineShortcuts({
           </nuxt-link>
         </div>
         <div class="flex items-center space-x-3">
-          <button class="flex items-center" @click="currentTool ? addFavorite(currentTool) : void 0">
-            <Icon name="tabler:bookmark-plus" class="text-lg" />
+          <button class="flex items-center" @click="handleFavorite">
+            <Icon v-show="isCurrentToolFavorited" name="tabler:bookmark-filled" class="text-lg" />
+            <Icon v-show="!isCurrentToolFavorited" name="tabler:bookmark-plus" class="text-lg" />
           </button>
           <button class="flex items-center" @click="sidebarActive = !sidebarActive">
             <Icon name="solar:hamburger-menu-linear" class="text-lg" />
@@ -137,9 +153,9 @@ defineShortcuts({
     </div>
     <!-- Sidebar -->
     <div class="fixed top-24 left-0 md:left-auto right-0 bottom-0 md:bg-gradient-to-l from-gray-100 dark:from-neutral-900 to-transparent translate-x-[120%] transition ease-out
-                p-0 md:p-4 overflow-hidden"
-      :class="{ '!translate-x-0': sidebarActive && isOnToolPage }">
-      <div class="w-full md:w-64 h-full p-2 md:border rounded-none md:rounded-xl shadow-md bg-white dark:bg-neutral-800 dark:border-neutral-700 overflow-y-auto">
+                p-0 md:p-4 overflow-hidden" :class="{ '!translate-x-0': sidebarActive && isOnToolPage }">
+      <div
+        class="w-full md:w-64 h-full p-2 md:border rounded-none md:rounded-xl shadow-md bg-white dark:bg-neutral-800 dark:border-neutral-700 overflow-y-auto">
         <div v-for="(toolkit, k) in toolkits" :key="k" class="mt-6 first-of-type:mt-0">
           <div class="mb-2 flex items-center">
             <div class="flex items-center space-x-1 mr-2">
@@ -180,5 +196,19 @@ defineShortcuts({
 .title-leave-to {
   opacity: 0;
   transform: translateX(5px);
+}
+
+.favorite-enter-active,
+.favorite-leave-active {
+  transition: all .3s ease;
+}
+
+.favorite-leave-active {
+  position: absolute;
+}
+
+.favorite-enter-from,
+.favorite-leave-to {
+  opacity: 0;
 }
 </style>

@@ -4,12 +4,21 @@ export default defineI18nConfig(() => ({
             component: {
                 topSubBar: {
                     back: 'Back',
+                    favorite: {
+                        success: 'Marked',
+                        removed: 'Unmarked'
+                    }
                 },
                 commandPlatte: {
                     placeholder: 'Search tools, commands or settings...',
                     empty: {
                         label: 'Nothing here',
                         queryLabel: 'Nothing found...'
+                    },
+                    groups: {
+                        category: 'Categories',
+                        tool: 'Tools',
+                        link: 'Links'
                     }
                 }
             },
@@ -52,12 +61,21 @@ export default defineI18nConfig(() => ({
             component: {
                 topSubBar: {
                     back: '返回',
+                    favorite: {
+                        success: '已收藏',
+                        removed: '已移出收藏'
+                    }
                 },
                 commandPlatte: {
                     placeholder: '搜索工具、命令、设置...',
                     empty: {
                         label: '没有数据',
                         queryLabel: '什么都找不到...'
+                    },
+                    groups: {
+                        category: '分类',
+                        tool: '工具',
+                        link: '链接'
                     }
                 }
             },

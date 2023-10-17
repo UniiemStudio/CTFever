@@ -1,4 +1,4 @@
-import { defineStore } from "pinia";
+import { defineStore, skipHydrate } from "pinia";
 
 export const useConstant = defineStore('ctfever_stuff', () => {
     const tags = Object.freeze<{ [key: string]: Tag }>({
@@ -46,13 +46,17 @@ export const useConstant = defineStore('ctfever_stuff', () => {
         return toolkits.value.flatMap(t => t.tools).find(t => t.key === key)
     }
 
+    const isFavorited = (key: string) => {
+        return !!favorites.value.find(t => t.key === key)
+    }
+
     const addFavorite = (tool: Tool) => {
-        if (favorites.value.includes(tool)) return
+        if (isFavorited(tool.key)) return
         favorites.value.push(tool)
     }
 
-    const removeFavorite = (tool: Tool) => {
-        const index = favorites.value.indexOf(tool)
+    const removeFavorite = (key: string) => {
+        const index = favorites.value.findIndex(t => t.key === key)
         if (index === -1) return
         favorites.value.splice(index, 1)
     }

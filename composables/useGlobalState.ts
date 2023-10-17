@@ -1,4 +1,4 @@
-import { defineStore } from "pinia";
+import { defineStore, storeToRefs } from "pinia";
 
 export const useGlobalState = defineStore('ctfever_global_state', () => {
   const isOnToolPage = ref(false)
