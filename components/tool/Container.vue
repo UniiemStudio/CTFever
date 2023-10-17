@@ -7,13 +7,17 @@ defineProps({
   contentClass: {
     type: String,
     default: ''
+  },
+  gapped: {
+    type: Boolean,
+    default: false
   }
 })
 </script>
 
 <template>
   <div class="w-full h-full" :class="{ 'container mx-auto': !fullSize}">
-    <div :class="{ 'lg:w-8/12 lg:mx-auto lg:px-8 md:pt-6 p-4': !fullSize, [contentClass]: contentClass }">
+    <div :class="{ 'lg:w-8/12 lg:mx-auto lg:px-8 md:pt-6 p-4': !fullSize, [contentClass]: contentClass, 'flex flex-col gap-4': gapped }">
       <slot />
     </div>
   </div>
