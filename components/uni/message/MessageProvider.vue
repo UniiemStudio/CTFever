@@ -61,7 +61,7 @@ provide('uni-message', api)
 
 <style scoped>
 #message-provider .message-wrapper {
-  @apply z-50 fixed inset-0 flex flex-col items-center pointer-events-none;
+  @apply z-[50000] fixed inset-0 flex flex-col items-center pointer-events-none;
 }
 
 .message-move,

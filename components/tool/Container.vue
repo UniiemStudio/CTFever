@@ -12,8 +12,8 @@ defineProps({
 </script>
 
 <template>
-  <div class="w-full h-full" :class="{ 'px-4 py-4': !fullSize }">
-    <div :class="{ 'container mx-auto': !fullSize, [contentClass]: contentClass }">
+  <div class="w-full h-full" :class="{ 'container mx-auto': !fullSize}">
+    <div :class="{ 'lg:w-8/12 lg:mx-auto lg:px-8 md:pt-6 p-4': !fullSize, [contentClass]: contentClass }">
       <slot />
     </div>
   </div>

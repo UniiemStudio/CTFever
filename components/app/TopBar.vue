@@ -88,10 +88,10 @@ defineShortcuts({
 </script>
 
 <template>
-  <div class="sticky top-0 left-0 right-0 h-fit">
+  <div class="sticky top-0 left-0 right-0 h-fit z-50">
     <nav
-      class="relative h-16 z-20 px-4 overflow-hidden flex items-center transition border-b bg-white/50 dark:bg-neutral-800/50 backdrop-blur-xl"
-      :class="{ 'border-b dark:border-neutral-800': minibar, 'shadow-md border-transparent': !minibar }">
+      class="relative h-16 z-20 px-4 overflow-hidden flex items-center transition border-b bg-white/90 dark:bg-neutral-800/90 backdrop-blur-lg saturate-50"
+      :class="{ 'border-b dark:border-neutral-700': minibar, 'shadow-md border-transparent': !minibar }">
       <div class="flex items-center justify-between container mx-auto">
         <NuxtLinkLocale to="/">
           <div class="flex items-center space-x-2.5">
@@ -131,8 +131,8 @@ defineShortcuts({
       </div>
     </nav>
     <div
-      class="relative w-full z-10 px-4 overflow-hidden flex items-center transition-all ease-in-out duration-300 shadow-md border-transparent border-b bg-white/50 dark:bg-neutral-800/50 backdrop-blur-xl"
-      :class="{ 'h-0 opacity-0': !minibar, 'h-8 opacity-100 dark:border-neutral-800': minibar }">
+      class="relative w-full z-10 px-4 overflow-hidden flex items-center transition-all ease-in-out duration-300 shadow-md border-transparent border-b bg-white/90 dark:bg-neutral-800/90 backdrop-blur-lg saturate-50"
+      :class="{ 'h-0 opacity-0': !minibar, 'h-8 opacity-100 dark:border-neutral-700': minibar }">
       <div class="flex items-center justify-between container mx-auto">
         <div class="flex items-center">
           <nuxt-link :to="localePath('/')" class="flex items-center space-x-1 text-sm">
@@ -142,7 +142,7 @@ defineShortcuts({
         </div>
         <div class="flex items-center space-x-3">
           <button class="flex items-center" @click="handleFavorite">
-            <Icon v-show="isCurrentToolFavorited" name="tabler:bookmark-filled" class="text-lg" />
+            <Icon v-show="isCurrentToolFavorited" name="tabler:bookmark-filled" class="text-lg text-amber-500" />
             <Icon v-show="!isCurrentToolFavorited" name="tabler:bookmark-plus" class="text-lg" />
           </button>
           <button class="flex items-center" @click="sidebarActive = !sidebarActive">

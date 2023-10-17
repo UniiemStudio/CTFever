@@ -5,7 +5,7 @@ const { toolkits } = storeToRefs(useConstant())
 </script>
 
 <template>
-  <ToolContainer content-class="flex flex-col gap-8">
+  <ToolContainer content-class="flex flex-col gap-8 container mx-auto p-4" full-size>
     <!-- <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
       <UAlert icon="i-tabler-link" title="启用新域名" class="bg-gradient-to-br from-purple-500 to-neutral-800 text-white">
         <template #description>
