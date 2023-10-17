@@ -31,6 +31,7 @@ const testItems2: SelectItem[] = [
 ]
 
 const selected = ref('option1')
+const input = ref('')
 </script>
 
 <template>
@@ -38,6 +39,8 @@ const selected = ref('option1')
     <div class="grid grid-cols-2 gap-4">
       <UniSelect :items="testItems" label="Selection" v-model="selected" />
       <UniSelect :items="testItems2" v-model="selected" />
+      <UniInput label="Input" v-model="input" placeholder="only uppercase" :pattern="/^[A-Z]+$/gm" />
+        <UniInput label="Disabled input" v-model="input" placeholder="only uppercase" />
     </div>
   </ToolContainer>
 </template>

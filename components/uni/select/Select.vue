@@ -1,26 +1,24 @@
 <script lang="ts" setup>
-import { PropType } from 'nuxt/dist/app/compat/capi';
-
 const emit = defineEmits(['input', 'change', 'update:modelValue'])
 const props = defineProps({
-  items: {
-    type: Array as PropType<SelectItem[]>,
-    required: true
+  label: {
+    type: String,
+    required: false,
+    default: ''
   },
   modelValue: {
     type: [String, Number],
-    required: false
+    required: true
+  },
+  items: {
+    type: Array as PropType<SelectItem[]>,
+    required: true
   },
   justify: {
     type: String as PropType<'start' | 'end'>,
     required: false,
     default: 'end'
   },
-  label: {
-    type: String,
-    required: false,
-    default: ''
-  }
 })
 
 const selectWrapperRef = ref()
@@ -78,9 +76,9 @@ onMounted(() => {
           class="absolute bg-neutral-50 text-gray-500 dark:bg-neutral-700/50 dark:text-neutral-500 inset-y-0 right-0 h-full" />
       </button>
       <div class="absolute top-full mt-2 right-0 w-fit rounded-md border overflow-hidden transition shadow-lg opacity-0 pointer-events-none
-                bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-800"
-        :class="{ 'opacity-100 pointer-events-auto': optionsExpanded, '-translate-y-4': !optionsExpanded }" ref="optionsRef">
-
+                bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-800 z-50"
+        :class="{ 'opacity-100 pointer-events-auto': optionsExpanded, '-translate-y-4': !optionsExpanded }"
+        ref="optionsRef">
         <div class="flex items-center gap-2.5 px-2 py-2 cursor-pointer
                   dark:text-neutral-300 font-['Nunito'] transition whitespace-nowrap
                   bg-white dark:bg-neutral-800 hover:bg-neutral-100 dark:hover:bg-neutral-700"
@@ -92,7 +90,6 @@ onMounted(() => {
           <Icon :name="(option?.icon)" class="inline-block w-5 h-5" v-if="option.icon" />
           <span class="leading-none whitespace-nowrap text-sm">{{ option.label || 'No label' }}</span>
         </div>
-
       </div>
     </div>
   </div>
