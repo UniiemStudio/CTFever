@@ -40,7 +40,7 @@ const input = ref('')
       <UniSelect :items="testItems" label="Selection" v-model="selected" />
       <UniSelect :items="testItems2" v-model="selected" />
       <UniInput label="Input" v-model="input" placeholder="only uppercase" :pattern="/^[A-Z]+$/gm" />
-        <UniInput label="Disabled input" v-model="input" placeholder="only uppercase" />
+      <UniInput label="Disabled input" v-model="input" placeholder="only uppercase" disabled />
     </div>
   </ToolContainer>
 </template>

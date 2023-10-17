@@ -23,7 +23,12 @@ const props = defineProps({
   pattern: {
     type: [String, RegExp],
     required: false,
-  }
+  },
+  disabled: {
+    type: Boolean,
+    required: false,
+    default: false
+  },
 })
 
 const inputValue = ref(props.modelValue)
@@ -39,6 +44,7 @@ watch(() => props.modelValue, (value) => {
 }, { immediate: true })
 
 const handleInput = (e: any) => {
+  if (props.disabled) return
   const value = e.target.value
 
   if (props.pattern && value) {
@@ -46,7 +52,7 @@ const handleInput = (e: any) => {
     isError.value = !pattern.test(value)
     pattern.lastIndex = 0
     inputValue.value = value
-    if(isError.value) return 
+    if (isError.value) return
   }
 
   inputValue.value = value
@@ -68,7 +74,8 @@ const handleInput = (e: any) => {
                    border-neutral-200 dark:border-neutral-800 focus:border-neutral-400 dark:focus:border-neutral-700
                      focus:ring-4 focus:ring-opacity-50 focus:ring-neutral-200 dark:focus:ring-neutral-800
                      outline-none placeholder-neutral-400 dark:placeholder-neutral-500"
-        :class="{ '!border-red-500': isError }" :value="inputValue" @input="handleInput" :placeholder="placeholder" />
+        :class="{ '!border-red-500': isError, 'bg-neutral-100 dark:bg-neutral-900 text-neutral-400 dark:text-neutral-600': disabled }"
+        :value="inputValue" @input="handleInput" :placeholder="placeholder" :disabled="disabled" />
     </div>
   </div>
 </template>
