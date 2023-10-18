@@ -30,7 +30,7 @@ onMounted(() => {
     <UniIconCircleSuccess v-if="message.type === 'success'" class="text-xl" />
     <UniIconCircleWarning v-if="message.type === 'warning'" class="text-xl" />
     <UniIconCircleError v-if="message.type === 'error'" class="text-xl" />
-    <UniIconInfoCircle v-if="message.type === 'info'" class="text-xl" />
+    <UniIconCircleInfo v-if="message.type === 'info'" class="text-xl" />
     <span>
       {{ message.content }}
     </span>
