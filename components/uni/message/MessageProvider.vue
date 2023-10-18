@@ -13,7 +13,7 @@ const messageList = ref<Message[]>([])
 const createMessage = (content: string, type: MessageType, duration: number = 3000) => {
   const { max } = props
   messageList.value.push({
-    id: Date.now().toString(32).toUpperCase(),
+    id: (Date.now() + Math.random() * 100).toString(32).toUpperCase(),
     content,
     type,
     duration
