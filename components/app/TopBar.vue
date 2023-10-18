@@ -5,7 +5,10 @@ import { useMessage } from '~/composables/uni/useMessage';
 const route = useRoute()
 const router = useRouter()
 const message = useMessage()
-const { availableLocales, locale, t } = useI18n()
+const { availableLocales, locale } = useI18n()
+const { t } = useI18n({
+  useScope: 'local'
+})
 const localePath = useLocalePath()
 const switchLocalePath = useSwitchLocalePath()
 const { $t_toolkit, $t_tool } = useNuxtApp()
@@ -112,14 +115,17 @@ defineShortcuts({
               {{ locale }}
             </option>
           </select>
-          <button @click="commandPlatteActive = true"
-            class="flex items-center space-x-2 px-2 py-1 border border-neutral-300 bg-neutral-50 text-neutral-500 dark:border-neutral-600 hover:border-neutral-500 dark:hover:border-neutral-500 transition dark:bg-neutral-800 text-xs rounded-lg cursor-pointer whitespace-nowrap">
+          <button @click="commandPlatteActive = true" class="items-center space-x-2 px-2 py-1 border border-neutral-300 bg-neutral-50 text-neutral-500 dark:border-neutral-600 hover:border-neutral-500 dark:hover:border-neutral-500
+                   transition dark:bg-neutral-800 text-xs rounded-lg cursor-pointer whitespace-nowrap hidden md:flex">
             <Icon name="tabler:search" class="text-base" />
-            <span>搜索</span>
+            <span>{{ t('search') }}</span>
             <div class="flex items-center gap-0.5">
               <UKbd>{{ metaSymbol }}</UKbd>
               <UKbd>K</UKbd>
             </div>
+          </button>
+          <button @click="commandPlatteActive = true" class="block md:hidden">
+            <Icon name="tabler:search" class="text-lg inline -mt-1" />
           </button>
           <a href="https://github.com/UniiemStudio/CTFever" target="_blank">
             <Icon name="simple-icons:github" class="text-lg inline -mt-1" />
@@ -212,3 +218,11 @@ defineShortcuts({
   opacity: 0;
 }
 </style>
+
+<i18n lang="yaml">
+en:
+  search: Search
+
+zh:
+  search: 搜索
+</i18n>

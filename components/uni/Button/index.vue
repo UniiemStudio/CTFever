@@ -58,7 +58,7 @@ const handleClick = (e: any) => {
       <UniIconSpinner v-if="loading" />
       <Icon v-else-if="buttonIcon" :name="buttonIcon" :key="buttonIcon" />
     </Transition>
-    <div class="flex items-center leading-snug" :class="{ 'ml-2': buttonIcon || loading }">
+    <div class="flex items-center whitespace-nowrap leading-snug" :class="{ 'ml-2': buttonIcon || loading }">
       <slot />
     </div>
   </button>

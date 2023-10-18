@@ -2,8 +2,8 @@ import { defineStore, skipHydrate } from "pinia";
 
 export const useConstant = defineStore('ctfever_stuff', () => {
     const tags = Object.freeze<{ [key: string]: Tag }>({
-        Encoding: {
-            key: 'encoding',
+        charsProcess: {
+            key: 'charactersProcessing',
         },
     })
     const toolkits = ref<Toolkit[]>([
@@ -14,26 +14,20 @@ export const useConstant = defineStore('ctfever_stuff', () => {
                 {
                     key: 'ascii',
                     route: '/tools/ascii',
-                    tags: [tags.Encoding]
+                    tags: [tags.charsProcess]
                 },
                 {
                     key: 'urlEncoding',
                     route: '/tools/url-encoding',
-                    tags: [tags.Encoding]
+                    tags: [tags.charsProcess]
+                },
+                {
+                    key: 'base64',
+                    route: '/tools/base64',
+                    tags: [tags.charsProcess]
                 },
             ]
         },
-        {
-            key: 'cryptology',
-            icon: 'i-solar-password-linear',
-            tools: [
-                {
-                    key: 'uuidGenerator',
-                    route: '/tools/uuid-generator',
-                    tags: [tags.Encoding]
-                },
-            ]
-        }
     ])
     const favorites = ref<Tool[]>([])
     const recent = ref<Tool[]>([])

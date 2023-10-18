@@ -37,10 +37,10 @@ defineProps({
         </div>
       </div>
       <div class="flex items-center">
-        <div class="flex items-center rounded space-x-1 px-1 py-0.5">
+        <!-- <div class="flex items-center rounded space-x-1 px-1 py-0.5">
           <Icon name="solar:confetti-line-duotone" class="text-sm" />
           <span class="text-xs">NEW</span>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>

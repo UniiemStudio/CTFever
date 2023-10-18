@@ -27,9 +27,9 @@ export default defineI18nConfig(() => ({
                 title: 'CTFever',
                 titleTemplate: '{title} - @:app.title',
                 tags: {
-                    encoding: {
-                        label: 'Encoding',
-                        description: 'Text and character encoding and decoding'
+                    charactersProcessing: {
+                        label: 'Characters',
+                        description: 'Various processing of characters and strings'
                     }
                 },
                 toolkit: {
@@ -51,9 +51,9 @@ export default defineI18nConfig(() => ({
                         label: 'URL Encoding',
                         description: 'URL encoding and decoding'
                     },
-                    uuidGenerator: {
-                        label: 'UUID',
-                        description: 'Generate and validate UUID'
+                    base64: {
+                        label: 'Base64 Encoding',
+                        description: 'Base64 encoding and decoding'
                     },
                 }
             },
@@ -84,9 +84,9 @@ export default defineI18nConfig(() => ({
                 title: 'CTFever',
                 titleTemplate: '{title} - @:app.title',
                 tags: {
-                    encoding: {
-                        label: '编码',
-                        description: '文本和字符编码和解码'
+                    charactersProcessing: {
+                        label: '字符处理',
+                        description: '字符和字符串的各种处理'
                     }
                 },
                 toolkit: {
@@ -108,9 +108,9 @@ export default defineI18nConfig(() => ({
                         label: 'URL 编码',
                         description: 'URL 编码和解码'
                     },
-                    uuidGenerator: {
-                        label: 'UUID',
-                        description: '生成及校验各种版本 UUID'
+                    base64: {
+                        label: 'Base64 编码',
+                        description: 'Base64 编码和解码'
                     },
                 }
             },
