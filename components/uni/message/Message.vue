@@ -12,21 +12,6 @@ const props = defineProps({
 
 const message = ref<Message>(props.message as Message)
 
-const typeToIcon = (type: MessageType) => {
-  switch (type) {
-    case 'success':
-      return 'tabler:circle-check-filled'
-    case 'warning':
-      return 'tabler:alert-circle-filled'
-    case 'error':
-      return 'tabler:circle-x-filled'
-    case 'info':
-      return 'solar:info-circle-bold'
-    default:
-      return 'solar:info-circle-bold'
-  }
-}
-
 onMounted(() => {
   setTimeout(() => {
     providerApi?.destroy(message.value.id)
@@ -42,7 +27,10 @@ onMounted(() => {
     '!text-rose-500 !border-rose-400 !bg-rose-50': message.type === 'error',
     [message.type]: message.type
   }">
-    <Icon :name="typeToIcon(message.type)" class="text-xl" />
+    <UniIconCircleSuccess v-if="message.type === 'success'" class="text-xl" />
+    <UniIconCircleWarning v-if="message.type === 'warning'" class="text-xl" />
+    <UniIconCircleError v-if="message.type === 'error'" class="text-xl" />
+    <UniIconInfoCircle v-if="message.type === 'info'" class="text-xl" />
     <span>
       {{ message.content }}
     </span>
