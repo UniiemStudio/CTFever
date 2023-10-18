@@ -66,7 +66,7 @@ onMounted(() => {
     <div class="relative" ref="selectWrapperRef">
       <button class="relative w-full flex items-center gap-2.5 p-2 pr-6 rounded-md overflow-hidden border transition bg-white dark:bg-neutral-800
                    border-neutral-200 dark:border-neutral-800 focus:border-neutral-400 dark:focus:border-neutral-700
-                     focus:ring-4 focus:ring-opacity-50 focus:ring-neutral-200 dark:focus:ring-neutral-800"
+                     focus:ring-4 focus:ring-opacity-50 focus:ring-neutral-200 dark:focus:ring-neutral-800 shadow-sm"
         :class="{ 'cursor-not-allowed bg-neutral-100 dark:bg-neutral-900 text-neutral-400 dark:text-neutral-600': disabled }" ref="selectRef" type="button" @click="handleSelectClick" :disabled="disabled">
         <span v-if="selectedItem?.icon && !selectedIconFlag && hasAnyIcon"
           class="inline-block w-5 h-5 pointer-events-none"></span>
