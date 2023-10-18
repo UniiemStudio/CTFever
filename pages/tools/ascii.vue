@@ -1,4 +1,8 @@
 <script lang="ts" setup>
+const { t } = useI18n({
+  useScope: 'local'
+})
+
 const radix = ref('10')
 const mode = ref('continuity')
 const inputMode = ref('ascii')
@@ -36,75 +40,76 @@ const handleInput = () => {
 <template>
   <ToolContainer gapped>
     <div class="grid grid-cols-2 gap-4">
-      <UniSelect label="进制" :items="[
+      <UniSelect :label="t('label.radix')" :items="[
         {
-          label: '二进制',
+          label: t('radix.bin'),
           value: '2',
           icon: 'tabler:binary'
         },
         {
-          label: '八进制',
+          label: t('radix.oct'),
           value: '8',
           icon: 'tabler:square-number-8'
         },
         {
-          label: '十进制',
+          label: t('radix.dec'),
           value: '10',
           icon: 'tabler:decimal'
         },
         {
-          label: '十六进制',
+          label: t('radix.hex'),
           value: '16',
           icon: 'mdi:hexadecimal'
         },
       ]" v-model="radix" />
-      <UniSelect label="模式" :items="[
+      <UniSelect :label="t('label.mode')" :items="[
         {
-          label: '连续',
+          label: t('mode.continuity'),
           value: 'continuity',
           icon: 'tabler:abc'
         },
         {
-          label: '分割',
+          label: t('mode.split'),
           value: 'split',
           icon: 'mdi:comma-box-outline'
         },
       ]" v-model="mode" :disabled="inputMode !== 'ascii'" />
-      <UniSelect label="输入" :items="[
+      <UniSelect :label="t('label.input')" :items="[
         {
-          label: 'ASCII',
+          label: t('input.ascii'),
           value: 'ascii',
           icon: 'tabler:numbers'
         },
         {
-          label: '字符',
+          label: t('input.characters'),
           value: 'chars',
           icon: 'carbon:character-upper-case'
         },
       ]" v-model="inputMode" />
-      <UniSelect label="分隔符" :items="[
+      <UniSelect :label="t('label.separator')" :items="[
         {
-          label: '无分割',
+          label: t('separator.none'),
           value: 'none',
           icon: 'tabler:space-off',
           disabled: mode === 'split' && inputMode === 'ascii'
         },
         {
-          label: '空格',
+          label: t('separator.space'),
           value: 'space',
           icon: 'tabler:space'
         },
         {
-          label: '逗号',
+          label: t('separator.comma'),
           value: 'comma',
           icon: 'mdi:comma-box-outline'
         },
       ]" v-model="separator" />
     </div>
-    <UniInput :label="inputMode === 'ascii' ? 'ASCII' : '字符串'" v-model="inputText" @input="handleInput"
+    <UniInput :label="inputMode === 'ascii' ? t('input.ascii') : t('input.characters')" v-model="inputText"
+      @input="handleInput"
       :placeholder="inputMode === 'ascii' ? (mode === 'continuity' ? `'656667' to 'ABC'` : `'65,66,67' to 'ABC'`) : (mode === 'continuity' ? `'ABC' to '656667'` : `'ABC' to '65,66,67'`)" />
     <Transition name="result">
-      <UniInput v-if="result" label="结果" v-model="result" disabled />
+      <UniInput v-if="result" :label="t('label.result')" v-model="result" disabled />
     </Transition>
   </ToolContainer>
 </template>
@@ -125,3 +130,50 @@ const handleInput = () => {
   transform: translateY(5px);
 }
 </style>
+
+<i18n lang="yaml">
+en:
+  label:
+    radix: Radix
+    mode: Mode
+    input: Input
+    separator: Separator
+    result: Conversion result
+  radix:
+    bin: Binary
+    oct: Octal
+    dec: Decimal
+    hex: Hexadecimal
+  mode:
+    continuity: Continuous input
+    split: Symbol segmented
+  input:
+    ascii: ASCII
+    characters: Characters
+  separator:
+    none: No segmentation
+    space: Space
+    comma: Comma
+zh:
+  label:
+    radix: 进制
+    mode: 模式
+    input: 输入
+    separator: 分隔符
+    result: 转换结果
+  radix:
+    bin: 二进制
+    oct: 八进制
+    dec: 十进制
+    hex: 十六进制
+  mode:
+    continuity: 连续输入
+    split: 符号分割
+  input:
+    ascii: ASCII
+    characters: 字符
+  separator:
+    none: 无分割
+    space: 空格
+    comma: 逗号
+</i18n>

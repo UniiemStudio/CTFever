@@ -42,12 +42,11 @@ export default defineNuxtConfig({
         icons: ['solar', 'tabler']
     },
     colorMode: {
-        preference: 'dark'
+        preference: 'system'
     },
     i18n: {
         locales: ['en', 'zh'],
         defaultLocale: 'zh',
-        fallbackLocale: 'en',
         customBlocks: {
             defaultSFCLang: 'yaml'
         },
