@@ -90,7 +90,7 @@ defineShortcuts({
 <template>
   <div class="sticky top-0 left-0 right-0 h-fit z-50">
     <nav
-      class="relative h-16 z-20 px-4 overflow-hidden flex items-center transition border-b bg-white/90 dark:bg-neutral-800/90 backdrop-blur-lg saturate-50"
+      class="relative h-16 z-20 px-4 overflow-hidden flex items-center transition border-b bg-white/90 dark:bg-neutral-800/90 backdrop-blur-lg backdrop-saturate-50"
       :class="{ 'border-b dark:border-neutral-700': minibar, 'shadow-md border-transparent': !minibar }">
       <div class="flex items-center justify-between container mx-auto">
         <NuxtLinkLocale to="/">
