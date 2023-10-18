@@ -115,6 +115,7 @@ defineShortcuts({
               {{ locale }}
             </option>
           </select>
+          <UniButton size="small" icon="tabler:gps" disabled>{{ t('wizard') }}</UniButton>
           <button @click="commandPlatteActive = true" class="items-center space-x-2 px-2 py-1 border border-neutral-300 bg-neutral-50 text-neutral-500 dark:border-neutral-600 hover:border-neutral-500 dark:hover:border-neutral-500
                    transition dark:bg-neutral-800 text-xs rounded-lg cursor-pointer whitespace-nowrap hidden md:flex">
             <Icon name="tabler:search" class="text-base" />
@@ -222,7 +223,9 @@ defineShortcuts({
 <i18n lang="yaml">
 en:
   search: Search
+  wizard: Chars wizard
 
 zh:
   search: 搜索
+  wizard: 字符向导
 </i18n>

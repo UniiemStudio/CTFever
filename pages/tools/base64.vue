@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import { useMessage } from '~/composables/uni/useMessage';
 import base32 from '~/libs/encoding/base32';
-import { stringSignatureDetect } from '~/libs/misc/stringSignatureDetect';
 
 const message = useMessage()
 const { t } = useI18n({
