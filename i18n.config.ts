@@ -53,7 +53,7 @@ export default defineI18nConfig(() => ({
                     },
                     base64: {
                         label: 'Base64 Encoding',
-                        description: 'Base64 encoding and decoding'
+                        description: 'Base64/Base32 encoding and decoding'
                     },
                 }
             },
@@ -110,7 +110,7 @@ export default defineI18nConfig(() => ({
                     },
                     base64: {
                         label: 'Base64 编码',
-                        description: 'Base64 编码和解码'
+                        description: 'Base64 和 Base32 的编码和解码'
                     },
                 }
             },
