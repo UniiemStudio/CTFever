@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { useMessage } from '~/composables/uni/useMessage';
 import base32 from '~/libs/encoding/base32';
+import { stringSignatureDetect } from '~/libs/misc/stringSignatureDetect';
 
 const message = useMessage()
 const { t } = useI18n({
@@ -15,18 +16,26 @@ const inputEncoded = ref('')
  * Todo: 2023年10月18日 重新实现 base64 函数库，不再使用 atob & btoa
  */
 const handleEncode = () => {
-  if (encodingType.value === 'base64') {
-    inputEncoded.value = btoa(inputDecoded.value)
-  } else if (encodingType.value === 'base32') {
-    inputEncoded.value = base32.encode(inputDecoded.value)
+  try {
+    if (encodingType.value === 'base64') {
+      inputEncoded.value = btoa(inputDecoded.value)
+    } else if (encodingType.value === 'base32') {
+      inputEncoded.value = base32.encode(inputDecoded.value)
+    }
+  } catch (e: any) {
+    message.error(e.message)
   }
 }
 
 const handleDecode = () => {
-  if (encodingType.value === 'base64') {
-    inputDecoded.value = atob(inputEncoded.value)
-  } else if (encodingType.value === 'base32') {
-    inputDecoded.value = base32.decode(inputEncoded.value)
+  try {
+    if (encodingType.value === 'base64') {
+      inputDecoded.value = atob(inputEncoded.value)
+    } else if (encodingType.value === 'base32') {
+      inputDecoded.value = base32.decode(inputEncoded.value)
+    }
+  } catch (e: any) {
+    message.error(e.message)
   }
 }
 </script>
@@ -34,7 +43,8 @@ const handleDecode = () => {
 <template>
   <ToolContainer>
     <div class="flex flex-col gap-4">
-      <UniTextArea v-model="inputDecoded" :min-rows="6" :label="t('decoded.label')" :placeholder="t('decoded.placeholder', {base: encodingType})" />
+      <UniTextArea v-model="inputDecoded" :min-rows="6" :label="t('decoded.label')"
+        :placeholder="t('decoded.placeholder', { base: encodingType })" />
       <div class="flex justify-between items-end gap-2">
         <UniSelect class="flex-1" :items="[
           { label: 'Base64', value: 'base64' },
@@ -49,7 +59,8 @@ const handleDecode = () => {
           </UniButton>
         </div>
       </div>
-      <UniTextArea v-model="inputEncoded" :min-rows="6" :label="encodingType" :placeholder="t('encoded.placeholder', { base: encodingType })" />
+      <UniTextArea v-model="inputEncoded" :min-rows="6" :label="encodingType"
+        :placeholder="t('encoded.placeholder', { base: encodingType })" />
     </div>
   </ToolContainer>
 </template>
