@@ -5,18 +5,45 @@ export const stringSignatureDetectors: {
     const regex = /^[A-Za-z0-9-_]+\.[A-Za-z0-9-_]+\.[A-Za-z0-9-_]*$/
     if (regex.test(s)) return {
       signature: 'jwt',
-      description: 'A Json-Web-Token'
+      description: 'Json Web Token'
     }
     return null
   },
   'base64': (s) => {
     const regex = /^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/
     if (regex.test(s)) return {
-        signature: 'base64',
-        description: 'A Base64 string'
-      }
+      signature: 'base64',
+      description: 'Base64 encoded'
+    }
     return null;
   },
+  'md5': (s) => {
+    const regex = /^[a-f0-9]{32}$/i
+    if (regex.test(s)) return {
+      signature: 'md5',
+      description: 'MD5 hash'
+    }
+    return null
+  },
+  'url-encoded': (s) => {
+    const regex = /%[0-9a-f]{2}/i
+    if (regex.test(s)) return {
+      signature: 'url-encoded',
+      description: 'URL encoded'
+    }
+    return null
+  },
+  'json': (s) => {
+    try {
+      JSON.parse(s)
+      return {
+        signature: 'json',
+        description: 'JSON'
+      }
+    } catch (e) {
+      return null
+    }
+  }
 }
 export type StringSignatureType = keyof typeof stringSignatureDetectors;
 

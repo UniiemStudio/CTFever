@@ -211,20 +211,29 @@ defineShortcuts({
             <Icon name="tabler:gps" class="text-xl" />
             <h1>{{ t('wizard') }}</h1>
           </div>
-          <p class="text-xs mt-2 text-neutral-400">当你有一个字符串但不知道如何开始时，可以使用此工具获取一些建议</p>
+          <p class="text-xs mt-2 text-neutral-400">
+            {{ t('wizardModal.tip') }}
+            <a class="text-blue-400">{{ t('wizardModal.how_it_works') }}</a>
+          </p>
         </template>
         <div class="flex flex-col gap-4">
-          <UniTextArea v-model="inputWizard" label="输入或粘贴文本" placeholder="任何可能被编码、加密过的文本" />
+          <UniTextArea v-model="inputWizard" :label="t('wizardModal.input_text')" :placeholder="t('wizardModal.placeholder')" />
+          <Transition name="wizard-result" mode="out-in">
+            <div v-if="!wizardSignatures.length && inputWizard" class="w-full rounded-lg p-4 flex flex-col justify-center items-center gap-2 bg-neutral-100 dark:bg-neutral-700">
+              <Icon name="twemoji:thinking-face" class="text-4xl" />
+              <h1 class="text-sm text-neutral-500 dark:text-neutral-300 font-bold">{{ t('wizardModal.no_signatures_detected') }}</h1>
+            </div>
+          </Transition>
           <Transition name="wizard-result" mode="out-in">
             <div v-if="wizardSignatures.length">
               <h1 class="block w-fit text-neutral-700 dark:text-neutral-300 text-sm font-bold font-['Nunito']">
-                包含下列特征
+                {{ t('wizardModal.contains_signatures') }}
               </h1>
               <ul class="mt-2 rounded-lg bg-neutral-100 dark:bg-slate-800 divide-y">
                 <li v-for="(signature, k) in wizardSignatures" :key="k" class="px-4 py-2">
                   <div class="flex justify-between items-center">
-                    <h1 class="font-bold dark:text-neutral-300">{{ signature.signature }}</h1>
-                    <p class="text-sm text-neutral-400">{{ signature.description }}</p>
+                    <h1 class="font-bold dark:text-neutral-300">{{ signature.description }}</h1>
+                    <p class="text-sm text-neutral-500">{{ signature.signature }}</p>
                   </div>
                 </li>
               </ul>
@@ -233,7 +242,7 @@ defineShortcuts({
           <Transition name="wizard-result" mode="out-in">
             <div v-if="relatedTools.length">
               <h1 class="block w-fit text-neutral-700 dark:text-neutral-300 text-sm font-bold font-['Nunito']">
-                可能用到的工具
+                {{ t('wizardModal.recommended_tools') }}
               </h1>
               <div class="mt-2 grid grid-cols-1 md:grid-cols-2" :class="{'!grid-cols-1': relatedTools.length === 1}">
                 <AppToolCard v-for="(t, k) in relatedTools" :tool="t" :key="k" />
@@ -292,8 +301,23 @@ defineShortcuts({
 en:
   search: Search
   wizard: Chars wizard
-
+  wizardModal:
+    tip: When you have a string but don't know how to start, you can use this tool to get some suggestions
+    how_it_works: How it works?
+    input_text: Input or paste text
+    placeholder: Any text that may have been encoded or encrypted
+    contains_signatures: Contains the following signatures
+    recommended_tools: Tools that may be used
+    no_signatures_detected: No signatures detected
 zh:
   search: 搜索
   wizard: 字符向导
+  wizardModal:
+    tip: 当你有一个字符串但不知道如何开始时，可以使用此工具获取一些建议
+    how_it_works: 如何运作?
+    input_text: 输入或粘贴文本
+    placeholder: 任何可能被编码、加密过的文本
+    contains_signatures: 包含下列特征
+    recommended_tools: 可能用到的工具
+    no_signatures_detected: 没有检测到特征
 </i18n>

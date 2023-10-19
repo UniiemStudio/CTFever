@@ -19,7 +19,8 @@ export const useConstant = defineStore('ctfever_stuff', () => {
                 {
                     key: 'urlEncoding',
                     route: '/tools/url-encoding',
-                    tags: [tags.charsProcess]
+                    tags: [tags.charsProcess],
+                    signatures: ['url-encoded']
                 },
                 {
                     key: 'base64',
