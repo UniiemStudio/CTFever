@@ -24,7 +24,8 @@ export const useConstant = defineStore('ctfever_stuff', () => {
                 {
                     key: 'base64',
                     route: '/tools/base64',
-                    tags: [tags.charsProcess]
+                    tags: [tags.charsProcess],
+                    signatures: ['base64']
                 },
             ]
         },

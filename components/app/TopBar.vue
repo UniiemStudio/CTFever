@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { storeToRefs } from 'pinia';
 import { useMessage } from '~/composables/uni/useMessage';
+import { stringSignatureDetect } from '~/libs/misc/stringSignatureDetect';
 
 const route = useRoute()
 const router = useRouter()
@@ -45,6 +46,23 @@ const commandPlatteGroups = computed(() => [
   { key: 'category', label: t('component.commandPlatte.groups.category'), commands: flattedToolkits.value },
   { key: 'tool', label: t('component.commandPlatte.groups.tool'), commands: flattedTools.value },
 ].filter(Boolean))
+
+const isCharsWizardOpen = ref(false)
+const inputWizard = debouncedRef('', 500)
+const wizardSignatures = ref<StringSignature[]>([])
+const relatedTools = computed(() => {
+  return wizardSignatures.value.flatMap(signature => {
+    return toolkits.value.flatMap(toolkit => toolkit.tools.filter(tool => tool.signatures?.includes(signature.signature)))
+  })
+})
+
+watch(() => inputWizard.value, (val) => {
+  if (val) {
+    wizardSignatures.value = stringSignatureDetect(val)
+  } else {
+    wizardSignatures.value = []
+  }
+})
 
 const handleCommandSelect = (option: any) => {
   if (option.click) {
@@ -115,7 +133,8 @@ defineShortcuts({
               {{ locale }}
             </option>
           </select>
-          <UniButton size="small" icon="tabler:gps" disabled>{{ t('wizard') }}</UniButton>
+          <UniButton size="small" icon="tabler:gps" @click="isCharsWizardOpen = !isCharsWizardOpen">{{ t('wizard') }}
+          </UniButton>
           <button @click="commandPlatteActive = true" class="items-center space-x-2 px-2 py-1 border border-neutral-300 bg-neutral-50 text-neutral-500 dark:border-neutral-600 hover:border-neutral-500 dark:hover:border-neutral-500
                    transition dark:bg-neutral-800 text-xs rounded-lg cursor-pointer whitespace-nowrap hidden md:flex">
             <Icon name="tabler:search" class="text-base" />
@@ -185,6 +204,45 @@ defineShortcuts({
         queryLabel: $t('component.commandPlatte.empty.queryLabel')
       }" :groups="commandPlatteGroups" @update:model-value="handleCommandSelect" />
     </UModal>
+    <UModal v-model="isCharsWizardOpen">
+      <UCard :ui="{ divide: 'divide-y divide-gray-100 dark:divide-gray-800' }">
+        <template #header>
+          <div class="flex items-center space-x-2">
+            <Icon name="tabler:gps" class="text-xl" />
+            <h1>{{ t('wizard') }}</h1>
+          </div>
+          <p class="text-xs mt-2 text-neutral-400">当你有一个字符串但不知道如何开始时，可以使用此工具获取一些建议</p>
+        </template>
+        <div class="flex flex-col gap-4">
+          <UniTextArea v-model="inputWizard" label="输入或粘贴文本" placeholder="任何可能被编码、加密过的文本" />
+          <Transition name="wizard-result" mode="out-in">
+            <div v-if="wizardSignatures.length">
+              <h1 class="block w-fit text-neutral-700 dark:text-neutral-300 text-sm font-bold font-['Nunito']">
+                包含下列特征
+              </h1>
+              <ul class="mt-2 rounded-lg bg-neutral-100 dark:bg-slate-800 divide-y">
+                <li v-for="(signature, k) in wizardSignatures" :key="k" class="px-4 py-2">
+                  <div class="flex justify-between items-center">
+                    <h1 class="font-bold dark:text-neutral-300">{{ signature.signature }}</h1>
+                    <p class="text-sm text-neutral-400">{{ signature.description }}</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </Transition>
+          <Transition name="wizard-result" mode="out-in">
+            <div v-if="relatedTools.length">
+              <h1 class="block w-fit text-neutral-700 dark:text-neutral-300 text-sm font-bold font-['Nunito']">
+                可能用到的工具
+              </h1>
+              <div class="mt-2 grid grid-cols-1 md:grid-cols-2" :class="{'!grid-cols-1': relatedTools.length === 1}">
+                <AppToolCard v-for="(t, k) in relatedTools" :tool="t" :key="k" />
+              </div>
+            </div>
+          </Transition>
+        </div>
+      </UCard>
+    </UModal>
   </div>
 </template>
 
@@ -216,6 +274,16 @@ defineShortcuts({
 
 .favorite-enter-from,
 .favorite-leave-to {
+  opacity: 0;
+}
+
+.wizard-result-enter-active,
+.wizard-result-leave-active {
+  transition: all .3s ease;
+}
+
+.wizard-result-enter-from,
+.wizard-result-leave-to {
   opacity: 0;
 }
 </style>
