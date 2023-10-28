@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { Message, MessageType } from '~/types/uni/message';
+import {Message, MessageType} from '~/types/uni/message';
 
 const props = defineProps({
   max: {
@@ -8,10 +8,11 @@ const props = defineProps({
   }
 })
 
+const nuxtApp = useNuxtApp()
 const messageList = ref<Message[]>([])
 
 const createMessage = (content: string, type: MessageType, duration: number = 3000) => {
-  const { max } = props
+  const {max} = props
   messageList.value.push({
     id: (Date.now() + Math.random() * 100).toString(32).toUpperCase(),
     content,
@@ -44,19 +45,21 @@ const api = {
   }
 }
 
-provide('uni-message-provider', providerApi)
-provide('uni-message', api)
+nuxtApp.vueApp.provide('uni-message-provider', providerApi)
+nuxtApp.vueApp.provide('uni-message', api)
 </script>
 
 <template>
-  <div id="message-provider">
-    <div class="message-wrapper">
-      <TransitionGroup name="message">
-        <UniMessage v-for="(message, k) in messageList" :key="message.id" :message="message" />
-      </TransitionGroup>
+  <slot/>
+  <teleport to="body">
+    <div id="message-provider">
+      <div class="message-wrapper">
+        <TransitionGroup name="message">
+          <UniMessage v-for="(message, k) in messageList" :key="message.id" :message="message"/>
+        </TransitionGroup>
+      </div>
     </div>
-    <slot />
-  </div>
+  </teleport>
 </template>
 
 <style scoped>
