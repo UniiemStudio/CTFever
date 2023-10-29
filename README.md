@@ -11,6 +11,8 @@
 
 **CTFever** (CTF Fevers) 是为 CTF [(什么是 CTF?)](https://baike.baidu.com/item/CTF) 发烧者准备的的常用工具套件，助你过关斩将、攻克难关。
 
+> CTFever 正在重构：[查看详情&参与讨论](https://github.com/UniiemStudio/CTFever/discussions/96)
+
 ## 使用
 
 **步骤 0：**[🚀c5r.app](https://c5r.app/)
