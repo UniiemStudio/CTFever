@@ -1,9 +1,15 @@
-import { defineStore, skipHydrate } from "pinia";
+import {defineStore} from "pinia";
 
 export const useConstant = defineStore('ctfever_stuff', () => {
     const tags = Object.freeze<{ [key: string]: Tag }>({
         charsProcess: {
             key: 'charactersProcessing',
+        },
+        generator: {
+            key: 'generator',
+        },
+        socialEngineering: {
+            key: 'socialEngineering',
         },
     })
     const toolkits = ref<Toolkit[]>([
@@ -28,6 +34,23 @@ export const useConstant = defineStore('ctfever_stuff', () => {
                     tags: [tags.charsProcess],
                     signatures: ['base64']
                 },
+                // {
+                //     key: 'utf8Conversion',
+                //     route: '/tools/utf8-conversion',
+                //     tags: [tags.charsProcess],
+                //     signatures: ['utf8']
+                // },
+            ]
+        },
+        {
+            key: 'misc',
+            icon: 'i-solar-code-line-duotone',
+            tools: [
+                {
+                    key: 'socialEngineeringDictGen',
+                    route: '/tools/social-engineering-dictionary-generator',
+                    tags: [tags.generator, tags.socialEngineering]
+                }
             ]
         },
     ])

@@ -30,7 +30,15 @@ export default defineI18nConfig(() => ({
                     charactersProcessing: {
                         label: 'Characters',
                         description: 'Various processing of characters and strings'
-                    }
+                    },
+                    generator: {
+                        label: 'Generator',
+                        description: 'Various generators'
+                    },
+                    socialEngineering: {
+                        label: 'Social Engineering',
+                        description: 'Social engineering tools'
+                    },
                 },
                 toolkit: {
                     encoding: {
@@ -40,7 +48,11 @@ export default defineI18nConfig(() => ({
                     cryptology: {
                         label: 'Cryptology',
                         description: 'Cryptology and algorithm tools'
-                    }
+                    },
+                    misc: {
+                        label: 'Misc',
+                        description: 'Miscellaneous tools'
+                    },
                 },
                 tool: {
                     ascii: {
@@ -54,6 +66,14 @@ export default defineI18nConfig(() => ({
                     base64: {
                         label: 'Base64 Encoding',
                         description: 'Base64/Base32 encoding and decoding'
+                    },
+                    utf8Conversion: {
+                        label: 'UTF8 Encoding',
+                        description: 'UTF-8 encoding and decoding'
+                    },
+                    socialEngineeringDictGen: {
+                        label: 'Social Engineering DictGen',
+                        description: 'Generate social engineering dictionary'
                     },
                 }
             },
@@ -87,7 +107,15 @@ export default defineI18nConfig(() => ({
                     charactersProcessing: {
                         label: '字符处理',
                         description: '字符和字符串的各种处理'
-                    }
+                    },
+                    generator: {
+                        label: '生成器',
+                        description: '各种生成器'
+                    },
+                    socialEngineering: {
+                        label: '社工',
+                        description: '社会工程学工具'
+                    },
                 },
                 toolkit: {
                     encoding: {
@@ -97,7 +125,11 @@ export default defineI18nConfig(() => ({
                     cryptology: {
                         label: '密码学',
                         description: '密码学和算法工具'
-                    }
+                    },
+                    misc: {
+                        label: '杂项',
+                        description: '各种奇奇怪怪的工具'
+                    },
                 },
                 tool: {
                     ascii: {
@@ -111,6 +143,14 @@ export default defineI18nConfig(() => ({
                     base64: {
                         label: 'Base64 编码',
                         description: 'Base64 和 Base32 的编码和解码'
+                    },
+                    utf8Conversion: {
+                        label: 'UTF8 编码',
+                        description: 'UTF-8 编码和解码'
+                    },
+                    socialEngineeringDictGen: {
+                        label: '社工字典生成器',
+                        description: '利用一些信息生成密码字典'
                     },
                 }
             },
