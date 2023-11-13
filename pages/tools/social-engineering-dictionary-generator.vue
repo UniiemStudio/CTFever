@@ -1,4 +1,8 @@
 <script setup lang="ts">
+const { t } = useI18n({
+  useScope: 'local'
+})
+
 const formValue = ref({
   firstName: '',
   secondName: '',
@@ -227,120 +231,253 @@ const handleDownload = () => {
 
 <template>
   <ToolContainer>
-    <UAlert
-        class="mb-4"
-        icon="i-tabler-clipboard-text"
-        title="所有项目都是选填，将已有的信息全部填入即可，尽量减少无效输入"
-    />
-    <UAlert
-        class="mb-4"
-        icon="i-solar-shield-minimalistic-bold-duotone"
-        color="primary"
-        variant="subtle"
-        title="不用担心"
-        description="你的数据是安全的，所有数据均在本地处理，不会被发送到任何服务器上，也不会访问任何外部资源"
-    />
+    <UAlert class="mb-4" icon="i-tabler-clipboard-text" title="所有项目都是选填，将已有的信息全部填入即可，尽量减少无效输入" />
+    <UAlert class="mb-4" icon="i-solar-shield-minimalistic-bold-duotone" color="primary" variant="subtle" title="不用担心"
+      description="你的数据是安全的，所有数据均在本地处理，不会被发送到任何服务器上，也不会访问任何外部资源" />
     <div class="flex flex-col gap-8 md:gap-4">
-      <UDivider label="基本信息"/>
+      <UDivider label="基本信息" />
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <UniInput v-model="formValue.firstName" placeholder="姓氏拼音或英文" label="姓氏(英文)"/>
-        <UniInput v-model="formValue.secondName" placeholder="名的第一个字" label="名第一位(英文)"/>
-        <UniInput v-model="formValue.thirdName" placeholder="名的第二个字(如果有)" label="名第二位(英文)"/>
+        <UniInput v-model="formValue.firstName" :placeholder="t('form.last_name.placeholder')"
+          :label="t('form.last_name.label')" />
+        <UniInput v-model="formValue.secondName" placeholder="名的第一个字" :label="t('form.middle_name.label')" />
+        <UniInput v-model="formValue.thirdName" placeholder="名的第二个字(如果有)" :label="t('form.first_name.label')" />
       </div>
       <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-        <UniInput v-model="formValue.birthday" label="生日" type="date"/>
-        <UniInput v-model="formValue.birthdayLunar" label="生日(农历/备选)" type="date"/>
-        <UniInput v-model="formValue.recentYear" label="最近年份" placeholder="倒推一定量的年份" type="number"/>
+        <UniInput v-model="formValue.birthday" label="生日" type="date" />
+        <UniInput v-model="formValue.birthdayLunar" label="生日(农历/备选)" type="date" />
+        <UniInput v-model="formValue.recentYear" label="最近年份" placeholder="倒推一定量的年份" type="number" />
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <UniInput v-model="formValue.phone" placeholder="请输入手机号码" label="手机号"/>
-        <UniInput v-model="formValue.tel" placeholder="请输入座机号码(不需要短横线)" label="座机号"/>
-        <UniInput v-model="formValue.email" label="邮箱" placeholder="请输入邮箱" type="email"/>
+        <UniInput v-model="formValue.phone" placeholder="请输入手机号码" label="手机号" />
+        <UniInput v-model="formValue.tel" placeholder="请输入座机号码(不需要短横线)" label="座机号" />
+        <UniInput v-model="formValue.email" label="邮箱" placeholder="请输入邮箱" type="email" />
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <UniInput v-model="formValue.username" placeholder="常用的用户名(英文)" label="用户名"/>
-        <UniInput v-model="formValue.account" placeholder="例如QQ号等" label="用户账号"/>
+        <UniInput v-model="formValue.username" placeholder="常用的用户名(英文)" label="用户名" />
+        <UniInput v-model="formValue.account" placeholder="例如QQ号等" label="用户账号" />
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <UniInput v-model="formValue.organization" placeholder="请输入组织名英文" label="组织名"/>
-        <UniInput v-model="formValue.company" placeholder="请输入公司名英文" label="公司名"/>
+        <UniInput v-model="formValue.organization" placeholder="请输入组织名英文" label="组织名" />
+        <UniInput v-model="formValue.company" placeholder="请输入公司名英文" label="公司名" />
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <UniInput v-model="formValue.idCard" label="身份证号" placeholder="请输入身份证号"/>
-        <UniInput v-model="formValue.employeeId" label="工号" placeholder="请输入工号/学号"/>
+        <UniInput v-model="formValue.idCard" label="身份证号" placeholder="请输入身份证号" />
+        <UniInput v-model="formValue.employeeId" label="工号" placeholder="请输入工号/学号" />
       </div>
 
-      <UDivider label="习惯信息"/>
+      <UDivider label="习惯信息" />
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <UniInput v-model="formValue.phrase" placeholder="请输入短语(英文),多个用逗号分隔,如: iloveyou,bingo"
-                  label="常用短语" class="md:col-span-2"/>
+        <UniInput v-model="formValue.phrase" placeholder="请输入短语(英文),多个用逗号分隔,如: iloveyou,bingo" label="常用短语"
+          class="md:col-span-2" />
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <UniInput v-model="formValue.common" placeholder="请输入常用词组,多个用逗号分隔" label="常用词组"
-                  class="md:col-span-2"/>
+        <UniInput v-model="formValue.common" placeholder="请输入常用词组,多个用逗号分隔" label="常用词组" class="md:col-span-2" />
       </div>
 
-      <UDivider label="生成规则"/>
+      <UDivider label="生成规则" />
 
       <div class="grid grid-cols-3">
         <div class="flex items-center gap-2 col-span-3 md:col-span-2">
-          <UniInput v-model="formValue.minLength" label="密码长度不小于" type="number" class="flex-1"/>
-          <UniInput v-model="formValue.maxLength" label="密码长度不大于" type="number" class="flex-1"/>
+          <UniInput v-model="formValue.minLength" label="密码长度不小于" type="number" class="flex-1" />
+          <UniInput v-model="formValue.maxLength" label="密码长度不大于" type="number" class="flex-1" />
         </div>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <UniInput v-model="formValue.separator" placeholder="请输入连接符(如.!_-#@),过多的连接符会大幅增加密码数量"
-                  label="连接符" class="md:col-span-2"/>
+        <UniInput v-model="formValue.separator" placeholder="请输入连接符(如.!_-#@),过多的连接符会大幅增加密码数量" label="连接符"
+          class="md:col-span-2" />
         <div class="col-span-2 flex gap-2">
           <div class="flex items-center gap-2">
             <span>左</span>
-            <UniToggle v-model="formValue.separatorLeft" size="sm"/>
+            <UniToggle v-model="formValue.separatorLeft" size="sm" />
           </div>
           <div class="flex items-center gap-2">
             <span>中</span>
-            <UniToggle v-model="formValue.separatorMiddle" size="sm"/>
+            <UniToggle v-model="formValue.separatorMiddle" size="sm" />
           </div>
           <div class="flex items-center gap-2">
             <span>右</span>
-            <UniToggle v-model="formValue.separatorRight" size="sm"/>
+            <UniToggle v-model="formValue.separatorRight" size="sm" />
           </div>
         </div>
       </div>
       <div class="col-span-2 flex gap-2">
         <div class="flex items-center gap-2">
           <span>首字母大写</span>
-          <UniToggle v-model="formValue.camelCase" size="sm"/>
+          <UniToggle v-model="formValue.camelCase" size="sm" />
         </div>
         <div class="flex items-center gap-2">
           <span>全小写</span>
-          <UniToggle v-model="formValue.lowerCase" size="sm"/>
+          <UniToggle v-model="formValue.lowerCase" size="sm" />
         </div>
         <div class="flex items-center gap-2">
           <span>全大写</span>
-          <UniToggle v-model="formValue.upperCase" size="sm"/>
+          <UniToggle v-model="formValue.upperCase" size="sm" />
         </div>
       </div>
       <div class="col-span-2 flex gap-2">
         <div class="flex items-center gap-2">
           <span>排除纯数字</span>
-          <UniToggle v-model="formValue.excludeFullNumber" size="sm"/>
+          <UniToggle v-model="formValue.excludeFullNumber" size="sm" />
         </div>
         <div class="flex items-center gap-2">
           <span>排除纯字母</span>
-          <UniToggle v-model="formValue.excludeFullLetter" size="sm"/>
+          <UniToggle v-model="formValue.excludeFullLetter" size="sm" />
         </div>
       </div>
 
-      <UDivider label="操作"/>
+      <UDivider label="操作" />
 
       <div class="flex flex-row gap-4">
-        <UniButton type="primary" @click="handleDownload">生成并下载</UniButton>
-        <UniButton disabled @click="handleGenerate">生成并查看</UniButton>
+        <UniButton type="primary" @click="handleDownload">
+          {{ t('form.generate_and_download') }}
+        </UniButton>
+        <UniButton disabled @click="handleGenerate">
+          {{ t('form.generate_and_view') }}
+        </UniButton>
       </div>
     </div>
   </ToolContainer>
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>
+
+<i18n lang="yaml">
+en:
+  form:
+    last_name:
+      label: Last Name
+      placeholder: Last Name
+    middle_name:
+      label: Middle Name
+      placeholder: Middle Name
+    first_name:
+      label: First Name
+      placeholder: First Name
+    birthday:
+      label: Birthday
+      placeholder: Birthday
+    birthday_lunar:
+      label: Birthday(Lunar)
+      placeholder: Birthday(Lunar)
+    recent_year:
+      label: Recent Year
+      placeholder: Push back a certain amount of years
+    phone:
+      label: Phone
+      placeholder: Input phone Number
+    tel:
+      label: Tel
+      placeholder: Input tel Number
+    email:
+      label: Email
+      placeholder: Input email address
+    username:
+      label: Username
+      placeholder: Input username
+    account:
+      label: Account
+      placeholder: Input account
+    organization:
+      label: Organization
+      placeholder: Input organization
+    company:
+      label: Company
+      placeholder: Input company
+    id_card:
+      label: ID Card Number
+      placeholder: Input ID Card Number
+    employee_id:
+      label: Employee ID
+      placeholder: Input employee ID
+    phrase:
+      label: Phrase
+      placeholder: "Input phrase, separated by commas, such as: iloveyou,bingo"
+    common:
+      label: Common
+      placeholder: Input common words, separated by commas
+    min_length:
+      label: Min Length
+    max_length:
+      label: Max Length
+    separator:
+      label: Separator
+      placeholder: "Separator (such as.!_-#), too many separators will greatly increase the number of passwords"
+    separator_left: Left
+    separator_middle: Middle
+    separator_right: Right
+    camel_case: Capitalize
+    lower_case: Lower Case
+    upper_case: Upper Case
+    exclude_full_number: Exclude Full Number
+    exclude_full_letter: Exclude Full Letter
+    generate_and_download: Generate and Download
+    generate_and_view: Generate and View
+zh:
+  form:
+    last_name:
+      label: 姓氏(英文)
+      placeholder: 姓氏拼音或英文
+    middle_name:
+      label: 名第一位(英文)
+      placeholder: 名的第一个字
+    first_name:
+      label: 名第二位(英文)
+      placeholder: 名的第二个字(如果有)
+    birthday:
+      label: 生日
+      placeholder: 生日
+    birthday_lunar:
+      label: 生日(农历/备选)
+      placeholder: 生日(农历/备选)
+    recent_year:
+      label: 最近年份
+      placeholder: 倒推一定量的年份
+    phone:
+      label: 手机号
+      placeholder: 请输入手机号码
+    tel:
+      label: 座机号
+      placeholder: 请输入座机号码(不需要短横线)
+    email:
+      label: 邮箱
+      placeholder: 请输入邮箱
+    username:
+      label: 用户名
+      placeholder: 常用的用户名(英文)
+    account:
+      label: 用户账号
+      placeholder: 例如QQ号等
+    organization:
+      label: 组织名
+      placeholder: 请输入组织名英文
+    company:
+      label: 公司名
+      placeholder: 请输入公司名英文
+    id_card:
+      label: 身份证号
+      placeholder: 请输入身份证号
+    employee_id:
+      label: 工号
+      placeholder: 请输入工号/学号
+    phrase:
+      label: 常用短语
+      placeholder: "请输入短语(英文),多个用逗号分隔,如: iloveyou,bingo"
+    common:
+      label: 常用词组
+      placeholder: 请输入常用词组,多个用逗号分隔
+    min_length:
+      label: 密码长度不小于
+    max_length:
+      label: 密码长度不大于
+    separator_left: 左
+    separator_middle: 中
+    separator_right: 右
+    camel_case: 首字母大写
+    lower_case: 全小写
+    upper_case: 全大写
+    exclude_full_number: 排除纯数字
+    exclude_full_letter: 排除纯字母
+    generate_and_download: 生成并下载
+    generate_and_view: 生成并查看
+</i18n>
