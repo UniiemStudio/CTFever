@@ -1,6 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-    devtools: {enabled: true},
+    devtools: { enabled: true },
     runtimeConfig: {
         public: {
             appName: 'CTFever',
@@ -45,7 +45,20 @@ export default defineNuxtConfig({
         preference: 'system'
     },
     i18n: {
-        locales: ['en', 'zh'],
+        locales: [
+            {
+                code: 'en',
+                iso: 'en-US',
+                name: 'English',
+                icon: 'twemoji:flag-united-states'
+            },
+            {
+                code: 'zh',
+                iso: 'zh-CN',
+                name: '简体中文',
+                icon: 'twemoji:flag-china'
+            },
+        ],
         defaultLocale: 'zh',
         customBlocks: {
             defaultSFCLang: 'yaml'

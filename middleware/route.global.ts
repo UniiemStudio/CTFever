@@ -5,9 +5,11 @@ function removeLanguagePrefix(path: string) {
 
 export default defineNuxtRouteMiddleware((to, from) => {
   const globalState = useGlobalState()
-  const toRoot = (to.name?.valueOf() as string).split('-')[0]
-  if (toRoot) {
-    globalState.isOnToolPage = (toRoot === 'tools')
-    globalState.currentTool = useConstant().getToolByPath(removeLanguagePrefix(to.path))
+  if(to.name) {
+    const toRoot = (to.name?.valueOf() as string).split('-')[0]
+    if (toRoot) {
+      globalState.isOnToolPage = (toRoot === 'tools')
+      globalState.currentTool = useConstant().getToolByPath(removeLanguagePrefix(to.path))
+    }
   }
 })

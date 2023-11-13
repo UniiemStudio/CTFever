@@ -8,7 +8,7 @@ const props = defineProps({
   },
   modelValue: {
     type: [String, Number],
-    required: true
+    required: false
   },
   items: {
     type: Array as PropType<SelectItem[]>,

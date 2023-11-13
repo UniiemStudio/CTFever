@@ -123,7 +123,7 @@ defineShortcuts({
           </div>
         </NuxtLinkLocale>
         <div class="flex items-center space-x-4">
-          <select v-model="$colorMode.preference">
+          <!-- <select v-model="$colorMode.preference">
             <option value="system">系统</option>
             <option value="light">亮色</option>
             <option value="dark">暗色</option>
@@ -132,7 +132,7 @@ defineShortcuts({
             <option v-for="(locale, k) in availableLocales" :key="k" :value="locale">
               {{ locale }}
             </option>
-          </select>
+          </select> -->
           <UniButton size="small" icon="tabler:gps" @click="isCharsWizardOpen = !isCharsWizardOpen">{{ t('wizard') }}
           </UniButton>
           <button @click="commandPlatteActive = true" class="items-center space-x-2 px-2 py-1 border border-neutral-300 bg-neutral-50 text-neutral-500 dark:border-neutral-600 hover:border-neutral-500 dark:hover:border-neutral-500
