@@ -5,6 +5,10 @@ const props = defineProps({
     type: String as PropType<ButtonType>,
     default: 'normal'
   },
+  attrType: {
+    type: String as PropType<'button' | 'submit' | 'reset'>,
+    default: 'button'
+  },
   size: {
     type: String as PropType<ButtonSize>,
     default: 'base'
@@ -48,12 +52,13 @@ const handleClick = (e: any) => {
 </script>
 
 <template>
-  <button class="w-fit flex items-center rounded-md font-bold border shadow-sm transition focus:ring-4" :class="{
+  <button class="w-fit flex justify-center items-center rounded-md font-bold border shadow-sm transition focus:ring-4"
+          :class="{
     'w-full': block,
     'uni-button--disabled': disabled || loading,
     [buttonTypeClass]: buttonTypeClass,
     [buttonSizeClass]: buttonSizeClass,
-  }" @click="handleClick" :disabled="disabled || loading">
+  }" @click="handleClick" :disabled="disabled || loading" :type="attrType">
     <Transition name="icon">
       <UniIconSpinner v-if="loading" />
       <Icon v-else-if="buttonIcon" :name="buttonIcon" :key="buttonIcon" />

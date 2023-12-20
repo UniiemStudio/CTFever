@@ -1,12 +1,57 @@
 <script lang="ts" setup>
-import { LocaleObject } from '@nuxtjs/i18n/dist/runtime/composables';
+import {LocaleObject} from '@nuxtjs/i18n/dist/runtime/composables';
+import {RouteLocationRaw} from "vue-router";
+import {InferType, object, string} from "yup";
+import {FormSubmitEvent} from "#ui/types";
+import {useMessage} from "~/composables/uni/useMessage";
 
+const route = useRoute()
 const router = useRouter()
+const message = useMessage()
+const runtimeConfig = useRuntimeConfig()
+const localeRoute = useLocaleRoute()
 const switchLocalePath = useSwitchLocalePath()
-const { locale, locales } = useI18n()
-const { t } = useI18n({
+const {locale, locales} = useI18n()
+const {t} = useI18n({
   useScope: 'local'
 })
+
+const modal = reactive({
+  login: false,
+  register: false
+})
+
+const loading = ref(false)
+
+const schema = object({
+  username: string().required('Username is required'),
+  password: string()
+      .min(6, 'Must be at least 6 characters')
+      .required('Password is required')
+})
+
+type Schema = InferType<typeof schema>
+
+const state = reactive({
+  username: undefined,
+  password: undefined
+})
+
+const onSubmit = async (e: FormSubmitEvent<Schema>) => {
+  loading.value = true
+  useFetch(`${runtimeConfig.public.apiBase}/v1/users/login`, {
+    method: 'POST',
+    body: e.data,
+    watch: false
+  }).then(res => {
+    console.log(res.data.value);
+    message.success(`user[${res.data.value?.data?.token}] logged in!`)
+    loading.value = false
+  }).catch(e => {
+    message.error(e.message)
+    loading.value = false
+  })
+}
 
 const colorModeOptions = [
   {
@@ -26,12 +71,12 @@ const colorModeOptions = [
   },
 ]
 
-interface ExtentedLocaleObject extends LocaleObject {
+interface ExtendedLocaleObject extends LocaleObject {
   icon: string
 }
 
 const localeOptions = locales.value.map(locale => {
-  locale = locale as ExtentedLocaleObject
+  locale = locale as ExtendedLocaleObject
   return {
     value: locale.code,
     label: locale.name as string,
@@ -47,21 +92,30 @@ const selectedLocale = ref(locale.value as string)
 watch(selectedLocale, handleLocaleSelect)
 
 const select = ref(false)
+
+const handleLogin = () => {
+  router.push(localeRoute({
+    name: 'user-login',
+    query: {
+      redirect: route.fullPath
+    }
+  }) as RouteLocationRaw)
+}
 </script>
 
 <template>
   <ToolContainer>
     <AppSettingsArea :title="t('appearance.label')" icon="tabler:layout">
       <AppSettingsItem :title="t('appearance.language.label')">
-        <UniSelect :items="localeOptions" v-model="selectedLocale" size="sm" />
+        <UniSelect :items="localeOptions" v-model="selectedLocale" size="sm"/>
       </AppSettingsItem>
       <AppSettingsItem :title="t('appearance.color_mode.label')">
-        <UniSelect :items="colorModeOptions" v-model="$colorMode.preference" size="sm" />
+        <UniSelect :items="colorModeOptions" v-model="$colorMode.preference" size="sm"/>
       </AppSettingsItem>
     </AppSettingsArea>
     <AppSettingsArea :title="t('account.label')" icon="tabler:user-square-rounded">
       <AppSettingsItem :title="t('account.login.not_logged_in')" :subtitle="t('account.login.subtitle')">
-        <UniButton disabled>{{ t('account.login.btn_login') }}</UniButton>
+        <UniButton @click="modal.login = true">{{ t('account.login.btn_login') }}</UniButton>
       </AppSettingsItem>
     </AppSettingsArea>
     <!-- <AppSettingsArea :title="t('cloud_sync.label')" icon="tabler:cloud">
@@ -69,6 +123,35 @@ const select = ref(false)
         <UniToggle v-model="select" size="sm" />
       </AppSettingsItem>
     </AppSettingsArea> -->
+
+    <UModal v-model="modal.login">
+      <UCard :ui="{ ring: '', divide: 'divide-y divide-gray-100 dark:divide-gray-800' }">
+        <template #header>
+          <div class="flex items-center justify-between">
+            <h3 class="text-base font-semibold leading-6 text-gray-900 dark:text-white">
+              登陆 CTFever
+            </h3>
+            <UButton color="gray" variant="ghost" icon="i-heroicons-x-mark-20-solid" class="-my-1"
+                     @click="modal.login = false"/>
+          </div>
+        </template>
+
+        <UForm class="space-y-2" :schema="schema" :state="state" @submit="onSubmit">
+          <UFormGroup name="username">
+            <!-- <UInput :disabled="loading" v-model="state.username" placeholder="用户名" size="xl" /> -->
+            <UniInput :disabled="loading" v-model="state.username" placeholder="用户名"/>
+          </UFormGroup>
+          <UFormGroup name="password">
+            <!-- <UInput :disabled="loading" v-model="state.password" type="password" placeholder="密码" size="xl" /> -->
+            <UniInput :disabled="loading" v-model="state.password" type="password" placeholder="密码"/>
+          </UFormGroup>
+          <UniButton block :loading="loading" attr-type="submit">
+            登陆
+          </UniButton>
+        </UForm>
+
+      </UCard>
+    </UModal>
   </ToolContainer>
 </template>
 

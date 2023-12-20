@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import {PropType} from 'nuxt/dist/app/compat/capi';
+
 const emit = defineEmits(['input', 'change', 'update:modelValue'])
 const props = defineProps({
   label: {
@@ -7,7 +9,7 @@ const props = defineProps({
     default: ''
   },
   modelValue: {
-    type: [String, Number],
+    type: [String, Number] as PropType<string | number | undefined>,
     required: true
   },
   placeholder: {

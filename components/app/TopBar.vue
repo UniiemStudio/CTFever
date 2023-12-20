@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { storeToRefs } from 'pinia';
-import { useMessage } from '~/composables/uni/useMessage';
-import { stringSignatureDetect } from '~/libs/misc/stringSignatureDetect';
+import {storeToRefs} from 'pinia';
+import {useMessage} from '~/composables/uni/useMessage';
+import {stringSignatureDetect} from '~/libs/misc/stringSignatureDetect';
 
 const route = useRoute()
 const router = useRouter()
@@ -116,7 +116,7 @@ defineShortcuts({
       <div class="flex items-center justify-between container mx-auto">
         <NuxtLinkLocale to="/">
           <div class="flex items-center space-x-2.5">
-            <img src="/icon.svg" class="w-6 h-6" alt="CTFever Logo">
+            <AppLogo for="navbar"/>
             <Transition name="title" mode="out-in">
               <h1 :key="currentPageTitle" class="whitespace-nowrap">{{ currentPageTitle }}</h1>
             </Transition>

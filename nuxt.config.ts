@@ -5,7 +5,8 @@ export default defineNuxtConfig({
         public: {
             appName: 'CTFever',
             appTitleTemplate: '%s - CTFever',
-        }
+            apiBase: 'http://localhost:8080',
+        },
     },
     css: [
         '~/assets/css/transitions.scss',
