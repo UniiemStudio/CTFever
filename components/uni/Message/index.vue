@@ -1,13 +1,13 @@
 <script lang="ts" setup>
-import {Message, MessageProviderApi} from '~/types/uni/message';
+import type { Message, MessageProviderApi } from './type'
 
 const providerApi = inject<MessageProviderApi>('uni-message-provider')
 
 const props = defineProps({
   message: {
     require: true,
-    type: Object
-  }
+    type: Object,
+  },
 })
 
 const message = ref<Message>(props.message as Message)
@@ -15,7 +15,7 @@ const message = ref<Message>(props.message as Message)
 onMounted(() => {
   setTimeout(() => {
     providerApi?.destroy(message.value.id)
-  }, message.value?.duration || 3000);
+  }, message.value?.duration || 3000)
 })
 </script>
 
@@ -27,10 +27,10 @@ onMounted(() => {
     '!text-rose-500 !border-rose-400 !bg-rose-50': message.type === 'error',
     [message.type]: message.type
   }">
-    <UniIconCircleSuccess v-if="message.type === 'success'" class="text-xl" />
-    <UniIconCircleWarning v-if="message.type === 'warning'" class="text-xl" />
-    <UniIconCircleError v-if="message.type === 'error'" class="text-xl" />
-    <UniIconCircleInfo v-if="message.type === 'info'" class="text-xl" />
+    <UniIconCircleSuccess v-if="message.type === 'success'" class="text-xl"/>
+    <UniIconCircleWarning v-if="message.type === 'warning'" class="text-xl"/>
+    <UniIconCircleError v-if="message.type === 'error'" class="text-xl"/>
+    <UniIconCircleInfo v-if="message.type === 'info'" class="text-xl"/>
     <span>
       {{ message.content }}
     </span>

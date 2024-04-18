@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import {PropType} from "@vue/runtime-core";
-
 const props = defineProps({
   for: {
     type: String as PropType<'navbar' | 'page'>,

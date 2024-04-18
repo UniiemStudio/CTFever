@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import {LocaleObject} from '@nuxtjs/i18n/dist/runtime/composables';
-import {RouteLocationRaw} from "vue-router";
-import {InferType, object, string} from "yup";
-import {FormSubmitEvent} from "#ui/types";
-import {useMessage} from "~/composables/uni/useMessage";
+import { type InferType, object, string } from 'yup'
+import { useMessage } from '~/composables/uni/useMessage'
+import type { FormSubmitEvent } from '#ui/types'
+import type { LocaleObject } from '@nuxtjs/i18n'
+import type { RouteLocationRaw } from 'vue-router'
 
 const route = useRoute()
 const router = useRouter()
@@ -115,14 +115,14 @@ const handleLogin = () => {
     </AppSettingsArea>
     <AppSettingsArea :title="t('account.label')" icon="tabler:user-square-rounded">
       <AppSettingsItem :title="t('account.login.not_logged_in')" :subtitle="t('account.login.subtitle')">
-        <UniButton @click="modal.login = true">{{ t('account.login.btn_login') }}</UniButton>
+        <UniButton @click="modal.login = true" disabled>{{ t('account.login.btn_login') }}</UniButton>
       </AppSettingsItem>
     </AppSettingsArea>
-    <!-- <AppSettingsArea :title="t('cloud_sync.label')" icon="tabler:cloud">
-      <AppSettingsItem :title="t('cloud_sync.enable.title')" :subtitle="t('cloud_sync.enable.subtitle')">
-        <UniToggle v-model="select" size="sm" />
-      </AppSettingsItem>
-    </AppSettingsArea> -->
+    <!--    <AppSettingsArea :title="t('cloud_sync.label')" icon="tabler:cloud">-->
+    <!--      <AppSettingsItem :title="t('cloud_sync.enable.title')" :subtitle="t('cloud_sync.enable.subtitle')">-->
+    <!--        <UniToggle v-model="select" size="sm" />-->
+    <!--      </AppSettingsItem>-->
+    <!--    </AppSettingsArea>-->
 
     <UModal v-model="modal.login">
       <UCard :ui="{ ring: '', divide: 'divide-y divide-gray-100 dark:divide-gray-800' }">

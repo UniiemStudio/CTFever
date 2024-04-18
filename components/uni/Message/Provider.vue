@@ -1,23 +1,23 @@
 <script lang="ts" setup>
-import {Message, MessageType} from '~/types/uni/message';
+import type { Message, MessageType } from './type'
 
 const props = defineProps({
   max: {
     type: Number,
-    default: 5
-  }
+    default: 5,
+  },
 })
 
 const nuxtApp = useNuxtApp()
 const messageList = ref<Message[]>([])
 
 const createMessage = (content: string, type: MessageType, duration: number = 3000) => {
-  const {max} = props
+  const { max } = props
   messageList.value.push({
     id: (Date.now() + Math.random() * 100).toString(32).toUpperCase(),
     content,
     type,
-    duration
+    duration,
   })
   if (messageList.value.length > max) {
     messageList.value.shift()
@@ -27,7 +27,7 @@ const createMessage = (content: string, type: MessageType, duration: number = 30
 const providerApi = {
   destroy: (id: string) => {
     messageList.value.splice(messageList.value.findIndex(message => message.id === id), 1)
-  }
+  },
 }
 
 const api = {
@@ -42,7 +42,7 @@ const api = {
   },
   error: (content: string, duration: number = 3000) => {
     createMessage(content, 'error', duration)
-  }
+  },
 }
 
 nuxtApp.vueApp.provide('uni-message-provider', providerApi)
@@ -63,7 +63,8 @@ nuxtApp.vueApp.provide('uni-message', api)
 </template>
 
 <style scoped>
-#message-provider .message-wrapper {
+#message-provider
+.message-wrapper {
   @apply z-[50000] fixed inset-0 flex flex-col items-center pointer-events-none;
 }
 
