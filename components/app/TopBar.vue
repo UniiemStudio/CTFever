@@ -9,8 +9,8 @@ const { t } = useI18n({
   useScope: 'local',
 })
 const localePath = useLocalePath()
-const { $t_toolkit, $t_tool } = useNuxtApp()
-const { addFavorite, removeFavorite } = useConstant()
+const { $t_toolkit, $t_tool, $t_tag } = useNuxtApp()
+const { addFavorite, removeFavorite, tags } = useConstant()
 const { toolkits, favorites } = storeToRefs(useConstant())
 const { metaSymbol } = useShortcuts()
 
@@ -39,8 +39,43 @@ const flattedTools = computed(() => toolkits.value.flatMap(toolkit => toolkit.to
   }
 })))
 const commandPlatteGroups = computed(() => [
-  { key: 'category', label: t('component.commandPlatte.groups.category'), commands: flattedToolkits.value },
-  { key: 'tool', label: t('component.commandPlatte.groups.tool'), commands: flattedTools.value },
+  // {
+  //   key: 'category',
+  //   label: t('component.commandPlatte.groups.category'),
+  //   commands: flattedToolkits.value,
+  // },
+  {
+    key: 'common',
+    label: t('component.commandPlatte.groups.common'),
+    commands: [
+      {
+        id: 'wizard',
+        label: t('wizard'),
+        click: () => {
+          commandPlatteActive.value = false
+          isCharsWizardOpen.value = true
+        },
+        icon: 'i-tabler-compass',
+      },
+    ],
+  },
+  {
+    key: 'tag',
+    label: t('component.commandPlatte.groups.tag'),
+    commands: Object.keys(tags).map(tag => {
+      return {
+        id: tag,
+        label: $t_tag(tag).label,
+        route: localePath(`/tag/${ tag }`),
+        icon: 'i-tabler-tag',
+      }
+    }),
+  },
+  {
+    key: 'tool',
+    label: t('component.commandPlatte.groups.tool'),
+    commands: flattedTools.value,
+  },
 ].filter(Boolean))
 
 const isCharsWizardOpen = ref(false)
@@ -115,13 +150,11 @@ defineShortcuts({
           </div>
         </NuxtLinkLocale>
         <div class="flex items-center space-x-4">
-          <!-- TODO: enable this -->
-          <!--<UniButton size="small" icon="tabler:gps" @click="isCharsWizardOpen = !isCharsWizardOpen">-->
-          <!--  {{ t('wizard') }}-->
-          <!--</UniButton>-->
           <DevOnly>
-            <UniButton size="medium" @click="$colorMode.preference = $colorMode.preference === 'dark' ? 'light' : 'dark'">
-              <Icon class="text-lg" :name="$colorMode.preference === 'dark' ? 'line-md:sunny-outline-to-moon-alt-loop-transition' : 'line-md:moon-alt-to-sunny-outline-loop-transition'"/>
+            <UniButton size="medium"
+                       @click="$colorMode.preference = $colorMode.preference === 'dark' ? 'light' : 'dark'">
+              <Icon class="text-lg"
+                    :name="$colorMode.preference === 'dark' ? 'line-md:sunny-outline-to-moon-alt-loop-transition' : 'line-md:moon-alt-to-sunny-outline-loop-transition'"/>
             </UniButton>
           </DevOnly>
           <button @click="commandPlatteActive = true" class="items-center space-x-2 px-2 py-1 border border-neutral-300 bg-neutral-50 text-neutral-500 dark:border-neutral-600 hover:border-neutral-500 dark:hover:border-neutral-500
@@ -237,7 +270,15 @@ defineShortcuts({
                 {{ t('wizardModal.recommended_tools') }}
               </h1>
               <div class="mt-2 grid grid-cols-1 md:grid-cols-2" :class="{'!grid-cols-1': relatedTools.length === 1}">
-                <AppToolCard v-for="(t, k) in relatedTools" :tool="t" :key="k"/>
+                <AppToolCard
+                  v-for="(t, k) in relatedTools"
+                  :tool="t"
+                  :key="k"
+                  @click="() => {
+                    inputWizard = ''
+                    isCharsWizardOpen = false
+                  }"
+                />
               </div>
             </div>
           </Transition>

@@ -34,7 +34,7 @@ export default defineNuxtConfig({
     plugins: ['utc', 'timezone', 'relativeTime'],
   },
   ui: {
-    icons: ['solar', 'tabler', 'svg-spinners'],
+    icons: ['solar', 'tabler', 'svg-spinners', 'twemoji'],
   },
   colorMode: {
     preference: 'system',

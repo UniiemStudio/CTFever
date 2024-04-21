@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 
 export const useConstant = defineStore('ctfever_stuff', () => {
   const tags = Object.freeze<{ [key: string]: Tag }>({
-    charsProcess: {
+    charactersProcessing: {
       key: 'charactersProcessing',
     },
     generator: {
@@ -20,24 +20,24 @@ export const useConstant = defineStore('ctfever_stuff', () => {
         {
           key: 'ascii',
           route: '/tools/ascii',
-          tags: [tags.charsProcess],
+          tags: [tags.charactersProcessing],
         },
         {
           key: 'urlEncoding',
           route: '/tools/url-encoding',
-          tags: [tags.charsProcess],
+          tags: [tags.charactersProcessing],
           signatures: ['url-encoded'],
         },
         {
           key: 'base64',
           route: '/tools/base64',
-          tags: [tags.charsProcess],
+          tags: [tags.charactersProcessing],
           signatures: ['base64'],
         },
         // {
         //     key: 'utf8Conversion',
         //     route: '/tools/utf8-conversion',
-        //     tags: [tags.charsProcess],
+        //     tags: [tags.charactersProcessing],
         //     signatures: ['utf8']
         // },
       ],
@@ -92,6 +92,7 @@ export const useConstant = defineStore('ctfever_stuff', () => {
   }
 
   return {
+    tags,
     toolkits,
     favorites,
     recent,

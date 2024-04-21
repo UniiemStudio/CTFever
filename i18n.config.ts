@@ -17,7 +17,9 @@ export default defineI18nConfig(() => ({
             queryLabel: 'Nothing found...',
           },
           groups: {
+            common: 'Common',
             category: 'Categories',
+            tag: 'Tags',
             tool: 'Tools',
             link: 'Links',
           },
@@ -92,7 +94,9 @@ export default defineI18nConfig(() => ({
             queryLabel: '什么都找不到...',
           },
           groups: {
+            common: '通用',
             category: '分类',
+            tag: '标签',
             tool: '工具',
             link: '链接',
           },
