@@ -7,7 +7,7 @@ type Toolkit = {
 type Tool = {
     key: string
     route: string
-    tags?: Tag[],
+    tags: Tag[],
     signatures?: string[]
 }
 
