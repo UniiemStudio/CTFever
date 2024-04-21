@@ -37,6 +37,7 @@ onMounted(() => {
   </div>
 </template>
 
+<!--suppress CssUnusedSymbol -->
 <style scoped>
 .message {
   min-width: 80px;

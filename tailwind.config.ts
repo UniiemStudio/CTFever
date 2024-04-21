@@ -1,4 +1,4 @@
-// noinspection JSUnusedGlobalSymbols
+// noinspection JSUnusedGlobalSymbols,JSUnusedLocalSymbols
 
 import type { Config } from 'tailwindcss'
 import typography from '@tailwindcss/typography'

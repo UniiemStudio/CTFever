@@ -100,6 +100,7 @@ onMounted(() => {
   </div>
 </template>
 
+<!--suppress CssUnusedSymbol -->
 <style scoped>
 .select-item-enter-active,
 .select-item-leave-active {
