@@ -9,7 +9,6 @@ defineProps({
 </script>
 
 <template>
-  <!--  <div class="flex flex-col space-y-4">-->
   <div class="flex flex-col space-y-4">
     <div class="relative">
       <div class="absolute -left-1 top-2 w-4 h-4 rounded-full bg-primary/30 dark:bg-primary/60 z-[0]"></div>
