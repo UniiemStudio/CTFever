@@ -28,12 +28,17 @@ defineProps({
       </p>
     </NuxtLinkLocale>
     <div :class="{'hidden': inSidebar }"
-         class="px-2 py-1 bg-neutral-50 dark:bg-neutral-800 dark:text-neutral-400 flex-nowrap whitespace-nowrap flex items-center justify-between text-xs">
+         class="px-1.5 py-0.5 bg-neutral-50 dark:bg-neutral-800 dark:text-neutral-400 flex-nowrap whitespace-nowrap flex items-center justify-between text-xs">
       <div class="overflow-hidden text-ellipsis">
-        <div class="flex items-center gap-1">
-          <Icon name="tabler:tag" class="text-sm"/>
-          <NuxtLinkLocale v-for="(tag, k) in tool.tags" :key="k" to="/" class="overflow-hidden text-ellipsis">
-            {{ $t_tag(tag.key).label }}
+        <div class="flex items-center gap-0.5">
+          <Icon :name="(tool.tags?.length || 1) <= 1 ? 'tabler:tag' : 'tabler:tags'" class="text-sm"/>
+          <NuxtLinkLocale
+            v-for="(tag, k) in tool.tags"
+            class="text-2xs font-medium overflow-hidden text-ellipsis"
+            :key="k"
+            to="/"
+          >
+            {{ $t_tag(tag.key).label }}{{ k < (tool.tags?.length || 1) - 1 ? ',' : '' }}
           </NuxtLinkLocale>
         </div>
       </div>

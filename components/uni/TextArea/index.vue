@@ -94,7 +94,7 @@ onMounted(() => {
 <template>
   <div class="flex flex-col space-y-1"
     :class="{ 'justify-start': justify === 'start', 'justify-end': justify === 'end' }">
-    <p class="block w-fit text-neutral-700 dark:text-neutral-300 text-sm font-bold font-['Nunito']" v-if="label">
+    <p class="block w-fit text-neutral-700 dark:text-neutral-300 text-sm font-bold font-sans" v-if="label">
       {{ label }}
     </p>
     <div class="relative">

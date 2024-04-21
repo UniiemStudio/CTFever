@@ -60,7 +60,7 @@ onMounted(() => {
 <template>
   <div class="flex flex-col space-y-1"
     :class="{ 'justify-start': justify === 'start', 'justify-end': justify === 'end' }">
-    <p class="block w-fit text-neutral-700 dark:text-neutral-300 text-sm font-bold font-['Nunito']" v-if="label">
+    <p class="block w-fit text-neutral-700 dark:text-neutral-300 text-sm font-bold font-sans" v-if="label">
       {{ label }}
     </p>
     <div class="relative" ref="selectWrapperRef">
@@ -85,7 +85,7 @@ onMounted(() => {
         :class="{ 'opacity-100 pointer-events-auto': optionsExpanded, '-translate-y-4': !optionsExpanded }"
         ref="optionsRef">
         <div class="flex items-center gap-2.5 px-2 py-2 cursor-pointer
-                  dark:text-neutral-300 font-['Nunito'] transition whitespace-nowrap
+                  dark:text-neutral-300 font-sans transition whitespace-nowrap
                   bg-white dark:bg-neutral-800 hover:bg-neutral-100 dark:hover:bg-neutral-700"
           v-for="(option, index) in items" :key="index" :class="{
             '!bg-neutral-200 dark:!bg-neutral-700 hover:!bg-neutral-200 dark:hover:!bg-neutral-700': option.value === selectedItem?.value,

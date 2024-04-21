@@ -41,7 +41,7 @@ onMounted(() => {
 .message {
   min-width: 80px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, .2);
-  @apply h-fit px-2 py-1.5 border bg-white border-gray-300 rounded-md text-gray-500 text-xs flex items-center gap-1.5 first-of-type:mt-2.5 mt-2.5 font-bold pointer-events-auto;
+  @apply h-fit px-2 py-1.5 border bg-white border-gray-300 rounded-md text-gray-500 text-xs font-sans flex items-center gap-1.5 first-of-type:mt-2.5 mt-2.5 font-bold pointer-events-auto;
 }
 
 .message.info {

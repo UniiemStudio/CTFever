@@ -218,7 +218,7 @@ defineShortcuts({
           </Transition>
           <Transition name="wizard-result" mode="out-in">
             <div v-if="wizardSignatures.length">
-              <h1 class="block w-fit text-neutral-700 dark:text-neutral-300 text-sm font-bold font-['Nunito']">
+              <h1 class="block w-fit text-neutral-700 dark:text-neutral-300 text-sm font-bold">
                 {{ t('wizardModal.contains_signatures') }}
               </h1>
               <ul class="mt-2 rounded-lg bg-neutral-100 dark:bg-slate-800 divide-y">
@@ -233,7 +233,7 @@ defineShortcuts({
           </Transition>
           <Transition name="wizard-result" mode="out-in">
             <div v-if="relatedTools.length">
-              <h1 class="block w-fit text-neutral-700 dark:text-neutral-300 text-sm font-bold font-['Nunito']">
+              <h1 class="block w-fit text-neutral-700 dark:text-neutral-300 text-sm font-bold">
                 {{ t('wizardModal.recommended_tools') }}
               </h1>
               <div class="mt-2 grid grid-cols-1 md:grid-cols-2" :class="{'!grid-cols-1': relatedTools.length === 1}">
@@ -247,6 +247,7 @@ defineShortcuts({
   </div>
 </template>
 
+<!--suppress CssUnusedSymbol -->
 <style scoped>
 .title-move,
 .title-enter-active,
