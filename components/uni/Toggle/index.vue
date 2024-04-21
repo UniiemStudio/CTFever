@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import {PropType} from "@vue/runtime-core";
-
 const emit = defineEmits(['input', 'change', 'update:modelValue'])
 
 const props = defineProps({

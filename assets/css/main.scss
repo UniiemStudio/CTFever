@@ -1,1 +1,31 @@
-@import url('https://fonts.font.im/css?family=PT+Mono|PT+Sans|Poppins|Nunito&display=swap');
+::-webkit-scrollbar {
+  /*滚动条整体*/
+  width: 4px;
+  height: 4px;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100 dark:bg-neutral-800;
+}
+
+/* :hover::-webkit-scrollbar-track { ignored } */
+
+::-webkit-scrollbar-thumb {
+  /*滚动条里面的滑块*/
+  border-radius: 10px;
+  @apply bg-gray-300 dark:bg-neutral-700;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-400;
+}
+
+::-webkit-scrollbar-corner {
+  border: none;
+  background: transparent;
+}
+
+body {
+  @apply dark:bg-neutral-950 font-sans;
+}

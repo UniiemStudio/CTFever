@@ -11,14 +11,18 @@ const message = useMessage()
 const runtimeConfig = useRuntimeConfig()
 const localeRoute = useLocaleRoute()
 const switchLocalePath = useSwitchLocalePath()
-const {locale, locales} = useI18n()
-const {t} = useI18n({
-  useScope: 'local'
+const { locale, locales } = useI18n()
+const { t } = useI18n({
+  useScope: 'local',
+})
+
+useSeoMeta({
+  title: t('title'),
 })
 
 const modal = reactive({
   login: false,
-  register: false
+  register: false,
 })
 
 const loading = ref(false)
@@ -26,26 +30,26 @@ const loading = ref(false)
 const schema = object({
   username: string().required('Username is required'),
   password: string()
-      .min(6, 'Must be at least 6 characters')
-      .required('Password is required')
+  .min(6, 'Must be at least 6 characters')
+  .required('Password is required'),
 })
 
 type Schema = InferType<typeof schema>
 
 const state = reactive({
   username: undefined,
-  password: undefined
+  password: undefined,
 })
 
 const onSubmit = async (e: FormSubmitEvent<Schema>) => {
   loading.value = true
-  useFetch(`${runtimeConfig.public.apiBase}/v1/users/login`, {
+  useFetch(`${ runtimeConfig.public.apiBase }/v1/users/login`, {
     method: 'POST',
     body: e.data,
-    watch: false
+    watch: false,
   }).then(res => {
-    console.log(res.data.value);
-    message.success(`user[${res.data.value?.data?.token}] logged in!`)
+    console.log(res.data.value)
+    message.success(`user[${ res.data.value?.data?.token }] logged in!`)
     loading.value = false
   }).catch(e => {
     message.error(e.message)
@@ -57,17 +61,17 @@ const colorModeOptions = [
   {
     value: 'light',
     label: t('appearance.color_mode.mode.light'),
-    icon: 'line-md:moon-alt-to-sunny-outline-loop-transition'
+    icon: 'line-md:moon-alt-to-sunny-outline-loop-transition',
   },
   {
     value: 'dark',
     label: t('appearance.color_mode.mode.dark'),
-    icon: 'line-md:sunny-outline-to-moon-alt-loop-transition'
+    icon: 'line-md:sunny-outline-to-moon-alt-loop-transition',
   },
   {
     value: 'system',
     label: t('appearance.color_mode.mode.auto'),
-    icon: 'tabler:device-desktop-cog'
+    icon: 'tabler:device-desktop-cog',
   },
 ]
 
@@ -80,7 +84,7 @@ const localeOptions = locales.value.map(locale => {
   return {
     value: locale.code,
     label: locale.name as string,
-    icon: locale.icon
+    icon: locale.icon,
   }
 })
 
@@ -97,8 +101,8 @@ const handleLogin = () => {
   router.push(localeRoute({
     name: 'user-login',
     query: {
-      redirect: route.fullPath
-    }
+      redirect: route.fullPath,
+    },
   }) as RouteLocationRaw)
 }
 </script>
@@ -159,6 +163,7 @@ const handleLogin = () => {
 
 <i18n lang="yaml">
 en:
+  title: Preferences
   appearance:
     label: Appearance
     language:
@@ -181,6 +186,7 @@ en:
       title: Enable cloud sync
       subtitle: Automatically sync favorites, history and other data
 zh:
+  title: 首选项
   appearance:
     label: 外观
     language:

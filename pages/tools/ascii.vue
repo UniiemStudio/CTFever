@@ -1,6 +1,10 @@
 <script lang="ts" setup>
 const { t } = useI18n({
-  useScope: 'local'
+  useScope: 'local',
+})
+
+useSeoMeta({
+  title: t('app.tool.ascii.label'),
 })
 
 const radix = ref('10')
@@ -15,7 +19,7 @@ const separators: {
 } = {
   'none': '',
   'space': ' ',
-  'comma': ','
+  'comma': ',',
 }
 
 const handleInput = () => {
@@ -61,7 +65,7 @@ const handleInput = () => {
           value: '16',
           icon: 'mdi:hexadecimal'
         },
-      ]" v-model="radix" />
+      ]" v-model="radix"/>
       <UniSelect :label="t('label.mode')" :items="[
         {
           label: t('mode.continuity'),
@@ -73,7 +77,7 @@ const handleInput = () => {
           value: 'split',
           icon: 'mdi:comma-box-outline'
         },
-      ]" v-model="mode" :disabled="inputMode !== 'ascii'" />
+      ]" v-model="mode" :disabled="inputMode !== 'ascii'"/>
       <UniSelect :label="t('label.input')" :items="[
         {
           label: t('input.ascii'),
@@ -85,7 +89,7 @@ const handleInput = () => {
           value: 'chars',
           icon: 'carbon:character-upper-case'
         },
-      ]" v-model="inputMode" />
+      ]" v-model="inputMode"/>
       <UniSelect :label="t('label.separator')" :items="[
         {
           label: t('separator.none'),
@@ -103,13 +107,13 @@ const handleInput = () => {
           value: 'comma',
           icon: 'mdi:comma-box-outline'
         },
-      ]" v-model="separator" />
+      ]" v-model="separator"/>
     </div>
     <UniInput :label="inputMode === 'ascii' ? t('input.ascii') : t('input.characters')" v-model="inputText"
-      @input="handleInput"
-      :placeholder="inputMode === 'ascii' ? (mode === 'continuity' ? `'656667' to 'ABC'` : `'65,66,67' to 'ABC'`) : (mode === 'continuity' ? `'ABC' to '656667'` : `'ABC' to '65,66,67'`)" />
+              @input="handleInput"
+              :placeholder="inputMode === 'ascii' ? (mode === 'continuity' ? `'656667' to 'ABC'` : `'65,66,67' to 'ABC'`) : (mode === 'continuity' ? `'ABC' to '656667'` : `'ABC' to '65,66,67'`)"/>
     <Transition name="result">
-      <UniInput v-if="result" :label="t('label.result')" v-model="result" disabled />
+      <UniInput v-if="result" :label="t('label.result')" v-model="result" disabled/>
     </Transition>
   </ToolContainer>
 </template>

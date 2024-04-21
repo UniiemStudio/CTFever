@@ -8,10 +8,7 @@ const { toolkits } = storeToRefs(useConstant())
 <template>
   <ToolContainer content-class="flex flex-col gap-8 container mx-auto p-4" full-size>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-      <UAlert icon="i-heroicons-command-line" title="欢迎使用 CTFever">
-        <template #icon>
-          asd
-        </template>
+      <UAlert icon="i-tabler-tools" title="欢迎使用 CTFever">
         <template #description>
           你可以通过 <UKbd>{{ metaSymbol }}</UKbd> + <UKbd>K</UKbd> 打开指令面板
         </template>

@@ -4,6 +4,11 @@ import { useMessage } from '~/composables/uni/useMessage';
 const { t } = useI18n({
   useScope: 'local'
 })
+
+useSeoMeta({
+  title: t('app.tool.urlEncoding.label'),
+})
+
 const message = useMessage()
 
 const inputTextOrigin = ref('')

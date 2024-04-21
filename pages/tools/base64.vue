@@ -7,6 +7,10 @@ const { t } = useI18n({
   useScope: 'local'
 })
 
+useSeoMeta({
+  title: t('app.tool.base64.label'),
+})
+
 const encodingType = ref('base64')
 const inputDecoded = ref('')
 const inputEncoded = ref('')

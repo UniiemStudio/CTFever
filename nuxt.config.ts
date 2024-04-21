@@ -4,7 +4,6 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       appName: 'CTFever',
-      appTitleTemplate: '%s - CTFever',
       apiBase: 'http://localhost:8080',
     },
   },
