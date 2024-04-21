@@ -19,7 +19,9 @@ const { toolkits } = storeToRefs(useConstant())
         </template>
       </UAlert>
     </div>
-    <AppToolArea v-for="(toolkit, k) in toolkits" :key="k" :toolkit="toolkit" />
+    <div class="grid grid-cols-1 xl:grid-cols-2 gap-4">
+      <AppToolArea v-for="(toolkit, k) in toolkits" :key="k" :toolkit="toolkit" />
+    </div>
   </ToolContainer>
 </template>
 

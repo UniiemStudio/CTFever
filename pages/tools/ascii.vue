@@ -118,6 +118,7 @@ const handleInput = () => {
   </ToolContainer>
 </template>
 
+<!--suppress CssUnusedSymbol -->
 <style scoped>
 .result-enter-active,
 .result-leave-active {

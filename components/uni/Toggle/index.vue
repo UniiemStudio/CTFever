@@ -117,6 +117,7 @@ watch(() => props.modelValue, (value) => {
   </button>
 </template>
 
+<!--suppress CssUnusedSymbol -->
 <style scoped>
 .icon-enter-active,
 .icon-leave-active {

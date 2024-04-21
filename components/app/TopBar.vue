@@ -1,26 +1,22 @@
 <script lang="ts" setup>
-import {storeToRefs} from 'pinia';
-import {useMessage} from '~/composables/uni/useMessage';
-import {stringSignatureDetect} from '~/libs/misc/stringSignatureDetect';
+import { storeToRefs } from 'pinia'
+import { useMessage } from '~/composables/uni/useMessage'
+import { stringSignatureDetect } from '~/libs/misc/stringSignatureDetect'
 
-const route = useRoute()
 const router = useRouter()
 const message = useMessage()
-const { availableLocales, locale } = useI18n()
 const { t } = useI18n({
-  useScope: 'local'
+  useScope: 'local',
 })
 const localePath = useLocalePath()
-const switchLocalePath = useSwitchLocalePath()
 const { $t_toolkit, $t_tool } = useNuxtApp()
 const { addFavorite, removeFavorite } = useConstant()
 const { toolkits, favorites } = storeToRefs(useConstant())
-// const tools = toolkits.value.flatMap(toolkit => toolkit.tools)
 const { metaSymbol } = useShortcuts()
 
 const { isOnToolPage, currentPageTitle, currentTool } = storeToRefs(useGlobalState())
 
-const isCurrentToolFavorited = computed(() => {
+const isCurrentToolFavorite = computed(() => {
   return !!favorites.value.find(t => t.key === currentTool.value?.key)
 })
 
@@ -75,13 +71,9 @@ const handleCommandSelect = (option: any) => {
   }
 }
 
-const handleLocaleSelect = (e: Event | any) => {
-  router.push(switchLocalePath(e?.target?.value))
-}
-
 const handleFavorite = () => {
   if (isOnToolPage) {
-    if (isCurrentToolFavorited.value) {
+    if (isCurrentToolFavorite.value) {
       removeFavorite(currentTool.value?.key as string)
       message.success(t('component.topSubBar.favorite.removed'))
     } else {
@@ -94,8 +86,8 @@ const handleFavorite = () => {
 defineProps({
   minibar: {
     type: Boolean,
-    default: false
-  }
+    default: false,
+  },
 })
 
 defineShortcuts({
@@ -103,8 +95,8 @@ defineShortcuts({
     usingInput: true,
     handler: () => {
       commandPlatteActive.value = !commandPlatteActive.value
-    }
-  }
+    },
+  },
 })
 </script>
 
@@ -123,35 +115,32 @@ defineShortcuts({
           </div>
         </NuxtLinkLocale>
         <div class="flex items-center space-x-4">
-          <!-- <select v-model="$colorMode.preference">
-            <option value="system">系统</option>
-            <option value="light">亮色</option>
-            <option value="dark">暗色</option>
-          </select>
-          <select @change="handleLocaleSelect" :value="locale">
-            <option v-for="(locale, k) in availableLocales" :key="k" :value="locale">
-              {{ locale }}
-            </option>
-          </select> -->
-          <UniButton size="small" icon="tabler:gps" @click="isCharsWizardOpen = !isCharsWizardOpen">{{ t('wizard') }}
-          </UniButton>
+          <!-- TODO: enable this -->
+          <!--<UniButton size="small" icon="tabler:gps" @click="isCharsWizardOpen = !isCharsWizardOpen">-->
+          <!--  {{ t('wizard') }}-->
+          <!--</UniButton>-->
+          <DevOnly>
+            <UniButton size="medium" @click="$colorMode.preference = $colorMode.preference === 'dark' ? 'light' : 'dark'">
+              <Icon class="text-lg" :name="$colorMode.preference === 'dark' ? 'line-md:sunny-outline-to-moon-alt-loop-transition' : 'line-md:moon-alt-to-sunny-outline-loop-transition'"/>
+            </UniButton>
+          </DevOnly>
           <button @click="commandPlatteActive = true" class="items-center space-x-2 px-2 py-1 border border-neutral-300 bg-neutral-50 text-neutral-500 dark:border-neutral-600 hover:border-neutral-500 dark:hover:border-neutral-500
                    transition dark:bg-neutral-800 text-xs rounded-lg cursor-pointer whitespace-nowrap hidden md:flex">
-            <Icon name="tabler:search" class="text-base" />
+            <Icon name="tabler:search" class="text-base"/>
             <span>{{ t('search') }}</span>
-            <div class="flex items-center gap-0.5">
+            <span class="flex items-center gap-0.5">
               <UKbd>{{ metaSymbol }}</UKbd>
               <UKbd>K</UKbd>
-            </div>
+            </span>
           </button>
           <button @click="commandPlatteActive = true" class="block md:hidden">
-            <Icon name="tabler:search" class="text-lg inline -mt-1" />
+            <Icon name="tabler:search" class="text-lg inline -mt-1"/>
           </button>
           <a href="https://github.com/UniiemStudio/CTFever" target="_blank">
-            <Icon name="simple-icons:github" class="text-lg inline -mt-1" />
+            <Icon name="simple-icons:github" class="text-lg inline -mt-1"/>
           </a>
           <nuxt-link :to="localePath('/settings')">
-            <Icon name="tabler:settings-2" class="text-lg inline -mt-1" />
+            <Icon name="tabler:settings-2" class="text-lg inline -mt-1"/>
           </nuxt-link>
         </div>
       </div>
@@ -162,17 +151,17 @@ defineShortcuts({
       <div class="flex items-center justify-between container mx-auto">
         <div class="flex items-center">
           <nuxt-link :to="localePath('/')" class="flex items-center space-x-1 text-sm">
-            <Icon name="solar:square-alt-arrow-left-linear" class="text-lg" />
+            <Icon name="solar:square-alt-arrow-left-linear" class="text-lg"/>
             <span>{{ $t('component.topSubBar.back') }}</span>
           </nuxt-link>
         </div>
         <div class="flex items-center space-x-3">
           <button class="flex items-center" @click="handleFavorite">
-            <Icon v-show="isCurrentToolFavorited" name="tabler:bookmark-filled" class="text-lg text-amber-500" />
-            <Icon v-show="!isCurrentToolFavorited" name="tabler:bookmark-plus" class="text-lg" />
+            <Icon v-show="isCurrentToolFavorite" name="tabler:bookmark-filled" class="text-lg text-amber-500"/>
+            <Icon v-show="!isCurrentToolFavorite" name="tabler:bookmark-plus" class="text-lg"/>
           </button>
           <button class="flex items-center" @click="sidebarActive = !sidebarActive">
-            <Icon name="solar:hamburger-menu-linear" class="text-lg" />
+            <Icon name="solar:hamburger-menu-linear" class="text-lg"/>
           </button>
         </div>
       </div>
@@ -185,14 +174,14 @@ defineShortcuts({
         <div v-for="(toolkit, k) in toolkits" :key="k" class="mt-6 first-of-type:mt-0">
           <div class="mb-2 flex items-center">
             <div class="flex items-center space-x-1 mr-2">
-              <Icon :name="toolkit.icon" class="text-lg" />
+              <Icon :name="toolkit.icon" class="text-lg"/>
               <h1 class="text-sm font-medium">{{ $t_toolkit(toolkit.key).label }}</h1>
             </div>
             <div class="h-[1px] bg-neutral-300 dark:bg-neutral-700 w-full flex-1"></div>
           </div>
           <div class="flex flex-col gap-2">
             <AppToolCard v-for="(tool, k) in toolkit.tools" :key="k" :tool="tool" in-sidebar
-              :active="currentTool?.key === tool.key" />
+                         :active="currentTool?.key === tool.key"/>
           </div>
         </div>
       </div>
@@ -202,13 +191,13 @@ defineShortcuts({
         icon: 'i-heroicons-magnifying-glass-20-solid',
         label: $t('component.commandPlatte.empty.label'),
         queryLabel: $t('component.commandPlatte.empty.queryLabel')
-      }" :groups="commandPlatteGroups" @update:model-value="handleCommandSelect" />
+      }" :groups="commandPlatteGroups" @update:model-value="handleCommandSelect"/>
     </UModal>
     <UModal v-model="isCharsWizardOpen">
       <UCard :ui="{ divide: 'divide-y divide-gray-100 dark:divide-gray-800' }">
         <template #header>
           <div class="flex items-center space-x-2">
-            <Icon name="tabler:gps" class="text-xl" />
+            <Icon name="tabler:gps" class="text-xl"/>
             <h1>{{ t('wizard') }}</h1>
           </div>
           <p class="text-xs mt-2 text-neutral-400">
@@ -217,11 +206,14 @@ defineShortcuts({
           </p>
         </template>
         <div class="flex flex-col gap-4">
-          <UniTextArea v-model="inputWizard" :label="t('wizardModal.input_text')" :placeholder="t('wizardModal.placeholder')" />
+          <UniTextArea v-model="inputWizard" :label="t('wizardModal.input_text')"
+                       :placeholder="t('wizardModal.placeholder')"/>
           <Transition name="wizard-result" mode="out-in">
-            <div v-if="!wizardSignatures.length && inputWizard" class="w-full rounded-lg p-4 flex flex-col justify-center items-center gap-2 bg-neutral-100 dark:bg-neutral-700">
-              <Icon name="twemoji:thinking-face" class="text-4xl" />
-              <h1 class="text-sm text-neutral-500 dark:text-neutral-300 font-bold">{{ t('wizardModal.no_signatures_detected') }}</h1>
+            <div v-if="!wizardSignatures.length && inputWizard"
+                 class="w-full rounded-lg p-4 flex flex-col justify-center items-center gap-2 bg-neutral-100 dark:bg-neutral-700">
+              <Icon name="twemoji:thinking-face" class="text-4xl"/>
+              <h1 class="text-sm text-neutral-500 dark:text-neutral-300 font-bold">
+                {{ t('wizardModal.no_signatures_detected') }}</h1>
             </div>
           </Transition>
           <Transition name="wizard-result" mode="out-in">
@@ -245,7 +237,7 @@ defineShortcuts({
                 {{ t('wizardModal.recommended_tools') }}
               </h1>
               <div class="mt-2 grid grid-cols-1 md:grid-cols-2" :class="{'!grid-cols-1': relatedTools.length === 1}">
-                <AppToolCard v-for="(t, k) in relatedTools" :tool="t" :key="k" />
+                <AppToolCard v-for="(t, k) in relatedTools" :tool="t" :key="k"/>
               </div>
             </div>
           </Transition>
