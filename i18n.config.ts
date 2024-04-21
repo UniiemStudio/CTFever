@@ -70,7 +70,7 @@ export default defineI18nConfig(() => ({
             description: 'UTF-8 encoding and decoding',
           },
           socialEngineeringDictGen: {
-            label: 'Social Engineering DictGen',
+            label: 'Social Engineering Dict Generator',
             description: 'Generate social engineering dictionary',
           },
         },
