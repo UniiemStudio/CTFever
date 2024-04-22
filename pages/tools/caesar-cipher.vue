@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import TitleField from '~/components/TitleField.vue'
-import { encode, decode } from '@uniiem/caesar'
+import { decode, encode } from '@uniiem/caesar'
 
 const { t } = useI18n({
   useScope: 'local',
@@ -71,7 +71,20 @@ watchEffect(() => {
       </TitleField>
 
     </div>
-    <IntroDocument />
+
+    <IntroDocument
+      :references="[
+        {
+          title: 'Wikipedia: 凯撒密码',
+          url: 'https://zh.wikipedia.org/wiki/%E5%87%AF%E6%92%92%E5%AF%86%E7%A0%81'
+        },
+        {
+          title: 'CTF Wiki: 单表代换加密',
+          url: 'https://ctf-wiki.org/crypto/classical/monoalphabetic/#_3'
+        }
+      ]"
+    />
+
   </ToolContainer>
 </template>
 
