@@ -71,6 +71,7 @@ watchEffect(() => {
       </TitleField>
 
     </div>
+    <IntroDocument />
   </ToolContainer>
 </template>
 
