@@ -220,11 +220,24 @@ defineShortcuts({
       </div>
     </div>
     <UModal v-model="commandPlatteActive">
-      <UCommandPalette ref="commandPlatteRef" :placeholder="$t('component.commandPlatte.placeholder')" :empty-state="{
-        icon: 'i-heroicons-magnifying-glass-20-solid',
-        label: $t('component.commandPlatte.empty.label'),
-        queryLabel: $t('component.commandPlatte.empty.queryLabel')
-      }" :groups="commandPlatteGroups" @update:model-value="handleCommandSelect"/>
+      <UCommandPalette
+        ref="commandPlatteRef"
+        :placeholder="$t('component.commandPlatte.placeholder')"
+        :empty-state="{
+          icon: 'i-heroicons-magnifying-glass-20-solid',
+          label: $t('component.commandPlatte.empty.label'),
+          queryLabel: $t('component.commandPlatte.empty.queryLabel')
+        }"
+        :groups="commandPlatteGroups"
+        :fuse="{
+          fuseOptions: {
+            includeMatches: true,
+            keys: ['id', 'label', 'route'],
+            threshold: 0.3,
+          },
+        }"
+        @update:model-value="handleCommandSelect"
+      />
     </UModal>
     <UModal v-model="isCharsWizardOpen">
       <UCard :ui="{ divide: 'divide-y divide-gray-100 dark:divide-gray-800' }">
