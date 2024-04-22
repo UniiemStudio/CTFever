@@ -39,6 +39,10 @@ export default defineI18nConfig(() => ({
             label: 'Social Engineering',
             description: 'Social engineering tools',
           },
+          classicalCiphers: {
+            label: 'Classical Ciphers',
+            description: 'Classic ciphers and encryption methods',
+          },
         },
         toolkit: {
           encoding: {
@@ -119,6 +123,10 @@ export default defineI18nConfig(() => ({
           socialEngineering: {
             label: '社工',
             description: '社会工程学工具',
+          },
+          classicalCiphers: {
+            label: '古典密码',
+            description: '古典密码和加密方法',
           },
         },
         toolkit: {

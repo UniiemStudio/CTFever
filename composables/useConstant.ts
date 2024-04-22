@@ -11,6 +11,9 @@ export const useConstant = defineStore('ctfever_stuff', () => {
     socialEngineering: {
       key: 'socialEngineering',
     },
+    classicalCiphers: {
+      key: 'classicalCiphers',
+    },
   })
   const toolkits = ref<Toolkit[]>([
     {
@@ -34,10 +37,16 @@ export const useConstant = defineStore('ctfever_stuff', () => {
           tags: [tags.charactersProcessing],
           signatures: ['base64'],
         },
+      ],
+    },
+    {
+      key: 'cryptology',
+      icon: 'i-tabler-key',
+      tools: [
         {
           key: 'caesar',
           route: '/tools/caesar-cipher',
-          tags: [tags.charactersProcessing],
+          tags: [tags.classicalCiphers],
         },
       ],
     },
