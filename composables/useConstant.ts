@@ -34,12 +34,11 @@ export const useConstant = defineStore('ctfever_stuff', () => {
           tags: [tags.charactersProcessing],
           signatures: ['base64'],
         },
-        // {
-        //     key: 'utf8Conversion',
-        //     route: '/tools/utf8-conversion',
-        //     tags: [tags.charactersProcessing],
-        //     signatures: ['utf8']
-        // },
+        {
+          key: 'caesar',
+          route: '/tools/caesar-cipher',
+          tags: [tags.charactersProcessing],
+        },
       ],
     },
     {

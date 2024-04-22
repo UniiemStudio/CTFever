@@ -75,6 +75,10 @@ export default defineI18nConfig(() => ({
             label: 'Social Engineering Dict Generator',
             description: 'Generate social engineering dictionary',
           },
+          caesar: {
+            label: 'Caesar Cipher',
+            description: 'A substitution cipher that shifts letters in a message to make it unreadable if intercepted',
+          },
         },
       },
     },
@@ -151,6 +155,10 @@ export default defineI18nConfig(() => ({
           socialEngineeringDictGen: {
             label: '社工字典生成器',
             description: '利用一些信息生成密码字典',
+          },
+          caesar: {
+            label: '凯撒密码',
+            description: '一种替换密码，通过将消息中的字母移位来使其在拦截时无法读取',
           },
         },
       },
