@@ -48,6 +48,11 @@ export const useConstant = defineStore('ctfever_stuff', () => {
           route: '/tools/caesar-cipher',
           tags: [tags.classicalCiphers],
         },
+        {
+          key: 'vigenereCipher',
+          route: '/tools/vigenere-cipher',
+          tags: [tags.classicalCiphers],
+        },
       ],
     },
     {

@@ -83,6 +83,10 @@ export default defineI18nConfig(() => ({
             label: 'Caesar Cipher',
             description: 'A substitution cipher that shifts letters in a message to make it unreadable if intercepted',
           },
+          vigenereCipher: {
+            label: 'Vigenere Cipher',
+            description: 'A method of encrypting alphabetic text by using a simple form of polyalphabetic substitution',
+          },
         },
       },
     },
@@ -167,6 +171,10 @@ export default defineI18nConfig(() => ({
           caesar: {
             label: '凯撒密码',
             description: '一种替换密码，通过将消息中的字母移位来使其在拦截时无法读取',
+          },
+          vigenereCipher: {
+            label: '维吉尼亚密码',
+            description: '一种通过使用简单的多表替换的方法来加密字母文本',
           },
         },
       },
