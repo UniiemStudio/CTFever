@@ -28,10 +28,10 @@ watchEffect(() => {
   <ToolContainer>
     <div class="flex flex-col gap-4">
 
-      <TitleField label="输入">
+      <TitleField :label="t('input.label')">
         <UTextarea
           size="md"
-          placeholder="需要处理的文本"
+          :placeholder="t('input.placeholder')"
           v-model="input"
           autofocus
         />
@@ -43,17 +43,17 @@ watchEffect(() => {
             size="md"
             v-model="mode"
             :options="[
-              { label: '加密', value: 'encrypt', icon: 'i-tabler-lock' },
-              { label: '解密', value: 'decrypt', icon: 'i-tabler-lock-open' },
+              { label: t('encrypt'), value: 'encrypt', icon: 'i-tabler-lock' },
+              { label: t('decrypt'), value: 'decrypt', icon: 'i-tabler-lock-open' },
             ]"
             option-attribute="label"
             value-attribute="value"
             :leading-icon="mode === 'encrypt' ? 'i-tabler-lock' : 'i-tabler-lock-open'"
           />
-          <UTooltip text="偏移量">
+          <UTooltip :text="t('offset')">
             <UInput
               size="md"
-              placeholder="偏移量"
+              :placeholder="t('offset')"
               icon="i-tabler-arrow-move-left"
               v-model="offset"
               type="number"
@@ -62,10 +62,10 @@ watchEffect(() => {
         </div>
       </div>
 
-      <TitleField label="输出">
+      <TitleField :label="t('output.label')">
         <UTextarea
           size="md"
-          placeholder="输出文本"
+          :placeholder="t('output.placeholder')"
           v-model="output"
         />
       </TitleField>
@@ -91,7 +91,25 @@ watchEffect(() => {
 <i18n>
 en:
   title: Caesar Cipher
+  input:
+    label: Input
+    placeholder: Text to be processed
+  output:
+    label: Output
+    placeholder: Output text
+  offset: Offset
+  encrypt: Encrypt
+  decrypt: Decrypt
 
 zh:
   title: 凯撒密码
+  input:
+    label: 输入
+    placeholder: 需要处理的文本
+  output:
+    label: 输出
+    placeholder: 输出文本
+  offset: 偏移量
+  encrypt: 加密
+  decrypt: 解密
 </i18n>
