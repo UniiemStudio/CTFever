@@ -37,6 +37,7 @@
     "@uniiem/caesar": "^0.1.3",
     "@uniiem/uuid": "^0.2.1",
     "@uniiem/vigenere-cipher": "^0.1.1",
+    "@uniiem/zws": "^0.1.0",
     "yup": "^1.3.2"
   }
 }

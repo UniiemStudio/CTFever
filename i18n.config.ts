@@ -43,6 +43,10 @@ export default defineI18nConfig(() => ({
             label: 'Classical Ciphers',
             description: 'Classic ciphers and encryption methods',
           },
+          steganography: {
+            label: 'Steganography',
+            description: 'Tools for hiding information in plain sight',
+          },
         },
         toolkit: {
           encoding: {
@@ -86,6 +90,10 @@ export default defineI18nConfig(() => ({
           vigenereCipher: {
             label: 'Vigenere Cipher',
             description: 'A method of encrypting alphabetic text by using a simple form of polyalphabetic substitution',
+          },
+          zws: {
+            label: 'Zero-Width Steganography',
+            description: 'Hide information in plain text using zero-width character encoding',
           },
         },
       },
@@ -132,6 +140,10 @@ export default defineI18nConfig(() => ({
             label: '古典密码',
             description: '古典密码和加密方法',
           },
+          steganography: {
+            label: '隐写',
+            description: '将信息隐藏在明文中的工具',
+          },
         },
         toolkit: {
           encoding: {
@@ -175,6 +187,10 @@ export default defineI18nConfig(() => ({
           vigenereCipher: {
             label: '维吉尼亚密码',
             description: '一种通过使用简单的多表替换的方法来加密字母文本',
+          },
+          zws: {
+            label: '零宽字符隐写',
+            description: '使用零宽字符编码隐藏信息到明文中',
           },
         },
       },

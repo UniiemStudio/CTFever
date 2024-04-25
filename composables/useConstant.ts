@@ -14,6 +14,9 @@ export const useConstant = defineStore('ctfever_stuff', () => {
     classicalCiphers: {
       key: 'classicalCiphers',
     },
+    steganography: {
+      key: 'steganography',
+    }
   })
   const toolkits = ref<Toolkit[]>([
     {
@@ -63,6 +66,11 @@ export const useConstant = defineStore('ctfever_stuff', () => {
           key: 'socialEngineeringDictGen',
           route: '/tools/social-engineering-dictionary-generator',
           tags: [tags.generator, tags.socialEngineering],
+        },
+        {
+          key: 'zws',
+          route: '/tools/zero-width-steganography',
+          tags: [tags.steganography],
         },
       ],
     },
