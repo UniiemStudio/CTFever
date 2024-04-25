@@ -124,7 +124,7 @@ watchEffect(() => {
       <USelectMenu
         multiple
         leading-icon="i-tabler-alphabet-latin"
-        class="flex-1 md:w-72 md:flex-initial"
+        class="flex-1 md:w-72 md:flex-initial whitespace-nowrap"
         v-model="zws_charset"
         :options="ZW_CHARACTERS.map((char) => ({ label: char.label, value: char.character }))"
         :placeholder="t('charsets')"
@@ -148,7 +148,7 @@ watchEffect(() => {
         </template>
       </USelectMenu>
     </div>
-    <div class="flex justify-start items-center gap-8">
+    <div class="flex flex-col md:flex-row justify-start md:items-center gap-4 md:gap-8">
       <div class="flex flex-col flex-1 gap-2">
         <TitleField :label="t('original')">
           <UTextarea v-model="originalText" :rows="6"/>
@@ -175,10 +175,11 @@ watchEffect(() => {
           </div>
         </TitleField>
       </div>
-      <div class="flex flex-col gap-2">
+      <div class="flex flex-row md:flex-col justify-center gap-2">
         <UButton
           color="primary"
           variant="soft"
+          class="flex-1"
           icon="i-tabler-arrow-right"
           @click="encode"
         >
@@ -187,6 +188,7 @@ watchEffect(() => {
         <UButton
           color="primary"
           variant="soft"
+          class="flex-1"
           icon="i-tabler-arrow-left"
           @click="decode"
         >
