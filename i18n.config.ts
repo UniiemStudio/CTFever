@@ -47,6 +47,10 @@ export default defineI18nConfig(() => ({
             label: 'Steganography',
             description: 'Tools for hiding information in plain sight',
           },
+          compiler: {
+            label: 'Compiler',
+            description: 'Online compilers and interpreters',
+          },
         },
         toolkit: {
           encoding: {
@@ -94,6 +98,10 @@ export default defineI18nConfig(() => ({
           zws: {
             label: 'Zero-Width Steganography',
             description: 'Hide information in plain text using zero-width character encoding',
+          },
+          bf: {
+            label: 'Brain Fuck',
+            description: 'BrainFuck is a programming language that is a variant of the esoteric programming language Fuck'
           },
         },
       },
@@ -144,6 +152,10 @@ export default defineI18nConfig(() => ({
             label: '隐写',
             description: '将信息隐藏在明文中的工具',
           },
+          compiler: {
+            label: '编译器',
+            description: '在线编译器和解释器',
+          },
         },
         toolkit: {
           encoding: {
@@ -191,6 +203,10 @@ export default defineI18nConfig(() => ({
           zws: {
             label: '零宽字符隐写',
             description: '使用零宽字符编码隐藏信息到明文中',
+          },
+          bf: {
+            label: 'Brain Fuck',
+            description: '一种由8个操作符组成的极小化编程语言'
           },
         },
       },

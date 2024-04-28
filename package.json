@@ -26,6 +26,7 @@
     "dayjs-nuxt": "^2.1.9",
     "nuxt": "^3.11.2",
     "nuxt-icon": "^0.6.10",
+    "nuxt-monaco-editor": "^1.2.9",
     "sass": "^1.68.0"
   },
   "dependencies": {
@@ -38,6 +39,7 @@
     "@uniiem/uuid": "^0.2.1",
     "@uniiem/vigenere-cipher": "^0.1.1",
     "@uniiem/zws": "^0.1.0",
+    "monaco-editor": "^0.48.0",
     "yup": "^1.3.2"
   }
 }

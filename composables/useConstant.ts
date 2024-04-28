@@ -16,7 +16,10 @@ export const useConstant = defineStore('ctfever_stuff', () => {
     },
     steganography: {
       key: 'steganography',
-    }
+    },
+    compiler: {
+      key: 'compiler',
+    },
   })
   const toolkits = ref<Toolkit[]>([
     {
@@ -71,6 +74,11 @@ export const useConstant = defineStore('ctfever_stuff', () => {
           key: 'zws',
           route: '/tools/zero-width-steganography',
           tags: [tags.steganography],
+        },
+        {
+          key: 'bf',
+          route: '/tools/brain-fuck',
+          tags: [tags.compiler],
         },
       ],
     },

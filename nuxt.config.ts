@@ -1,3 +1,5 @@
+import { componentNames } from "#build/components";
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   nitro: {
@@ -29,6 +31,7 @@ export default defineNuxtConfig({
     '@nuxt/ui',
     '@nuxtjs/i18n',
     '@nuxtjs/google-fonts',
+    "nuxt-monaco-editor"
   ],
   dayjs: {
     locales: ['zh'],
@@ -73,5 +76,8 @@ export default defineNuxtConfig({
       Rubik: '100..900',
       'Noto Sans SC': '100..900',
     },
+  },
+  monacoEditor: {
+    locale: 'en',
   },
 })
