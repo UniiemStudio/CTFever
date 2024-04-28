@@ -9,6 +9,9 @@ useSeoMeta({ title: t('title') })
 
 const monaco = useMonaco()
 
+const run = ref(false)
+const pause = ref(false)
+
 const bf_program = ref('')
 const bf_input = ref('')
 const bf_runtime_steps = ref<Runtime[]>([{
@@ -38,6 +41,7 @@ const onRunClick = () => {
     pointer: 0,
   }]
   bf_runtime_step.value = 0
+  pause.value = false
   executeCallbackly(bf_program.value, bf_input.value || undefined, bf_run_callback).then(() => {
     onReplayClick()
   })
@@ -45,13 +49,20 @@ const onRunClick = () => {
 
 const onReplayClick = () => {
   bf_runtime_step.value = 0
+  run.value = true
   const interval = setInterval(() => {
+    if (pause.value) return
+    if (!run.value) {
+      clearInterval(interval)
+      return
+    }
     if (bf_runtime_step.value + 1 < bf_runtime_steps.value.length) {
       bf_runtime_step.value++
     } else {
+      run.value = false
       clearInterval(interval)
     }
-  }, 10)
+  }, 0)
 }
 
 onMounted(() => {
@@ -97,10 +108,10 @@ onMounted(() => {
   <ToolContainer full-size>
     <div class="p-4 grid grid-cols-1 2xl:grid-cols-2 gap-4">
       <div class="w-full flex flex-col gap-2">
-        <div class="flex items-center gap-2">
-          <h1>Memory View</h1>
-          <div>
-            <span>Current operation: {{ bf_runtime_steps[bf_runtime_step]?.operator || 'Done' }}</span>
+        <div class="flex justify-between items-center gap-2">
+          <h1 class="font-medium">{{ t('memory_view') }}</h1>
+          <div class="text-sm font-bold">
+            {{ bf_runtime_steps[bf_runtime_step]?.operator || 'Done' }}
           </div>
         </div>
         <div class="memory-view">
@@ -108,6 +119,8 @@ onMounted(() => {
             class="memory-view-cell"
             :class="{
               'ptr': bf_runtime_steps[bf_runtime_step]?.pointer === i,
+              'read': bf_runtime_steps[bf_runtime_step]?.operator === '.',
+              'write': bf_runtime_steps[bf_runtime_step]?.operator === ',',
               'non-empty': cell !== 0
             }"
             v-for="(cell, i) in bf_runtime_steps[bf_runtime_step]?.memory"
@@ -117,15 +130,18 @@ onMounted(() => {
             {{ cell }}
           </div>
         </div>
-        <div>
-          output: {{ bf_runtime_steps[bf_runtime_step]?.output_buffer }}
+        <div class="flex-1 flex flex-col gap-1">
+          <h1 class="font-medium">{{ t('output') }}</h1>
+          <div class="h-[228px] overflow-hidden overflow-y-auto px-3 py-1.5 border">
+            <pre class="text-wrap break-all">{{ bf_runtime_steps[bf_runtime_step]?.output_buffer }}</pre>
+          </div>
         </div>
       </div>
       <div class="w-full flex flex-col gap-2">
         <div>
-          <h1>Brainfuck Code</h1>
+          <h1 class="font-medium">Brainfuck Code</h1>
         </div>
-        <div class="overflow-hidden rounded shadow border">
+        <div class="overflow-hidden rounded-md shadow border">
           <ClientOnly>
             <MonacoEditor
               class="w-full h-96"
@@ -136,19 +152,34 @@ onMounted(() => {
             </MonacoEditor>
           </ClientOnly>
         </div>
-        <UInput v-model="bf_input" placeholder="Input data"/>
+        <UInput v-model="bf_input" :placeholder="t('input')"/>
         <div class="flex items-center gap-2">
-          <UButton @click="onRunClick">
-            Run
+          <UButton
+            @click="() => {
+              !run ? onRunClick() : (() => pause = !pause)()
+            }"
+            :icon="run ? (pause ? 'i-tabler-reorder' : 'i-tabler-player-pause') : 'i-tabler-player-play'"
+          >
+            {{ run ? (pause ? t('resume') : t('pause')) : t('run') }}
           </UButton>
-          <UButton @click="bf_runtime_step--">
-            Prev
+          <UButton
+            @click="bf_runtime_step--"
+            v-if="run && pause"
+            variant="soft"
+            icon="i-tabler-arrow-left-circle"
+          >
+            {{ t('prev') }}
           </UButton>
-          <UButton @click="bf_runtime_step++">
-            Next
+          <UButton
+            @click="bf_runtime_step++"
+            v-if="run && pause"
+            variant="soft"
+            trailing-icon="i-tabler-arrow-right-circle"
+          >
+            {{ t('next') }}
           </UButton>
-          <UButton @click="onReplayClick">
-            Replay
+          <UButton @click="run = false" v-if="run" color="red" variant="soft" icon="i-tabler-browser-x">
+            {{ t('abort') }}
           </UButton>
         </div>
       </div>
@@ -158,14 +189,55 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .memory-view {
-  @apply grid grid-cols-24 gap-1;
+  @apply grid grid-cols-16 md:grid-cols-32 border-[.5px];
+  @apply dark:border-neutral-800;
 
   &-cell {
-    @apply w-full aspect-[1/1] rounded bg-neutral-100 text-neutral-800 text-opacity-30 flex justify-center items-center;
-    @apply text-xs font-mono;
+    @apply w-full aspect-[1/1] bg-neutral-100 even:bg-opacity-50 text-neutral-800 text-opacity-30 flex justify-center items-center;
+    @apply text-xs font-mono border-[.5px] relative;
+    @apply dark:bg-neutral-900 dark:even:bg-opacity-50 dark:border-neutral-800 dark:text-neutral-500 dark:text-opacity-30;
 
     &.ptr {
-      @apply bg-green-200;
+      @apply bg-primary-500/30 border-primary text-primary;
+    }
+
+    &.ptr.read,
+    &.ptr.write {
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        border: 4px solid transparent;
+        @apply border-t-blue-500;
+      }
+    }
+
+    &.ptr.read {
+      @apply bg-blue-500/30 border-primary border-t-blue-500 text-blue-500 font-bold;
+
+      &::before {
+        @apply border-t-blue-500;
+      }
+    }
+
+    &.ptr.write {
+      @apply bg-green-500/30 border-primary border-t-green-500 text-green-500 font-bold;
+
+      &::before {
+        @apply border-t-green-500;
+      }
+    }
+
+    &.ptr::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 4px solid transparent;
+      border-bottom-color: currentColor;
     }
 
     &.non-empty {
@@ -178,7 +250,25 @@ onMounted(() => {
 <i18n>
 en:
   title: Brainfuck Runner
+  memory_view: Memory View
+  input: Input
+  output: Output
+  run: Run
+  pause: Pause
+  resume: Resume
+  abort: Abort
+  prev: Prev
+  next: Next
 
 zh:
   title: Brainfuck 运行器
+  memory_view: 内存视图
+  input: 输入
+  output: 输出
+  run: 运行
+  pause: 暂停
+  resume: 恢复
+  abort: 中止
+  prev: 上一步
+  next: 下一步
 </i18n>
