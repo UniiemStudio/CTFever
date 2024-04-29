@@ -236,7 +236,7 @@ onMounted(() => {
           </ClientOnly>
         </div>
         <UInput v-model="bf_input" :placeholder="t('input')"/>
-        <div class="flex justify-between items-center">
+        <div class="flex justify-between items-center flex-wrap gap-2">
           <div class="flex items-center gap-2">
             <UButton
               @click="() => {
