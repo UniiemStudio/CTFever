@@ -158,20 +158,46 @@ onMounted(() => {
 
     monaco.languages.registerDocumentFormattingEditProvider('brainfuck', {
       provideDocumentFormattingEdits: (model, options, token) => {
-        let indent = 2 // 初始缩进为2个空格
-        let formattedCode = ''
-        const bfCode = model.getValue()
-        bfCode.split('').forEach(line => {
-          line = line.trim()
-          if (!line) return
-          const formattedLine = ' '.repeat(indent) + line
-          formattedCode += formattedLine + '\n'
-          indent = line.includes('[') ? 4 : 2 // 根据 '[' 是否出现来决定下一行的缩进
-        })
-        // 生成编辑操作
+        const formatBrainfuckCode = (code: string): string => {
+          let s = ''
+          let indentLevel = 0
+
+          for (const char of code) {
+            let lines = s.split('\n')
+            let line = lines[lines.length - 1]
+            switch (char) {
+              case '[':
+                s += '\n' + ' '.repeat(indentLevel++ * options.tabSize) + '[\n'
+                break
+              case ']':
+                s += '\n' + ' '.repeat(--indentLevel * options.tabSize) + ']\n'
+                break
+              case '>':
+                s += '\n' + ' '.repeat(indentLevel * options.tabSize) + '>'
+                break
+              case '<':
+                s += '\n' + ' '.repeat(indentLevel * options.tabSize) + '<'
+                break
+              case '+':
+              case '-':
+              case '.':
+              case ',':
+                s += line.length > 0 ? char : '\t'.repeat(indentLevel * options.tabSize) + char
+                break
+              default:
+                s += char
+            }
+          }
+
+          return s
+        }
+
+        const code = model.getValue().replaceAll(/[^+-.,\[\]<>]/gm, '')
+        // const code = model.getValue().replaceAll(/\n/gm, '')
+        const formattedCode = formatBrainfuckCode(code)
         return [{
-          range: monaco.Range.fromPositions(model.getPositionAt(0), model.getPositionAt(model.getLineCount() - 1)),
-          text: formattedCode.trim(),
+          range: model.getFullModelRange(),
+          text: formattedCode.split('\n').map(line => line && line).join('\n'),
         }]
       },
     })
