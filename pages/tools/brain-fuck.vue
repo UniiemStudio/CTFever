@@ -216,27 +216,20 @@ onMounted(() => {
           </div>
         </div>
         <div class="memory-view">
-          <div
-            class="memory-view-cell"
-            :class="{
+          <div class="memory-view-cell" :class="{
               'ptr': bf_runtime_steps[bf_runtime_step]?.pointer === i,
               'read': bf_runtime_steps[bf_runtime_step]?.operator === '.',
               'write': bf_runtime_steps[bf_runtime_step]?.operator === ',',
               'non-empty': cell !== 0
-            }"
-            v-for="(cell, i) in bf_runtime_steps[bf_runtime_step]?.memory"
-            :key="`step${bf_runtime_step}-cell${i}`"
-            :id="`step${bf_runtime_step}-cell${i}`"
-          >
+            }" v-for="(cell, i) in bf_runtime_steps[bf_runtime_step]?.memory" :key="`step${bf_runtime_step}-cell${i}`"
+            :id="`step${bf_runtime_step}-cell${i}`">
             {{ cell }}
           </div>
         </div>
         <div class="flex-1 flex flex-col gap-1">
           <h1 class="font-medium">{{ t('output') }}</h1>
           <div class="h-[228px] overflow-hidden overflow-y-auto px-3 py-1.5 border dark:border-neutral-700 rounded">
-            <pre
-              class="text-wrap break-all"
-            >{{ bf_runtime_steps[bf_runtime_step]?.output_buffer }}</pre>
+            <pre class="text-wrap break-all">{{ bf_runtime_steps[bf_runtime_step]?.output_buffer }}</pre>
           </div>
         </div>
       </div>
@@ -246,52 +239,34 @@ onMounted(() => {
         </div>
         <div class="overflow-hidden rounded-md shadow border dark:border-neutral-700">
           <ClientOnly>
-            <MonacoEditor
-              class="w-full h-96"
-              v-model="bf_program"
-              lang="brainfuck"
-              :options="{
+            <MonacoEditor class="w-full h-96" v-model="bf_program" lang="brainfuck" :options="{
                 theme: colorMode.value === 'dark' ? 'vs-dark' : 'vs',
                 smoothScrolling: true,
                 cursorSmoothCaretAnimation: 'on',
                 lineNumbersMinChars: 3
-              }"
-            >
+              }">
               Editor Loading...
             </MonacoEditor>
           </ClientOnly>
         </div>
-        <UInput v-model="bf_input" :placeholder="t('input')"/>
+        <UInput v-model="bf_input" :placeholder="t('input')" />
         <div class="flex justify-between items-center flex-wrap gap-2">
           <div class="flex items-center gap-2">
-            <UButton
-              @click="() => {
+            <UButton @click="() => {
               !run ? onRunClick() : (() => pause = !pause)()
-            }"
-              :icon="run ? (pause ? 'i-tabler-reorder' : 'i-tabler-player-pause') : 'i-tabler-player-play'"
-            >
+            }" :icon="run ? (pause ? 'i-tabler-reorder' : 'i-tabler-player-pause') : 'i-tabler-player-play'">
               {{ run ? (pause ? t('resume') : t('pause')) : t('run') }}
             </UButton>
-            <UButton
-              @click="() => {
+            <UButton @click="() => {
                 if(bf_runtime_step - 1 > 0) bf_runtime_step--
-              }"
-              :disabled="(run && !pause) || bf_runtime_step - 1 < 0"
-              v-if="bf_runtime_steps.length > 0"
-              variant="soft"
-              icon="i-tabler-arrow-left-circle"
-            >
+              }" :disabled="(run && !pause) || bf_runtime_step - 1 < 0" v-if="bf_runtime_steps.length > 0"
+              variant="soft" icon="i-tabler-arrow-left-circle">
               {{ t('prev') }}
             </UButton>
-            <UButton
-              @click="() => {
+            <UButton @click="() => {
                 if(bf_runtime_step + 1 < bf_runtime_steps.length) bf_runtime_step++
-              }"
-              :disabled="(run && !pause) || bf_runtime_step + 1 >= bf_runtime_steps.length"
-              v-if="bf_runtime_steps.length > 0"
-              variant="soft"
-              trailing-icon="i-tabler-arrow-right-circle"
-            >
+              }" :disabled="(run && !pause) || bf_runtime_step + 1 >= bf_runtime_steps.length"
+              v-if="bf_runtime_steps.length > 0" variant="soft" trailing-icon="i-tabler-arrow-right-circle">
               {{ t('next') }}
             </UButton>
             <UButton @click="run = false" v-if="run" color="red" variant="soft" icon="i-tabler-browser-x">
@@ -300,41 +275,27 @@ onMounted(() => {
           </div>
           <div class="flex items-center gap-4">
             <UTooltip :text="t('show_process')">
-              <UToggle
-                :loading="run"
-                on-icon="i-tabler-progress-check"
-                off-icon="i-tabler-progress"
-                v-model="bf_running_process"
-              />
+              <UToggle :loading="run" on-icon="i-tabler-progress-check" off-icon="i-tabler-progress"
+                v-model="bf_running_process" />
             </UTooltip>
             <UTooltip :text="t('speed')">
-              <USelectMenu
-                v-model="bf_running_delay"
-                :options="[
+              <USelectMenu v-model="bf_running_delay" :options="[
                   { label: '10ms', value: 10 },
                   { label: '50ms', value: 50 },
                   { label: '100ms', value: 100 },
                   { label: '500ms', value: 500 },
                   { label: '1s', value: 1000 },
-                ]"
-                option-attribute="label"
-                value-attribute="value"
-                :disabled="!bf_running_process"
-              />
+                ]" option-attribute="label" value-attribute="value" :disabled="!bf_running_process" />
             </UTooltip>
-            <USelectMenu
-              :placeholder="t('examples')"
-              :options="bf_examples"
-              option-attribute="label"
-              value-attribute="value"
-              @change="event => {
+            <USelectMenu :placeholder="t('examples')" :options="bf_examples" option-attribute="label"
+              value-attribute="value" @change="event => {
                 bf_program = event.code
                 bf_input = event.input
-              }"
-            />
+              }" />
           </div>
         </div>
       </div>
+      <IntroDocument class="md:col-span-2" />
     </div>
   </ToolContainer>
 </template>
