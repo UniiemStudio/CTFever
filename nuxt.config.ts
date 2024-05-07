@@ -3,7 +3,6 @@ export default defineNuxtConfig({
   nitro: {
     preset: 'static',
   },
-  ssr: false,
   devtools: { enabled: true },
   runtimeConfig: {
     public: {
