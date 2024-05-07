@@ -82,7 +82,7 @@ export const useConstant = defineStore('ctfever_stuff', () => {
         },
       ],
     },
-  ])
+  ]);
   const favorites = ref<Tool[]>([])
   const recent = ref<Tool[]>([])
 

@@ -117,11 +117,11 @@ const handleLogin = () => {
         <UniSelect :items="colorModeOptions" v-model="$colorMode.preference" size="sm"/>
       </AppSettingsItem>
     </AppSettingsArea>
-    <AppSettingsArea :title="t('account.label')" icon="tabler:user-square-rounded">
-      <AppSettingsItem :title="t('account.login.not_logged_in')" :subtitle="t('account.login.subtitle')">
-        <UniButton @click="modal.login = true" disabled>{{ t('account.login.btn_login') }}</UniButton>
-      </AppSettingsItem>
-    </AppSettingsArea>
+    <!--    <AppSettingsArea :title="t('account.label')" icon="tabler:user-square-rounded">-->
+    <!--      <AppSettingsItem :title="t('account.login.not_logged_in')" :subtitle="t('account.login.subtitle')">-->
+    <!--        <UniButton @click="modal.login = true" disabled>{{ t('account.login.btn_login') }}</UniButton>-->
+    <!--      </AppSettingsItem>-->
+    <!--    </AppSettingsArea>-->
     <!--    <AppSettingsArea :title="t('cloud_sync.label')" icon="tabler:cloud">-->
     <!--      <AppSettingsItem :title="t('cloud_sync.enable.title')" :subtitle="t('cloud_sync.enable.subtitle')">-->
     <!--        <UniToggle v-model="select" size="sm" />-->

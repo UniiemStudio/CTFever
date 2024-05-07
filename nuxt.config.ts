@@ -1,10 +1,9 @@
-import { componentNames } from "#build/components";
-
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   nitro: {
-    preset: 'static'
+    preset: 'static',
   },
+  ssr: false,
   devtools: { enabled: true },
   runtimeConfig: {
     public: {
@@ -21,6 +20,7 @@ export default defineNuxtConfig({
       name: 'page',
     },
   },
+  spaLoadingTemplate: true,
   modules: [
     '@pinia/nuxt',
     '@pinia-plugin-persistedstate/nuxt',
