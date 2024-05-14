@@ -1,5 +1,7 @@
 import { app, BrowserWindow, shell } from 'electron'
 import path from 'path'
+import { createServer } from 'node:http'
+import handler from 'serve-handler'
 
 process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = 'true'
 
@@ -45,6 +47,14 @@ const createWindow = async () => {
 
   if (app.isPackaged) {
     mainWindow.loadFile(path.join(process.env.VITE_PUBLIC!, 'index.html'))
+    // const server = createServer((req, res) => {
+    //   return handler(req, res, {
+    //     public: process.env.VITE_PUBLIC!
+    //   })
+    // })
+    // server.listen(8000, () => {
+    //   mainWindow?.loadURL('http://localhost:8000')
+    // })
   } else {
     mainWindow.loadURL(process.env.VITE_DEV_SERVER_URL!)
   }
