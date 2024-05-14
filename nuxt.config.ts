@@ -1,8 +1,15 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+
+const isElectron = process.env.CTFEVER_IN_ELECTRON === 'true'
+
 export default defineNuxtConfig({
   nitro: {
     preset: 'static',
+    devProxy: {
+      host: '127.0.0.1'
+    }
   },
+  ssr: false,
   devtools: { enabled: true },
   runtimeConfig: {
     public: {
@@ -30,8 +37,14 @@ export default defineNuxtConfig({
     '@nuxt/ui',
     '@nuxtjs/i18n',
     '@nuxtjs/google-fonts',
-    "nuxt-monaco-editor"
+    'nuxt-monaco-editor',
+    'nuxt-electron',
   ],
+  electron: {
+    build: [
+      { entry: 'electron/main.ts' },
+    ],
+  },
   dayjs: {
     locales: ['zh'],
     defaultLocale: 'zh',

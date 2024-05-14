@@ -1,11 +1,15 @@
 {
   "name": "ctfever",
-  "version": "3",
+  "version": "3.0.0",
   "author": {
     "name": "HoshinoSuzumi",
     "email": "master@uniiem.com",
     "url": "https://github.com/HoshinoSuzumi"
   },
+  "main": "dist-electron/main.js",
+  "files": [
+    "dist"
+  ],
   "private": true,
   "packageManager": "pnpm@9.1.0",
   "type": "module",
@@ -14,7 +18,7 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare && electron-builder install-app-deps"
   },
   "devDependencies": {
     "@nuxt/content": "^2.12.1",
@@ -25,10 +29,15 @@
     "@pinia/nuxt": "^0.5.1",
     "@vueuse/nuxt": "^10.4.1",
     "dayjs-nuxt": "^2.1.9",
+    "electron": "^30.0.3",
+    "electron-builder": "^24.13.3",
     "nuxt": "^3.11.2",
+    "nuxt-electron": "^0.7.0",
     "nuxt-icon": "^0.6.10",
     "nuxt-monaco-editor": "^1.2.9",
-    "sass": "^1.68.0"
+    "sass": "^1.68.0",
+    "vite-plugin-electron": "^0.28.7",
+    "vite-plugin-electron-renderer": "^0.14.5"
   },
   "dependencies": {
     "@iconify-json/solar": "^1.1.3",
@@ -43,5 +52,10 @@
     "@uniiem/zws": "^0.1.0",
     "monaco-editor": "^0.48.0",
     "yup": "^1.3.2"
+  },
+  "pnpm": {
+    "overrides": {
+      "nitropack": "2.8.1"
+    }
   }
 }
