@@ -1,13 +1,13 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import pkg from './package.json'
 
 const isElectron = process.env.CTFEVER_IN_ELECTRON === 'true'
 
 export default defineNuxtConfig({
   nitro: {
-    preset: 'static',
     devProxy: {
-      host: '127.0.0.1'
-    }
+      host: '127.0.0.1',
+    },
   },
   ssr: false,
   devtools: { enabled: true },
@@ -40,9 +40,29 @@ export default defineNuxtConfig({
     'nuxt-monaco-editor',
     'nuxt-electron',
   ],
+  router: {
+    options: {
+      hashMode: !process.env.VITE_DEV_SERVER_URL
+    }
+  },
   electron: {
     build: [
-      { entry: 'electron/main.ts' },
+      {
+        entry: 'electron/main.ts',
+        vite: {
+          build: {
+            minify: process.env.NODE_ENV === 'production',
+            rollupOptions: {
+              external: Object.keys('dependencies' in pkg ? pkg.dependencies : {}),
+            },
+          },
+          resolve: {
+            alias: {
+              '~': __dirname,
+            },
+          },
+        },
+      },
     ],
   },
   dayjs: {

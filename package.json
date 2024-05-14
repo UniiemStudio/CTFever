@@ -12,9 +12,9 @@
   ],
   "private": true,
   "packageManager": "pnpm@9.1.0",
-  "type": "module",
   "scripts": {
     "build": "nuxt build",
+    "build-electron": "nuxt generate && electron-builder build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",

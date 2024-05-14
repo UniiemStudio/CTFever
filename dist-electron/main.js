@@ -1,4 +1,1 @@
-import { app as e, BrowserWindow as o } from "electron";
-e.whenReady().then(() => {
-  new o().loadURL(process.env.VITE_DEV_SERVER_URL);
-});
+"use strict";const e=require("electron"),i=require("path");process.env.ELECTRON_DISABLE_SECURITY_WARNINGS="true";process.platform==="win32"&&e.app.setAppUserModelId(e.app.getName());e.app.requestSingleInstanceLock()||(e.app.quit(),process.exit(0));let t=null;const s=i.join(__dirname,"..",".output","public"),o=async()=>{t=new e.BrowserWindow({title:"CTFever Desktop",minWidth:1024,minHeight:600,webPreferences:{nodeIntegration:!1,contextIsolation:!0}}),e.app.isPackaged?t.loadFile(i.join(s,"index.html")):t.loadURL(process.env.VITE_DEV_SERVER_URL),t.webContents.setWindowOpenHandler(({url:n})=>((n.startsWith("https:")||n.startsWith("http:"))&&e.shell.openExternal(n),{action:"deny"})),e.app.on("window-all-closed",()=>{t=null,process.platform!=="darwin"&&e.app.quit()}),e.app.on("second-instance",()=>{t&&(t.isMinimized()&&t.restore(),t.focus())})};e.app.whenReady().then(()=>{o()});

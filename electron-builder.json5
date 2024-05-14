@@ -2,6 +2,7 @@
 {
   "$schema": "https://raw.githubusercontent.com/electron-userland/electron-builder/master/packages/app-builder-lib/scheme.json",
   "appId": "app.c5r.app",
+  "icon": "public/icon.png",
   "asar": true,
   "directories": {
     "output": "release/${version}"
@@ -25,7 +26,8 @@
         ]
       }
     ],
-    "artifactName": "${productName}_${version}.${ext}"
+    "artifactName": "${productName}_${arch}_${version}.${ext}",
+    "icon": "public/icon.png"
   },
   "nsis": {
     "oneClick": false,
