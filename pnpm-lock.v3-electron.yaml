@@ -41,6 +41,12 @@ importers:
       '@uniiem/zws':
         specifier: ^0.1.0
         version: 0.1.0
+      '@vueuse/electron':
+        specifier: ^10.9.0
+        version: 10.9.0(electron@30.0.3)(vue@3.4.27(typescript@5.4.5))
+      electron:
+        specifier: 30.0.3
+        version: 30.0.3
       monaco-editor:
         specifier: ^0.48.0
         version: 0.48.0
@@ -72,9 +78,6 @@ importers:
       dayjs-nuxt:
         specifier: ^2.1.9
         version: 2.1.9(rollup@4.17.2)
-      electron:
-        specifier: ^30.0.3
-        version: 30.0.3
       electron-builder:
         specifier: ^24.13.3
         version: 24.13.3(electron-builder-squirrel-windows@24.13.3(dmg-builder@24.13.3))
@@ -1644,6 +1647,11 @@ packages:
 
   '@vueuse/core@10.9.0':
     resolution: {integrity: sha512-/1vjTol8SXnx6xewDEKfS0Ra//ncg4Hb0DaZiwKf7drgfMsKFExQ+FnnENcN6efPen+1kIzhLQoGSy0eDUVOMg==}
+
+  '@vueuse/electron@10.9.0':
+    resolution: {integrity: sha512-n9UAwGhJ2KLmKr2ZdYLQoVrCrJbZP8kMYNfuTvqmmz+8/+o+40pDP7DGrApTpSRDBkCiySaLn04/n3l5taFgFg==}
+    peerDependencies:
+      electron: '>=9.0.0'
 
   '@vueuse/head@2.0.0':
     resolution: {integrity: sha512-ykdOxTGs95xjD4WXE4na/umxZea2Itl0GWBILas+O4oqS7eXIods38INvk3XkJKjqMdWPcpCyLX/DioLQxU1KA==}
@@ -7475,6 +7483,15 @@ snapshots:
       '@types/web-bluetooth': 0.0.20
       '@vueuse/metadata': 10.9.0
       '@vueuse/shared': 10.9.0(vue@3.4.27(typescript@5.4.5))
+      vue-demi: 0.14.7(vue@3.4.27(typescript@5.4.5))
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - vue
+
+  '@vueuse/electron@10.9.0(electron@30.0.3)(vue@3.4.27(typescript@5.4.5))':
+    dependencies:
+      '@vueuse/shared': 10.9.0(vue@3.4.27(typescript@5.4.5))
+      electron: 30.0.3
       vue-demi: 0.14.7(vue@3.4.27(typescript@5.4.5))
     transitivePeerDependencies:
       - '@vue/composition-api'

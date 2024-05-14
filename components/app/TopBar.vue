@@ -136,12 +136,14 @@ defineShortcuts({
 </script>
 
 <template>
-  <div class="sticky top-0 left-0 right-0 h-fit z-50">
+  <div
+    class="sticky top-0 left-0 right-0 h-fit z-50"
+  >
     <nav
-      class="relative h-16 z-20 px-4 overflow-hidden flex items-center transition border-b bg-white/90 dark:bg-neutral-800/90 backdrop-blur-lg backdrop-saturate-50"
+      class="relative h-16 z-20 px-4 pr-40 overflow-hidden flex items-center transition border-b bg-white/90 dark:bg-neutral-800/90 backdrop-blur-lg backdrop-saturate-50 draggable"
       :class="{ 'border-b dark:border-neutral-700': minibar, 'shadow-md border-transparent': !minibar }">
       <div class="flex items-center justify-between container mx-auto">
-        <NuxtLinkLocale to="/">
+        <NuxtLinkLocale to="/" class="ignore-drag">
           <div class="flex items-center space-x-2.5">
             <AppLogo for="navbar"/>
             <Transition name="title" mode="out-in">
@@ -149,10 +151,12 @@ defineShortcuts({
             </Transition>
           </div>
         </NuxtLinkLocale>
-        <div class="flex items-center space-x-4">
+        <div class="flex items-center space-x-4 ignore-drag">
           <DevOnly>
-            <UniButton size="medium"
-                       @click="$colorMode.preference = $colorMode.preference === 'dark' ? 'light' : 'dark'">
+            <UniButton
+              size="medium"
+              @click="$colorMode.preference = $colorMode.preference === 'dark' ? 'light' : 'dark'"
+            >
               <Icon class="text-lg"
                     :name="$colorMode.preference === 'dark' ? 'line-md:sunny-outline-to-moon-alt-loop-transition' : 'line-md:moon-alt-to-sunny-outline-loop-transition'"/>
             </UniButton>

@@ -2,8 +2,9 @@
 {
   "$schema": "https://raw.githubusercontent.com/electron-userland/electron-builder/master/packages/app-builder-lib/scheme.json",
   "appId": "app.c5r.app",
+  "productName": "CTFever Desktop",
   "icon": "public/icon.png",
-  "asar": true,
+  "asar": false,
   "directories": {
     "output": "release/${version}"
   },

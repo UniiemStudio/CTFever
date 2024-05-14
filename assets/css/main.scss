@@ -29,3 +29,13 @@
 body {
   @apply dark:bg-neutral-950 font-sans;
 }
+
+/* Electron */
+.draggable {
+  -webkit-app-region: drag;
+}
+
+.not-draggable,
+.draggable .ignore-drag {
+  -webkit-app-region: no-drag;
+}

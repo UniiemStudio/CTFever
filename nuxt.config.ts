@@ -1,10 +1,28 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import pkg from './package.json'
+import path from 'path'
+import * as fs from 'node:fs'
+import type { InlineConfig } from 'vite'
 
-const isElectron = process.env.CTFEVER_IN_ELECTRON === 'true'
+fs.rmSync(path.join(__dirname, 'dist-electron'), { recursive: true, force: true })
+
+const viteElectronBuildConfig: InlineConfig = {
+  build: {
+    minify: process.env.NODE_ENV === 'production',
+    rollupOptions: {
+      external: Object.keys('dependencies' in pkg ? pkg.dependencies : {}),
+    },
+  },
+  resolve: {
+    alias: {
+      '~': __dirname,
+    },
+  },
+}
 
 export default defineNuxtConfig({
   nitro: {
+    preset: 'node-server',
     devProxy: {
       host: '127.0.0.1',
     },
@@ -42,25 +60,20 @@ export default defineNuxtConfig({
   ],
   router: {
     options: {
-      hashMode: !process.env.VITE_DEV_SERVER_URL
-    }
+      hashMode: !process.env.VITE_DEV_SERVER_URL,
+    },
   },
   electron: {
     build: [
       {
         entry: 'electron/main.ts',
-        vite: {
-          build: {
-            minify: process.env.NODE_ENV === 'production',
-            rollupOptions: {
-              external: Object.keys('dependencies' in pkg ? pkg.dependencies : {}),
-            },
-          },
-          resolve: {
-            alias: {
-              '~': __dirname,
-            },
-          },
+        vite: viteElectronBuildConfig,
+      },
+      {
+        entry: 'electron/preload.ts',
+        vite: viteElectronBuildConfig,
+        onstart(args) {
+          args.reload()
         },
       },
     ],

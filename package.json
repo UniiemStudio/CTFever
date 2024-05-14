@@ -14,9 +14,9 @@
   "packageManager": "pnpm@9.1.0",
   "scripts": {
     "build": "nuxt build",
-    "build-electron": "nuxt generate && electron-builder build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
+    "package": "nuxt generate && electron-builder build",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare && electron-builder install-app-deps"
   },
@@ -29,7 +29,6 @@
     "@pinia/nuxt": "^0.5.1",
     "@vueuse/nuxt": "^10.4.1",
     "dayjs-nuxt": "^2.1.9",
-    "electron": "^30.0.3",
     "electron-builder": "^24.13.3",
     "nuxt": "^3.11.2",
     "nuxt-electron": "^0.7.0",
@@ -50,6 +49,8 @@
     "@uniiem/uuid": "^0.2.1",
     "@uniiem/vigenere-cipher": "^0.1.1",
     "@uniiem/zws": "^0.1.0",
+    "@vueuse/electron": "^10.9.0",
+    "electron": "30.0.3",
     "monaco-editor": "^0.48.0",
     "yup": "^1.3.2"
   },
