@@ -1,7 +1,5 @@
-import { app, BrowserWindow, shell } from 'electron'
+import { app, BrowserWindow, shell, ipcMain } from 'electron'
 import path from 'path'
-import { createServer } from 'node:http'
-import handler from 'serve-handler'
 
 process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = 'true'
 
@@ -36,7 +34,7 @@ const createWindow = async () => {
     titleBarOverlay: {
       color: '#00000000',
       symbolColor: 'rgba(128, 128, 128, .7)',
-      height: 64
+      height: 64,
     },
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
@@ -79,5 +77,28 @@ const createWindow = async () => {
 }
 
 app.whenReady().then(() => {
+  ipcMain.handle('settings', async () => {
+    return [
+      {
+        name: 'theme',
+        type: 'select',
+        label: 'Theme',
+        options: [
+          { value: 'light', label: 'Light' },
+          { value: 'dark', label: 'Dark' },
+        ],
+      },
+      {
+        name: 'language',
+        type: 'select',
+        label: 'Language',
+        options: [
+          { value: 'en', label: 'English' },
+          { value: 'zh', label: '中文' },
+        ],
+      },
+    ]
+  })
+
   createWindow()
 })
