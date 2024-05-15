@@ -98,7 +98,7 @@ const handleLocaleSelect = (lc: string) => {
   if (electronReady) {
     desktop_settings.value.locale = lc
   }
-  router.push(switchLocalePath(lc))
+  router.replace(switchLocalePath(lc))
 }
 
 const selectedLocale = ref(locale.value as string)
