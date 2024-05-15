@@ -1,7 +1,7 @@
 // @see - https://www.electron.build/configuration/configuration
 {
   "$schema": "https://raw.githubusercontent.com/electron-userland/electron-builder/master/packages/app-builder-lib/scheme.json",
-  "appId": "app.c5r.app",
+  "appId": "app.c5r.desktop",
   "productName": "CTFever Desktop",
   "icon": "public/icon.png",
   "asar": false,
@@ -12,6 +12,7 @@
     ".output/**/*",
     "dist-electron"
   ],
+  "afterPack": "./build/hooks/afterPack.js",
   "mac": {
     "artifactName": "${productName}_${version}.${ext}",
     "target": [
@@ -31,8 +32,13 @@
     "icon": "public/icon.png"
   },
   "nsis": {
+    "shortcutName": "CTFever",
+    "menuCategory": "UniiemSoft",
+    "createDesktopShortcut": true,
+    "createStartMenuShortcut": true,
     "oneClick": false,
     "perMachine": false,
+    "packElevateHelper": true,
     "allowToChangeInstallationDirectory": true,
     "deleteAppDataOnUninstall": false
   }

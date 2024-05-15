@@ -8,7 +8,9 @@
   },
   "main": "dist-electron/main.js",
   "files": [
-    "dist"
+    ".output/**/*",
+    "dist-electron/**/*",
+    ".env.electron"
   ],
   "private": true,
   "packageManager": "pnpm@9.1.0",
@@ -18,7 +20,7 @@
     "generate": "nuxt generate",
     "package": "nuxt generate --dotenv .env.electron && electron-builder build",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare && electron-builder install-app-deps"
+    "postinstall": "nuxt prepare"
   },
   "devDependencies": {
     "@nuxt/content": "^2.12.1",
