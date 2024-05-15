@@ -15,6 +15,9 @@ const { locale, locales } = useI18n()
 const { t } = useI18n({
   useScope: 'local',
 })
+const desktop_settings = useLocalStorage('c5r_desktop:settings', {
+  locale: 'en',
+})
 
 const electronReady = window?.desktop?.electronReady || false
 const ipcRenderer = window?.ipcRenderer || null
@@ -92,6 +95,9 @@ const localeOptions = locales.value.map(locale => {
 })
 
 const handleLocaleSelect = (lc: string) => {
+  if (electronReady) {
+    desktop_settings.value.locale = lc
+  }
   router.push(switchLocalePath(lc))
 }
 
@@ -118,6 +124,15 @@ const onClick = () => {
 
 <template>
   <ToolContainer>
+    <ClientOnly v-if="electronReady">
+      <AppSettingsArea title="General" icon="tabler:app-window">
+        <AppSettingsItem
+          title="CTFever Desktop"
+          subtitle="CTFever is running as a desktop application"
+        ></AppSettingsItem>
+      </AppSettingsArea>
+    </ClientOnly>
+
     <AppSettingsArea :title="t('appearance.label')" icon="tabler:layout">
       <AppSettingsItem :title="t('appearance.language.label')">
         <UniSelect :items="localeOptions" v-model="selectedLocale" size="sm"/>
@@ -125,11 +140,6 @@ const onClick = () => {
       <AppSettingsItem :title="t('appearance.color_mode.label')">
         <UniSelect :items="colorModeOptions" v-model="$colorMode.preference" size="sm"/>
       </AppSettingsItem>
-      <ClientOnly>
-        <AppSettingsItem v-if="electronReady" title="ipcRenderer 测试">
-          <UniButton @click="onClick">ipc invoke</UniButton>
-        </AppSettingsItem>
-      </ClientOnly>
     </AppSettingsArea>
     <!--    <AppSettingsArea :title="t('account.label')" icon="tabler:user-square-rounded">-->
     <!--      <AppSettingsItem :title="t('account.login.not_logged_in')" :subtitle="t('account.login.subtitle')">-->

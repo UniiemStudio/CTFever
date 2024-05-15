@@ -117,8 +117,7 @@ export default defineNuxtConfig({
     detectBrowserLanguage: {
       useCookie: true,
       cookieKey: 'i18n_redirected',
-      // redirectOn: 'root',
-      alwaysRedirect: true,
+      redirectOn: 'root',
     },
   },
   googleFonts: {

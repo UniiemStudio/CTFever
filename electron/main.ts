@@ -1,3 +1,5 @@
+// noinspection JSIgnoredPromiseFromCall
+
 import { app, BrowserWindow, shell, ipcMain } from 'electron'
 import path from 'path'
 
@@ -22,7 +24,7 @@ if (!app.requestSingleInstanceLock()) {
 
 let mainWindow: BrowserWindow | null = null
 
-const createWindow = async () => {
+const bootstrap = async () => {
   mainWindow = new BrowserWindow({
     title: 'CTFever Desktop',
     minWidth: 1038,
@@ -45,21 +47,12 @@ const createWindow = async () => {
 
   if (app.isPackaged) {
     mainWindow.loadFile(path.join(process.env.VITE_PUBLIC!, 'index.html'))
-    // const server = createServer((req, res) => {
-    //   return handler(req, res, {
-    //     public: process.env.VITE_PUBLIC!
-    //   })
-    // })
-    // server.listen(8000, () => {
-    //   mainWindow?.loadURL('http://localhost:8000')
-    // })
   } else {
     mainWindow.loadURL(process.env.VITE_DEV_SERVER_URL!)
   }
 
   mainWindow.webContents.setWindowOpenHandler(({ url }) => {
-    if (url.startsWith('https:') || url.startsWith('http:'))
-      shell.openExternal(url)
+    if (url.match(/^(?:http|https):\/\//)) shell.openExternal(url)
     return { action: 'deny' }
   })
 
@@ -76,29 +69,11 @@ const createWindow = async () => {
   })
 }
 
-app.whenReady().then(() => {
-  ipcMain.handle('settings', async () => {
-    return [
-      {
-        name: 'theme',
-        type: 'select',
-        label: 'Theme',
-        options: [
-          { value: 'light', label: 'Light' },
-          { value: 'dark', label: 'Dark' },
-        ],
-      },
-      {
-        name: 'language',
-        type: 'select',
-        label: 'Language',
-        options: [
-          { value: 'en', label: 'English' },
-          { value: 'zh', label: '中文' },
-        ],
-      },
-    ]
-  })
+const initIpc = () => {
 
-  createWindow()
+}
+
+app.whenReady().then(() => {
+  initIpc()
+  bootstrap()
 })
