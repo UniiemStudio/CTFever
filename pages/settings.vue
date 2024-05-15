@@ -16,6 +16,8 @@ const { t } = useI18n({
   useScope: 'local',
 })
 
+const {invoke} = window.ipcRenderer
+
 useSeoMeta({
   title: t('title'),
 })
@@ -105,6 +107,12 @@ const handleLogin = () => {
     },
   }) as RouteLocationRaw)
 }
+
+const onClick = () => {
+  invoke('settings').then(res => {
+    console.log(res)
+  })
+}
 </script>
 
 <template>
@@ -115,6 +123,9 @@ const handleLogin = () => {
       </AppSettingsItem>
       <AppSettingsItem :title="t('appearance.color_mode.label')">
         <UniSelect :items="colorModeOptions" v-model="$colorMode.preference" size="sm"/>
+      </AppSettingsItem>
+      <AppSettingsItem title="ipcRenderer 测试">
+        <UniButton @click="onClick">ipc invoke</UniButton>
       </AppSettingsItem>
     </AppSettingsArea>
     <!--    <AppSettingsArea :title="t('account.label')" icon="tabler:user-square-rounded">-->

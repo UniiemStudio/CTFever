@@ -81,6 +81,7 @@ export default defineNuxtConfig({
         },
       },
     ],
+    renderer: {},
   },
   dayjs: {
     locales: ['zh'],
