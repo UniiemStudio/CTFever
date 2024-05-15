@@ -16,7 +16,7 @@ const { t } = useI18n({
   useScope: 'local',
 })
 
-const {invoke} = window.ipcRenderer
+const ipcRenderer = window.ipcRenderer
 
 useSeoMeta({
   title: t('title'),
@@ -109,7 +109,7 @@ const handleLogin = () => {
 }
 
 const onClick = () => {
-  invoke('settings').then(res => {
+  ipcRenderer?.invoke('settings').then(res => {
     console.log(res)
   })
 }
@@ -124,7 +124,7 @@ const onClick = () => {
       <AppSettingsItem :title="t('appearance.color_mode.label')">
         <UniSelect :items="colorModeOptions" v-model="$colorMode.preference" size="sm"/>
       </AppSettingsItem>
-      <AppSettingsItem title="ipcRenderer 测试">
+      <AppSettingsItem v-if="!!ipcRenderer" title="ipcRenderer 测试">
         <UniButton @click="onClick">ipc invoke</UniButton>
       </AppSettingsItem>
     </AppSettingsArea>
