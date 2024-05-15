@@ -24,7 +24,7 @@ export const useConstant = defineStore('ctfever_stuff', () => {
   const toolkits = ref<Toolkit[]>([
     {
       key: 'encoding',
-      icon: 'i-tabler-code',
+      icon: 'IconCode',
       tools: [
         {
           key: 'ascii',
@@ -47,7 +47,7 @@ export const useConstant = defineStore('ctfever_stuff', () => {
     },
     {
       key: 'cryptology',
-      icon: 'i-tabler-key',
+      icon: 'IconKey',
       tools: [
         {
           key: 'caesar',
@@ -63,7 +63,7 @@ export const useConstant = defineStore('ctfever_stuff', () => {
     },
     {
       key: 'misc',
-      icon: 'i-tabler-microscope',
+      icon: 'IconMicroscope',
       tools: [
         {
           key: 'socialEngineeringDictGen',

@@ -37,7 +37,7 @@ defineProps({
          class="px-1.5 py-0.5 bg-neutral-50 dark:bg-neutral-800 dark:text-neutral-400 flex-nowrap whitespace-nowrap flex items-center justify-between text-xs">
       <div class="overflow-hidden text-ellipsis text-neutral-500 dark:text-neutral-400">
         <div class="flex items-center gap-0.5">
-          <Icon :name="(tool.tags?.length || 1) <= 1 ? 'tabler:tag' : 'tabler:tags'" class="text-sm"/>
+          <Icon :name="(tool.tags?.length || 1) <= 1 ? 'IconTag' : 'IconTags'" class="text-sm"/>
           <UTooltip
             v-for="(tag, k) in tool.tags"
             :key="k"

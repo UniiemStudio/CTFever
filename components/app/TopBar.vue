@@ -140,17 +140,32 @@ defineShortcuts({
     class="fixed top-0 left-0 right-0 h-fit z-50"
   >
     <nav
-      class="relative h-16 z-20 px-4 pr-40 overflow-hidden flex items-center transition border-b bg-white/90 dark:bg-neutral-800/90 backdrop-blur-lg backdrop-saturate-50 draggable"
-      :class="{ 'border-b dark:border-neutral-700': minibar, 'shadow-md border-transparent': !minibar }">
-      <div class="flex items-center justify-between container mx-auto">
-        <NuxtLinkLocale to="/" class="ignore-drag">
-          <div class="flex items-center space-x-2.5">
-            <AppLogo for="navbar"/>
-            <Transition name="title" mode="out-in">
-              <h1 :key="currentPageTitle" class="whitespace-nowrap">{{ currentPageTitle }}</h1>
-            </Transition>
-          </div>
-        </NuxtLinkLocale>
+      class="relative h-16 z-20 px-4 overflow-hidden flex items-center transition border-b bg-white/90 dark:bg-neutral-800/90 backdrop-blur-lg backdrop-saturate-50 draggable"
+      :class="{
+        'border-b dark:border-neutral-700': minibar,
+        'shadow-md border-transparent': !minibar
+      }">
+      <div
+        class="flex items-center justify-between container mx-auto"
+        :class="{'pr-32': $config.public.buildElectron}"
+      >
+        <div class="flex items-center space-x-2.5 select-none">
+          <NuxtLinkLocale to="/" class="ignore-drag group flex justify-center items-center">
+            <div
+              class="w-6 h-6 bg-neutral-200 dark:bg-neutral-600 rounded-md hidden group-hover:flex justify-center items-center">
+              <Icon name="IconHome"/>
+            </div>
+            <AppLogo for="navbar" class="block group-hover:hidden"/>
+          </NuxtLinkLocale>
+          <Transition name="title" mode="out-in">
+            <h1
+              :key="currentPageTitle"
+              class="whitespace-nowrap"
+            >
+              {{ currentPageTitle }}
+            </h1>
+          </Transition>
+        </div>
         <div class="flex items-center space-x-4 ignore-drag">
           <DevOnly>
             <UniButton
@@ -158,12 +173,18 @@ defineShortcuts({
               @click="$colorMode.preference = $colorMode.preference === 'dark' ? 'light' : 'dark'"
             >
               <Icon class="text-lg"
-                    :name="$colorMode.preference === 'dark' ? 'line-md:sunny-outline-to-moon-alt-loop-transition' : 'line-md:moon-alt-to-sunny-outline-loop-transition'"/>
+                    :name="$colorMode.preference === 'dark'
+                      ? 'line-md:sunny-outline-to-moon-alt-loop-transition'
+                      : 'line-md:moon-alt-to-sunny-outline-loop-transition'"
+              />
             </UniButton>
           </DevOnly>
-          <button @click="commandPlatteActive = true" class="items-center space-x-2 px-2 py-1 border border-neutral-300 bg-neutral-50 text-neutral-500 dark:border-neutral-600 hover:border-neutral-500 dark:hover:border-neutral-500
-                   transition dark:bg-neutral-800 text-xs rounded-lg cursor-pointer whitespace-nowrap hidden md:flex">
-            <Icon name="tabler:search" class="text-base"/>
+          <button
+            @click="commandPlatteActive = true"
+            class="items-center space-x-2 px-2 py-1 border border-neutral-300 bg-neutral-50 text-neutral-500 dark:border-neutral-600 hover:border-neutral-500 dark:hover:border-neutral-500
+                   transition dark:bg-neutral-800 text-xs rounded-lg cursor-pointer whitespace-nowrap hidden md:flex"
+          >
+            <Icon name="IconSearch" class="text-base"/>
             <span>{{ t('search') }}</span>
             <span class="flex items-center gap-0.5">
               <UKbd>{{ metaSymbol }}</UKbd>
@@ -171,34 +192,43 @@ defineShortcuts({
             </span>
           </button>
           <button @click="commandPlatteActive = true" class="block md:hidden">
-            <Icon name="tabler:search" class="text-lg inline -mt-1"/>
+            <Icon name="IconSearch" class="text-lg inline -mt-1"/>
           </button>
           <a href="https://github.com/UniiemStudio/CTFever" target="_blank">
-            <Icon name="simple-icons:github" class="text-lg inline -mt-1"/>
+            <Icon name="IconGithub" class="text-lg inline -mt-1"/>
           </a>
           <nuxt-link :to="localePath('/settings')">
-            <Icon name="tabler:settings-2" class="text-lg inline -mt-1"/>
+            <Icon name="IconSettings" class="text-lg inline -mt-1"/>
           </nuxt-link>
         </div>
       </div>
     </nav>
+    <!-- sub title bar -->
     <div
       class="relative w-full z-10 px-4 overflow-hidden flex items-center transition-all ease-in-out duration-300 shadow-md border-transparent border-b bg-white/90 dark:bg-neutral-800/90 backdrop-blur-lg backdrop-saturate-50"
       :class="{ 'h-0 opacity-0': !minibar, 'h-8 opacity-100 dark:border-neutral-700': minibar }">
       <div class="flex items-center justify-between container mx-auto">
         <div class="flex items-center">
           <nuxt-link :to="localePath('/')" class="flex items-center space-x-1 text-sm">
-            <Icon name="solar:square-alt-arrow-left-linear" class="text-lg"/>
+            <Icon name="IconCircleArrowLeft" class="text-lg"/>
             <span>{{ $t('component.topSubBar.back') }}</span>
           </nuxt-link>
         </div>
         <div class="flex items-center space-x-3">
           <button class="flex items-center" @click="handleFavorite">
-            <Icon v-show="isCurrentToolFavorite" name="tabler:bookmark-filled" class="text-lg text-amber-500"/>
-            <Icon v-show="!isCurrentToolFavorite" name="tabler:bookmark-plus" class="text-lg"/>
+            <Icon
+              v-show="isCurrentToolFavorite"
+              name="IconBookmarkFilled"
+              class="text-lg text-amber-500"
+            />
+            <Icon
+              v-show="!isCurrentToolFavorite"
+              name="IconBookmarkPlus"
+              class="text-lg"
+            />
           </button>
           <button class="flex items-center" @click="sidebarActive = !sidebarActive">
-            <Icon name="solar:hamburger-menu-linear" class="text-lg"/>
+            <Icon name="IconMenu" class="text-lg"/>
           </button>
         </div>
       </div>

@@ -4,6 +4,8 @@ import path from 'path'
 import * as fs from 'node:fs'
 import type { InlineConfig } from 'vite'
 
+const isElectron = process.env.NUXT_PUBLIC_BUILD_ELECTRON === 'true'
+
 fs.rmSync(path.join(__dirname, 'dist-electron'), { recursive: true, force: true })
 
 const viteElectronBuildConfig: InlineConfig = {
@@ -27,12 +29,13 @@ export default defineNuxtConfig({
       host: '127.0.0.1',
     },
   },
-  ssr: false,
+  ssr: !isElectron,
   devtools: { enabled: true },
   runtimeConfig: {
     public: {
       appName: 'CTFever',
       apiBase: 'http://localhost:8080',
+      buildElectron: '',
     },
   },
   css: [
@@ -56,14 +59,15 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
     '@nuxtjs/google-fonts',
     'nuxt-monaco-editor',
-    'nuxt-electron',
+    isElectron && 'nuxt-electron',
   ],
   router: {
     options: {
-      hashMode: !process.env.VITE_DEV_SERVER_URL,
+      hashMode: isElectron,
     },
   },
   electron: {
+    disableDefaultOptions: !isElectron,
     build: [
       {
         entry: 'electron/main.ts',

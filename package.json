@@ -16,7 +16,7 @@
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
-    "package": "nuxt generate && electron-builder build",
+    "package": "nuxt generate --dotenv .env.electron && electron-builder build",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare && electron-builder install-app-deps"
   },
