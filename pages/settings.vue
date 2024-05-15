@@ -16,7 +16,7 @@ const { t } = useI18n({
   useScope: 'local',
 })
 
-const ipcRenderer = window.ipcRenderer
+const ipcRenderer = window?.ipcRenderer || null
 
 useSeoMeta({
   title: t('title'),
