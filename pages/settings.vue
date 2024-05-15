@@ -16,6 +16,7 @@ const { t } = useI18n({
   useScope: 'local',
 })
 
+const electronReady = window?.desktop?.electronReady || false
 const ipcRenderer = window?.ipcRenderer || null
 
 useSeoMeta({
@@ -125,7 +126,7 @@ const onClick = () => {
         <UniSelect :items="colorModeOptions" v-model="$colorMode.preference" size="sm"/>
       </AppSettingsItem>
       <ClientOnly>
-        <AppSettingsItem v-if="!!ipcRenderer" title="ipcRenderer 测试">
+        <AppSettingsItem v-if="electronReady" title="ipcRenderer 测试">
           <UniButton @click="onClick">ipc invoke</UniButton>
         </AppSettingsItem>
       </ClientOnly>
