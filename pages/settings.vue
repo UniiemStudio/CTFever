@@ -124,9 +124,11 @@ const onClick = () => {
       <AppSettingsItem :title="t('appearance.color_mode.label')">
         <UniSelect :items="colorModeOptions" v-model="$colorMode.preference" size="sm"/>
       </AppSettingsItem>
-      <AppSettingsItem v-if="!!ipcRenderer" title="ipcRenderer 测试">
-        <UniButton @click="onClick">ipc invoke</UniButton>
-      </AppSettingsItem>
+      <ClientOnly>
+        <AppSettingsItem v-if="!!ipcRenderer" title="ipcRenderer 测试">
+          <UniButton @click="onClick">ipc invoke</UniButton>
+        </AppSettingsItem>
+      </ClientOnly>
     </AppSettingsArea>
     <!--    <AppSettingsArea :title="t('account.label')" icon="tabler:user-square-rounded">-->
     <!--      <AppSettingsItem :title="t('account.login.not_logged_in')" :subtitle="t('account.login.subtitle')">-->
