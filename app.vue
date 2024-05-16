@@ -10,6 +10,7 @@ const route = useRoute()
 const router = useRouter()
 const routeBaseName = useRouteBaseName()
 const { currentPageTitle } = storeToRefs(useGlobalState())
+const localePath = useLocalePath()
 const switchLocalePath = useSwitchLocalePath()
 const desktop_settings = useLocalStorage('c5r_desktop:settings', {
   locale: 'en',
@@ -38,12 +39,12 @@ onMounted(() => {
     // handlers
     desktopAPI?.appReady()
     desktopAPI?.onPushRoute(route => {
-      router.push(route)
+      router.push(localePath(route))
     })
 
     desktopAPI?.onAwaken(url => {
       const scheme = new URL(url)
-      router.replace(scheme.pathname.replace('//', '/'))
+      router.replace(localePath(scheme.pathname.replace('//', '/')))
     })
   }
 
