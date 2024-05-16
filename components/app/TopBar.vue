@@ -140,11 +140,8 @@ defineShortcuts({
     class="fixed top-0 left-0 right-0 h-fit z-50"
   >
     <nav
-      class="relative h-16 z-20 px-4 overflow-hidden flex items-center transition border-b bg-white/90 dark:bg-neutral-800/90 backdrop-blur-lg backdrop-saturate-50 draggable"
-      :class="{
-        'border-b dark:border-neutral-700': minibar,
-        'shadow-md border-transparent': !minibar
-      }">
+      class="relative h-16 z-20 px-4 overflow-hidden flex items-center transition border-b border-neutral-200 dark:border-neutral-700 bg-white/90 dark:bg-neutral-800/90 backdrop-blur-lg backdrop-saturate-50 draggable"
+    >
       <div
         class="flex items-center justify-between container mx-auto"
         :class="{'pr-32': $config.public.buildElectron}"
@@ -205,8 +202,8 @@ defineShortcuts({
     </nav>
     <!-- sub title bar -->
     <div
-      class="relative w-full z-10 px-4 overflow-hidden flex items-center transition-all ease-in-out duration-300 shadow-md border-transparent border-b bg-white/90 dark:bg-neutral-800/90 backdrop-blur-lg backdrop-saturate-50"
-      :class="{ 'h-0 opacity-0': !minibar, 'h-8 opacity-100 dark:border-neutral-700': minibar }">
+      class="relative w-full z-10 px-4 overflow-hidden flex items-center transition-all ease-in-out duration-300 border-b bg-white/90 dark:bg-neutral-800/90 backdrop-blur-lg backdrop-saturate-50"
+      :class="{ 'h-0 opacity-0': !minibar, 'h-8 opacity-100 border-neutral-200 dark:border-neutral-700': minibar }">
       <div class="flex items-center justify-between container mx-auto">
         <div class="flex items-center">
           <nuxt-link :to="localePath('/')" class="flex items-center space-x-1 text-sm">
