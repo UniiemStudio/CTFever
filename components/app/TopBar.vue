@@ -95,6 +95,21 @@ watch(() => inputWizard.value, (val) => {
   }
 })
 
+defineShortcuts({
+  escape: {
+    usingInput: true,
+    handler: () => {
+      if (sidebarActive.value) {
+        sidebarActive.value = false
+        return
+      }
+      if (isOnToolPage) {
+        router.push(localePath('/'))
+      }
+    },
+  },
+})
+
 const handleCommandSelect = (option: any) => {
   if (option.click) {
     option.click()
@@ -224,8 +239,8 @@ defineShortcuts({
               class="text-lg"
             />
           </button>
-          <button class="flex items-center" @click="sidebarActive = !sidebarActive">
-            <Icon name="IconMenu" class="text-lg"/>
+          <button class="flex items-center outline-none" @click="sidebarActive = !sidebarActive">
+            <Icon name="IconMenu" class="text-lg outline-none"/>
           </button>
         </div>
       </div>
