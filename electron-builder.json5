@@ -4,7 +4,7 @@
   "appId": "app.c5r.desktop",
   "productName": "CTFever Desktop",
   "icon": "public/icon.png",
-  "asar": false,
+  "asar": true,
   "directories": {
     "output": "release/${version}"
   },

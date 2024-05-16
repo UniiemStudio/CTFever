@@ -24,5 +24,8 @@ interface Window {
   ipcRenderer?: import('electron').IpcRenderer
   desktop?: {
     electronReady: boolean
+    appReady(): void
+    onPushRoute(callback: (route: string) => void): void
+    onAwaken(callback: (url: string) => void): void
   }
 }

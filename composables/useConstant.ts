@@ -1,88 +1,9 @@
 import { defineStore } from 'pinia'
+import {rawTags, rawToolkits} from '~/config/meta'
 
 export const useConstant = defineStore('ctfever_stuff', () => {
-  const tags = Object.freeze<{ [key: string]: Tag }>({
-    charactersProcessing: {
-      key: 'charactersProcessing',
-    },
-    generator: {
-      key: 'generator',
-    },
-    socialEngineering: {
-      key: 'socialEngineering',
-    },
-    classicalCiphers: {
-      key: 'classicalCiphers',
-    },
-    steganography: {
-      key: 'steganography',
-    },
-    compiler: {
-      key: 'compiler',
-    },
-  })
-  const toolkits = ref<Toolkit[]>([
-    {
-      key: 'encoding',
-      icon: 'IconCode',
-      tools: [
-        {
-          key: 'ascii',
-          route: '/tools/ascii',
-          tags: [tags.charactersProcessing],
-        },
-        {
-          key: 'urlEncoding',
-          route: '/tools/url-encoding',
-          tags: [tags.charactersProcessing],
-          signatures: ['url-encoded'],
-        },
-        {
-          key: 'base64',
-          route: '/tools/base64',
-          tags: [tags.charactersProcessing],
-          signatures: ['base64'],
-        },
-      ],
-    },
-    {
-      key: 'cryptology',
-      icon: 'IconKey',
-      tools: [
-        {
-          key: 'caesar',
-          route: '/tools/caesar-cipher',
-          tags: [tags.classicalCiphers],
-        },
-        {
-          key: 'vigenereCipher',
-          route: '/tools/vigenere-cipher',
-          tags: [tags.classicalCiphers],
-        },
-      ],
-    },
-    {
-      key: 'misc',
-      icon: 'IconMicroscope',
-      tools: [
-        {
-          key: 'socialEngineeringDictGen',
-          route: '/tools/social-engineering-dictionary-generator',
-          tags: [tags.generator, tags.socialEngineering],
-        },
-        {
-          key: 'zws',
-          route: '/tools/zero-width-steganography',
-          tags: [tags.steganography],
-        },
-        {
-          key: 'bf',
-          route: '/tools/brain-fuck',
-          tags: [tags.compiler],
-        },
-      ],
-    },
-  ]);
+  const tags = Object.freeze<{ [key: string]: Tag }>(rawTags)
+  const toolkits = ref<Toolkit[]>(rawToolkits);
   const favorites = ref<Tool[]>([])
   const recent = ref<Tool[]>([])
 

@@ -16,9 +16,10 @@
   "packageManager": "pnpm@9.1.0",
   "scripts": {
     "build": "nuxt build",
+    "build:electron": "nuxt generate --dotenv .env.electron && electron-builder build",
     "dev": "nuxt dev",
+    "dev:electron": "nuxt dev --dotenv .env.electron",
     "generate": "nuxt generate",
-    "package": "nuxt generate --dotenv .env.electron && electron-builder build",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
   },

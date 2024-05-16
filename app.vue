@@ -2,6 +2,7 @@
 import { storeToRefs } from 'pinia'
 
 const electronReady = window?.desktop?.electronReady || false
+const desktopAPI = window?.desktop || null
 
 const page_loaded = ref(false)
 
@@ -31,7 +32,19 @@ useSeoMeta({
 
 onMounted(() => {
   if (electronReady) {
+    // switch locale to desktop settings
     router.replace(switchLocalePath(desktop_settings.value.locale))
+
+    // handlers
+    desktopAPI?.appReady()
+    desktopAPI?.onPushRoute(route => {
+      router.push(route)
+    })
+
+    desktopAPI?.onAwaken(url => {
+      const scheme = new URL(url)
+      router.replace(scheme.pathname.replace('//', '/'))
+    })
   }
 
   page_loaded.value = true

@@ -2,6 +2,15 @@ import { ipcRenderer, contextBridge } from 'electron'
 
 contextBridge.exposeInMainWorld('desktop', {
   electronReady: true,
+  appReady() {
+    ipcRenderer.send('app-ready')
+  },
+  onPushRoute(callback: (route: string) => void) {
+    ipcRenderer.on('push-route', (_, route: string) => callback(route))
+  },
+  onAwaken(callback: (url: string) => void) {
+    ipcRenderer.on('awaken', (_, argv) => callback(argv))
+  },
 })
 
 contextBridge.exposeInMainWorld('ipcRenderer', {
