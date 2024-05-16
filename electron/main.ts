@@ -102,10 +102,10 @@ const initTray = () => {
     { type: 'separator' },
     ...rawToolkits.map(toolkit => {
       return {
-        label: `${ toolkit.key[0].toUpperCase() }${ toolkit.key.slice(1) }`,
+        label: `${ toolkit.key[0].toUpperCase() }${ toolkit.key.slice(1) }`.replace(/([A-Z])/g, ' $1').trim(),
         submenu: toolkit.tools.map(tool => {
           return {
-            label: `${ tool.key[0].toUpperCase() }${ tool.key.slice(1) }`,
+            label: `${ tool.key[0].toUpperCase() }${ tool.key.slice(1) }`.replace(/([A-Z])/g, ' $1').trim(),
             click: () => {
               bootstrapOrFocus()
               mainWindow?.webContents.send('push-route', tool.route)

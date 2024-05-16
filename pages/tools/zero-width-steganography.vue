@@ -200,9 +200,9 @@ watchEffect(() => {
           :label="`${t('stego')} ${steganographyText && t('stego_length', {length: steganographyText.length})}`">
           <UTextarea v-model="steganographyText" :rows="mode === 'text' ? 12 : 7"/>
         </TitleField>
-        <div class="flex items-center gap-2">
+        <div class="flex items-center flex-wrap gap-2">
           <UButton
-            class="flex-1"
+            block
             color="primary"
             variant="soft"
             icon="i-tabler-file-upload"
@@ -211,7 +211,7 @@ watchEffect(() => {
             {{ t('load_from_txt') }}
           </UButton>
           <UButton
-            class="flex-1"
+            block
             color="white"
             icon="i-tabler-download"
             :disabled="!steganographyText"

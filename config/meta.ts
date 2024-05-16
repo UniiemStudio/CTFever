@@ -1,22 +1,11 @@
 export const rawTags = {
-  charactersProcessing: {
-    key: 'charactersProcessing',
-  },
-  generator: {
-    key: 'generator',
-  },
-  socialEngineering: {
-    key: 'socialEngineering',
-  },
-  classicalCiphers: {
-    key: 'classicalCiphers',
-  },
-  steganography: {
-    key: 'steganography',
-  },
-  compiler: {
-    key: 'compiler',
-  },
+  crypto: { key: 'crypto' },
+  web: { key: 'web' },
+  binary: { key: 'binary' },
+  reverse: { key: 'reverse' },
+  forensics: { key: 'forensics' },
+  general: { key: 'general' },
+  misc: { key: 'misc' },
 }
 
 export const rawToolkits = [
@@ -27,38 +16,46 @@ export const rawToolkits = [
       {
         key: 'ascii',
         route: '/tools/ascii',
-        tags: [rawTags.charactersProcessing],
+        tags: [rawTags.general],
       },
       {
         key: 'urlEncoding',
         route: '/tools/url-encoding',
-        tags: [rawTags.charactersProcessing],
+        tags: [rawTags.general],
         signatures: ['url-encoded'],
       },
       {
         key: 'base64',
         route: '/tools/base64',
-        tags: [rawTags.charactersProcessing],
+        tags: [rawTags.general],
         signatures: ['base64'],
       },
     ],
   },
   {
-    key: 'cryptology',
+    key: 'crypto',
     icon: 'IconKey',
     tools: [
       {
         key: 'caesar',
         route: '/tools/caesar-cipher',
-        tags: [rawTags.classicalCiphers],
+        tags: [rawTags.crypto],
       },
       {
         key: 'vigenereCipher',
         route: '/tools/vigenere-cipher',
-        tags: [rawTags.classicalCiphers],
+        tags: [rawTags.crypto],
       },
     ],
   },
+  // {
+  //   key: 'converter',
+  //   tools: [],
+  // },
+  // {
+  //   key: 'network',
+  //   tools: [],
+  // },
   {
     key: 'misc',
     icon: 'IconMicroscope',
@@ -66,17 +63,22 @@ export const rawToolkits = [
       {
         key: 'socialEngineeringDictGen',
         route: '/tools/social-engineering-dictionary-generator',
-        tags: [rawTags.generator, rawTags.socialEngineering],
+        tags: [rawTags.misc, rawTags.forensics],
       },
       {
-        key: 'zws',
+        key: 'zeroWidthSteganography',
         route: '/tools/zero-width-steganography',
-        tags: [rawTags.steganography],
+        tags: [rawTags.forensics],
       },
       {
-        key: 'bf',
+        key: 'brainFuck',
         route: '/tools/brain-fuck',
-        tags: [rawTags.compiler],
+        tags: [rawTags.misc],
+      },
+      {
+        key: 'zipPseudoEncryption',
+        route: '/tools/zip-pseudo-encryption',
+        tags: [rawTags.forensics, rawTags.binary],
       },
     ],
   },

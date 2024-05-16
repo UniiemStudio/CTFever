@@ -27,39 +27,51 @@ export default defineI18nConfig(() => ({
       },
       app: {
         tags: {
-          charactersProcessing: {
-            label: 'Characters',
-            description: 'Various processing of characters and strings',
+          crypto: {
+            label: 'Crypto',
+            description: 'Cryptology and algorithm',
           },
-          generator: {
-            label: 'Generator',
-            description: 'Various generators',
+          web: {
+            label: 'Web',
+            description: 'Web security and development',
           },
-          socialEngineering: {
-            label: 'Social Engineering',
-            description: 'Social engineering tools',
+          binary: {
+            label: 'Binary',
+            description: 'Binary exploitation and reverse engineering',
           },
-          classicalCiphers: {
-            label: 'Classical Ciphers',
-            description: 'Classic ciphers and encryption methods',
+          reverse: {
+            label: 'Reverse',
+            description: 'Reverse engineering and analysis',
           },
-          steganography: {
-            label: 'Steganography',
-            description: 'Tools for hiding information in plain sight',
+          forensics: {
+            label: 'Forensics',
+            description: 'Digital forensics and investigation',
           },
-          compiler: {
-            label: 'Compiler',
-            description: 'Online compilers and interpreters',
+          general: {
+            label: 'General',
+            description: 'General purpose tools',
           },
+          misc: {
+            label: 'Misc',
+            description: 'Miscellaneous tools',
+          }
         },
         toolkit: {
           encoding: {
             label: 'Encoding',
             description: 'Tools for encoding and decoding',
           },
-          cryptology: {
+          crypto: {
             label: 'Cryptology',
             description: 'Cryptology and algorithm tools',
+          },
+          converter: {
+            label: 'Converter',
+            description: 'Data conversion and calculation tools',
+          },
+          network: {
+            label: 'Network',
+            description: 'Network and protocol tools',
           },
           misc: {
             label: 'Misc',
@@ -95,13 +107,17 @@ export default defineI18nConfig(() => ({
             label: 'Vigenere Cipher',
             description: 'A method of encrypting alphabetic text by using a simple form of polyalphabetic substitution',
           },
-          zws: {
+          zeroWidthSteganography: {
             label: 'Zero-Width Steganography',
             description: 'Hide information in plain text using zero-width character encoding',
           },
-          bf: {
+          brainFuck: {
             label: 'Brain Fuck',
             description: 'BrainFuck is a programming language that is a variant of the esoteric programming language Fuck'
+          },
+          zipPseudoEncryption: {
+            label: 'Zip Pseudo-encryption',
+            description: 'Check if a Zip archive is pseudo-encrypted'
           },
         },
       },
@@ -132,39 +148,51 @@ export default defineI18nConfig(() => ({
       },
       app: {
         tags: {
-          charactersProcessing: {
-            label: '字符处理',
-            description: '字符和字符串的各种处理',
+          crypto: {
+            label: '密码学',
+            description: '密码学和算法工具'
           },
-          generator: {
-            label: '生成器',
-            description: '各种生成器',
+          web: {
+            label: 'Web',
+            description: '网络安全和开发',
           },
-          socialEngineering: {
-            label: '社工',
-            description: '社会工程学工具',
+          binary: {
+            label: '二进制',
+            description: '二进制分析和逆向工程',
           },
-          classicalCiphers: {
-            label: '古典密码',
-            description: '古典密码和加密方法',
+          reverse: {
+            label: '逆向',
+            description: '逆向工程和审计',
           },
-          steganography: {
-            label: '隐写',
-            description: '将信息隐藏在明文中的工具',
+          forensics: {
+            label: '取证',
+            description: '数字取证',
           },
-          compiler: {
-            label: '编译器',
-            description: '在线编译器和解释器',
+          general: {
+            label: '通用',
+            description: '通用工具',
           },
+          misc: {
+            label: '杂项',
+            description: '杂项工具',
+          }
         },
         toolkit: {
           encoding: {
             label: '编码工具',
             description: '编码和解码工具',
           },
-          cryptology: {
+          crypto: {
             label: '密码学',
             description: '密码学和算法工具',
+          },
+          converter: {
+            label: '转换器',
+            description: '数据转换和换算工具',
+          },
+          network: {
+            label: '网络',
+            description: '网络相关工具',
           },
           misc: {
             label: '杂项',
@@ -200,13 +228,17 @@ export default defineI18nConfig(() => ({
             label: '维吉尼亚密码',
             description: '一种通过使用简单的多表替换的方法来加密字母文本',
           },
-          zws: {
+          zeroWidthSteganography: {
             label: '零宽字符隐写',
             description: '使用零宽字符编码隐藏信息到明文中',
           },
-          bf: {
+          brainFuck: {
             label: 'Brain Fuck',
             description: '一种由8个操作符组成的极小化编程语言'
+          },
+          zipPseudoEncryption: {
+            label: 'Zip 伪加密',
+            description: '检测一个 Zip 压缩包是否经过了伪加密'
           },
         },
       },
