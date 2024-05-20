@@ -13,7 +13,6 @@
     ".env.electron"
   ],
   "private": true,
-  "packageManager": "pnpm@9.0.4",
   "scripts": {
     "build": "nuxt build",
     "build:electron": "nuxt generate --dotenv .env.electron && electron-builder build",
