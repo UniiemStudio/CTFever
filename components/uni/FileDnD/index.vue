@@ -19,10 +19,13 @@ const props = defineProps({
   },
 })
 
+const { t } = useI18n({
+  useScope: 'local',
+})
+
 const inputRef = ref<HTMLInputElement | null>(null)
 const dragover = ref(false)
 
-// const selectedFiles = ref<FileList | null>(null)
 const selectedFiles = ref<File[]>([])
 
 const onIncomeFiles = (files?: FileList | null) => {
@@ -30,7 +33,6 @@ const onIncomeFiles = (files?: FileList | null) => {
     let wantedFiles = Array.from(files).filter(file => {
       if (props.accept) {
         const accept = props.accept.split(',').map(type => type.trim())
-        console.log(accept, file.type)
         return accept.includes(file.type)
       }
       return true
@@ -70,8 +72,6 @@ const onIncomeFiles = (files?: FileList | null) => {
       :multiple="multiple"
       @change="onIncomeFiles(inputRef?.files)"
     />
-    <!--      @change="onIncomeFiles(($event.target as HTMLInputElement)?.files)"-->
-    <!--    />-->
     <div
       class="w-full h-full flex flex-col justify-center items-center gap-2 transition-all"
       :class="{
@@ -83,12 +83,12 @@ const onIncomeFiles = (files?: FileList | null) => {
         class="text-4xl text-neutral-400 dark:text-neutral-500"
       />
       <p class="text-xs font-medium text-neutral-500 dark:text-neutral-400">
-        {{ dragover ? 'Release to Select' : 'Click or Drag Files here' }}
+        {{ dragover ? t('release_to_select') : t('click_or_drag') }}
       </p>
     </div>
     <div
       v-if="selectedFiles.length > 0"
-      class="absolute inset-x-0 bottom-0 pl-2 pr-0.5 py-0.5 flex justify-between items-center bg-neutral-100 border-t"
+      class="absolute inset-x-0 bottom-0 pl-2 pr-0.5 py-0.5 flex justify-between items-center bg-neutral-100 dark:bg-neutral-900 border-t dark:border-neutral-800"
     >
       <div class="flex-1 pr-4 overflow-hidden flex items-center gap-1">
         <Icon :name="selectedFiles.length === 1 ? 'tabler:file' : 'tabler:files'"
@@ -121,3 +121,12 @@ const onIncomeFiles = (files?: FileList | null) => {
 <style scoped>
 
 </style>
+
+<i18n>
+en:
+  click_or_drag: Click or Drag Files here
+  release_to_select: Release to Select
+zh:
+  click_or_drag: 点击或拖拽文件到此处
+  release_to_select: 松开选择文件
+</i18n>

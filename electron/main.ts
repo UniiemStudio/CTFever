@@ -144,6 +144,10 @@ app.whenReady().then(() => {
   //   if (process.platform !== 'darwin') app.quit()
   // })
 
+  app.setLoginItemSettings({
+    openAtLogin: true,
+  })
+
   app.on('second-instance', (_, argv) => {
     bootstrapOrFocus()
     if (process.platform === 'win32') {
