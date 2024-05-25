@@ -52,6 +52,11 @@ export const rawToolkits = [
         tags: [rawTags.crypto],
       },
       {
+        key: 'digestCalculation',
+        route: '/tools/digest-calculation',
+        tags: [rawTags.crypto, rawTags.forensics, rawTags.web],
+      },
+      {
         key: 'uuid',
         route: '/tools/uuid',
         tags: [rawTags.general, rawTags.misc],

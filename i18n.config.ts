@@ -111,6 +111,10 @@ export default defineI18nConfig(() => ({
             label: 'Vigenere Cipher',
             description: 'A method of encrypting alphabetic text by using a simple form of polyalphabetic substitution',
           },
+          digestCalculation: {
+            label: 'Digest Calculation',
+            description: 'Calculate hash values of message like MD5, SHA1, SHA256, SHA512, etc.',
+          },
           uuid: {
             label: 'UUID',
             description: 'UUID generation and validation tool',
@@ -239,6 +243,10 @@ export default defineI18nConfig(() => ({
           vigenereCipher: {
             label: '维吉尼亚密码',
             description: '一种通过使用简单的多表替换的方法来加密字母文本',
+          },
+          digestCalculation: {
+            label: '消息摘要计算',
+            description: '计算信息的 MD5、SHA1、SHA256、SHA512 等哈希值',
           },
           uuid: {
             label: 'UUID',
