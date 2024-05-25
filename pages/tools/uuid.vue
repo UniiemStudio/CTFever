@@ -80,6 +80,7 @@ const inspect = () => {
       <div class="space-y-1">
         <TitleField
           :label="t('input')"
+          class="relative"
         >
           <UInput
             class="font-mono"
@@ -91,50 +92,54 @@ const inspect = () => {
             variant="soft"
             class="!mt-3 font-sans uppercase"
             @click="inspect"
+            :disabled="!input"
           >
             <template #leading>
               <TablerSpy/>
             </template>
             {{ t('inspect') }}
           </UButton>
-          <div
-            v-if="inspect_result"
-          >
-            <div class="flex justify-between items-center">
-              <div
-                class="flex items-center gap-1"
-                :class="inspect_result.validate ? 'text-green-500' : 'text-red-500'"
-              >
-                <Icon
-                  :name="inspect_result.validate ? 'TablerCheck' : 'TablerX'"
-                  class="text-lg"
-                />
-                <span class="-mt-0.5 text-xs font-medium">
+          <Transition name="fade">
+            <div
+              v-if="inspect_result"
+              :key="inspect_result.validate + ''"
+            >
+              <div class="flex justify-between items-center">
+                <div
+                  class="flex items-center gap-1"
+                  :class="inspect_result.validate ? 'text-green-500' : 'text-red-500'"
+                >
+                  <Icon
+                    :name="inspect_result.validate ? 'TablerCheck' : 'TablerX'"
+                    class="text-lg"
+                  />
+                  <span class="-mt-0.5 text-xs font-medium">
                   {{ inspect_result.validate ? t('valid') : t('invalid') }}
                 </span>
-              </div>
-              <div
-                v-if="inspect_result.version !== -1"
-                class="flex items-center gap-1"
-              >
-                <Icon
-                  name="TablerVersions"
-                  class="text-lg"
-                />
-                <span class="-mt-0.5 text-xs font-medium">
+                </div>
+                <div
+                  v-if="inspect_result.version !== -1"
+                  class="flex items-center gap-1"
+                >
+                  <Icon
+                    name="TablerVersions"
+                    class="text-lg"
+                  />
+                  <span class="-mt-0.5 text-xs font-medium">
                   {{ inspect_result.version }}
                 </span>
+                </div>
               </div>
-            </div>
-            <div
-              v-if="inspect_result.parsed"
-              class="bg-neutral-100 dark:bg-neutral-900 p-2 rounded-md mt-2"
-            >
+              <div
+                v-if="inspect_result.parsed"
+                class="bg-neutral-100 dark:bg-neutral-900 p-2 rounded-md mt-2"
+              >
               <pre
                 class="text-xs text-neutral-500 dark:text-neutral-400 break-all text-wrap"
               >{{ inspect_result.parsed }}</pre>
+              </div>
             </div>
-          </div>
+          </Transition>
         </TitleField>
       </div>
     </div>
