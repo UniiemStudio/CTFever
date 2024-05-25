@@ -30,6 +30,11 @@ export const rawToolkits = [
         tags: [rawTags.general],
         signatures: ['base64'],
       },
+      {
+        key: 'rot13',
+        route: '/tools/rot13',
+        tags: [rawTags.general],
+      },
     ],
   },
   {

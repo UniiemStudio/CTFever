@@ -91,6 +91,10 @@ export default defineI18nConfig(() => ({
             label: 'Base64 Encoding',
             description: 'Base64/Base32 encoding and decoding',
           },
+          rot13: {
+            label: 'ROT13 Encoding',
+            description: 'ROT13 encoding, a simple form of Caesar cipher',
+          },
           utf8Conversion: {
             label: 'UTF8 Encoding',
             description: 'UTF-8 encoding and decoding',
@@ -211,6 +215,10 @@ export default defineI18nConfig(() => ({
           base64: {
             label: 'Base64 编码',
             description: 'Base64 和 Base32 的编码和解码',
+          },
+          rot13: {
+            label: 'ROT13 编码',
+            description: 'ROT13 编码，一种凯撒密码的简单形式',
           },
           utf8Conversion: {
             label: 'UTF8 编码',
