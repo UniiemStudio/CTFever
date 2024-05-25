@@ -11,7 +11,7 @@
       <p class="text-xs text-black/80 dark:text-slate-500 md:truncate"
          :title="$t(tool.description) || tool.description">{{ $t(tool.description) || tool.description }}</p>
     </div>
-    <div class="px-3 py-1 text-xs bg-gray-100/50" v-if="showBar">
+    <div class="px-3 py-1 text-xs bg-gray-100/50 dark:bg-gray-700/50" v-if="showBar">
       <div v-if="tool.tags && tool.tags.length > 0">
         <Icon :icon="tool.tags.length > 1 ? 'tabler:tags' : 'tabler:tag'" class="text-sm inline -mt-0.5"/>
         <div class="inline-block" v-for="(tag, k) in tool.tags">
