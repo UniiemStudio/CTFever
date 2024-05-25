@@ -61,7 +61,7 @@ const onIncomeFiles = (files: File[]) => {
       <div class="w-full h-fit p-2 border border-neutral-200 dark:border-neutral-700 rounded-md">
         <div
           v-if="!selected_file"
-          class="p-2 flex justify-between items-center rounded-md bg-neutral-100"
+          class="p-2 flex justify-between items-center rounded-md bg-neutral-100 dark:bg-neutral-900"
         >
           <p class="text-sm">{{ t('select_file') }}</p>
         </div>
@@ -87,7 +87,7 @@ const onIncomeFiles = (files: File[]) => {
         <table v-if="selected_file">
           <tr>
             <td>{{ t('file_name') }}</td>
-            <td>{{ selected_file?.name }}</td>
+            <td class="font-medium">{{ selected_file?.name }}</td>
           </tr>
           <tr>
             <td>{{ t('size') }}</td>

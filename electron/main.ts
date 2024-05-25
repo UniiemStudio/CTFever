@@ -64,6 +64,8 @@ const bootstrap = async () => {
     },
   })
 
+  mainWindow.webContents.setUserAgent('CTFever Desktop')
+
   if (app.isPackaged) {
     mainWindow.loadFile(path.join(process.env.VITE_PUBLIC!, 'index.html'))
   } else {
@@ -89,7 +91,6 @@ const bootstrapOrFocus = () => {
   } else {
     bootstrap()
   }
-
 }
 
 const initTray = () => {
@@ -125,13 +126,30 @@ const initTray = () => {
   ])
   tray.setToolTip('CTFever Desktop')
   tray.setContextMenu(contextMenu)
-  tray.on('double-click', () => {
-    bootstrapOrFocus()
-  })
+  tray.on('click', bootstrapOrFocus)
+  tray.on('double-click', bootstrapOrFocus)
 }
 
 const initIpc = () => {
+  ipcMain.handle('settings-list', () => {
+    return [
+      {
+        key: 'openAtLogin',
+        value: app.getLoginItemSettings().openAtLogin,
+      },
+    ]
+  })
 
+  ipcMain.on('settings-submit', (event, settings: Setting<boolean>[]) => {
+    settings.forEach(setting => {
+      if (setting.key === 'openAtLogin') {
+        app.setLoginItemSettings({
+          openAtLogin: setting.value,
+        })
+      }
+    })
+    mainWindow?.webContents.send('settings-update', settings)
+  })
 }
 
 app.whenReady().then(() => {
@@ -139,24 +157,16 @@ app.whenReady().then(() => {
   initIpc()
   bootstrap()
 
-  // app.on('window-all-closed', () => {
-  //   mainWindow = null
-  //   if (process.platform !== 'darwin') app.quit()
-  // })
-
-  app.setLoginItemSettings({
-    openAtLogin: true,
-  })
-
   app.on('second-instance', (_, argv) => {
     bootstrapOrFocus()
+    // on windows, the last argument is the URL
     if (process.platform === 'win32') {
       mainWindow?.webContents.send('awaken', argv[argv.length - 1])
     }
   })
-
+  // set as default protocol client
   app.setAsDefaultProtocolClient('ctfever')
-
+  // handle the URL
   if (process.argv.length > 1) {
     ipcMain.once('app-ready', () => {
       app.emit('second-instance', null, process.argv)

@@ -46,6 +46,14 @@ onMounted(() => {
       const scheme = new URL(url)
       router.replace(localePath(scheme.pathname.replace('//', '/')))
     })
+
+    desktopAPI?.getSettingsList().then(settings => {
+      console.log('settings list', settings)
+    })
+
+    desktopAPI?.onSettingsUpdate(settings => {
+      console.log('settings updated', settings)
+    })
   }
 
   page_loaded.value = true

@@ -20,7 +20,8 @@ const desktop_settings = useLocalStorage('c5r_desktop:settings', {
 })
 
 const electronReady = window?.desktop?.electronReady || false
-const ipcRenderer = window?.ipcRenderer || null
+const desktopAPI = window?.desktop || null
+const electronSettings = ref<Setting<boolean>[]>([])
 
 useSeoMeta({
   title: t('title'),
@@ -115,21 +116,39 @@ const handleLogin = () => {
   }) as RouteLocationRaw)
 }
 
-const onClick = () => {
-  ipcRenderer?.invoke('settings').then(res => {
-    console.log(res)
-  })
+const onOpenAtLoginSet = (on: boolean) => {
+  desktopAPI?.submitSettings([{
+    key: 'openAtLogin',
+    value: on,
+  }])
+  console.log('openAtLogin', on)
 }
+
+onMounted(() => {
+  desktopAPI?.getSettingsList().then(settings => {
+    electronSettings.value = settings
+  })
+})
 </script>
 
 <template>
   <ToolContainer>
-    <ClientOnly v-if="electronReady">
-      <AppSettingsArea title="General" icon="tabler:app-window">
+    <ClientOnly v-if="electronReady && electronSettings.length > 0">
+      <AppSettingsArea :title="t('desktop.general.label')" icon="tabler:app-window">
         <AppSettingsItem
-          title="CTFever Desktop"
-          subtitle="CTFever is running as a desktop application"
-        ></AppSettingsItem>
+          v-for="(setting, k) in electronSettings"
+          :key="k"
+          :title="t(`desktop.general.${setting.key}.label`)"
+          :subtitle="t(`desktop.general.${setting.key}.subtitle`)"
+        >
+          <UniToggle
+            size="sm"
+            :value="setting.value"
+            @change="desktopAPI?.submitSettings([
+              { key: setting.key, value: $event },
+            ])"
+          />
+        </AppSettingsItem>
       </AppSettingsArea>
     </ClientOnly>
 
@@ -141,16 +160,6 @@ const onClick = () => {
         <UniSelect :items="colorModeOptions" v-model="$colorMode.preference" size="sm"/>
       </AppSettingsItem>
     </AppSettingsArea>
-    <!--    <AppSettingsArea :title="t('account.label')" icon="tabler:user-square-rounded">-->
-    <!--      <AppSettingsItem :title="t('account.login.not_logged_in')" :subtitle="t('account.login.subtitle')">-->
-    <!--        <UniButton @click="modal.login = true" disabled>{{ t('account.login.btn_login') }}</UniButton>-->
-    <!--      </AppSettingsItem>-->
-    <!--    </AppSettingsArea>-->
-    <!--    <AppSettingsArea :title="t('cloud_sync.label')" icon="tabler:cloud">-->
-    <!--      <AppSettingsItem :title="t('cloud_sync.enable.title')" :subtitle="t('cloud_sync.enable.subtitle')">-->
-    <!--        <UniToggle v-model="select" size="sm" />-->
-    <!--      </AppSettingsItem>-->
-    <!--    </AppSettingsArea>-->
 
     <UModal v-model="modal.login">
       <UCard :ui="{ ring: '', divide: 'divide-y divide-gray-100 dark:divide-gray-800' }">
@@ -209,6 +218,12 @@ en:
     enable:
       title: Enable cloud sync
       subtitle: Automatically sync favorites, history and other data
+  desktop:
+    general:
+      label: General
+      openAtLogin:
+        label: Open at login
+        subtitle: Automatically open CTFever when you start your computer
 zh:
   title: 首选项
   appearance:
@@ -232,4 +247,10 @@ zh:
     enable:
       title: 启用云同步
       subtitle: 自动同步收藏、历史记录等数据
+  desktop:
+    general:
+      label: 通用
+      openAtLogin:
+        label: 开机自启
+        subtitle: 开机时自动打开 CTFever
 </i18n>
