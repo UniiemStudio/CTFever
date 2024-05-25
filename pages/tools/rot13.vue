@@ -25,6 +25,7 @@ watchEffect(() => {
       <TitleField :label="t('output')">
         <UTextarea
           :rows="10"
+          readonly
           v-model="output"
           :placeholder="t('output_placeholder')"
         />

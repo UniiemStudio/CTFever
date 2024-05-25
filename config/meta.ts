@@ -51,6 +51,11 @@ export const rawToolkits = [
         route: '/tools/vigenere-cipher',
         tags: [rawTags.crypto],
       },
+      {
+        key: 'uuid',
+        route: '/tools/uuid',
+        tags: [rawTags.general, rawTags.misc],
+      },
     ],
   },
   // {

@@ -54,7 +54,7 @@ export default defineI18nConfig(() => ({
           misc: {
             label: 'Misc',
             description: 'Miscellaneous tools',
-          }
+          },
         },
         toolkit: {
           encoding: {
@@ -111,17 +111,21 @@ export default defineI18nConfig(() => ({
             label: 'Vigenere Cipher',
             description: 'A method of encrypting alphabetic text by using a simple form of polyalphabetic substitution',
           },
+          uuid: {
+            label: 'UUID',
+            description: 'UUID generation and validation tool',
+          },
           zeroWidthSteganography: {
             label: 'Zero-Width Steganography',
             description: 'Hide information in plain text using zero-width character encoding',
           },
           brainFuck: {
             label: 'Brain Fuck',
-            description: 'BrainFuck is a programming language that is a variant of the esoteric programming language Fuck'
+            description: 'BrainFuck is a programming language that is a variant of the esoteric programming language Fuck',
           },
           zipPseudoEncryption: {
             label: 'Zip Pseudo-encryption',
-            description: 'Check if a Zip archive is pseudo-encrypted'
+            description: 'Check if a Zip archive is pseudo-encrypted',
           },
         },
       },
@@ -154,7 +158,7 @@ export default defineI18nConfig(() => ({
         tags: {
           crypto: {
             label: '密码学',
-            description: '密码学和算法工具'
+            description: '密码学和算法工具',
           },
           web: {
             label: 'Web',
@@ -179,7 +183,7 @@ export default defineI18nConfig(() => ({
           misc: {
             label: '杂项',
             description: '杂项工具',
-          }
+          },
         },
         toolkit: {
           encoding: {
@@ -236,17 +240,21 @@ export default defineI18nConfig(() => ({
             label: '维吉尼亚密码',
             description: '一种通过使用简单的多表替换的方法来加密字母文本',
           },
+          uuid: {
+            label: 'UUID',
+            description: 'UUID 生成及校验解析工具',
+          },
           zeroWidthSteganography: {
             label: '零宽字符隐写',
             description: '使用零宽字符编码隐藏信息到明文中',
           },
           brainFuck: {
             label: 'Brain Fuck',
-            description: '一种由8个操作符组成的极小化编程语言'
+            description: '一种由8个操作符组成的极小化编程语言',
           },
           zipPseudoEncryption: {
             label: 'Zip 伪加密',
-            description: '检测一个 Zip 压缩包是否经过了伪加密'
+            description: '检测一个 Zip 压缩包是否经过了伪加密',
           },
         },
       },
