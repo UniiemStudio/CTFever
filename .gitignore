@@ -17,11 +17,13 @@ logs
 .DS_Store
 .fleet
 .idea
+!.idea/runConfigurations
 
 # Local env files
 .env
 .env.*
 !.env.example
+!.env.electron
 
 release
 dist-electron
