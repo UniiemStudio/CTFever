@@ -1,0 +1,15 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="build:electron" type="js.build_tools.npm">
+    <package-json value="$PROJECT_DIR$/package.json" />
+    <command value="run" />
+    <scripts>
+      <script value="build:electron" />
+    </scripts>
+    <node-interpreter value="project" />
+    <package-manager value="pnpm" />
+    <envs>
+      <env name="NUXT_PUBLIC_BUILD_ELECTRON" value="true" />
+    </envs>
+    <method v="2" />
+  </configuration>
+</component>
