@@ -79,7 +79,7 @@ const onIncomeFiles = (files?: FileList | null) => {
       }"
     >
       <Icon
-        :name="dragover ? 'tabler:drag-drop' : 'tabler:upload'"
+        :name="dragover ? 'TablerDragDrop' : 'TablerUpload'"
         class="text-4xl text-neutral-400 dark:text-neutral-500"
       />
       <p class="text-xs font-medium text-neutral-500 dark:text-neutral-400">
@@ -91,7 +91,7 @@ const onIncomeFiles = (files?: FileList | null) => {
       class="absolute inset-x-0 bottom-0 pl-2 pr-0.5 py-0.5 flex justify-between items-center bg-neutral-100 dark:bg-neutral-900 border-t dark:border-neutral-800"
     >
       <div class="flex-1 pr-4 overflow-hidden flex items-center gap-1">
-        <Icon :name="selectedFiles.length === 1 ? 'tabler:file' : 'tabler:files'"
+        <Icon :name="selectedFiles.length === 1 ? 'TablerFile' : 'TablerFiles'"
               class="text-neutral-500 dark:text-neutral-400"/>
         <p
           class="text-2xs font-medium overflow-hidden text-ellipsis whitespace-nowrap"
@@ -111,7 +111,7 @@ const onIncomeFiles = (files?: FileList | null) => {
             inputRef!.value = ''
           }"
         >
-          <Icon name="tabler:trash"/>
+          <Icon name="TablerX"/>
         </UButton>
       </div>
     </div>
