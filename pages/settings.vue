@@ -23,7 +23,15 @@ const electronReady = window?.desktop?.electronReady || false
 const desktopAPI = window?.desktop || null
 const electronSettings = ref<Setting<boolean>[]>([])
 
-const isDark = useDark()
+const colorMode = useColorMode()
+const isDark = computed({
+  get () {
+    return colorMode.value === 'dark'
+  },
+  set () {
+    colorMode.preference = colorMode.value === 'dark' ? 'light' : 'dark'
+  }
+})
 const signatureColor = computed(() => (isDark.value ? '#cbcbcb' : '#505050'))
 
 useSeoMeta({
