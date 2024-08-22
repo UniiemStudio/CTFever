@@ -47,9 +47,9 @@ const bootstrap = async () => {
   mainWindow = new BrowserWindow({
     title: 'CTFever Desktop',
     minWidth: 1038,
-    minHeight: 615,
+    minHeight: 625,
     width: 1038,
-    height: 615,
+    height: 625,
     frame: false,
     titleBarStyle: 'hidden',
     titleBarOverlay: {
