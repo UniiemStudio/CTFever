@@ -1,6 +1,23 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
+  ssr: false,
+  telemetry: {
+    enabled: false,
+  },
+  devServer: { host: "0.0.0.0" },
+  vite: {
+    clearScreen: false,
+    envPrefix: ["VITE_", "TAURI_"],
+    server: {
+      strictPort: true,
+      hmr: {
+        protocol: "ws",
+        host: "0.0.0.0",
+        port: 5187,
+      },
+    },
+  },
   compatibilityDate: "2024-10-14",
   runtimeConfig: {
     public: {
@@ -25,6 +42,7 @@ export default defineNuxtConfig({
     "@nuxtjs/i18n",
     "@nuxtjs/google-fonts",
     "nuxt-monaco-editor",
+    "@nuxt/image",
   ],
   dayjs: {
     locales: ["zh"],

@@ -1,7 +1,25 @@
 <script lang="ts" setup>
+import { isTauri } from '@tauri-apps/api/core';
+import { Window } from '@tauri-apps/api/window';
 import { storeToRefs } from 'pinia'
 import { useMessage } from '~/composables/uni/useMessage'
 import { stringSignatureDetect } from '~/libs/misc/stringSignatureDetect'
+
+// cross-platform
+const appWindow = new Window('main')
+
+const isMaximized = ref(false)
+const isMaximizedInterval = ref()
+isMaximizedInterval.value = setInterval(async () => {
+  isMaximized.value = await appWindow.isMaximized()
+}, 200)
+
+onBeforeUnmount(() => {
+  if (isMaximizedInterval.value) {
+    clearInterval(isMaximizedInterval.value)
+  }
+})
+// end
 
 const router = useRouter()
 const message = useMessage()
@@ -66,7 +84,7 @@ const commandPlatteGroups = computed(() => [
       return {
         id: tag,
         label: $t_tag(tag).label,
-        route: localePath(`/tag/${ tag }`),
+        route: localePath(`/tag/${tag}`),
         icon: 'i-tabler-tag',
       }
     }),
@@ -151,52 +169,36 @@ defineShortcuts({
 </script>
 
 <template>
-  <div
-    class="fixed top-0 left-0 right-0 h-fit z-50"
-  >
+  <div class="fixed top-0 left-0 right-0 h-fit z-50">
     <nav
-      class="relative h-16 z-20 px-4 overflow-hidden flex items-center transition border-b border-neutral-200 dark:border-neutral-700 bg-white/90 dark:bg-neutral-800/90 backdrop-blur-lg backdrop-saturate-50 draggable"
-    >
-      <div
-        class="flex items-center justify-between container mx-auto"
-        :class="{'pr-32': $config.public.buildElectron}"
-      >
+      class="relative h-16 z-20 px-4 overflow-hidden flex items-center transition border-b border-neutral-200 dark:border-neutral-700 bg-white/90 dark:bg-neutral-800/90 backdrop-blur-lg backdrop-saturate-50 draggable">
+      <div class="flex items-center justify-between container mx-auto">
         <div class="flex items-center space-x-2.5 select-none">
           <NuxtLinkLocale to="/" class="ignore-drag group flex justify-center items-center">
             <div
               class="w-6 h-6 bg-neutral-200 dark:bg-neutral-600 rounded-md hidden group-hover:flex justify-center items-center">
-              <Icon name="IconHome"/>
+              <Icon name="IconHome" />
             </div>
-            <AppLogo for="navbar" class="block group-hover:hidden"/>
+            <AppLogo for="navbar" class="block group-hover:hidden" />
           </NuxtLinkLocale>
           <Transition name="title" mode="out-in">
-            <h1
-              :key="currentPageTitle"
-              class="whitespace-nowrap"
-            >
+            <h1 :key="currentPageTitle" class="whitespace-nowrap">
               {{ currentPageTitle }}
             </h1>
           </Transition>
         </div>
         <div class="flex items-center space-x-4 ignore-drag">
           <DevOnly>
-            <UniButton
-              size="medium"
-              @click="$colorMode.preference = $colorMode.preference === 'dark' ? 'light' : 'dark'"
-            >
-              <Icon class="text-lg"
-                    :name="$colorMode.preference === 'dark'
-                      ? 'line-md:sunny-outline-to-moon-alt-loop-transition'
-                      : 'line-md:moon-alt-to-sunny-outline-loop-transition'"
-              />
+            <UniButton size="medium"
+              @click="$colorMode.preference = $colorMode.preference === 'dark' ? 'light' : 'dark'">
+              <Icon class="text-lg" :name="$colorMode.preference === 'dark'
+                ? 'line-md:sunny-outline-to-moon-alt-loop-transition'
+                : 'line-md:moon-alt-to-sunny-outline-loop-transition'" />
             </UniButton>
           </DevOnly>
-          <button
-            @click="commandPlatteActive = true"
-            class="items-center space-x-2 px-2 py-1 border border-neutral-300 bg-neutral-50 text-neutral-500 dark:border-neutral-600 hover:border-neutral-500 dark:hover:border-neutral-500
-                   transition dark:bg-neutral-800 text-xs rounded-lg cursor-pointer whitespace-nowrap hidden md:flex"
-          >
-            <Icon name="IconSearch" class="text-base"/>
+          <button @click="commandPlatteActive = true" class="items-center space-x-2 px-2 py-1 border border-neutral-300 bg-neutral-50 text-neutral-500 dark:border-neutral-600 hover:border-neutral-500 dark:hover:border-neutral-500
+                   transition dark:bg-neutral-800 text-xs rounded-lg cursor-pointer whitespace-nowrap hidden md:flex">
+            <Icon name="IconSearch" class="text-base" />
             <span>{{ t('search') }}</span>
             <span class="flex items-center gap-0.5">
               <UKbd>{{ metaSymbol }}</UKbd>
@@ -204,15 +206,32 @@ defineShortcuts({
             </span>
           </button>
           <button @click="commandPlatteActive = true" class="block md:hidden">
-            <Icon name="IconSearch" class="text-lg inline -mt-1"/>
+            <Icon name="IconSearch" class="text-lg inline -mt-1" />
           </button>
           <a href="https://github.com/UniiemStudio/CTFever" target="_blank">
-            <Icon name="IconGithub" class="text-lg inline -mt-1"/>
+            <Icon name="IconGithub" class="text-lg inline -mt-1" />
           </a>
           <nuxt-link :to="localePath('/settings')">
-            <Icon name="IconSettings" class="text-lg inline -mt-1"/>
+            <Icon name="IconSettings" class="text-lg inline -mt-1" />
           </nuxt-link>
         </div>
+      </div>
+      <!-- windows controls -->
+      <div v-if="isTauri()"
+        class="ml-4 pl-4 border-l border-neutral-200 dark:border-neutral-700 flex justify-between items-center ignore-drag">
+        <button @click="appWindow.minimize()"
+          class="inline-flex justify-center items-center p-2 rounded-md text-lg hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors duration-150">
+          <ClarityWindowMinLine class="text-xl" />
+        </button>
+        <button @click="appWindow.toggleMaximize()"
+          class="inline-flex justify-center items-center p-2 rounded-md text-lg hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors duration-150">
+          <FluentMaximize16Regular v-if="!isMaximized" class="text-xl" />
+          <FluentRestore16Regular v-else class="text-xl" />
+        </button>
+        <button @click="appWindow.close()"
+          class="inline-flex justify-center items-center p-2 rounded-md text-lg hover:bg-red-100 dark:hover:bg-red-700 transition-colors duration-150">
+          <ClarityWindowCloseLine class="text-xl" />
+        </button>
       </div>
     </nav>
     <!-- sub title bar -->
@@ -222,25 +241,17 @@ defineShortcuts({
       <div class="flex items-center justify-between container mx-auto">
         <div class="flex items-center">
           <nuxt-link :to="localePath('/')" class="flex items-center space-x-1 text-sm">
-            <Icon name="IconCircleArrowLeft" class="text-lg"/>
+            <Icon name="IconCircleArrowLeft" class="text-lg" />
             <span>{{ $t('component.topSubBar.back') }}</span>
           </nuxt-link>
         </div>
         <div class="flex items-center space-x-3">
           <button class="flex items-center" @click="handleFavorite">
-            <Icon
-              v-show="isCurrentToolFavorite"
-              name="IconBookmarkFilled"
-              class="text-lg text-amber-500"
-            />
-            <Icon
-              v-show="!isCurrentToolFavorite"
-              name="IconBookmarkPlus"
-              class="text-lg"
-            />
+            <Icon v-show="isCurrentToolFavorite" name="IconBookmarkFilled" class="text-lg text-amber-500" />
+            <Icon v-show="!isCurrentToolFavorite" name="IconBookmarkPlus" class="text-lg" />
           </button>
           <button class="flex items-center outline-none" @click="sidebarActive = !sidebarActive">
-            <Icon name="IconMenu" class="text-lg outline-none"/>
+            <Icon name="IconMenu" class="text-lg outline-none" />
           </button>
         </div>
       </div>
@@ -253,43 +264,36 @@ defineShortcuts({
         <div v-for="(toolkit, k) in toolkits" :key="k" class="mt-6 first-of-type:mt-0">
           <div class="mb-2 flex items-center">
             <div class="flex items-center space-x-1 mr-2">
-              <Icon :name="toolkit.icon" class="text-lg"/>
+              <Icon :name="toolkit.icon" class="text-lg" />
               <h1 class="text-sm font-medium">{{ $t_toolkit(toolkit.key).label }}</h1>
             </div>
             <div class="h-[1px] bg-neutral-300 dark:bg-neutral-700 w-full flex-1"></div>
           </div>
           <div class="flex flex-col gap-2">
             <AppToolCard v-for="(tool, k) in toolkit.tools" :key="k" :tool="tool" in-sidebar
-                         :active="currentTool?.key === tool.key"/>
+              :active="currentTool?.key === tool.key" />
           </div>
         </div>
       </div>
     </div>
     <UModal v-model="commandPlatteActive">
-      <UCommandPalette
-        ref="commandPlatteRef"
-        :placeholder="$t('component.commandPlatte.placeholder')"
-        :empty-state="{
-          icon: 'i-heroicons-magnifying-glass-20-solid',
-          label: $t('component.commandPlatte.empty.label'),
-          queryLabel: $t('component.commandPlatte.empty.queryLabel')
-        }"
-        :groups="commandPlatteGroups"
-        :fuse="{
-          fuseOptions: {
-            includeMatches: true,
-            keys: ['id', 'label', 'route'],
-            threshold: 0.3,
-          },
-        }"
-        @update:model-value="handleCommandSelect"
-      />
+      <UCommandPalette ref="commandPlatteRef" :placeholder="$t('component.commandPlatte.placeholder')" :empty-state="{
+        icon: 'i-heroicons-magnifying-glass-20-solid',
+        label: $t('component.commandPlatte.empty.label'),
+        queryLabel: $t('component.commandPlatte.empty.queryLabel')
+      }" :groups="commandPlatteGroups" :fuse="{
+        fuseOptions: {
+          includeMatches: true,
+          keys: ['id', 'label', 'route'],
+          threshold: 0.3,
+        },
+      }" @update:model-value="handleCommandSelect" />
     </UModal>
     <UModal v-model="isCharsWizardOpen">
       <UCard :ui="{ divide: 'divide-y divide-gray-100 dark:divide-gray-800' }">
         <template #header>
           <div class="flex items-center space-x-2">
-            <Icon name="tabler:gps" class="text-xl"/>
+            <Icon name="tabler:gps" class="text-xl" />
             <h1>{{ t('wizard') }}</h1>
           </div>
           <p class="text-xs mt-2 text-neutral-400">
@@ -299,11 +303,11 @@ defineShortcuts({
         </template>
         <div class="flex flex-col gap-4">
           <UniTextArea v-model="inputWizard" :label="t('wizardModal.input_text')"
-                       :placeholder="t('wizardModal.placeholder')"/>
+            :placeholder="t('wizardModal.placeholder')" />
           <Transition name="wizard-result" mode="out-in">
             <div v-if="!wizardSignatures.length && inputWizard"
-                 class="w-full rounded-lg p-4 flex flex-col justify-center items-center gap-2 bg-neutral-100 dark:bg-neutral-700">
-              <Icon name="twemoji:thinking-face" class="text-4xl"/>
+              class="w-full rounded-lg p-4 flex flex-col justify-center items-center gap-2 bg-neutral-100 dark:bg-neutral-700">
+              <Icon name="twemoji:thinking-face" class="text-4xl" />
               <h1 class="text-sm text-neutral-500 dark:text-neutral-300 font-bold">
                 {{ t('wizardModal.no_signatures_detected') }}</h1>
             </div>
@@ -328,16 +332,11 @@ defineShortcuts({
               <h1 class="block w-fit text-neutral-700 dark:text-neutral-300 text-sm font-bold">
                 {{ t('wizardModal.recommended_tools') }}
               </h1>
-              <div class="mt-2 grid grid-cols-1 md:grid-cols-2" :class="{'!grid-cols-1': relatedTools.length === 1}">
-                <AppToolCard
-                  v-for="(t, k) in relatedTools"
-                  :tool="t"
-                  :key="k"
-                  @click="() => {
-                    inputWizard = ''
-                    isCharsWizardOpen = false
-                  }"
-                />
+              <div class="mt-2 grid grid-cols-1 md:grid-cols-2" :class="{ '!grid-cols-1': relatedTools.length === 1 }">
+                <AppToolCard v-for="(t, k) in relatedTools" :tool="t" :key="k" @click="() => {
+                  inputWizard = ''
+                  isCharsWizardOpen = false
+                }" />
               </div>
             </div>
           </Transition>

@@ -30,7 +30,7 @@ const { data } = await useAsyncData(
 
 <template>
   <div
-    v-if="(data && data.body?.children.length > 0) || references"
+    v-if="(data && (data.body?.children.length || 0) > 0) || references"
     class="lg:mt-6 mt-4 p-4 rounded-lg border border-neutral-200 bg-neutral-50 dark:bg-neutral-800 dark:border-neutral-500"
   >
     <div v-if="contentPath && data">

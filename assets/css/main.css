@@ -30,7 +30,7 @@ body {
   @apply dark:bg-neutral-950 font-sans;
 }
 
-/* Electron */
+/* Tauri */
 .draggable {
   -webkit-app-region: drag;
 }

@@ -33,8 +33,7 @@ onMounted(() => {
     <NuxtLayout>
       <div
         class="fixed inset-0 font-sans flex flex-col gap-6 justify-center items-center bg-white dark:bg-neutral-900 z-[999999]"
-        v-if="!page_loaded"
-      >
+        v-if="!page_loaded">
         <div class="sk-folding-cube">
           <div class="sk-cube1 sk-cube"></div>
           <div class="sk-cube2 sk-cube"></div>
@@ -45,8 +44,8 @@ onMounted(() => {
           <h1 class="loading-text-indicator">CTFever loading...</h1>
         </div>
       </div>
-      <NuxtLoadingIndicator/>
-      <NuxtPage/>
+      <NuxtLoadingIndicator />
+      <NuxtPage />
     </NuxtLayout>
   </UniMessageProvider>
 </template>
