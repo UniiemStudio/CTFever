@@ -1,20 +1,12 @@
 <script lang="ts" setup>
 import { storeToRefs } from 'pinia'
 
-const electronReady = window?.desktop?.electronReady || false
-const desktopAPI = window?.desktop || null
-
 const page_loaded = ref(false)
 
 const route = useRoute()
 const router = useRouter()
 const routeBaseName = useRouteBaseName()
 const { currentPageTitle } = storeToRefs(useGlobalState())
-const localePath = useLocalePath()
-const switchLocalePath = useSwitchLocalePath()
-const desktop_settings = useLocalStorage('c5r_desktop:settings', {
-  locale: 'en',
-})
 
 useHead({
   titleTemplate(title) {
@@ -32,30 +24,6 @@ useSeoMeta({
 })
 
 onMounted(() => {
-  if (electronReady) {
-    // switch locale to desktop settings
-    router.replace(switchLocalePath(desktop_settings.value.locale))
-
-    // handlers
-    desktopAPI?.appReady()
-    desktopAPI?.onPushRoute(route => {
-      router.push(localePath(route))
-    })
-
-    desktopAPI?.onAwaken(url => {
-      const scheme = new URL(url)
-      router.replace(localePath(scheme.pathname.replace('//', '/')))
-    })
-
-    desktopAPI?.getSettingsList().then(settings => {
-      console.log('settings list', settings)
-    })
-
-    desktopAPI?.onSettingsUpdate(settings => {
-      console.log('settings updated', settings)
-    })
-  }
-
   page_loaded.value = true
 })
 </script>

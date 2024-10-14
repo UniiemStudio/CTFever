@@ -15,13 +15,6 @@ const { locale, locales } = useI18n()
 const { t } = useI18n({
   useScope: 'local',
 })
-const desktop_settings = useLocalStorage('c5r_desktop:settings', {
-  locale: 'en',
-})
-
-const electronReady = window?.desktop?.electronReady || false
-const desktopAPI = window?.desktop || null
-const electronSettings = ref<Setting<boolean>[]>([])
 
 const colorMode = useColorMode()
 const isDark = computed({
@@ -67,6 +60,7 @@ const onSubmit = async (e: FormSubmitEvent<Schema>) => {
     watch: false,
   }).then(res => {
     console.log(res.data.value)
+    // @ts-ignore
     message.success(`user[${ res.data.value?.data?.token }] logged in!`)
     loading.value = false
   }).catch(e => {
@@ -107,9 +101,6 @@ const localeOptions = locales.value.map(locale => {
 })
 
 const handleLocaleSelect = (lc: string) => {
-  if (electronReady) {
-    desktop_settings.value.locale = lc
-  }
   router.replace(switchLocalePath(lc))
 }
 
@@ -126,42 +117,10 @@ const handleLogin = () => {
     },
   }) as RouteLocationRaw)
 }
-
-const onOpenAtLoginSet = (on: boolean) => {
-  desktopAPI?.submitSettings([{
-    key: 'openAtLogin',
-    value: on,
-  }])
-  console.log('openAtLogin', on)
-}
-
-onMounted(() => {
-  desktopAPI?.getSettingsList().then(settings => {
-    electronSettings.value = settings
-  })
-})
 </script>
 
 <template>
   <ToolContainer>
-    <ClientOnly v-if="electronReady && electronSettings.length > 0">
-      <AppSettingsArea :title="t('desktop.general.label')" icon="tabler:app-window">
-        <AppSettingsItem
-          v-for="(setting, k) in electronSettings"
-          :key="k"
-          :title="t(`desktop.general.${setting.key}.label`)"
-          :subtitle="t(`desktop.general.${setting.key}.subtitle`)"
-        >
-          <UniToggle
-            size="sm"
-            :value="setting.value"
-            @change="desktopAPI?.submitSettings([
-              { key: setting.key, value: $event },
-            ])"
-          />
-        </AppSettingsItem>
-      </AppSettingsArea>
-    </ClientOnly>
 
     <AppSettingsArea :title="t('appearance.label')" icon="tabler:layout">
       <AppSettingsItem :title="t('appearance.language.label')">

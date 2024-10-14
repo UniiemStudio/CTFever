@@ -300,7 +300,7 @@ onMounted(() => {
   </ToolContainer>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .memory-view {
   @apply grid grid-cols-16 md:grid-cols-32 border-[.5px];
   @apply dark:border-neutral-800;

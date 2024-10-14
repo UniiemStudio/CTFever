@@ -53,55 +53,43 @@ const onIncomeFiles = (files: File[]) => {
   <ToolContainer>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
       <div class="w-full h-fit">
-        <UniFileDnD
-          accept="application/zip,application/x-zip-compressed"
-          @change="onIncomeFiles"
-        />
+        <UniFileDnD accept="application/zip,application/x-zip-compressed" @change="onIncomeFiles" />
       </div>
       <div class="w-full h-fit p-2 border border-neutral-200 dark:border-neutral-700 rounded-md">
-        <div
-          v-if="!selected_file"
-          class="p-2 flex justify-between items-center rounded-md bg-neutral-100 dark:bg-neutral-900"
-        >
+        <div v-if="!selected_file"
+          class="p-2 flex justify-between items-center rounded-md bg-neutral-100 dark:bg-neutral-900">
           <p class="text-sm">{{ t('select_file') }}</p>
         </div>
-        <div
-          v-if="detect_result"
-          class="p-2 mb-2 flex justify-between items-center rounded-md bg-neutral-100 dark:bg-neutral-900"
-        >
-          <Icon
-            :name="status2icon(detect_result!)"
-            :class="status2color(detect_result!)"
-            class="text-3xl"
-          />
+        <div v-if="detect_result"
+          class="p-2 mb-2 flex justify-between items-center rounded-md bg-neutral-100 dark:bg-neutral-900">
+          <Icon :name="status2icon(detect_result!)" :class="status2color(detect_result!)" class="text-3xl" />
           <div class="flex flex-col items-end">
-            <div
-              class="text-sm font-medium"
-              :class="status2color(detect_result!)"
-            >
-              {{ t(`result.${ detect_result }`) }}
+            <div class="text-sm font-medium" :class="status2color(detect_result!)">
+              {{ t(`result.${detect_result}`) }}
             </div>
-            <p class="text-xs text-neutral-500">{{ t(`desc.${ detect_result }`) }}</p>
+            <p class="text-xs text-neutral-500">{{ t(`desc.${detect_result}`) }}</p>
           </div>
         </div>
         <table v-if="selected_file">
-          <tr>
-            <td>{{ t('file_name') }}</td>
-            <td class="font-medium">{{ selected_file?.name }}</td>
-          </tr>
-          <tr>
-            <td>{{ t('size') }}</td>
-            <td>
-              {{ selected_file?.size }}
-              <span class="text-xs">{{ t('bytes') }}</span>
-            </td>
-          </tr>
-          <tr>
-            <td>{{ t('last_modified') }}</td>
-            <td>
-              {{ dayjs(selected_file?.lastModified).format('YYYY-MM-DD HH:mm:ss') }}
-            </td>
-          </tr>
+          <tbody>
+            <tr>
+              <td>{{ t('file_name') }}</td>
+              <td class="font-medium">{{ selected_file?.name }}</td>
+            </tr>
+            <tr>
+              <td>{{ t('size') }}</td>
+              <td>
+                {{ selected_file?.size }}
+                <span class="text-xs">{{ t('bytes') }}</span>
+              </td>
+            </tr>
+            <tr>
+              <td>{{ t('last_modified') }}</td>
+              <td>
+                {{ dayjs(selected_file?.lastModified).format('YYYY-MM-DD HH:mm:ss') }}
+              </td>
+            </tr>
+          </tbody>
         </table>
       </div>
     </div>
