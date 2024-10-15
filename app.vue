@@ -1,6 +1,17 @@
 <script lang="ts" setup>
 import { isTauri } from '@tauri-apps/api/core';
+import { onOpenUrl, register } from '@tauri-apps/plugin-deep-link';
 import { storeToRefs } from 'pinia'
+
+// cross-platform
+if(isTauri()) {
+  register('ctfever')
+
+  await onOpenUrl((urls) => {
+    console.log('deep link:', urls);
+  });
+}
+// end
 
 const page_loaded = ref(false)
 
@@ -13,7 +24,7 @@ useHead({
   titleTemplate(title) {
     currentPageTitle.value = title || 'CTFever'
     return title
-      ? `${ title } ${ routeBaseName(route)?.startsWith('tool') ? '-' : '::' } CTFever`
+      ? `${title} ${routeBaseName(route)?.startsWith('tool') ? '-' : '::'} CTFever`
       : 'CTFever'
   },
 })
@@ -62,9 +73,11 @@ onMounted(() => {
   0% {
     opacity: .3;
   }
+
   50% {
     opacity: 1;
   }
+
   100% {
     opacity: .3;
   }
@@ -127,30 +140,42 @@ onMounted(() => {
 }
 
 @-webkit-keyframes sk-foldCubeAngle {
-  0%, 10% {
+
+  0%,
+  10% {
     transform: perspective(140px) rotateX(-180deg);
     opacity: 0;
   }
-  25%, 75% {
+
+  25%,
+  75% {
     transform: perspective(140px) rotateX(0deg);
     opacity: 1;
   }
-  90%, 100% {
+
+  90%,
+  100% {
     transform: perspective(140px) rotateY(180deg);
     opacity: 0;
   }
 }
 
 @keyframes sk-foldCubeAngle {
-  0%, 10% {
+
+  0%,
+  10% {
     transform: perspective(140px) rotateX(-180deg);
     opacity: 0;
   }
-  25%, 75% {
+
+  25%,
+  75% {
     transform: perspective(140px) rotateX(0deg);
     opacity: 1;
   }
-  90%, 100% {
+
+  90%,
+  100% {
     transform: perspective(140px) rotateY(180deg);
     opacity: 0;
   }

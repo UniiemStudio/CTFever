@@ -10,9 +10,13 @@ const appWindow = new Window('main')
 
 const isMaximized = ref(false)
 const isMaximizedInterval = ref()
-isMaximizedInterval.value = setInterval(async () => {
-  isMaximized.value = await appWindow.isMaximized()
-}, 200)
+if (isTauri()) {
+  isMaximizedInterval.value = setInterval(async () => {
+    if (appWindow) {
+      isMaximized.value = await appWindow.isMaximized()
+    }
+  }, 200)
+}
 
 onBeforeUnmount(() => {
   if (isMaximizedInterval.value) {
