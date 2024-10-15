@@ -1,17 +1,9 @@
 <script lang="ts" setup>
 import { isTauri } from '@tauri-apps/api/core';
-import { onOpenUrl, register } from '@tauri-apps/plugin-deep-link';
+import { getCurrent, onOpenUrl, register } from '@tauri-apps/plugin-deep-link';
 import { storeToRefs } from 'pinia'
-
-// cross-platform
-if(isTauri()) {
-  register('ctfever')
-
-  await onOpenUrl((urls) => {
-    console.log('deep link:', urls);
-  });
-}
-// end
+import { useMessage } from './composables/uni/useMessage';
+import { listen } from '@tauri-apps/api/event';
 
 const page_loaded = ref(false)
 
@@ -19,6 +11,25 @@ const route = useRoute()
 const router = useRouter()
 const routeBaseName = useRouteBaseName()
 const { currentPageTitle } = storeToRefs(useGlobalState())
+
+// cross-platform
+if (isTauri()) {
+  register('ctfever')
+
+  await onOpenUrl((urls) => {
+    alert('Deep link: ' + urls.join(','))
+    console.log('deep link:', urls);
+  });
+
+  const urls = await getCurrent();
+  alert('Deep link: ' + urls?.join(','))
+
+  listen<string[]>('deep-link', (urls) => {
+    alert('Deep link event: ' + urls.payload.join(','))
+    console.log('deep link event:', urls);
+  });
+}
+// end
 
 useHead({
   titleTemplate(title) {
