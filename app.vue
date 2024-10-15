@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { isTauri } from '@tauri-apps/api/core';
 import { storeToRefs } from 'pinia'
 
 const page_loaded = ref(false)
@@ -33,7 +34,7 @@ onMounted(() => {
     <NuxtLayout>
       <div
         class="fixed inset-0 font-sans flex flex-col gap-6 justify-center items-center bg-white dark:bg-neutral-900 z-[999999]"
-        v-if="!page_loaded">
+        v-if="!page_loaded && !isTauri()">
         <div class="sk-folding-cube">
           <div class="sk-cube1 sk-cube"></div>
           <div class="sk-cube2 sk-cube"></div>

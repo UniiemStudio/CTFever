@@ -1,4 +1,4 @@
-<div class="loading">
+<div data-tauri-drag-region class="loading bg-white dark:bg-neutral-900">
     <div class="sk-folding-cube">
         <div class="sk-cube1 sk-cube"></div>
         <div class="sk-cube2 sk-cube"></div>
@@ -6,7 +6,7 @@
         <div class="sk-cube3 sk-cube"></div>
     </div>
     <div>
-        <h1 class="loading-text-indicator">CTFever loading...</h1>
+        <h1 class="loading-text-indicator select-none">CTFever loading...</h1>
     </div>
 </div>
 
@@ -16,13 +16,13 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 90vh;
     gap: 24px;
     font-family: Rubik, 'Noto Sans SC', Helvetica, -apple-system, sans-serif;
   }
 
   .loading-text-indicator {
-    @apply font-sans text-neutral-800 dark:text-neutral-200;
+    @apply text-neutral-800 dark:text-neutral-200;
     font-size: 14px;
     animation: loading-text 2s infinite;
   }
