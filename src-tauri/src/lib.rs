@@ -1,11 +1,19 @@
-use tauri::{AppHandle, Emitter, Manager};
+use tauri::{AppHandle, Manager};
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
-    tauri::Builder::default()
-        .plugin(tauri_plugin_single_instance::init(|app, args: Vec<String>, cwd| {
-            let _ = show_window(app, args);
-        }))
+    let mut builder = tauri::Builder::default();
+
+    #[cfg(desktop)]
+    {
+        builder = builder.plugin(tauri_plugin_single_instance::init(
+            |app, _args: Vec<String>, _cwd| {
+                let _ = show_window(app);
+            },
+        ))
+    }
+
+    builder
         .plugin(tauri_plugin_deep_link::init())
         .setup(|app| {
             if cfg!(debug_assertions) {
@@ -15,13 +23,19 @@ pub fn run() {
                         .build(),
                 )?;
             }
+            #[cfg(any(windows, target_os = "linux"))]
+            {
+                use tauri_plugin_deep_link::DeepLinkExt;
+                app.deep_link().register_all()?;
+            }
             Ok(())
         })
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
 
-fn show_window(app: &AppHandle, args: Vec<String>) {
+#[cfg(desktop)]
+fn show_window(app: &AppHandle) {
     let windows = app.webview_windows();
 
     windows
@@ -30,5 +44,4 @@ fn show_window(app: &AppHandle, args: Vec<String>) {
         .expect("Sorry, no window found")
         .set_focus()
         .expect("Can't Bring Window to Focus");
-    windows.values().next().expect("").emit("deep-link", args).expect("");
 }

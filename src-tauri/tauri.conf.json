@@ -1,6 +1,6 @@
 {
   "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
-  "productName": "ctfever",
+  "productName": "CTFever",
   "version": "0.1.0",
   "identifier": "app.c5r.ctfever",
   "build": {
@@ -40,7 +40,7 @@
   },
   "plugins": {
     "deep-link": {
-      "domains": [
+      "mobile": [
         {
           "host": "c5r.app"
         },
@@ -49,11 +49,13 @@
         },
         {
           "host": "ctfever.uniie.com"
-        },
-        {
-          "host": "localhost:3000"
         }
-      ]
+      ],
+      "desktop": {
+        "schemes": [
+          "ctfever"
+        ]
+      }
     }
   }
 }

@@ -1,0 +1,14 @@
+{
+  "identifier": "mobile-capability",
+  "windows": [
+    "main"
+  ],
+  "platforms": [
+    "iOS",
+    "android"
+  ],
+  "permissions": [
+    "core:event:default",
+    "deep-link:default"
+  ]
+}
