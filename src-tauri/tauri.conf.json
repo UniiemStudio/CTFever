@@ -42,13 +42,22 @@
     "deep-link": {
       "mobile": [
         {
-          "host": "c5r.app"
+          "host": "c5r.app",
+          "pathPrefix": [
+            "/tools"
+          ]
         },
         {
-          "host": "dev.c5r.app"
+          "host": "dev.c5r.app",
+          "pathPrefix": [
+            "/tools"
+          ]
         },
         {
-          "host": "ctfever.uniie.com"
+          "host": "ctfever.uniiem.com",
+          "pathPrefix": [
+            "/tools"
+          ]
         }
       ],
       "desktop": {
