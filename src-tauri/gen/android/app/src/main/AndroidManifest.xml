@@ -30,7 +30,7 @@
                 <data android:scheme="http" />
                 <data android:scheme="https" />
                 <data android:host="c5r.app" />
-                
+                <data android:pathPrefix="/tools" />
             </intent-filter>
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
@@ -39,7 +39,7 @@
                 <data android:scheme="http" />
                 <data android:scheme="https" />
                 <data android:host="dev.c5r.app" />
-                
+                <data android:pathPrefix="/tools" />
             </intent-filter>
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
@@ -47,8 +47,8 @@
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data android:scheme="http" />
                 <data android:scheme="https" />
-                <data android:host="ctfever.uniie.com" />
-                
+                <data android:host="ctfever.uniiem.com" />
+                <data android:pathPrefix="/tools" />
             </intent-filter>
             <!-- DEEP LINK PLUGIN. AUTO-GENERATED. DO NOT REMOVE. -->
         </activity>

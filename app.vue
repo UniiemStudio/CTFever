@@ -1,10 +1,9 @@
 <script lang="ts" setup>
 import { isTauri } from '@tauri-apps/api/core';
-import { onOpenUrl, register } from '@tauri-apps/plugin-deep-link';
+import { onOpenUrl } from '@tauri-apps/plugin-deep-link';
 import { storeToRefs } from 'pinia'
-import { useMessage } from './composables/uni/useMessage';
-import { TrayIcon, type TrayIconOptions } from '@tauri-apps/api/tray';
-import { defaultWindowIcon } from '@tauri-apps/api/app';
+// import { TrayIcon, type TrayIconOptions } from '@tauri-apps/api/tray';
+// import { defaultWindowIcon } from '@tauri-apps/api/app';
 
 const page_loaded = ref(false)
 
@@ -16,10 +15,11 @@ const { currentPageTitle } = storeToRefs(useGlobalState())
 // cross-platform
 if (isTauri()) {
   // init system tray
-  const trayOptions: TrayIconOptions = {
-    icon: await defaultWindowIcon() || undefined
-  }
-  const tray = await TrayIcon.new(trayOptions)
+  // const trayOptions: TrayIconOptions = {
+  //   icon: await defaultWindowIcon() || undefined,
+  //   tooltip: 'CTFever',
+  // }
+  // const tray = await TrayIcon.new(trayOptions)
 
   // handle deep linking
   await onOpenUrl((urls) => {
