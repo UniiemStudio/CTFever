@@ -2,6 +2,7 @@
 import { isTauri } from '@tauri-apps/api/core';
 import { onOpenUrl, register } from '@tauri-apps/plugin-deep-link';
 import { storeToRefs } from 'pinia'
+import { useMessage } from './composables/uni/useMessage';
 
 const page_loaded = ref(false)
 
@@ -14,9 +15,27 @@ const { currentPageTitle } = storeToRefs(useGlobalState())
 if (isTauri()) {
   register('ctfever')
 
+  // handle deep linking
   await onOpenUrl((urls) => {
-    alert('Deep link: ' + urls.join(','))
-    console.log('deep link:', urls);
+    if (urls.length === 0) {
+      return
+    }
+    const uri = new URL(urls[0])
+    // check if the path is invalid
+    const isValidPath = router.getRoutes().some((route) => {
+      if (route.path === uri.pathname.replace('//', '/')) {
+        return true
+      }
+    })
+
+    if (!isValidPath) {
+      console.warn(`Invalid path: ${uri.pathname} with query: ${uri.searchParams.toString()} ignored`);
+      return
+    }
+    router.replace({
+      path: uri.pathname.replace('//', '/'),
+      query: Object.fromEntries(uri.searchParams),
+    })
   });
 }
 // end

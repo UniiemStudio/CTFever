@@ -70,14 +70,14 @@ onMounted(() => {
         :class="{ 'cursor-not-allowed bg-neutral-100 dark:bg-neutral-900 text-neutral-400 dark:text-neutral-600': disabled }" ref="selectRef" type="button" @click="handleSelectClick" :disabled="disabled">
         <span v-if="selectedItem?.icon && !selectedIconFlag && hasAnyIcon"
           class="inline-block w-5 h-5 pointer-events-none"></span>
-        <Icon v-else-if="selectedItem?.icon && selectedIconFlag && hasAnyIcon" :name="selectedItem?.icon"
+        <UIcon v-else-if="selectedItem?.icon && selectedIconFlag && hasAnyIcon" :name="selectedItem?.icon"
           class="inline-block w-5 h-5 pointer-events-none" />
         <Transition name="select-item" mode="out-in">
           <span class="leading-snug whitespace-nowrap text-sm" :key="selectedItem?.value">{{
             selectedItem?.label || selectedItem?.value || 'Select an option'
           }}</span>
         </Transition>
-        <Icon name="tabler:dots-vertical"
+        <UIcon name="tabler:dots-vertical"
           class="absolute bg-neutral-50 text-gray-500 dark:bg-neutral-700/50 dark:text-neutral-500 inset-y-0 right-0 h-full" />
       </button>
       <div class="absolute top-full mt-2 right-0 w-fit rounded-md border overflow-hidden transition shadow-lg opacity-0 pointer-events-none
@@ -92,7 +92,7 @@ onMounted(() => {
             '!cursor-not-allowed text-neutral-300 dark:text-neutral-500 hover:bg-white dark:hover:!bg-neutral-800': option.disabled
           }" @click="!option.disabled ? handleOptionSelect(option) : void 0">
           <div class="inline-block w-5 h-5" v-if="hasAnyIcon && !option.icon"></div>
-          <Icon :name="(option?.icon)" class="inline-block w-5 h-5" v-if="option.icon" />
+          <UIcon :name="(option?.icon)" class="inline-block w-5 h-5" v-if="option.icon" />
           <span class="leading-none whitespace-nowrap text-sm">{{ option.label || 'No label' }}</span>
         </div>
       </div>

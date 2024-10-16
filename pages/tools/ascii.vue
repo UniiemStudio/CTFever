@@ -7,12 +7,18 @@ useSeoMeta({
   title: t('app.tool.ascii.label'),
 })
 
-const radix = ref('10')
-const mode = ref('continuity')
-const inputMode = ref('ascii')
-const separator = ref('space')
-const inputText = ref('')
-const result = ref('')
+const route = useRoute()
+
+const inputs = reactive({
+  radix: '10',
+  mode: 'continuity',
+  inputMode: 'ascii',
+  separator: 'space',
+  input: '',
+  result: '',
+})
+
+export type AsciiToolInputs = typeof inputs
 
 const separators: {
   [key: string]: string
@@ -23,22 +29,32 @@ const separators: {
 }
 
 const handleInput = () => {
-  if (inputText.value) {
-    const input = inputText.value
-    const sep = separators[separator.value]
-    if (inputMode.value === 'ascii') {
-      if (mode.value === 'continuity') {
-        result.value = input.split(sep).map(i => String.fromCharCode(parseInt(i, parseInt(radix.value)))).join('') // 待完善
+  if (inputs.input) {
+    const input = inputs.input
+    const sep = separators[inputs.separator]
+    if (inputs.inputMode === 'ascii') {
+      if (inputs.mode === 'continuity') {
+        inputs.result = input.split(sep).map(i => String.fromCharCode(parseInt(i, parseInt(inputs.radix)))).join('') // 待完善
       } else {
-        result.value = input.split(sep).map(i => parseInt(i, parseInt(radix.value))).map(i => String.fromCharCode(i)).join('') // 可用
+        inputs.result = input.split(sep).map(i => parseInt(i, parseInt(inputs.radix))).map(i => String.fromCharCode(i)).join('') // 可用
       }
     } else {
-      result.value = input.split('').map(i => i.charCodeAt(0).toString(parseInt(radix.value))).join(sep)
+      inputs.result = input.split('').map(i => i.charCodeAt(0).toString(parseInt(inputs.radix))).join(sep)
     }
   } else {
-    result.value = ''
+    inputs.result = ''
   }
 }
+
+onMounted(() => {
+  // assign query to inputs
+  for (const key in inputs) {
+    if (route.query[key]) {
+      (inputs as any)[key] = route.query[key] as string
+      handleInput()
+    }
+  }
+})
 </script>
 
 <template>
@@ -65,7 +81,7 @@ const handleInput = () => {
           value: '16',
           icon: 'mdi:hexadecimal'
         },
-      ]" v-model="radix"/>
+      ]" v-model="inputs.radix" />
       <UniSelect :label="t('label.mode')" :items="[
         {
           label: t('mode.continuity'),
@@ -77,7 +93,7 @@ const handleInput = () => {
           value: 'split',
           icon: 'mdi:comma-box-outline'
         },
-      ]" v-model="mode" :disabled="inputMode !== 'ascii'"/>
+      ]" v-model="inputs.mode" :disabled="inputs.inputMode !== 'ascii'" />
       <UniSelect :label="t('label.input')" :items="[
         {
           label: t('input.ascii'),
@@ -89,13 +105,13 @@ const handleInput = () => {
           value: 'chars',
           icon: 'carbon:character-upper-case'
         },
-      ]" v-model="inputMode"/>
+      ]" v-model="inputs.inputMode" />
       <UniSelect :label="t('label.separator')" :items="[
         {
           label: t('separator.none'),
           value: 'none',
           icon: 'tabler:space-off',
-          disabled: mode === 'split' && inputMode === 'ascii'
+          disabled: inputs.mode === 'split' && inputs.inputMode === 'ascii'
         },
         {
           label: t('separator.space'),
@@ -107,13 +123,13 @@ const handleInput = () => {
           value: 'comma',
           icon: 'mdi:comma-box-outline'
         },
-      ]" v-model="separator"/>
+      ]" v-model="inputs.separator" />
     </div>
-    <UniInput :label="inputMode === 'ascii' ? t('input.ascii') : t('input.characters')" v-model="inputText"
-              @input="handleInput"
-              :placeholder="inputMode === 'ascii' ? (mode === 'continuity' ? `'656667' to 'ABC'` : `'65,66,67' to 'ABC'`) : (mode === 'continuity' ? `'ABC' to '656667'` : `'ABC' to '65,66,67'`)"/>
+    <UniInput :label="inputs.inputMode === 'ascii' ? t('input.ascii') : t('input.characters')" v-model="inputs.input"
+      @input="handleInput"
+      :placeholder="inputs.inputMode === 'ascii' ? (inputs.mode === 'continuity' ? `'656667' to 'ABC'` : `'65,66,67' to 'ABC'`) : (inputs.mode === 'continuity' ? `'ABC' to '656667'` : `'ABC' to '65,66,67'`)" />
     <Transition name="result">
-      <UniInput v-if="result" :label="t('label.result')" v-model="result" disabled/>
+      <UniInput v-if="inputs.result" :label="t('label.result')" v-model="inputs.result" disabled />
     </Transition>
   </ToolContainer>
 </template>
