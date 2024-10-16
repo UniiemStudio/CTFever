@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "app.c5r.ctfever",
+      "sha256_cert_fingerprints": [
+        "E7:A5:24:C2:81:5A:D2:B9:02:81:90:44:60:54:0F:FA:3A:E3:5D:31:FD:7B:50:DF:97:62:46:A6:80:F7:89:1C"
+      ]
+    }
+  }
+]
