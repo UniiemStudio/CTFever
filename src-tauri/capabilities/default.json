@@ -15,6 +15,7 @@
     "core:window:allow-close",
     "core:app:allow-default-window-icon",
     "deep-link:default",
-    "deep-link:allow-register"
+    "deep-link:allow-register",
+    "os:default"
   ]
 }

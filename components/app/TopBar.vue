@@ -1,16 +1,18 @@
 <script lang="ts" setup>
 import { isTauri } from '@tauri-apps/api/core';
 import { Window } from '@tauri-apps/api/window';
+import { type } from '@tauri-apps/plugin-os';
 import { storeToRefs } from 'pinia'
 import { useMessage } from '~/composables/uni/useMessage'
 import { stringSignatureDetect } from '~/libs/misc/stringSignatureDetect'
 
 // cross-platform
+const osType = type()
 const appWindow = new Window('main')
 
 const isMaximized = ref(false)
 const isMaximizedInterval = ref()
-if (isTauri()) {
+if (isTauri() && (osType !== 'android' && osType !== 'ios')) {
   isMaximizedInterval.value = setInterval(async () => {
     if (appWindow) {
       isMaximized.value = await appWindow.isMaximized()
@@ -221,7 +223,7 @@ defineShortcuts({
         </div>
       </div>
       <!-- windows controls -->
-      <div v-if="isTauri()"
+      <div v-if="isTauri() && (osType !== 'android' && osType !== 'ios')"
         class="ml-4 pl-4 border-l border-neutral-200 dark:border-neutral-700 flex justify-between items-center ignore-drag">
         <button @click="appWindow.minimize()"
           class="inline-flex justify-center items-center p-2 rounded-md text-lg hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors duration-150">

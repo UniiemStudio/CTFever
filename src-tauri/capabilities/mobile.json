@@ -9,6 +9,7 @@
   ],
   "permissions": [
     "core:event:default",
-    "deep-link:default"
+    "deep-link:default",
+    "os:default"
   ]
 }

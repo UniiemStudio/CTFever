@@ -32,6 +32,9 @@ importers:
       '@tauri-apps/plugin-deep-link':
         specifier: ~2.0.0
         version: 2.0.0
+      '@tauri-apps/plugin-os':
+        specifier: ~2
+        version: 2.0.0
       '@uniiem/brainfuck':
         specifier: ^0.1.0
         version: 0.1.0
@@ -1358,6 +1361,9 @@ packages:
 
   '@tauri-apps/plugin-deep-link@2.0.0':
     resolution: {integrity: sha512-cDa2k1OrRU5DoKc0IXl1Y8RlFOU107u2phdZfT7FkApsC6TL/VAPs3YOUTT8p9/PZ50EjOKP104HFMqVqnQ0bw==}
+
+  '@tauri-apps/plugin-os@2.0.0':
+    resolution: {integrity: sha512-M7hG/nNyQYTJxVG/UhTKhp9mpXriwWzrs9mqDreB8mIgqA3ek5nHLdwRZJWhkKjZrnDT4v9CpA9BhYeplTlAiA==}
 
   '@trysound/sax@0.2.0':
     resolution: {integrity: sha512-L7z9BgrNEcYyUYtF+HaEfiS5ebkh9jXqbszz7pC0hRBPaatV0XjSD3+eHrpqFemQfgwiFF0QPIarnIihIDn7OA==}
@@ -6379,6 +6385,10 @@ snapshots:
       '@tauri-apps/api': 2.0.2
 
   '@tauri-apps/plugin-deep-link@2.0.0':
+    dependencies:
+      '@tauri-apps/api': 2.0.2
+
+  '@tauri-apps/plugin-os@2.0.0':
     dependencies:
       '@tauri-apps/api': 2.0.2
 

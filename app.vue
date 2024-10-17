@@ -1,9 +1,10 @@
 <script lang="ts" setup>
 import { isTauri } from '@tauri-apps/api/core';
 import { onOpenUrl } from '@tauri-apps/plugin-deep-link';
+import { type, type OsType } from '@tauri-apps/plugin-os';
 import { storeToRefs } from 'pinia'
-// import { TrayIcon, type TrayIconOptions } from '@tauri-apps/api/tray';
-// import { defaultWindowIcon } from '@tauri-apps/api/app';
+import { TrayIcon, type TrayIconOptions } from '@tauri-apps/api/tray';
+import { defaultWindowIcon } from '@tauri-apps/api/app';
 
 const page_loaded = ref(false)
 
@@ -13,13 +14,17 @@ const routeBaseName = useRouteBaseName()
 const { currentPageTitle } = storeToRefs(useGlobalState())
 
 // cross-platform
+const osType = type()
 if (isTauri()) {
-  // init system tray
-  // const trayOptions: TrayIconOptions = {
-  //   icon: await defaultWindowIcon() || undefined,
-  //   tooltip: 'CTFever',
-  // }
-  // const tray = await TrayIcon.new(trayOptions)
+  // if the app is running on mobile, we don't need to init system tray
+  if (osType !== 'android' && osType !== 'ios') {
+    // init system tray
+    const trayOptions: TrayIconOptions = {
+      icon: await defaultWindowIcon() || undefined,
+      tooltip: 'CTFever',
+    }
+    const tray = await TrayIcon.new(trayOptions)
+  }
 
   // handle deep linking
   await onOpenUrl((urls) => {
