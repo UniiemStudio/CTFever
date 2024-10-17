@@ -5,6 +5,7 @@ import { type, type OsType } from '@tauri-apps/plugin-os';
 import { storeToRefs } from 'pinia'
 import { TrayIcon, type TrayIconOptions } from '@tauri-apps/api/tray';
 import { defaultWindowIcon } from '@tauri-apps/api/app';
+import { Menu } from '@tauri-apps/api/menu';
 
 const page_loaded = ref(false)
 
@@ -19,9 +20,29 @@ if (isTauri()) {
   // if the app is running on mobile, we don't need to init system tray
   if (osType !== 'android' && osType !== 'ios') {
     // init system tray
+    const menu = await Menu.new({
+      items: [
+        {
+          id: 'quit',
+          text: 'Quit'
+        }
+      ]
+    })
+
     const trayOptions: TrayIconOptions = {
+      menu,
+      id: 'ctfever',
+      menuOnLeftClick: false,
       icon: await defaultWindowIcon() || undefined,
       tooltip: 'CTFever',
+      action: event => {
+        switch (event.type) {
+          case 'Click':
+          case 'DoubleClick':
+            router.push('/')
+            break
+        }
+      }
     }
     const tray = await TrayIcon.new(trayOptions)
   }
