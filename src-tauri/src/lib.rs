@@ -1,14 +1,21 @@
-use tauri::{AppHandle, Manager};
+use tauri::Manager;
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
-    let mut builder = tauri::Builder::default().plugin(tauri_plugin_os::init());
+    let mut builder = tauri::Builder::default()
+        .plugin(tauri_plugin_dialog::init())
+        .plugin(tauri_plugin_os::init());
 
     #[cfg(desktop)]
     {
         builder = builder.plugin(tauri_plugin_single_instance::init(
             |app, _args: Vec<String>, _cwd| {
-                let _ = show_window(app);
+                if let Some(window) = app.get_webview_window("main") {
+                    window.show().expect("failed to show main window");
+                    window.set_focus().expect("failed to set focus on main window");
+                } else {
+                    eprintln!("no main window");
+                }
             },
         ))
     }
@@ -32,16 +39,4 @@ pub fn run() {
         })
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
-}
-
-#[cfg(desktop)]
-fn show_window(app: &AppHandle) {
-    let windows = app.webview_windows();
-
-    windows
-        .values()
-        .next()
-        .expect("Sorry, no window found")
-        .set_focus()
-        .expect("Can't Bring Window to Focus");
 }

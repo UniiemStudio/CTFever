@@ -1,23 +1,26 @@
 <script lang="ts" setup>
 import { isTauri } from '@tauri-apps/api/core';
 import { Window } from '@tauri-apps/api/window';
-import { type } from '@tauri-apps/plugin-os';
+import { type, type OsType } from '@tauri-apps/plugin-os';
 import { storeToRefs } from 'pinia'
 import { useMessage } from '~/composables/uni/useMessage'
 import { stringSignatureDetect } from '~/libs/misc/stringSignatureDetect'
 
 // cross-platform
-const osType = type()
+let osType: OsType = undefined as any
 const appWindow = new Window('main')
 
 const isMaximized = ref(false)
 const isMaximizedInterval = ref()
-if (isTauri() && (osType !== 'android' && osType !== 'ios')) {
-  isMaximizedInterval.value = setInterval(async () => {
-    if (appWindow) {
-      isMaximized.value = await appWindow.isMaximized()
-    }
-  }, 200)
+if (isTauri()) {
+  osType = type()
+  if (osType !== 'android' && osType !== 'ios') {
+    isMaximizedInterval.value = setInterval(async () => {
+      if (appWindow) {
+        isMaximized.value = await appWindow.isMaximized()
+      }
+    }, 200)
+  }
 }
 
 onBeforeUnmount(() => {

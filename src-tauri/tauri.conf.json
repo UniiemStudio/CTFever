@@ -12,6 +12,7 @@
   "app": {
     "windows": [
       {
+        "label": "main",
         "title": "CTFever",
         "minWidth": 1038,
         "minHeight": 625,
@@ -64,6 +65,41 @@
         "schemes": [
           "ctfever"
         ]
+      }
+    },
+    "cli": {
+      "description": "CTFever CLI",
+      "args": [
+        {
+          "short": "v",
+          "name": "verbose",
+          "description": "Verbosity level"
+        },
+        {
+          "name": "source",
+          "index": 1,
+          "takesValue": true
+        },
+        {
+          "name": "destination",
+          "index": 2,
+          "takesValue": true
+        }
+      ],
+      "subcommands": {
+        "run": {
+          "description": "Run the application",
+          "args": [
+            {
+              "name": "debug",
+              "description": "Run application in debug mode"
+            },
+            {
+              "name": "release",
+              "description": "Run application in release mode"
+            }
+          ]
+        }
       }
     }
   }

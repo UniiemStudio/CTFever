@@ -1,11 +1,14 @@
 <script lang="ts" setup>
 import { isTauri } from '@tauri-apps/api/core';
 import { onOpenUrl } from '@tauri-apps/plugin-deep-link';
-import { type, type OsType } from '@tauri-apps/plugin-os';
+import { type } from '@tauri-apps/plugin-os';
+import { ask, message } from '@tauri-apps/plugin-dialog';
 import { storeToRefs } from 'pinia'
 import { TrayIcon, type TrayIconOptions } from '@tauri-apps/api/tray';
 import { defaultWindowIcon } from '@tauri-apps/api/app';
 import { Menu } from '@tauri-apps/api/menu';
+import { window } from '@tauri-apps/api';
+import { Window } from '@tauri-apps/api/window';
 
 const page_loaded = ref(false)
 
@@ -15,16 +18,34 @@ const routeBaseName = useRouteBaseName()
 const { currentPageTitle } = storeToRefs(useGlobalState())
 
 // cross-platform
-const osType = type()
 if (isTauri()) {
+  const osType = type()
   // if the app is running on mobile, we don't need to init system tray
   if (osType !== 'android' && osType !== 'ios') {
+    const mainWindow = (await window.getAllWindows()).find(w => w.label === 'main')
+    mainWindow?.onCloseRequested((event) => {
+      mainWindow.hide()
+      event.preventDefault()
+    })
     // init system tray
     const menu = await Menu.new({
       items: [
         {
           id: 'quit',
-          text: 'Quit'
+          text: 'Quit',
+          action: async () => {
+            const answer = await ask('确定要退出 CTFever 吗', {
+              title: '退出 CTFever',
+              kind: 'info',
+              okLabel: '确定',
+              cancelLabel: '取消',
+            });
+            if (answer) {
+              mainWindow?.destroy()
+              // const appWindow = window.getCurrentWindow()
+              // appWindow.emit('app-quit')
+            }
+          }
         }
       ]
     })
@@ -35,11 +56,21 @@ if (isTauri()) {
       menuOnLeftClick: false,
       icon: await defaultWindowIcon() || undefined,
       tooltip: 'CTFever',
-      action: event => {
+      action: async (event) => {
         switch (event.type) {
-          case 'Click':
           case 'DoubleClick':
-            router.push('/')
+            if (mainWindow) {
+              mainWindow.show()
+              if ((await mainWindow.isMinimized()))
+                mainWindow.unminimize()
+              if (!(await mainWindow.isFocused()))
+                mainWindow.setFocus()
+            } else {
+              await message('主窗口未找到，请重启应用', {
+                title: '程序异常',
+                kind: 'error',
+              });
+            }
             break
         }
       }
