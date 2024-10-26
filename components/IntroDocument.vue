@@ -1,5 +1,4 @@
 <script setup lang="ts">
-const { defaultLocale } = useI18n()
 const { t, locale } = useI18n({
   useScope: 'local',
 })
@@ -31,7 +30,7 @@ const { data } = await useAsyncData(
 <template>
   <div
     v-if="(data && (data.body?.children.length || 0) > 0) || references"
-    class="lg:mt-6 mt-4 p-4 rounded-lg border border-neutral-200 bg-neutral-50 dark:bg-neutral-800 dark:border-neutral-500"
+    class="lg:mt-6 mt-4 p-4 rounded-lg border border-neutral-200 bg-neutral-50 dark:bg-neutral-900 dark:border-neutral-800"
   >
     <div v-if="contentPath && data">
       <BubbleTitle
@@ -71,7 +70,7 @@ const { data } = await useAsyncData(
   </div>
 </template>
 
-<i18n>
+<i18n lang="yaml">
 en:
   intro: Introduction
   reference: References
