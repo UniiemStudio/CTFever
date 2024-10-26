@@ -16,25 +16,78 @@ const route = useRoute()
 const router = useRouter()
 const routeBaseName = useRouteBaseName()
 const { currentPageTitle } = storeToRefs(useGlobalState())
+const { toolkits } = storeToRefs(useConstant())
+const { createI18nToolkitKey, createI18nToolKey } = useI18nKey()
+const { t } = useI18n({
+  useScope: 'local',
+})
 
 // cross-platform
 if (isTauri()) {
   const osType = type()
+
   // if the app is running on mobile, we don't need to init system tray
   if (osType !== 'android' && osType !== 'ios') {
     const mainWindow = (await window.getAllWindows()).find(w => w.label === 'main')
+
+    // handle close event
     mainWindow?.onCloseRequested((event) => {
       mainWindow.hide()
       event.preventDefault()
     })
-    // init system tray
+
+    // util functions
+    const showMainWindow = async () => {
+      if (mainWindow) {
+        mainWindow.show()
+        if ((await mainWindow.isMinimized()))
+          mainWindow.unminimize()
+        if (!(await mainWindow.isFocused()))
+          mainWindow.setFocus()
+      } else {
+        await message('主窗口未找到，请重启应用', {
+          title: '程序异常',
+          kind: 'error',
+        });
+      }
+    }
+
+    // menu for system tray
     const menu = await Menu.new({
       items: [
         {
+          id: 'show',
+          text: t('tray.show'),
+          action: () => {
+            showMainWindow()
+          }
+        },
+        {
+          item: 'Separator'
+        },
+        // add toolkits to the system tray
+        ...toolkits.value.map((toolkit) => ({
+          id: toolkit.key,
+          text: t(createI18nToolkitKey(toolkit.key).label),
+          items: toolkit.tools.map((tool) => ({
+            id: tool.key,
+            text: t(createI18nToolKey(tool.key).label),
+            action: () => {
+              showMainWindow()
+              router.push({
+                path: tool.route,
+              })
+            }
+          }))
+        })),
+        {
+          item: 'Separator'
+        },
+        {
           id: 'quit',
-          text: 'Quit',
+          text: t('tray.quit'),
           action: async () => {
-            const answer = await ask('确定要退出 CTFever 吗', {
+            const answer = await ask(t('tray.quit-confirm'), {
               title: '退出 CTFever',
               kind: 'info',
               okLabel: '确定',
@@ -42,40 +95,30 @@ if (isTauri()) {
             });
             if (answer) {
               mainWindow?.destroy()
-              // const appWindow = window.getCurrentWindow()
-              // appWindow.emit('app-quit')
             }
           }
-        }
+        },
       ]
     })
 
+    // system tray options
     const trayOptions: TrayIconOptions = {
       menu,
       id: 'ctfever',
       menuOnLeftClick: false,
       icon: await defaultWindowIcon() || undefined,
       tooltip: 'CTFever',
-      action: async (event) => {
+      action: (event) => {
         switch (event.type) {
           case 'DoubleClick':
-            if (mainWindow) {
-              mainWindow.show()
-              if ((await mainWindow.isMinimized()))
-                mainWindow.unminimize()
-              if (!(await mainWindow.isFocused()))
-                mainWindow.setFocus()
-            } else {
-              await message('主窗口未找到，请重启应用', {
-                title: '程序异常',
-                kind: 'error',
-              });
-            }
+            showMainWindow()
             break
         }
       }
     }
-    const tray = await TrayIcon.new(trayOptions)
+
+    // create system tray
+    await TrayIcon.new(trayOptions)
   }
 
   // handle deep linking
@@ -264,3 +307,18 @@ onMounted(() => {
   }
 }
 </style>
+
+<i18n lang="yaml">
+en:
+  tray:
+    show: Open CTFever
+    tools: Tools
+    quit: Quit
+    quit-confirm: Are you sure you want to quit CTFever?
+zh:
+  tray:
+    show: 显示主窗口
+    tools: 工具
+    quit: 退出
+    quit-confirm: 确定要退出 CTFever 吗？
+</i18n>
