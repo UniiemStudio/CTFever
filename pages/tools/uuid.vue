@@ -49,6 +49,10 @@ const inspect = () => {
     }
   }
 }
+
+onMounted(() => {
+  console.log(uuids.value);
+})
 </script>
 
 <template>
@@ -56,16 +60,16 @@ const inspect = () => {
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
       <div class="space-y-1 font-mono">
         <TitleField label="UUID v1">
-          <UInput :value="uuids[0]" readonly/>
+          <UInput v-model:model-value="uuids[0]" readonly/>
         </TitleField>
         <TitleField label="UUID v3">
-          <UInput :value="uuids[1]" readonly/>
+          <UInput v-model:model-value="uuids[1]" readonly/>
         </TitleField>
         <TitleField label="UUID v4">
-          <UInput :value="uuids[2]" readonly/>
+          <UInput v-model:model-value="uuids[2]" readonly/>
         </TitleField>
         <TitleField label="UUID v5">
-          <UInput :value="uuids[3]" readonly/>
+          <UInput v-model:model-value="uuids[3]" readonly/>
         </TitleField>
         <UButton
           block
