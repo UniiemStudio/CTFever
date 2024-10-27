@@ -8,6 +8,7 @@ useSeoMeta({
 })
 
 const route = useRoute()
+const router = useRouter()
 
 const inputs = reactive({
   radix: '10',
@@ -15,8 +16,9 @@ const inputs = reactive({
   inputMode: 'ascii',
   separator: 'space',
   input: '',
-  result: '',
 })
+
+const result = ref('')
 
 export type AsciiToolInputs = typeof inputs
 
@@ -28,33 +30,36 @@ const separators: {
   'comma': ',',
 }
 
-const handleInput = () => {
+const handleInput = (update: boolean = true) => {
   if (inputs.input) {
     const input = inputs.input
     const sep = separators[inputs.separator]
     if (inputs.inputMode === 'ascii') {
       if (inputs.mode === 'continuity') {
-        inputs.result = input.split(sep).map(i => String.fromCharCode(parseInt(i, parseInt(inputs.radix)))).join('') // 待完善
+        result.value = input.split(sep).map(i => String.fromCharCode(parseInt(i, parseInt(inputs.radix)))).join('') // 待完善
       } else {
-        inputs.result = input.split(sep).map(i => parseInt(i, parseInt(inputs.radix))).map(i => String.fromCharCode(i)).join('') // 可用
+        result.value = input.split(sep).map(i => parseInt(i, parseInt(inputs.radix))).map(i => String.fromCharCode(i)).join('') // 可用
       }
     } else {
-      inputs.result = input.split('').map(i => i.charCodeAt(0).toString(parseInt(inputs.radix))).join(sep)
+      result.value = input.split('').map(i => i.charCodeAt(0).toString(parseInt(inputs.radix))).join(sep)
     }
   } else {
-    inputs.result = ''
+    result.value = ''
   }
+  update && router.replace({ query: inputs })
 }
 
-onMounted(() => {
-  // assign query to inputs
+const inputHandler = () => {
   for (const key in inputs) {
     if (route.query[key]) {
       (inputs as any)[key] = route.query[key] as string
-      handleInput()
+      handleInput(false)
     }
   }
-})
+}
+
+onUpdated(inputHandler)
+onMounted(inputHandler)
 </script>
 
 <template>
@@ -125,11 +130,14 @@ onMounted(() => {
         },
       ]" v-model="inputs.separator" />
     </div>
-    <UniInput :label="inputs.inputMode === 'ascii' ? t('input.ascii') : t('input.characters')" v-model="inputs.input"
-      @input="handleInput"
-      :placeholder="inputs.inputMode === 'ascii' ? (inputs.mode === 'continuity' ? `'656667' to 'ABC'` : `'65,66,67' to 'ABC'`) : (inputs.mode === 'continuity' ? `'ABC' to '656667'` : `'ABC' to '65,66,67'`)" />
+    <UFormGroup :label="inputs.inputMode === 'ascii' ? t('input.ascii') : t('input.characters')"
+      :placeholder="inputs.inputMode === 'ascii' ? (inputs.mode === 'continuity' ? `'656667' to 'ABC'` : `'65,66,67' to 'ABC'`) : (inputs.mode === 'continuity' ? `'ABC' to '656667'` : `'ABC' to '65,66,67'`)">
+      <UInput v-model:model-value="inputs.input" @update:model-value="handleInput()" />
+    </UFormGroup>
     <Transition name="result">
-      <UniInput v-if="inputs.result" :label="t('label.result')" v-model="inputs.result" disabled />
+      <UFormGroup v-if="result" :label="t('label.result')">
+        <UTextarea v-model="result" readonly />
+      </UFormGroup>
     </Transition>
   </ToolContainer>
 </template>

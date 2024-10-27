@@ -30,6 +30,7 @@ onBeforeUnmount(() => {
 })
 // end
 
+const route = useRoute()
 const router = useRouter()
 const message = useMessage()
 const { t } = useI18n({
@@ -160,6 +161,21 @@ const handleFavorite = () => {
   }
 }
 
+const shareC5rLink = () => {
+  if (isOnToolPage) {
+    if (isTauri()) {
+      // TODO: change this to production url
+      const url = window.location.href.replace(window.location.origin, 'https://dev.c5r.app')
+      navigator.clipboard.writeText(url)
+      message.success(t('component.topSubBar.share.success'))
+    } else {
+      // TODO: share link modal
+      const url = `ctfever:/${window.location.href.replace(window.location.origin, '')}`;
+      navigateTo(url, { external: true })
+    }
+  }
+}
+
 defineProps({
   minibar: {
     type: Boolean,
@@ -245,21 +261,32 @@ defineShortcuts({
     </nav>
     <!-- sub title bar -->
     <div
-      class="relative w-full z-10 px-4 overflow-hidden flex items-center transition-all ease-in-out duration-300 border-b bg-white/90 dark:bg-neutral-800/90 backdrop-blur-lg backdrop-saturate-50"
+      class="relative w-full z-10 px-4 flex items-center transition-all ease-in-out duration-300 border-b bg-white/90 dark:bg-neutral-800/90 backdrop-blur-lg backdrop-saturate-50"
       :class="{ 'h-0 opacity-0': !minibar, 'h-8 opacity-100 border-neutral-200 dark:border-neutral-700': minibar }">
       <div class="flex items-center justify-between container mx-auto">
         <div class="flex items-center">
-          <nuxt-link :to="localePath('/')" class="flex items-center space-x-1 text-sm">
+          <nuxt-link :to="localePath('/')"
+            class="flex items-center space-x-1 text-sm px-1 py-0.5 rounded hover:bg-neutral-200 hover:dark:bg-neutral-700">
             <Icon name="IconCircleArrowLeft" class="text-lg" />
             <span>{{ $t('component.topSubBar.back') }}</span>
           </nuxt-link>
         </div>
-        <div class="flex items-center space-x-3">
-          <button class="flex items-center" @click="handleFavorite">
+        <div class="flex items-center space-x-1.5">
+          <button
+            class="flex items-center outline-none px-1 py-0.5 rounded hover:bg-neutral-200 hover:dark:bg-neutral-700 text-sm"
+            @click="shareC5rLink()">
+            <Icon v-if="!isTauri()" name="TablerDeviceDesktopShare" class="text-lg outline-none" />
+            <Icon v-else name="TablerShare2" class="text-lg outline-none" />
+          </button>
+          <button
+            class="flex items-center outline-none px-1 py-0.5 rounded hover:bg-neutral-200 hover:dark:bg-neutral-700"
+            @click="handleFavorite">
             <Icon v-show="isCurrentToolFavorite" name="IconBookmarkFilled" class="text-lg text-amber-500" />
             <Icon v-show="!isCurrentToolFavorite" name="IconBookmarkPlus" class="text-lg" />
           </button>
-          <button class="flex items-center outline-none" @click="sidebarActive = !sidebarActive">
+          <button
+            class="flex items-center outline-none px-1 py-0.5 rounded hover:bg-neutral-200 hover:dark:bg-neutral-700"
+            @click="sidebarActive = !sidebarActive">
             <Icon name="IconMenu" class="text-lg outline-none" />
           </button>
         </div>
