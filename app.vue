@@ -127,6 +127,7 @@ if (isTauri()) {
     if (urls.length === 0) {
       return
     }
+    console.log('Deep link call', urls[0]);
     const uri = new URL(urls[0])
     // check if the path is invalid
     const isValidPath = router.getRoutes().some((route) => {

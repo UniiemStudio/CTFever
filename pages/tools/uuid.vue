@@ -9,6 +9,7 @@ import {
   version,
 } from 'uuid'
 
+const route = useRoute()
 const { t } = useI18n({ useScope: 'local' })
 useSeoMeta({ title: t('title') })
 
@@ -51,7 +52,10 @@ const inspect = () => {
 }
 
 onMounted(() => {
-  console.log(uuids.value);
+  if (route.query.input) {
+    input.value = route.query.input as string
+    inspect()
+  }
 })
 </script>
 
