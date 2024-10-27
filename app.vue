@@ -19,7 +19,7 @@ const { currentPageTitle } = storeToRefs(useGlobalState())
 const { toolkits } = storeToRefs(useConstant())
 const { createI18nToolkitKey, createI18nToolKey } = useI18nKey()
 const { t } = useI18n({
-  useScope: 'local',
+  useScope: 'local'
 })
 
 // cross-platform
@@ -86,6 +86,7 @@ if (isTauri()) {
         {
           id: 'quit',
           text: t('tray.quit'),
+          accelerator: 'CmdOrCtrl+Q',
           action: async () => {
             const answer = await ask(t('tray.quit-confirm'), {
               title: '退出 CTFever',

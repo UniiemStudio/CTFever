@@ -296,7 +296,7 @@ defineShortcuts({
           keys: ['id', 'label', 'route'],
           threshold: 0.3,
         },
-      }" @update:model-value="handleCommandSelect" />
+      }" @update:model-value="handleCommandSelect" :autoselect="false" />
     </UModal>
     <UModal v-model="isCharsWizardOpen">
       <UCard :ui="{ divide: 'divide-y divide-gray-100 dark:divide-gray-800' }">
