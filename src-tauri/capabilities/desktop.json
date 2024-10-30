@@ -6,7 +6,6 @@
     "linux"
   ],
   "permissions": [
-    "cli:default",
     "os:default",
     "dialog:default"
   ]
