@@ -7,8 +7,7 @@ import { storeToRefs } from 'pinia'
 import { TrayIcon, type TrayIconOptions } from '@tauri-apps/api/tray';
 import { defaultWindowIcon } from '@tauri-apps/api/app';
 import { Menu } from '@tauri-apps/api/menu';
-import { window } from '@tauri-apps/api';
-import { Window } from '@tauri-apps/api/window';
+import { window as t_window } from '@tauri-apps/api';
 
 const page_loaded = ref(false)
 
@@ -28,7 +27,7 @@ if (isTauri()) {
 
   // if the app is running on mobile, we don't need to init system tray
   if (osType !== 'android' && osType !== 'ios') {
-    const mainWindow = (await window.getAllWindows()).find(w => w.label === 'main')
+    const mainWindow = (await t_window.getAllWindows()).find(w => w.label === 'main')
 
     // handle close event
     mainWindow?.onCloseRequested((event) => {
