@@ -170,7 +170,7 @@ onMounted(() => {
 <template>
   <UniMessageProvider :max="5">
     <NuxtLayout>
-      <div
+      <div data-tauri-drag-region
         class="fixed inset-0 font-sans flex flex-col gap-6 justify-center items-center bg-white dark:bg-neutral-900 z-[999999]"
         v-if="!page_loaded && !isTauri()">
         <div class="sk-folding-cube">

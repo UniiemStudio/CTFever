@@ -195,11 +195,11 @@ defineShortcuts({
 
 <template>
   <div class="fixed top-0 left-0 right-0 h-fit z-50">
-    <nav
-      class="relative h-16 z-20 px-4 overflow-hidden flex items-center transition border-b border-neutral-200 dark:border-neutral-700 bg-white/90 dark:bg-neutral-800/90 backdrop-blur-lg backdrop-saturate-50 draggable">
-      <div class="flex items-center justify-between container mx-auto">
+    <nav data-tauri-drag-region
+      class="relative h-16 z-20 px-4 overflow-hidden flex items-center transition border-b border-neutral-200 dark:border-neutral-700 bg-white/90 dark:bg-neutral-800/90 backdrop-blur-lg backdrop-saturate-50">
+      <div data-tauri-drag-region class="flex items-center justify-between container mx-auto">
         <div class="flex items-center space-x-2.5 select-none">
-          <NuxtLinkLocale to="/" class="ignore-drag group flex justify-center items-center">
+          <NuxtLinkLocale to="/" class="group flex justify-center items-center">
             <div
               class="w-6 h-6 bg-neutral-200 dark:bg-neutral-600 rounded-md hidden group-hover:flex justify-center items-center">
               <Icon name="IconHome" />
@@ -212,7 +212,7 @@ defineShortcuts({
             </h1>
           </Transition>
         </div>
-        <div class="flex items-center space-x-4 ignore-drag">
+        <div data-tauri-drag-region class="flex items-center space-x-4">
           <DevOnly>
             <UniButton size="medium"
               @click="$colorMode.preference = $colorMode.preference === 'dark' ? 'light' : 'dark'">
@@ -242,8 +242,8 @@ defineShortcuts({
         </div>
       </div>
       <!-- windows controls -->
-      <div v-if="isTauri() && (osType !== 'android' && osType !== 'ios')"
-        class="ml-4 pl-4 border-l border-neutral-200 dark:border-neutral-700 flex justify-between items-center ignore-drag">
+      <div v-if="isTauri() && (osType !== 'android' && osType !== 'ios')" data-tauri-drag-region
+        class="ml-4 pl-4 border-l border-neutral-200 dark:border-neutral-700 flex justify-between items-center">
         <button @click="appWindow.minimize()"
           class="inline-flex justify-center items-center p-2 rounded-md text-lg hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors duration-150">
           <ClarityWindowMinLine class="text-xl" />
