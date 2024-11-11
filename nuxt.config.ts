@@ -53,17 +53,17 @@ export default defineNuxtConfig({
   colorMode: {
     preference: "system",
   },
-  content: {
-    sources: {
-      github: {
-        prefix: "/contents",
-        driver: "github",
-        repo: "UniiemStudio/CTFever",
-        branch: "v3",
-        dir: "content",
-      },
-    },
-  },
+  // content: {
+  //   sources: {
+  //     github: {
+  //       prefix: "/contents",
+  //       driver: "github",
+  //       repo: "UniiemStudio/CTFever",
+  //       branch: "v3",
+  //       dir: "content",
+  //     },
+  //   },
+  // },
   i18n: {
     locales: [
       {

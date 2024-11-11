@@ -2,9 +2,7 @@ use tauri::Manager;
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
-    let mut builder = tauri::Builder::default()
-        .plugin(tauri_plugin_dialog::init())
-        .plugin(tauri_plugin_os::init());
+    let mut builder = tauri::Builder::default();
 
     #[cfg(desktop)]
     {
@@ -22,6 +20,8 @@ pub fn run() {
 
     builder
         .plugin(tauri_plugin_deep_link::init())
+        .plugin(tauri_plugin_dialog::init())
+        .plugin(tauri_plugin_os::init())
         .setup(|app| {
             if cfg!(debug_assertions) {
                 app.handle().plugin(
