@@ -10,6 +10,7 @@ const props = defineProps({
   },
   icon: {
     type: String,
+    required: false,
   },
   reverseTitleIcon: {
     type: Boolean,
