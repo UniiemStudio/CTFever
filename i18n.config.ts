@@ -140,6 +140,11 @@ export default defineI18nConfig(() => ({
             label: "Zip Pseudo-encryption",
             description: "Check if a Zip archive is pseudo-encrypted",
           },
+          ip2int: {
+            label: "IP to Int Convert",
+            description:
+              "Conversion between dotted decimal IP address and decimal integer",
+          },
         },
       },
     },
@@ -276,6 +281,10 @@ export default defineI18nConfig(() => ({
           zipPseudoEncryption: {
             label: "Zip 伪加密",
             description: "检测一个 Zip 压缩包是否经过了伪加密",
+          },
+          ip2int: {
+            label: "IP 地址与整数转换",
+            description: "点分十进制 IP 地址与十进制整数转换",
           },
         },
       },
