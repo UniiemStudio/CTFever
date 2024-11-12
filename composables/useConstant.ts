@@ -56,9 +56,6 @@ export const useConstant = defineStore('ctfever_stuff', () => {
 }, {
   persist: {
     storage: persistedState.localStorage,
-    paths: [
-      'favorites',
-      'recent',
-    ],
+    pick: ['favorites', 'recent']
   },
 })

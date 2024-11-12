@@ -107,10 +107,17 @@ export const rawToolkits = [
       },
     ],
   },
-  // {
-  //   key: 'network',
-  //   tools: [],
-  // },
+  {
+    key: 'network',
+    icon: 'IconWorldWww',
+    tools: [
+      {
+        key: 'ip2int',
+        route: '/tools/ip2int',
+        tags: [rawTags.general, rawTags.web],
+      }
+    ],
+  },
   {
     key: "misc",
     icon: "IconMicroscope",
