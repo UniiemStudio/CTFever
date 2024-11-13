@@ -10,8 +10,7 @@ const router = useRouter()
 const message = useMessage()
 const runtimeConfig = useRuntimeConfig()
 const localeRoute = useLocaleRoute()
-const switchLocalePath = useSwitchLocalePath()
-const { locale, locales } = useI18n()
+const { locale, locales, setLocale } = useI18n()
 const { t } = useI18n({
   useScope: 'local',
 })
@@ -101,7 +100,7 @@ const localeOptions = locales.value.map(locale => {
 })
 
 const handleLocaleSelect = (lc: string) => {
-  router.replace(switchLocalePath(lc))
+  setLocale(lc)
 }
 
 const selectedLocale = ref(locale.value as string)
@@ -109,6 +108,7 @@ watch(selectedLocale, handleLocaleSelect)
 
 const select = ref(false)
 
+// TODO: Integrate with user module
 const handleLogin = () => {
   router.push(localeRoute({
     name: 'user-login',
