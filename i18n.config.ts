@@ -145,6 +145,10 @@ export default defineI18nConfig(() => ({
             description:
               "Conversion between dotted decimal IP address and decimal integer",
           },
+          jsonSerializer: {
+            label: "JSON Serializer",
+            description: "Edit and filter JSON data, supports JSON Path syntax",
+          },
         },
       },
     },
@@ -285,6 +289,10 @@ export default defineI18nConfig(() => ({
           ip2int: {
             label: "IP 地址与整数转换",
             description: "点分十进制 IP 地址与十进制整数转换",
+          },
+          jsonSerializer: {
+            label: "JSON 编辑器",
+            description: "JSON 数据编辑与筛选，支持 JSON Path 语法",
           },
         },
       },
