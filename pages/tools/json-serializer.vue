@@ -1,18 +1,18 @@
 <!--suppress JSUnresolvedReference -->
 <script>
-import {defineComponent} from 'vue'
+import { defineComponent } from "vue";
 import PrimaryContainer from "~/components/tool/PrimaryContainer.vue";
 import InteractiveDoubleColumns from "~/components/tool/InteractiveDoubleColumns.vue";
 import PrimaryIntroduction from "~/components/tool/PrimaryIntroduction.vue";
 
-import jsonpath from 'jsonpath';
-import {codemirror} from 'vue-codemirror';
-import 'codemirror/lib/codemirror.css';
-import 'codemirror/addon/display/placeholder'
-import 'codemirror/mode/javascript/javascript';
-import 'codemirror/theme/idea.css';
-import {copyTextToClipboard} from "~/libs/common";
-// import 'codemirror/theme/darcula.css';
+import jsonpath from "jsonpath";
+import { codemirror } from "vue-codemirror";
+import "codemirror/lib/codemirror.css";
+import "codemirror/addon/display/placeholder";
+import "codemirror/mode/javascript/javascript";
+import "codemirror/theme/idea.css";
+import "codemirror/theme/darcula.css";
+import { copyTextToClipboard } from "~/libs/common";
 
 export default defineComponent({
   name: "json-serializer",
@@ -20,107 +20,140 @@ export default defineComponent({
     codemirror,
     PrimaryIntroduction,
     InteractiveDoubleColumns,
-    PrimaryContainer
+    PrimaryContainer,
   },
   head() {
     return {
       title: this.$t("tool.jsonSerializer.title") + " - " + this.$t("app.name"),
       meta: [
-        {hid: "description", name: "description", content: this.$t("tool.jsonSerializer.desc")},
+        {
+          hid: "description",
+          name: "description",
+          content: this.$t("tool.jsonSerializer.desc"),
+        },
       ],
-    }
+    };
   },
   data() {
     return {
       expressionOptions: [
-        {value: 'jsonpath', label: 'JSON Path'},
-        {value: 'js', label: 'JS 对象操作', disabled: true},
+        { value: "jsonpath", label: "JSON Path" },
+        { value: "js", label: "JS 对象操作", disabled: true },
       ],
       cmOptions: {
         tabSize: 4,
         mode: {
-          name: 'javascript',
-          json: true
+          name: "javascript",
+          json: true,
         },
-        theme: 'idea',
+        theme: "idea",
         lineNumbers: true,
         line: true,
       },
-      input_json: '',
-      output_json: '',
-      expressionType: 'jsonpath',
-      expression: '$',
+      isDark: false,
+      input_json: "",
+      output_json: "",
+      expressionType: "jsonpath",
+      expression: "$",
       beautify: true,
       indent: 2,
       references: [
         {
-          name: 'JSONPath - XPath for JSON',
-          url: 'https://goessner.net/articles/JsonPath/'
-        }
-      ]
-    }
+          name: "JSONPath - XPath for JSON",
+          url: "https://goessner.net/articles/JsonPath/",
+        },
+      ],
+    };
   },
   mounted() {
-    const json = this.$route.query.json
-    const expression = this.$route.query.expression
-    const expressionType = this.$route.query.expressionType
+    const json = this.$route.query.json;
+    const expression = this.$route.query.expression;
+    const expressionType = this.$route.query.expressionType;
     if (json) {
-      this.input_json = Buffer.from(json, 'base64').toString()
+      this.input_json = Buffer.from(json, "base64").toString();
     }
     if (expression) {
-      this.expression = decodeURIComponent(expression)
+      this.expression = decodeURIComponent(expression);
     }
     if (expressionType) {
-      if (this.expressionOptions.find(item => item.value === expressionType)) {
-        this.expressionType = expressionType
+      if (
+        this.expressionOptions.find((item) => item.value === expressionType)
+      ) {
+        this.expressionType = expressionType;
       }
     }
 
-    this.processJson()
+    this.isDark = document.documentElement.classList.contains("dark");
+
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.attributeName === "class") {
+          this.isDark = document.documentElement.classList.contains("dark");
+          this.cmOptions = { ...this.cmOptions };
+        }
+      });
+    });
+
+    observer.observe(document.documentElement, { attributes: true });
+    this.$once("hook:beforeDestroy", () => {
+      observer.disconnect();
+    });
+
+    this.processJson();
+  },
+  computed: {
+    currentTheme() {
+      return this.isDark ? "darcula" : "idea";
+    },
   },
   methods: {
     processJson() {
-      this.$router.replace({
-        path: this.$route.fullPath,
-        query: {
-          ...this.$route.query,
-          json: Buffer.from(this.input_json).toString('base64'),
-          expression: encodeURIComponent(this.expression),
-          expressionType: this.expressionType,
-        }
-      }).catch(() => {
-        // pass
-      })
-      if (this.expressionType === 'jsonpath') {
+      this.$router
+        .replace({
+          path: this.$route.fullPath,
+          query: {
+            ...this.$route.query,
+            json: Buffer.from(this.input_json).toString("base64"),
+            expression: encodeURIComponent(this.expression),
+            expressionType: this.expressionType,
+          },
+        })
+        .catch(() => {
+          // pass
+        });
+      if (this.expressionType === "jsonpath") {
         try {
-          let result = jsonpath.query(JSON.parse(this.input_json), this.expression)
+          let result = jsonpath.query(
+            JSON.parse(this.input_json),
+            this.expression
+          );
           if (Array.isArray(result) && result.length === 1) {
-            result = result[0]
+            result = result[0];
           }
           this.output_json = JSON.stringify(
             result,
             null,
-            this.beautify ? parseInt(this.indent || '0') : null
-          )
+            this.beautify ? parseInt(this.indent || "0") : null
+          );
         } catch (e) {
-          this.output_json = e.message
+          this.output_json = e.message;
         }
       }
     },
     handleExpressionTypeChange() {
-      if (this.expressionType === 'jsonpath') {
-        this.expression = '$'
+      if (this.expressionType === "jsonpath") {
+        this.expression = "$";
       } else {
-        this.expression = 'json'
+        this.expression = "json";
       }
-      this.processJson()
+      this.processJson();
     },
     handleShare() {
-      copyTextToClipboard(window.location.href)
-      this.$message.success('已复制当前页面地址到剪贴板')
+      copyTextToClipboard(window.location.href);
+      this.$message.success("已复制当前页面地址到剪贴板");
     },
   },
-})
+});
 </script>
 
 <template>
@@ -128,14 +161,24 @@ export default defineComponent({
     <div class="mb-2">
       <h2 class="block-title">表达式</h2>
       <div class="flex items-center space-x-2">
-        <UniSelect style="width: 120px" :options="expressionOptions" v-model="expressionType"
-                   @change="handleExpressionTypeChange"/>
+        <UniSelect
+          style="width: 120px"
+          :options="expressionOptions"
+          v-model="expressionType"
+          @change="handleExpressionTypeChange"
+        />
         <UniInput
           id="expression"
           v-model="expression"
           @input="processJson"
-          class="w-full" copyable
-          :placeholder="expressionType === 'jsonpath' ? 'JSONPath 表达式' : 'JavaScript 对象操作语句'"/>
+          class="w-full"
+          copyable
+          :placeholder="
+            expressionType === 'jsonpath'
+              ? 'JSONPath 表达式'
+              : 'JavaScript 对象操作语句'
+          "
+        />
       </div>
     </div>
     <InteractiveDoubleColumns>
@@ -146,35 +189,54 @@ export default defineComponent({
           @input="processJson"
           :options="{
             ...cmOptions,
+            theme: currentTheme,
             autofocus: true,
-            placeholder: 'JSON goes here...'
+            placeholder: 'JSON goes here...',
           }"
-          :autofocus="true"/>
+          :autofocus="true"
+        />
       </template>
       <template v-slot:right>
         <h2 class="block-title">表达式输出</h2>
-        <codemirror class="output"
-                    v-model="output_json"
-                    :options="{
-                      ...cmOptions,
-                      readOnly: true,
-                      placeholder: 'Output goes here...'
-                    }"
-                    :disabled="true"/>
+        <codemirror
+          class="output"
+          v-model="output_json"
+          :options="{
+            ...cmOptions,
+            theme: currentTheme,
+            readOnly: true,
+            placeholder: 'Output goes here...',
+          }"
+          :disabled="true"
+        />
         <div
-          class="h-12 px-4 space-x-2 flex flex-row items-center border border-slate-300 dark:border-slate-700 rounded-md overflow-hidden">
+          class="h-12 px-4 space-x-2 flex flex-row items-center border border-slate-300 dark:border-slate-700 rounded-md overflow-hidden"
+        >
           <div>
-            <a-checkbox v-model="beautify" @change="processJson">美化输出</a-checkbox>
+            <a-checkbox v-model="beautify" @change="processJson"
+              >美化输出</a-checkbox
+            >
           </div>
           <div class="flex flex-row items-center space-x-1">
             <h2>缩进</h2>
-            <UniInput id="indent" placeholder="缩进数量" v-model="indent" :disabled="!beautify"
-                      @input="processJson" type="number"/>
+            <UniInput
+              id="indent"
+              placeholder="缩进数量"
+              v-model="indent"
+              :disabled="!beautify"
+              @input="processJson"
+              type="number"
+            />
           </div>
         </div>
       </template>
     </InteractiveDoubleColumns>
-    <PrimaryIntroduction title="Json Path" path="intro/jsonpath" :references="references" no-margin/>
+    <PrimaryIntroduction
+      title="Json Path"
+      path="intro/jsonpath"
+      :references="references"
+      no-margin
+    />
   </div>
 </template>
 
